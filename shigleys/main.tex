@@ -1,0 +1,495 @@
+\title{Resumen de Elementos de Maquina}
+\author{pwhittingslow@itba.edu.ar}
+
+\documentclass[twocolumn,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
+%Letra general
+\usepackage{mathastext}
+
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=1]{helvet}
+\usepackage[format=plain,
+            labelfont={bf,it},
+            textfont=it]{caption}
+\usepackage{color}
+\usepackage{fontawesome}
+\usepackage{siunitx}
+\newcommand{\ansp}{\!\!\!\!\!\!\!}%Anti-space
+%Math
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand{\rmit}[1]{{\fontfamily{cmr}\selectfont #1}}
+%commands
+\newcommand{\glossentry}[2]{$#1$\indent #2 \par \vspace{.4cm} } %Entradas para glosario
+\newcommand{\agma}{\textrm{AGMA }}
+\newcommand{\bigpar}[1]{\bigg(
+#1 \bigg) }
+\newcommand{\dprime}{ {\prime \prime} }
+\newcommand{\tprime}{ {\prime \prime \prime} }
+\newcommand{\fit}{\textit{\textrm{f }}}
+\newcommand{\corr}{{\textrm{\color{red} Revisar}}}
+\newcommand{\Kf}[1]{ K_{\textit{\textrm{f}}_{\textrm{#1}}} }
+\newcommand{\Kfs}[1]{ K_{\textit{\textrm{fs}}_{\textrm{#1}}} }
+\newcommand{\siga}[1]{ \sigma_{{\textrm{a}}_{\textrm{#1}}} }
+\newcommand{\sigm}[1]{ \sigma_{{\textrm{m}}_{\textrm{#1}}} }
+\newcommand{\pe}{\textit{\textrm{p}}}
+\newcommand{\gut}{{\color{green}\faCheck}}
+\newcommand{\Fall}{\rmit{Fall}}
+\newcommand{\Rise}{\rmit{Rise}}
+\newcommand{\Dwell}{\rmit{Dwell}}
+\begin{document}
+\maketitle
+
+\section{Fatiga}
+Los tres métodos de calcular la vida a fatiga son \emph{tensión-vida (también conocido como fatiga-vida), deformación-vida} y \emph{método de mecánica de fractura elástico-lineal} que asume que ya hay una fractura presente en el material. Para \emph{High-cycle fatigue} ($N>10^3$) se suele usar el metodo de \emph{tension-vida} porque la aproxima adecuadamente con efectuar un número alto de ensayos sobre muestras (resultados estadísticos). \par
+El método \emph{deformación-vida} es el que mejor aproxima la naturaleza de la fatiga. Su desventaja es que se necesitan realizar varias idealizaciones que agregan a la incertidumbre por eso no se suele usar.\par
+
+\textbf{Tipos de fatiga}
+\begin{itemize}
+    \item Invertido (Completamente Alternante) $\sigma_m=0$
+    \item Repetido $\sigma_m=\sigma_a\Rightarrow \sigma_{m\acute{i}n}=0$
+    \item Fluctuante o Variable $|\sigma_m|>\sigma_a$
+\end{itemize}
+
+\subsection{Materiales dúctiles}
+\textbf{Resistencia a corte}. Los materiales dúctiles tienen menor resistencia al corte. La siguiente relación vale para la gran mayoría de materiales dúctiles.
+$$S_{ut_s}=0,67\,S_{ut}\qquad S_{y_s}=0,577\,S_y $$
+
+\subsubsection{Esfuerzo Invertido}
+El limite de resistencia a la fatiga ($S_e^\prime$) se determina en un ensayo. Como no podemos ensayar el acero en el parcial se estima con la siguiente relación:
+\[ S_e^\prime =
+  \begin{cases}
+    0,5S_{ut}   & \quad S_{ut}\leq 1400 \si{\mega \pascal}\\
+    700\si{\mega \pascal}    & \quad S_{ut}>1400 \si{\mega \pascal} 
+  \end{cases}
+\]
+
+Resistencia a la fatiga para un determinado $N$ numero de ciclos:
+$$ S_\fit=aN^b $$
+$$a=\frac{(\fit S_{ut})}{S_e} \qquad b=-\frac{1}{3}\log\bigpar{\frac{\fit S_{ut}}{S_e}} $$
+Donde \fit es la fracción de resistencia y $\sigma_F^\prime $ es el esfuerzo de rotura real del material:
+$$\fit = \frac{\sigma_F^\prime}{S_{ut}(2\cdot 10^3)^b} \qquad \sigma_F^\prime=S_{ut}+345MPa$$
+$$\text{Despejando b:}\;  b=-\frac{\log (\sigma_F^\prime/S_e^\prime)}{\log(2N_e)}$$
+El exponente $b$ se puede obtener de tabla ya que la vida de resistencia a la fatiga ($N_e$) es un valor experimental.\par
+Limite de resistencia a la fatiga (vida infinita) corregida por los factores de condición de superficie ($k_a$), tamaño respecto ensayo ($k_b$), carga ($k_c$), temperatura ($k_d$), confiabilidad ($k_e$) y efectos diversos ($k_f$):
+$$ S_e=k_a k_b k_c k_d k_e k_f S_e^\prime $$
+\subsubsection{Esfuerzos fluctuantes}
+Langer (limita falla por fluencia estática, lo infradimensiona). $n$ es el factor de seguridad:
+$$S_a+S_m=S_y\qquad \sigma_a+\sigma_m=\frac{S_y}{n}$$
+Soderberg (Sobredimensiona):
+$$\frac{S_a}{S_e}+\frac{S_m}{S_y}=1\qquad \frac{\sigma_a}{S_e}+\frac{\sigma_m}{S_y}=\frac{1}{n}$$
+Goodman modificada (funciona bien)
+$$\frac{S_a}{S_e}+\frac{S_m}{S_{ut}}=1  \qquad \frac{\sigma_a}{S_e}+\frac{\sigma_m}{S_{ut}}=\frac{1}{n}$$
+Gerber (se acerca bien a los datos experimentales):
+$$ \frac{S_a}{S_e} + \bigg( \frac{S_m}{S_{ut}} \bigg)^2 =1 \qquad  \frac{n\sigma_a}{S_e}+\bigpar{\frac{n\sigma_m}{S_{ut}}}^2 =1 $$
+ASME (the best):
+$$ \bigpar{\frac{S_a}{S_e}}^2+\bigpar{\frac{S_m}{S_y}}^2=1 \qquad \bigpar{\frac{n\sigma_a}{S_e}}^2+\bigpar{\frac{n\sigma_m}{S_y}}^2=1$$
+
+\textbf{Compresión.} La compresión dificulta el avance de las fallas  $\Rightarrow$  mejora la resistencia a la fatiga. Aun así, ante la falta de datos publicados se resigna esta ventaja.
+\subsection{Materiales frágiles}
+Criterio Smith-Dolan
+$$ \frac{n\sigma_a}{S_e}=\frac{1-n\frac{\sigma_m}{S_{ut}}}{1+n\frac{\sigma_m}{S_{ut}}} \qquad \frac{S_a}{S_e}=\frac{1-\frac{S_m}{S_{ut}}}{1+\frac{S_m}{S_{ut}}}$$
+\subsection{Criterios a torsión}
+Cuando la carga es de torsión combinada con flexión se elige $k_c=1$ y se usa la tensión efectiva de Von Mises ($\sigma_m^\prime$ y $\sigma_a^\prime$) %Revisar la seccion
+\[ k_c =
+  \begin{cases}
+    1       & \quad flexi\acute{o}n\\
+    0,85    & \quad axial \\
+    0,59      &\quad torsi\acute{o}n
+  \end{cases}
+\]
+\subsection{Concentradores de tensiones}
+Para fatiga se usa un factor de concentrador de tensiones reducido $\Kfs{}$. Para obtenerlo primero se obtiene la sensibilidad a la muesca $q$:
+$$q=\frac{1}{1+\frac{\sqrt[]{a}}{\sqrt[]{r}}}$$
+
+\subsection{Combinaciones de carga}
+Von Mises(Energía de deformación máxima) tomando en cuenta concentradores de tensiones $\Kf{}$ y $\Kfs{}$:
+$$ \ansp \ansp \sigma_a^\prime =\sqrt[ ]{ \bigpar {\Kf{flex} \sigma_{a_{flex}} +\Kf{axial} \frac{\siga{axial}}{0,85}}^2+3\bigpar{ \Kfs{torsión}Z_{a_{flex}} }^2 }  $$
+$$\ansp\ansp\sigma_m^\prime =\sqrt[]{ \bigpar{  \Kf{flex}\sigm{flex} +\Kf{axial}\sigm{axial} }^2+3\bigpar{\Kfs{torsión}Z_m}^2 } $$
+\section{Engranes}
+\subsection*{Intro a trenes de engranajes}
+Se requiere un tren de engranajes (varios engranes en un mecanismo) para relaciones de transmision mayores a 6:1 por sus limites de tamaño e interferencia.
+Según su geometría pueden ser de tres tipos:
+\begin{itemize}
+    \item Simples
+    \item Compuestos
+    \item Epiciclicos
+\end{itemize}
+\[ m_\omega = \pm \frac{productodientesimpulsores}{producto dientes impulsados}
+\]
+Para un {\bf tren simple} de mas de dos ruedas se tiene que todas las ruedas que no son la primera ni la ultima son dientes impulsados e impulsores a la misma vez. por ende la relacion de velocidad siempre es la razon entre el primer y ultimo engrane. Se las suele usar para llegar a un eje lejano o para invertir el sentido de giro.
+\[ 
+m_\omega = \left(-\frac{N_2}{N_3}\right)\left(-\frac{N_3}{N_4}\right) \ldots \left(-\frac{N_{n-1}}{N_n}\right) = \pm \frac{N_2}{N_n}
+\]
+
+{\bf Tren compuestos} son todos aquellos trenes que no son simples. Ahora si podemos aprovechar el full potencial de los engranes. Con estos logramos reducciones mayores a 6:1.
+
+{\bf Tren compuesto revertido} Eje entrada y eje de salida colineales. Suerte resolviendo esto en el excel:
+\[
+M_1 (N_2+N_3)=M_2 (N_4 + N_5)
+\]
+
+{\bf Trenes epicíclicos.} Hay velocidad relativa entre los ejes. Se usa en motores híbridos donde es difícil aportar energía de dos fuentes a un eje en común. Osea que necesitas controlar ese grado de libertad adicional.
+
+Tren epicíclico planetario. En general la salida se da con el engrane planetario.
+{\sc Ojo el balanceo}
+Cajas automatizadas.
+\[
+\omega_{engrane}=\omega_{brazo}+\omega_{brazo/brazo}
+\]
+
+Método de Willis
+\[
+R=m_\omega para \omega_{br} = 0
+\]
+Uso el CIR de forma analítica y tengo la expresión:
+\[R=\frac{\omega_l - \omega_{br}}{\omega_f - \omega_{br}}
+\]
+{\bf Eficiencia de engranes especiales partiendo de la eficiencia de trenes simples.} De engranes interiores:
+
+$L_{int}=\frac{b-1}{b+1}L_{ext}\qquad b=\frac{N_{int}}{N_{ext}}=\frac{N_{mayor}}{N_{Menor}}$
+y engranes helicoidales:
+
+$L_{hel}=L_{ext} 0,8 \cos \lambda $
+y para trenes epicíclicos:
+$E_0 = E_1\cdot E_2 \cdot \ldots \approx 1-L_1 -L_2 - \ldots $
+
+con $T_1=\frac{T_{brazo}}{\rho E_0 -1}\qquad T_2 =\frac{\rho E_0 T_{brazo}}{\rho E_0 -1}$ donde $\rho$ es la relación básica de transimisión. 
+
+\subsection*{Glosario de Engranes}
+\glossentry{N}{Numero de dientes.}
+\glossentry{m_G}{Razón de dientes. Siempre menor que 1.}
+\glossentry{d_p}{Diámetro primitivo (Pitch diameter).}
+\glossentry{m_n=\frac{d_p}{N}}{Modulo.}
+\glossentry{P_n}{Paso diametral normal(Diametral pitch).}
+\glossentry{P_d}{Paso diametral transversal.}
+
+\glossentry{\pe_x}{Paso circular axial: Paso entre dientes medido sobre el circulo de paso.}
+% \glossentry{\pe_b}{Paso circular transversal: Paso entre dientes medido perpendicular al helicoide.$\pe_b=\pe_x$ para dientes rectos }
+\glossentry{\pe_N}{Paso de base normal.}
+\glossentry{F,b}{Ancho de cara.}
+\glossentry{\phi_n}{Angulo de presión normal. $20-25^\circ$}
+\glossentry{\phi_t}{Angulo de presión transversal.}
+\glossentry{\phi_r}{Angulo de presión transversal de operación.}
+\glossentry{\psi_b,\psi}{Angulo de Hélice.}
+
+% \glossentry{x}{}
+%\glossentry{x}{}
+%------------------------ENGRANES HELIC
+\subsection{Engranes Helicoidales}
+$$P_n=\frac{N}{d_p\cos\psi} \quad \pe_b=\pi m_n \cos \phi_n \qquad \pe_n=\pi m_n$$
+$$ P_n=\frac{P_t}{\cos\psi}  \quad \pe_n=\pe_t\cos\phi \quad \phi_t=\tan^{-1} \bigpar{\frac{\tan\phi_n}{\cos \psi}}$$
+La relación de contacto transversal $m_F$ nos dice cuantos dientes hay en contacto a la vez. Idealmente seria lo mas alto posible pero a relación de contacto cuanto mas alto mas le afectan las inexactitudes de montaje. Por eso se lo suele mantener por debajo a $1,2$.
+$$ m_F=\frac{q}{\pe}=\frac{Z}{\pe_b}$$
+donde $q$ es el arco de acción y $Z$ es longitud de la linea donde los dientes están en contacto.\par
+\subsection{Fuerzas en los engranes helicoidales}
+\begin{align*}
+W_t &= \frac{2T}{d_p} \\
+W_r &= W\sin \phi_n \\
+W_t &= W \cos \phi_n \cos \psi \\
+W_a &= W \cos \phi_n \sin \psi 
+\end{align*}
+
+
+\subsection{Dimensionamiento de Engranes}
+Ecuación de flexión de Lewis (metrica e imperial):
+$$\sigma = \frac{nK_v W_t}{Fm_nY}\qquad \quad \sigma = \frac{nK_v W_t P_n}{FY}$$
+Ojo, el factor $K_v$ tiene $V$ medida en feet por minuto o metros por segundo y depende del terminado superficial del engrane. $V=\omega \frac{d_p}{2}$\par
+Para obtener la durabilidad al pitting se usa:
+$$\sigma_c=-nC_p\bigpar{\frac{K_vW_t}{F\cos \phi_n}^{\frac{1}{2}} (r_1^{-1}+r_2^{-1})} $$
+$$C_p=\sqrt[]{ \frac{1}{\pi\bigg(\frac{1-\nu_p^2}{E_p}+\frac{1-\nu_c^2}{E_c} \bigg)} }$$
+$$r_1=\frac{d_{p_p}\sin\phi_n}{2}\qquad r_2=\frac{d_{p_c}\sin\phi_n}{2} $$
+\[ \sigma_c\big|_{N=10^8} =
+  \begin{cases}
+    2,76HB-70\, MPa    & \quad M\acute{e}trico \\
+    0,4HB-10\, kpsi       & \quad Imperial
+  \end{cases}
+\]
+\section{Ejes}
+\subsection{Esfuerzos en ejes}
+En general los esfuerzos axiales no son fuente de preocupación.
+$$\sigma_a=\Kf{} \,\frac{M_ac}{I}\qquad \sigm{}=\Kf{}\, \frac{M_mc}{I}$$
+$$\tau_a =\Kfs{}  \frac{T_a c}{J} \qquad \tau_m=\Kfs{} \frac{T_m c}{J} $$
+Si se supone un eje solido con sección circular:
+$$\sigma_a=\Kf{} \frac{32M_a}{\pi d^3}\qquad \sigm{}=\Kf{} \frac{32M_m}{\pi d^3}$$
+$$\tau_a =\Kfs{}  \frac{16T_a}{\pi d^3}\qquad \tau_m=\Kfs{} \frac{16T_m}{\pi d^3}$$
+Aplicando Von Mises (despreciando esfuerzos axiales):
+$$\siga{}^\prime =\sqrt[]{\siga{}^2+3\tau_a^2} \qquad \sigm{}^\prime =\sqrt[]{\sigm{}^2+3\tau_m^2}$$
+Goodman despejado para diámetro (caso particular):
+$$d = \sqrt[3]{\frac{16n}{\pi} \bigpar{\frac{2\Kf{}M_a}{S_e}+\frac{\sqrt[]{3}\Kfs{} T_m}{S_e}}} $$
+\section{Rodamientos}
+$\pe=3$ para rodamientos de bola rígidos y es $\pe=10/3$ para cilíndricos. $L$ es los ciclos de trabajo esperados. $L_{nm}$ es una versión modificada por {\scshape\textrm{SKF} }.
+$$L_{10}=\bigpar{\frac{C}{P}}^\pe\qquad L_{nm}=a_1a_{skf}L_{10}  $$
+$$L_{horas}=\frac{10^6}{60n_{rpm} }L$$
+Donde $a_1$ es el factor de confiabilidad y $a_{skf}$ es el factor del fabricante.
+$$ P=P_{eq}=X P_{radial}+Y P_{axial} $$
+$X$ e $Y$ son obtenidos de un catalogo y son característicos del modelo de rodamiento. $P$ es la fuerza aplicada al rodamiento\par
+El factor $K=\frac{\nu_{min} }{\nu}$ es el cociente entre la viscosidad mínima permitida (obtenida de tabla con $D_{medio}$ y velocidad en rpm) y la viscosidad del lubricante elegido. $\eta_c$ esta gobernado por la condición de trabajo (aceite contaminado, limpio, etc.)
+
+%--------------------PERNOS
+\section{Pernos}
+\subsection{Analogía del resorte}
+Se tiene dos elementos abulonados juntos con un perno con precarga. La precarga impone una deformación sobre el perno $\delta$, los elementos abulonados tambien se van a deformar $\delta_1+\delta_2=\delta$ entre los dos. Este comportamiento se puede modelar como si los elementos estuvieran en serie (comparten deformación) y el perno en paralelo con estos.
+\subsection{Pernos en tracción}
+Cuando se quiere que una union permanezca junta bajo tracción y que sea desmontable se tiene que hacer un análisis de rigidez del conjunto bulon-elementos para conocer la precarga que hay que fijar.
+
+La constante de rigidez (``resorte")del perno esta dada por la sumatoria en serie de su parte roscada y su parte lisa:
+$$k_b=\bigg( \frac{1}{k_{liso}}+\frac{1}{k_{roscado}} \bigg)^{-1}=\frac{A_dA_tE}{A_d L_t +A_tL_d} $$
+
+Los elementos a unir también se van a deformar según su constante de rigidez:
+$$ \frac{1}{k_m}=\frac{1}{k_{m1}+\frac{1}{k_{m2}} } \ldots$$
+
+pero como la deformación no ocurre sobre un volumen bien definido, se tiene que resolver por elementos finitos para obtener resultados que reflejen la realidad. 
+
+De los modelos propuestos el que mejor aproxima la rigidez del material de una unión abulonada es considerando que la zona deformada tiene la forma de un tronco cónico, o un \emph{frustrum}. 
+
+$$k=\frac{0,5774 \pi Ed}{\ln \frac{(1,155t+D-d)(D+d)}{(1,155t+D+d)
+(D-d)}} $$
+Donde $t$ es el ancho del elemento, $D$ es el diámetro del cono de deformación de partida, el diámetro del agujero para el perno es $d$ y $E$ es el modulo de Young. Una expresión que aproxima  
+
+Se puede calcular la rigidez para dos elementos del mismo material y del mismo ancho con la aproximación (valores $A$ y $B$ de tabla 8--8)
+
+$$k_m=A\cdot Ed e^{\frac{Bd}{l}} $$
+
+Para conocer las tensiones en el perno se usan estas constantes para obtener $C$, denominada como la \emph{constante de rigidez de la unión abulonada} o la fracción de carga compartida por el perno.
+
+$$ C=\frac{k_b}{k_b+k_m}$$
+
+La fuerzas resultante sobre el perno y los elementos son (respectivamente)
+\begin{align*}
+F_b&=C\cdot P+F_i \\
+ F_m&=(1-C)P-F_i \qquad F_m<0
+\end{align*}
+
+donde $P$ es la carga aplicada y $F_i$ es la precarga.
+
+
+
+$$T=KF_id $$
+\subsection{Pernos en corte}
+Se tiene que verificar cizallamiento del perno, corte  de los elementos abulonados, aplastamiento de los elementos abulonados y desgarramiento de los elementos.
+$$\tau_{\textrm{perno}}=\frac{F_{\textrm{corte}}}{A}$$
+\subsubsection{Método Alemán}
+\subsubsection{Método americano}
+Verificar aplastamiento, corte perno y corte pieza (transversal y longitudinal)
+\subsection{Fatiga}
+Siempre va ser fluctuante, y si haces todo mal y l
+%-------------------TORNILLOS DE POTENCIA
+\section{Tornillos de Potencia.}
+Largo de una vuelta de rosca: $\pi d_r$ 
+$$ \sigma_x=\frac{6F}{\pi d_r n_t p}$$
+$$\sigma_z=-\frac{4F}{\pi d_r^2} $$
+$$\tau_{yz}= \frac{16T}{\pi d^3_r} $$
+
+%----------------SOLDADURA
+\section{Soldadura}
+\subsection{Solicitaciones simples}
+Unión a tope:
+$$\tau=\frac{F}{hl} $$
+
+Para una unión con filetes transversales el Shigley dice que \emph{no se tiene una aproximación analítica que prevea los esfuerzos existentes}. Por lo tanto se emplea un modelo simple y conservador el cual \textbf{supone} que la fuerza $F$ completa produce un esfuerzo cortante en la sección mínima de la garganta:
+$$\tau=\frac{\sqrt[]{2}F}{hl} $$
+\subsection{Torsión}
+\textbf{Corte primario} en las soldaduras:$\tau^\prime = \frac{V}{A} $
+
+Donde $A$ es el área de la garganta de todas las soldaduras.
+
+\textbf{Corte secundario} en las soldaduras donde $I_p$ es el segundo momento de inercia polar de la unión respecto el centroide del grupo y $r$ es la distancia al punto de interés de la soldadura medida desde el centroide:
+
+$$\tau^\dprime= \frac{Mr}{I_p} $$
+$$I_p=\frac{hI_{pu}}{\sqrt[]{2}} $$
+\subsection{Flexión}
+Se va tener el mismo $\tau^\prime=\frac{V}{A}$
+Y ademas el esfuerzo nominal cortante sobre la garganta va ser de 
+
+$$\tau = \frac{Mc}{I} $$
+$$I=\frac{hI_{u}}{\sqrt[]{2}} $$
+Donde $c$ es la distancia al punto de interés medido desde el centroide. El segundo momento de inercia $I$ se calcula respecto el centroide en el eje donde hay momento flector.
+\subsection{Resistencia de uniones soldadas}
+Lo que mas importa al momento de soldar dos piezas es la habilidad y rapidez del soldador, las propiedades del material de aporte y de las piezas vienen después. 
+
+En general se usan materiales que tienen buenas propiedades laminado en caliente. Esto se debe a que en la zona de la soldadura cualquier tratamiento térmico anterior, o si el material es laminado en frió, se reemplaza por las propiedades de una barra laminado en caliente.
+
+Agregar concentradores de tensiones
+%------------------RESORTES
+\section{Resortes}
+Longitud solida == carga bloque
+Sea el diametro \emph{exterior} del resorte $D_e$ y el diámetro del alambre $d$. El diámetro medio esta dado por la cuenta $D=D_e-d$. $C=\frac{D}{d}$ usado para calcular el factor de corrección $K_B = \frac{4C+2}{4C-3} $, el cual no se debe comparar a un factor de concentrador de tensiones. $K_W=\frac{4C-1}{4C-4}+\frac{0,615}{C}$. Recordar $G=\frac{E}{2(1+\nu)}$.
+$$\tau_{max} =k_{B,W}\, \frac{8F.D}{\pi d^3} $$
+
+$$k=\frac{Gd^4}{8N_aD^3} $$
+$$\delta =\frac{F}{k} $$
+corte de cargas
+% $$S_s=\frac{r^2S}{} $$
+saarstahl materials specification sheet
+SAE 9254 Resortes
+IRAM 9260
+A Leslabay le gusta usar $K_w$ en vez de $K_b$. Kb equivalente depende del area visto de arriba.
+
+
+entender las tbas de la pag. 46->usar de filminas de clase. No te conviene usar R sola.
+\subsection{Fatiga en resortes}
+$S_{ut}=\frac{A}{d^m}$
+
+%------------------CORREAS.
+\section{Correas}
+$T_1$ Ramal tenso, $`T_2$ es el Ramal flojo(devolucion).
+
+Condicion Limite:
+$$\frac{T_1}{T_2}=e^{\mu \alpha } $$
+Es decir, si $T_2e^{\mu\alpha}\leq T_1$ entonces ocurre el resbalamiento.
+
+
+
+Angulo de abrace $\Delta\alpha = \arcsin (R_2\cdot R_1 / C)$
+
+Proy Horizontal: $\mu dQ=\cos \frac{D\alpha}{2}dT$
+$dQ dfc$
+
+Fuerza centrifuga por radian: $\bigg(   \frac{q V^2}{g}\cdot d\alpha \bigg)$
+
+$$ \frac{T_1-F_c}{T_2-F_c}=e^{\mu \alpha}$$
+Teorema de Prony Generalizado:
+$$ T_1\leq T_2 e^{\mu \alpha}-F_c(e^{\mu \alpha}-1)  $$
+Siempre vamos a ver poleas que estan en el punto optimo y no resbalan (cumple Prony): $P=(T_1-T_2)$
+
+Tensión de montura $T_0$, se denomina la tension en la correa cuando esta detendida. Esta puede ser calculada de forma simplista como la semisuma de las tensiones:
+
+$$T_0=\frac{T_1+T_2}{2} $$
+
+\subsection{Correas Shigley}
+
+\subsection{Mecanismos de desgaste}
+Una vez que se ajusta un material 
+\begin{itemize}
+\item Corrosion (me genera muchisimas particulas)
+\item Corrientes electricas (eddy)
+\item rozamiento (velocidad)
+\end{itemize}
+
+Cuidado con usar radios chicos -> flexion. y radios grandes -> centrifugated
+
+La potencia que puede transmitir una correa se ve dada por la sección de la correa, el angulo de contacto (lo mas alto posible, te lo limita la relación de transmisión)
+
+Las poleas no se rompen, resbalan. Por eso cuidado cuando se diseña para picos de torque. El peor momento para la correa es cuando pasa sobre la polea mas chica.
+
+bajar fuerza centrifuga: bajo peso de correa/m o bajo velocidad angular(bajar velocidad me sube la fuerza tangencial-> encontrar balance).
+
+Las correas se compran en kit del mismo lote asi se distribuyen la carga equivalentamentemente.
+\subsection{Selección de correas (Optibelt)}
+Se busca(n) una(s) correa(s) que se les entregue $P_{motor}$ a un régimen de carga dado con $n_1$ revoluciones de entrada y $n_2$ revoluciones de salida deseadas. 
+
+Primero se obtiene la potencia calculada $P_{calc}=P\cdot c_2$, esto depende del tipo de carga. Usando $max(n_1,n_2)$ y $P_{calc}$ se obtiene el tipo de correa (diag 1). Eligo la polea pequeña (pag. 104-111) luego la grande (numero redondo?) para que $i=\frac{n_1}{n_2}\sim \frac{d_1}{d_2}$. 
+
+Sugiero un valor de $C\in \bar{S}$ (dist. entre centros) tal que $\bar{S}=\left \{  c\in \mathbb{R}^+ / 0,7(d_1+d_2)<c<2,0(d_1+d_2) \right \}$. Recomendado empezar con $C=1,8(d_1+d_2)$. Con $C$ calculo $L_p$ y luego busco $L_{p_{real}}$ parecido a $L_p$ igual al desarrollo interior. Con $L_{p_{real}}$ calculo $C_{real}$ verificando que $\in\bar{S}$.
+
+Ahora busco los valores restantes para poder calcular la cantidad de correas necesarias $z$
+$$z=\frac{P_{calc} }{P_{real}}=\frac{c_2\cdot P_{motor}}{P_{nominal}\cdot c_1 \cdot c_3} $$
+donde $P_{nominal}=P_{tabla}+P_{mult}$ obtenidos de $pag 104-111$ con los datos de la polea pequeña ($P_{mult}$ es el ``incremento por multiplicación''... obtenido con $i_{real}$). $c_3\sim 1$.
+
+$c_1$ es el factor de angulo. Lo busco en tabla (optibelt 17) con $\beta$. $D-d\equiv |d_1-d_2|$
+
+$$\beta =2\arccos\left( \frac{D-d}{2C}\right) $$
+
+
+\section{Cadenas}
+Aumentar
+
+%---------------LUBRICACIÓN
+\section{Lubricación}
+Diagrama de stribeck tiene una zona donde se minimiza el coeficiente de roce, despues de este punto al aumentar la velocidad aumentan las perdidas a la viscosidad del aceite (calor generado) se puede mitigar este problema con aditivos que modifican el indice de viscosidad:$\frac{\partial \mu}{\partial T}$
+
+Seis condiciones basicas de la lubricación.
+\begin{itemize}
+\item Reducir rozamiento
+\item reducir desgaste
+\item Absorber o amortiguar impactos
+\item Disminuir temperatura
+\item Reducir la Corrosión 
+\item Prevenir la contaminación externa
+\end{itemize}
+Lubricacion hidrodinamica se basa en la viscosidad del lube y la velocidad en el mov. rel. entre elementos y el huelgo radial entre los elementos.
+
+Lubricacion mixta
+lubricacion 
+
+parafinicos
+Naftenicos
+Aromaticos
+
+La lubricación
+
+\section{Levas}
+\glossentry{R_b}{Radio base.}
+\glossentry{R_f}{Radio del seguidor.}
+\glossentry{R_p}{Radio primario.}
+\glossentry{s}{Desplazamiento del seguidor.}
+\glossentry{\theta}{Ángulo de la leva.}
+\glossentry{\phi}{Ángulo de contacto/presión.}
+\glossentry{\rho_\rmit{paso}}{Radio de curvatura de la curva de paso del seguidor.}
+\glossentry{\varepsilon}{Excentricidad de la leva respecto al seguidor.}
+\glossentry{\omega}{Velocidad angular de la leva.}
+\glossentry{\omega_n}{Frecuencia natural del conjunto leva-seguidor.}
+\glossentry{\beta}{Ángulo total de un segmento \Rise{}, \Fall{} o \Dwell.}
+\begin{itemize}
+    \item[$s=$] $\left[\rmit{longitud}\right]$
+    \item[$\dot{s}=$] $\left[\frac{\rmit{longitud}}{\rmit{tiempo}}\right]$
+    \item[$\ddot{s}=$] $\left[\frac{\rmit{longitud}}{\rmit{tiempo}^2}\right]$ 
+    \item[$v=$] $\left[\frac{\rmit{longitud}}{\rmit{radian}}\right]$
+    \item[$a=$] $\left[\frac{\rmit{longitud}}{\rmit{radian}^2}\right]$ 
+\end{itemize}
+
+\[
+\rho_{\rmit{paso}} = \frac{ \left[(R_p+s)^2+v^2 \right]^{3/2} }{(R_p+s)^2 +2v^2-a(R_p-s)}> \overbrace{R_F \cdot2,5}^{\textrm{\tiny Regla empírica}}
+\]
+$F$ es la fuerza de contacto
+\[
+F = m \cdot \ddot{s}+c\cdot\dot{s}+k(s+x_0)
+\]
+
+\[
+\phi = \arctan\left( \frac{v-\varepsilon}{s+\sqrt{R_p^2-\varepsilon^2}}\right)
+\]
+$F_a$ es la fuerza axial sobre el seguidor, Nortóno la llama $F_c$ para confundirnos:
+\[
+F_a=F\cdot \cos \phi
+\]
+$F_t$ es la fuerza tangencial
+\[
+F_t = F_a \tan \phi = F \sin \phi 
+\]
+
+el ``\textit{dampin ratio}"{} $\zeta$:
+\[
+\zeta  = 0,06  = \frac{c}{2\sqrt{mk}}
+\]
+luego la frecuencia natural (ojo, $c$ depende de $k$)
+\[
+\omega_d = \sqrt{\frac{k}{m}-\left( \frac{c}{2m} \right)^2}
+\]
+Se tienen que cumplir las siguientes condiciones: $F$ siempre mayor a cero y la aceleración durante el \Fall{} no debe vencer el resorte (si no se ``despega"{} la leva). Finalmente tiene que trabajar por debajo de la frecuencia natural para evitar la separación del conjunto leva-seguidor por vibraciones.
+
+\begin{align}
+   \fbox{ $F>0$}& \\
+   \fbox{ $k\cdot \left(s(t_{\ddot{s}_{\min}})+x_0\right)>m\cdot\left| \ddot{s}_{\min} \right|$}& \quad \text{donde}\quad \ddot{s}_{\min}<0 \\
+   \fbox{$\frac{\omega_f}{\omega_d}<\frac{\sqrt{2}}{2}=\frac{1}{\sqrt{2}}$}&
+\end{align}
+$s(t_{\ddot{s}_{\min}})$ es el desplazamiento evaluado en el lugar de aceleración mínima.
+
+\[
+T = \frac{F \cdot \dot{s}}{\omega\cdot \eta}
+\]
+
+%% %%%%%%
+%% Seguidor PLANO
+\subsection{Seguidor plano}
+\[
+\rho_{base} = R_b +s +a >0
+\]
+donde
+\[
+R_{b_{\min}} > \min\left[ \rho_{\min} - (s+a)  \right]
+\]
+\end{document}

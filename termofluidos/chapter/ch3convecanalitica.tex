@@ -1,0 +1,161 @@
+ 
+%      _   __      __                   __   ______                           __  _           
+%    / | / /___ _/ /___  ___________ _/ /  / ____/___  ____ _   _____  _____/ /_(_)___  ____ 
+%   /  |/ / __ `/ __/ / / / ___/ __ `/ /  / /   / __ \/ __ \ | / / _ \/ ___/ __/ / __ \/ __ \
+%  / /|  / /_/ / /_/ /_/ / /  / /_/ / /  / /___/ /_/ / / / / |/ /  __/ /__/ /_/ / /_/ / / / /
+% /_/ |_/\__,_/\__/\__,_/_/   \__,_/_/   \____/\____/_/ /_/|___/\___/\___/\__/_/\____/_/ /_/ 
+
+\section{Estudio analítico de Convección}
+Expresiones utiles para el estudio de convección
+\begin{equation}
+    \hcb=\frac{1}{A}\int_A h_{c} \di \sur
+\end{equation}
+\begin{equation}
+    F_D=\rho \frac{\overline{C}_D U_\infty A}{2}
+\end{equation}
+\subsection{Estudio de Capa Limite}
+\emph{Para problemas con un flujo uniforme que incide sobre una superficie se define la} \textbf{capa límite} \emph{la zona en la cual la velocidad del flujo es menor a 99\% la velocidad en el infinito.} Dicho de forma matemáticamente,tenemos un flujo de velocidad $u$ que lejos de la placa tiene velocidad $U_\infty$, entonces si $u(x_0,y_0)<0,99U_\infty \Rightarrow$ el punto ($x_0,y_0$) pertenece a la capa limite.
+
+Si se fuera efectuar un modelo con capa limite 2-D para un fluido newtoniano se obtienen dos ecuaciones
+\begin{align} \label{eq:BLConvectionMomentum}
+    u\spartial{ u}{x}+v\spartial{u}{y}&=-\frac{1}{\rho}\spartial{p}{x_i}+\nu \dpartial{u}{y}+f_x\\ \label{eq:BLConvectionEnergy}
+    u\spartial{T}{x}+v\spartial{T}{y}&=\alpha \spartial{T}{y}+\frac{\mu}{\rho c_p}\left( \spartial{u}{y}\right)^2
+\end{align}
+donde $\alpha=\frac{k}{\rho c_p}$. En el caso que $\Brinkmann\ll1$ se puede despreciar la disipación viscosa $\frac{\mu}{\rho c_p}\left( \spartial{u}{y}\right)^2=0 $. 
+
+La ecuación de cantidad de movimiento (\ref{eq:BLConvectionMomentum}) sale de plantear continuidad (\ref{eq:continuidad}) y equilibrio de fuerzas viscosas e hidrostáticas sobre un \textbf{volumen de control} (VC) del flujo. La ecuación de energía (\ref{eq:BLConvectionEnergy}) tiene en cuenta la energía intercambiada en el VC por convección y conducción entrante y saliente.
+
+En el caso que $\Prandtl=1$ las ecuaciones \ref{eq:BLConvectionMomentum} y \ref{eq:BLConvectionEnergy} tienen la misma solución (la capa limite térmica coincide con la de velocidad). 
+
+
+
+\subsubsection{Análisis de capa limite adimensional} \label{section:BLdimensionlessAnalisis}
+Como se pueden imaginar, resolver el sistema de ecuaciones (\ref{eq:continuidad}), (\ref{eq:BLConvectionMomentum}) y (\ref{eq:BLConvectionEnergy}) es... complicado. Uno lo evita tomando el camino de la adimensionalización, partiendo de las siete cantidades físicas que representan el problema $U_\infty=$ velocidad característica,$W=$ ancho característico, $L=$ longitud característica, $g=$ aceleración debido a la gravedad, $\beta=$ coeficiente de expansión, $\Delta T=T-T_\infty=$ diferencia de temperatura, $\nu=$ viscosidad cinemática, $\alpha=$ coeficiente de difusividad térmica. Tenemos 4 dimensiones ($\Theta, L, M, t$). Usando el teorema de Buckingham nos quedan los grupos adimensionales:
+
+\begin{align*}
+    \pi_1&=\Prandtl=\frac{\nu}{\alpha}\\
+    \pi_2&=\Grashof=\frac{g\beta (T-T_\infty)L^3)}{\nu^2}\\
+    \pi_3&=\Reynolds=\frac{U_\infty L}{\nu} \\
+    \pi_4&=\frac{L}{W}
+\end{align*}
+donde $\beta$ es el coeficiente de expansión térmica del fluido.
+
+Como $U_\infty$ depende del campo de temperaturas para convección natural, $\pi_3$ no es un parámetro independiente no lo tomamos en cuenta para la adimensionalización. Se llega entonces a una ecuación que describe el fenómeno de convección con precisión piola
+\begin{equation}\label{eq:DimensionlessNusselt}
+    \Nusselt=\phi(\Grashof)\psi(\Prandtl)=\varphi(\Rayleigh)
+\end{equation}
+
+\subsubsection{Análisis Capa límite Laminar para flujo sobre placa}
+Para una flujo laminar con velocidad uniforme $U_\infty$ que incide sobre una placa plana se pueden deducir las siguientes relaciones \citep{kreith2011principles}. Dentro del rango $\num{1}<\Reynolds_x\lessapprox\Reynolds_\crit\equiv\Reynolds_c$ se puede aproximar el espesor de la capa límite $\delta$ con la siguiente relación
+
+\begin{equation}\label{eq:BLthicknessLaminar}
+    \delta=\frac{5x}{\sqrt{\Reynolds_x}}
+\end{equation}
+
+donde $x$ es la distancia al filo de ataque de la placa. Recordemos lo dicho en \ref{section:BLdimensionlessAnalisis}, el subíndice de un numero adimensional indica con que valor característico hay que evaluarlo. En este caso, $\Reynolds_x$ es el número de Reynolds \emph{local}.
+
+El corte sobre la superficie se obtiene evaluando el gradiente de velocidad sobre $y=0$
+\begin{equation} \label{eq:BLshearLaminar}
+    \tau_s=\mu\left. \spartial{u}{y}\right|_{y=0}=0,332\mu\frac{U_\infty}{x}\sqrt{\Reynolds_x}
+\end{equation}
+
+Suele ser de utilidad representar el problema de manera adimensional con el coeficiente de arrastre $C_D$. Si la fuerza total es lo que nos interesa entonces recordamos $F=\int_A \tau_s d\sur$. Sabiendo esto podemos despejar \ref{eq:BLavgdragcoefLaminar} para llegar a la expresión \ref{eq:BLdragforceLaminar}.
+
+\begin{align}\label{eq:BLdragcoefLaminar}
+    C_{Dx}&=\frac{\tau_s}{\rho U^2_\infty/2}=\frac{0,664}{\sqrt{\Reynolds_x}} \\
+   \label{eq:BLavgdragcoefLaminar} \overline{C_D}&=\frac{1}{L}\int^{L}_0 C_{Dx} \di x=1,33\sqrt{\frac{\mu}{\rho U_\infty L}}\\
+   \label{eq:BLdragforceLaminar} F_D&=\frac{1.33b}{2}\sqrt{\rho \mu L U_\infty^3}
+\end{align}
+
+A todo esto, aun no se estudio la transferencia de calor. Al igual que con el perfil de velocidades, las temperaturas también se les hace el mismo análisis de capa limite. Las propiedades del flujo son obtenidas de tabla para una temperatura promedio entre el flujo libre y la superficie, llamada la \emph{temperatura de película} $\Tfilm=\frac{T_s+T_\infty}{2}$. La capa límite térmica se puede obtener con el mismo $\delta$. 
+\begin{align} \label{eq:BLTthickness}
+    \delta_{th}=\delta \Prandtl^{-\frac{1}{3}}\\
+    q^{\prime \prime}_{cx}=-0,332 k\frac{\Reynolds_x^{\frac{1}{2}} \Prandtl^{\frac{1}{3}}}{x}(T_\infty-T_s)\\
+    q=0,664k\Reynolds_L^{\frac{1}{2}} \Prandtl^{\frac{1}{3}}b(T_s-T_\infty)\\
+    h_{cx}=\frac{q^{\prime \prime}_{cx}}{T_s-T_\infty}=0,332 \frac{k}{x}\Reynolds_x^{\frac{1}{2}} \Prandtl^{\frac{1}{3}}\\
+    \Nusselt_x=\frac{h_{cx}x}{k}=0,332 \Reynolds_x^{\frac{1}{2}} \Prandtl^{\frac{1}{3}}\\
+    \overline{\Nusselt}_L=0,664\Reynolds_L^{\frac{1}{2}} \Prandtl^{\frac{1}{3}}
+\end{align}
+
+\subsubsection{Analogía de Reynolds}
+Algunas de las hipótesis planteadas para llegar a la analogía de Reynolds:
+\begin{itemize}
+    \item Las velocidades y la temperatura están compuestas de un valor promedio ($\overline{u},\overline{T}$) y uno fluctuante ($u^\prime,v^\prime$,$T^\prime$). 
+    \item Las fluctuaciones de una \emph{partícula (o paquete) macroscópica de un fluido} (PMF) es semejante a la cinemática de un gas. 
+\end{itemize}
+
+A todo esto, se quiere describir la transferencia de calor de una capa a la que le sigue. Se tiene que la transferencia de calor por unidad de área está relacionada al \emph{promedio} del \emph{producto} de las fluctuaciones de velocidad en $y$ (osea $v^\prime$) y la fluctuación de temperaturas. Recordando el concepto de \emph{longitud de mezcla}, $l$ es la longitud a la cual la PMF retiene sus características originales antes de dispersarlas al fluido que la rodea. La siguiente expresión describe el mecanismo de transferencia de calor por turbulencia sin tomar en cuenta la conducción molecular.
+\begin{equation}
+    q^{\prime \prime}_t=\frac{q_t}{A}=\rho c_p \overline{v^\prime T^\prime }=-\rho c_p \overline{v^\prime}l \frac{\di \overline{T}}{\di y}
+\end{equation}
+\subsubsection{Análisis Capa límite con turbulencia}
+Simplemente dicho, para flujos que caen dentro del rango $\num{5e5}<\Reynolds <\num{e7}$ se pueden usar las siguientes expresiones sin miedo 
+\begin{align}
+    \delta&=0,37x\Reynolds_x^{-\frac{1}{5}}\\
+    C_{Dx}&=0,0576 \Reynolds_x^{-\frac{1}{5}} \\
+    \overline{C}_{Dx}&=\frac{1}{L}\int^L_0 C_{Dx} \di x=0,072\Reynolds_L^{-\frac{1}{5}}
+\end{align}
+
+El análisis térmico nos dice que para gases con número Prandtl cerca de $1$ 
+\begin{equation}
+   \frac{h_{cx}}{c_p \rho U_\infty}=\frac{\Nusselt_x}{\Reynolds_x \Prandtl}=\frac{C_{Dx}}{2}
+\end{equation}
+
+La ecuación anterior se puede modificar para estar en acuerdo con resultados experimentales para fluidos en el rango $0,6<\Prandtl<50$
+\begin{equation}
+   \frac{\Nusselt_x}{\Reynolds_x \Prandtl}\Prandtl^{\frac{2}{3}}=\Stanton_x\Prandtl^{\frac{2}{3}}=\frac{C_{Dx}}{2}
+\end{equation}
+\subsubsection{Correlación Capa límite mixta para flujo sobre placa}
+Siempre se va tener un flujo laminar antes que comience a ser turbulento.
+\begin{itemize}
+    \item \textbf{Laminar:} $0<x<x_c$
+    \item \textbf{Transición:} $x_c<x<?$
+    \item \textbf{Turbulento:} $x_c\lessapprox x$
+\end{itemize}
+
+Para estimar el coeficiente de arrastre se supone que la capa límite turbulenta comienza en el filo de ataque.
+\begin{equation}
+    \overline{C}_D=\frac{\overline{C}^{\textrm{lam}}_{Dx_c}+\overline{C}^{\textrm{turb}}_{DL}-\overline{C}^{\textrm{turb}}_{Dx_c}}{L}
+\end{equation}
+Para un número de Reynolds crítico de \num{5e5} tenemos:
+\begin{equation}
+    \overline{C}_D=0,072\left( \Reynolds_L^{-\frac{1}{5}}-\frac{0,0464x_c}{L}\right)
+\end{equation}
+
+Y finalmente, para el análisis de transferencia de calor la ecuación que rige:
+\begin{equation} \label{eq:BLNusseltMixed}
+        \Nusselt_x=\frac{h_{cx} x}{k}=0,0288 \Prandtl^{\frac{1}{3}} \Reynolds_x^{0,8}
+\end{equation}
+
+\subsection{Resolución de problemas}
+Las ecuaciones a usar:
+\begin{itemize}
+    \item Continuidad (\ref{eq:continuidad})
+    \item Navier--Stokes reducida (\ref{eq:NSr})
+    \item Entalpía (\ref{eq:entalpia}) o Energía (\ref{eq:HEATorENERGY})
+\end{itemize}
+
+Para realizar el estudio de convección natural haremos algunas suposiciones que provienen de la derivación de la ecuación Navier--Stokes y otras para evitar la complejidad de cuentas.
+\begin{itemize}
+    \item Estado estacionario $\left( \spartial{}{t}=0\right)$
+    \item Fluido Newtoniano 
+    \item Validez de la  aproximación Boussinesq
+    \item Flujo en régimen laminar $\left( u_y=0\right)$
+    \item Influencia nula de disipación viscosa $\left(\Brinkmann \ll 1\right)$
+    \item Propiedades débilmente dependientes de la temperatura ($\mu$,$k$,$c_p$)
+\end{itemize}
+
+La aproximación de Boussinesq establece que la densidad es solo función de la temperatura y que se desprecian sus variaciones salvo en el termino de las fuerzas de volumen (asociadas con la gravedad) \citep{vieytes2018filminas}. Esta hipótesis es evidente en un liquido, pero para un gas esto implica que la densidad hidrostática $\rho_e$ es constante.
+\begin{equation}\label{boussinesqdensity}
+    \rho(T)=\rho_0+\spartial{\rho}{T}(T-T_0)=\rho_0\left(1-\beta(T-T_0)\right)
+\end{equation}
+
+donde $\rho_0$ es la densidad del fluido a la temperatura de referencia $T_0$. $\beta$ es el coeficiente de expansión térmica Como $\frac{1}{\rho_0}\spartial{\rho}{T}=-\beta$ (el coeficiente de expansión térmica) se puede hacer un reemplazo.
+
+Las ecuaciones que nos sirven para problemas de convección forzada son las de continuidad \ref{eq:compresibilidad} y la de Navier--Stokes \ref{eq:NS}. Recordar siempre usar densidad $\rho$ del flujo en el infinito (\emph{free-stream}).
+
+Protips:
+\begin{itemize}
+    \item Para un gas ideal $\rho=p/RT\Rightarrow \beta=\frac{1}{T_\infty}$
+    \item Para dos paredes separados por $2d$: $h_c=\frac{\left. k\spartial{T}{y}\right|_w}{T_w-T_0}=\frac{k}{2d}\frac{T_2-T_1}{T_w-T_0}$
+\end{itemize}

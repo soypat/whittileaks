@@ -1,0 +1,39 @@
+# Matlab Stuff
+*.asv
+*.fig
+
+
+# NX stuff
+*.dat
+*.diag
+*.f04
+*.f06
+*.log
+*.op2
+
+# ADINA output files
+*.out
+
+#LaTeX output
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.gz
+*.toc
+# a/**/b" matches "a/b", "a/x/b", "a/x/y/b
+**/fig/*.pdf #Those pesky pdf duplicates of my figures
+
+
+# GO STUFF
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+

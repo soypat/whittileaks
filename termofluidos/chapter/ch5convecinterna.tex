@@ -1,0 +1,19 @@
+\section{Convección Interna Laminar}
+\subsection{Correlaciones empíricas}
+
+Se comienza definiendo el diámetro hidráulico para poder aplicar las correlaciones a secciones que no son cuadradas ni circulares
+\begin{equation}
+    D_H=4\cdot \frac{\textrm{Sección de flujo}}{\textrm{Perimetro mojado}}
+\end{equation}
+
+Luego se define un valor que se usa seguido como criterio para las correlaciones $\Lambda$:
+\[
+\Lambda = \frac{\Reynolds_{D_H}\Prandtl D_H}{L}
+\]
+
+{\bf Ductos \emph{cortos} circulares o rectangulares.}
+
+Si se trata el ducto rectangular corto con la hipótesis de placas planas
+\begin{equation}
+    \overline{\Nusselt}_{D_H}=-\frac{\Lambda}{4}\ln \left( 1 - 2,654 \Prandtl^{0,167} \Lambda^{-,5}\right)
+\end{equation}

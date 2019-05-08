@@ -1,0 +1,60 @@
+\section{Radiación}
+
+\subsection{Cuerpos negros}
+
+\begin{equation}
+    E_{b}(T,\lambda)=\frac{C_1}{\lambda^5 (e^{C_1/\lambda T} -1)}
+\end{equation}
+
+\begin{equation}
+    \frac{\di E_{b}(T,\lambda)}{\di \lambda}=0 \quad \Rightarrow \quad \lambda_{max} T = b= \num{2,898e-3} \si{\milli \kelvin}
+\end{equation}
+
+La emisión total de radiación por unidad de superficie es:
+\begin{equation}
+    E_b(T) = \frac{q_r}{A} = \sigma T^4
+\end{equation}
+donde $\sigma=\SI{5,670e-8}{\watt \per \meter \squared \kelvin^4 } $ es el constante de Stefan-Boltzmann.
+
+Para determinar cual longitud de onda a la que el poder emisivo monocromático es máximo
+\begin{equation}
+    \frac{E_b (T,\lambda)}{E_b (T,\lambda_{max})}=\left( \frac{\num{2,898e-3}}{\lambda T}\right)^5 \left( \frac{\exp(4,965)-1}{\exp(\frac{0,014388}{\lambda T})-1} \right)
+\end{equation}
+
+\subsection{Intensidad de radiación}
+Unidad de ángulo solido: Steradiano (sr)
+
+\begin{equation}
+    \di \omega = \frac{\di A_n}{r^2} = \sin \theta \di \theta \di \phi
+\end{equation}
+
+\subsection{Propiedades de la radiación}
+
+Absorción + reflectividad + transimisión = 1
+\[\alpha + \rho +\tau = 1 \]
+
+Cuerpos opacos no transmiten radiación incidente $\Rightarrow \tau=0$. Cuando un cuerpo es un reflector perfecto entonces $\rho=1$.
+
+\[ 
+\varepsilon = \frac{E(T)}{E_b(T)} = \frac{E(T)}{\sigma T^4}
+\]
+
+{\bf Equilibrio entre tierra y sol} Encontrar $T_{tierra}$:
+
+$T_{sol}=5778K, \quad R_{ts}=\SI{149,6e9}{\meter}, \quad R_T=6371 km,\quad R_S=695508km$, $albedo\approx0,35$
+
+Buscamos los steradianes de la tierra respecto el sol: $\omega=\frac{A_T}{R_{ts}^2}=\num{5,698e-9}$
+
+Busco emitancia del sol y potencia radiada total:
+$E=\sigma (5778^4) \Rightarrow P_{sol}=A_{sol}E=\SI{3,8e26}{\watt}$ Si divido por $4\pi$ obtengo intensidad radiante $I_e=[W/sr]$
+
+y luego para calcular la intensidad de la radiación del sol sobre la tierra:
+$I=\frac{P_{sol}}{A_{ts}}=\frac{P_{sol}}{4\pi R_{ts}^2}=1366\si{\watt \meter^{-2}}$
+
+La energía absorbida por la tierra se puede calcular de dos formas:
+$q_r=I\cdot \pi R_T^2=I_e\cdot \omega=\num{1,74e17}\si{\watt} $
+
+Tomando en cuenta que la tierra es un cuerpo gris: 
+$E_{absorbido}=q_r(1-albedo)$ y lo que emite: $E_{emite}=4\pi R_T^2 \sigma T_{tierra}^4$.\footnote{La tierra absorbe luz en un plano e irradia como una esfera} Planteando $E_{emit}=E_{abs}$
+\[ T_{tierra} = \sqrt[4]{\frac{q_r(1-albedo)}{4\pi R_T^2 \sigma}}\approx 250k \approx -23^\circ C\]
+

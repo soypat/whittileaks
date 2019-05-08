@@ -1,0 +1,170 @@
+
+\section{Principios de transferencia de calor}
+\subsection{Conducción de Calor}
+\begin{equation} \label{eq:LaEcuacionBasica}
+    q_k\propto A\frac{\di T}{\di x}\rightarrow q_k=-kA\frac{\di T}{\di X}
+\end{equation}
+
+El signo negativo en \ref{eq:LaEcuacionBasica} es por causa de la segunda ley de la termodinámica que nos dice que el calor fluye de un punto de mayor temperatura a uno de menor temperatura.
+
+Temperatura uniforme cara plana.
+$$q_k=-\frac{kA\Delta T}{L} $$
+$$R_k=\frac{L}{Ak}$$
+
+Analogía eléctrica:
+$$V\sim T $$
+$$I \sim \dot{q}_{\text{calor}}$$
+$$R\sim\frac{1}{K}= \frac{1}{\bar{h}_cA}\sim \frac{L}{kA} $$
+$$C=\frac{Q}{V}\sim c\cdot m \si{}$$
+Conducción térmica
+$$K_k=\frac{kA}{L}$$
+La razón $k/L$ se le dice la conducción térmica unitaria. $L/k$ es la  resistencia térmica unitaria.
+
+Aproximación lineal de conductividad térmica en función de la temperatura
+$$k(T)=k_0(1+\beta_kT)$$ donde $\beta$ es un valor empírico.
+
+Usando está ecuación se aproxima el calor intercambiado con un $k$ promedio.
+
+$$q_k=\frac{k_{\textrm{prom}}A\Delta T}{L}$$
+
+Ley de Fourier
+$$ k=\frac{q_k/A}{|\di T/\di x|}$$
+
+Dos mecanismos de transferencia de calor por conducción
+\begin{itemize}
+    \item Vibraciones de la estructura reticulada
+    \item Transporte de electrones (el mas efectivo de los dos)
+\end{itemize}
+Los metales conducen calor de las dos formas mientras que los solidos no-metálicos solo conducen por vibraciones.
+\subsection{Convección}
+El mecanismo de transferencia de calor sigue siendo la conducción pero se hace la distinción porque la transferencia de calor está prácticamente determinada por el campo de
+velocidad \citepalias{vieytes2018filminas}. 
+$$q_c=-k_{\textrm{fluido}}A\left| \spartial{T}{y}\right|_{y=0} $$
+$$q_c=\hcb A\Delta T $$
+El coeficiente $h_c$ local esta dado por
+$$ \di q_c=\hcb \di A(T_s-T_{\inf}) $$
+
+$$\bar{h}_c=\frac{1}{A}\int_A\int h_c\di A$$
+Conductividad térmica para transferencia de calor por convección:
+$$K_c=\hcb A$$
+Si el cuerpo está en presencia de una corriente externa la razón del número de Grashof sobre el cuadrado de Reynolds puede ser usada para determinar que modo de convección domina
+\[
+\frac{\Grashof}{\Reynolds^2}
+\begin{cases}
+\gg 1&\quad \!\textrm{Convección forzada despreciable} \\
+\approx  1&\quad\! \textrm{Convección forz. y natural combinadas}\\ 
+\ll 1 & \quad \! \textrm{Convección natural despreciable}
+\end{cases}
+\]
+\subsection{Radiación}
+Cuerpo negro $\varepsilon=1$. Cuerpo \textbf{rodeado completamente} por superficie a $T_2$ da $\fforma=1$. El factor de forma ($\fforma$) se tiene que tomar en cuenta cuando ambos cuerpos \textbf{no} son cuerpos negros y además tienen una relación geométrica.
+$$q_r=A_1\fforma_{1\boldsymbol{-}2}\sigma(T_1^4-T_2^4) $$
+$$K_r=\frac{A_1\fforma_{1\boldsymbol{-}2} \sigma(T_1^4-T_2^4)}{T_1-T_2}$$
+Coeficiente de transferencia de calor por radiación: $\hrb=\frac{K_r}{A_1}$
+\subsection{Termodinámica}
+Primera ley de Termo. $e$ como energía especifica.
+$$e\dot{m}_\textrm{entrada}+q+\dot{q}_G-(e\dot{m})_\textrm{out}-W_{\textrm{salida}}=\spartial{E}{t} $$
+
+Para sistemas cerrados:
+$$q+\dot{q}_G-W_{\textrm{salida}}=\spartial{E}{t}$$
+
+Según la termodinámica, la entalpía se define como $h=\ei+\frac{p}{\rho}$
+
+$$\frac{\Di h}{\Di t}=\frac{\Di \ei }{\Di t}+\frac{1}{\rho}\frac{\Di p}{\Di t}- \frac{p}{\rho^2} \frac{\Di \rho}{\Di t} $$
+luego tenemos que 
+
+\begin{equation}\label{eq:entalpia}
+    \rho \frac{\Di h}{\Di t} = -p\spartial{v_j}{x_j} +\spartial{ }{x_j}\left( k\spartial{T}{x_j}\right) +\Phi +\frac{\Di p}{\Di t}+ \frac{p}{\rho} \spartial{v_j}{x_j} 
+\end{equation}
+\section{Ecuaciones de conducción de calor}
+\subsection{Coordenadas cartesianas}
+Calor entrante a VC+generación de calor en el VC=Calor saliente de VC+Calor guardado en el VC
+\begin{align*} \numberthis \label{eq:condcartesian}
+-kA\spartial{T}{x}\bigg|_x+\dot{q}_GA\Delta x &= \\ -kA\spartial{T}{x} & \bigg|_{x+\Delta x}+\rho A \Delta  x c \spartial{T(x+\Delta x/2,t)}{t}
+\end{align*}
+Expandiendo las derivadas parciales con Taylor...
+$$\spartial{B}{x}\bigg|_{x+\di x}=\spartial{B}{x} \bigg|_x+\dpartial{B}{x}\bigg|_x \di x $$
+$$\spartial{B}{t} x+\left[ \left( \frac{\Delta x}{2},t\right) \right] =\spartial{B}{t}\bigg|_{x} + \frac{\partial^2 B}{\partial x \partial B}\bigg|_x \frac{\Delta x}{2}\ldots $$
+
+Tenemos que la ecuación \ref{eq:condcartesian} se puede simplificar
+
+\begin{equation}\label{eq:condcart}
+k\dpartial{T}{x}+\dot{q}_G=\rho c\spartial{T}{t}
+\end{equation}
+La difusividad térmica $\alpha=\frac{k}{\rho c}$
+\section{Ecuación del Calor}
+\begin{equation}\label{eq:HEATorENERGY}
+    \rho \left(\spartial{cT}{t}+v_j\spartial{cT}{x_j}\right) = \spartial{ }{x_j}\left(k\spartial{T}{x_j}\right) -p \spartial{v_j}{x_j}+\Phi+\dot{q}_G
+\end{equation}
+Un proceso de difusión en donde la energía térmica se transfiere de un extremo caliente a otro frío, por medio de un intercambio de energía intermolecular.
+
+Para describir el fenómeno la conducción se aprovecha de la \emph{ecuación  de conducción}. Para llegar a ésta partimos desde \ref{eq:einterna}, definiendo la disipación como $\Phi=S_{ij}\spartial{v_i}{x_j}$. Escrita en coordenadas cartesianas
+\begin{equation*}
+    \Phi\!=\!\mu\! \left[ 2\! \left(\spartial{u}{x}\right)^2 \! \!+ 2\! \left( \spartial{v}{y} \right)^2\!\!+2\!\left( \spartial{w}{z}\right)^2 \!+\!\left( \spartial{v}{x}\!+\spartial{u}{y}\right)^2 \!\!+\!\!\! \right.
+\end{equation*}
+\begin{equation}\label{eq:disipcartesianas}
+    \!\left.\! \left(\spartial{w}{y} \!\!+\! \spartial{v}{z}\right)^2 \!\!+\left( \spartial{u}{z}+\spartial{w}{x} \right)^2 +\frac{\lambda}{\mu}\left( \spartial{u}{x}\!+\spartial{v}{y}\!+\!\spartial{w}{z} \right)^2 \right]
+\end{equation}
+
+Para un solido suponemos que tiene una temperatura uniforme $\ei = cT$ donde $c$ es el calor especifico, y perfil velocidades nulo $v_i=0$. Por lo tanto $\frac{\Di e}{\Di t}=\spartial{cT}{t}+\cancel{v_i\spartial{cT}{x_i}}$. \ref{eq:einterna} se puede reescribir de tal forma
+
+\begin{equation} \label{eq:calorconduccion}
+    \rho \frac{\Di c T}{\Di t}\equiv \rho c \spartial{T}{t} = \spartial{ }{x_j}\left( k\spartial{T}{x_j} \right) + \dot{q}_G
+\end{equation}
+
+El termino $\spartial{ }{x_j}\left( k\spartial{T}{x_j} \right)$ es la curvatura del perfil de temperaturas. Entonces $\spartial{T}{t}$ depende del calor generado y de la curvatura.
+
+Para un caso unidimensional de un material con propiedades débilmente dependientes de la temperatura se simplifica
+\begin{equation}\label{eq:conduccion1D}
+    \rho c \spartial{T}{t} = k\dpartial{T}{x} + \dot{q}_G 
+\end{equation}
+
+\subsection{Forma adimensional}
+Se definen valores de referencia que gobiernan el proceso de transferencia de calor $T_r$, $L_r$ y $t_r$.
+$$\theta=\frac{T}{T_r},\qquad\xi =\frac{x}{L_r}\qquad\tau=\frac{t}{t_r}$$
+La forma unidimensional de la ecuación de la conducción se puede expresar así:
+$$ \dpartial{\theta}{\xi}+\dot{Q}_G=\frac{1}{\Fo} \spartial{\theta}{\tau}$$
+
+donde $\dot{Q}_G=\frac{\dot{q}_GL_r^2}{kT_r}$ y $\Fo$ es el número de Fourier $\Fo=\frac{\alpha t_r}{L_r^2}=\frac{k/L_r}{\rho cL_r/t_r}$
+\subsubsection{Método Vieytes}
+El cambio de variables ahora es
+
+$$\theta=\mathscr{H}(\tau) X(\xi)\qquad \xi = \frac{x}{L_r}\qquad  \tau=\frac{tk}{\rho cL^2}$$
+La ecuación de calor (\ref{eq:calorconduccion}) ahora es
+\begin{equation}\label{eq:calorvieytesconduccionadimensional}
+    \spartial{\theta}{\tau}=\dpartial{\theta}{\xi}+\beta f(\xi,\tau)
+\end{equation}
+donde $\beta=\frac{\theta_0 L^2}{k\dot{q}_0}$ es adimensional. $\theta_0$ es una escala de temperatura, $\dot{q}_0$  una escala para la potencia generada en volumen no mecánicos, $f(\xi,\tau)$ la distribución de potencia generada la cual supondremos igual a $0$.
+
+Recordando la materia $93.44$, supondremos que la solución es de variables separables.
+Reemplazando $\theta$ en la ecuación \ref{eq:calorvieytesconduccionadimensional}
+$$\frac{1}{\mathscr{H}} \spartial{\mathscr{H}}{\tau}=\frac{1}{X}\dpartial{X}{\xi}$$
+Haciendo la cuenta llegamos a que
+$$\theta(\xi,\tau)=\overbrace{\left(C_1\cos \lambda \xi +C_2 \sin \lambda \xi \right)}^{X}\overbrace{e^{-\lambda^2 \tau}}^{\mathscr{H}}$$
+\subsection{Coordenadas cilíndricas y esféricas}
+\noindent Cilíndricas
+\begin{equation}\label{eq:coordcilindricas}
+\frac{1}{r} \spartial{ }{r}\bigg( r\spartial{T}{r} \bigg)+\frac{1}{r^2}\dpartial{T}{\phi}+\dpartial{T}{z}+\frac{\dot{q}_G}{k}=\frac{1}{\alpha}\spartial{T}{t}
+\end{equation}
+Esféricas
+\begin{align*}\numberthis \label{eq:coordesfericas}
+\frac{1}{\alpha}\spartial{T}{t}= \frac{1}{r^2} \spartial{ }{r}\bigg( r^2\spartial{T}{r} \bigg)+\frac{1}{r^2\sin^2\theta}\spartial{T}{\theta}\bigg( \sin\theta \spartial{T}{\theta}\bigg)&\\
++\frac{1}{r^2\sin\theta}\dpartial{T}{\phi}+\dpartial{T}{z}+&\frac{\dot{q}_G}{k}
+\end{align*}
+
+\subsection{Conducción inestable o transitoria}
+En sistemas que no están en régimen estacionario el termino respecto tiempo de la ecuación de calor es no-nulo. Esto trae complicaciones.
+
+Para tratar estos problemas se hacen las siguientes simplificaciones
+\begin{enumerate}
+    \item La temperatura solo es función del tiempo $T=f(t)$
+    \item Sistemas con resistencia interna despreciable de lo cual resulta temperatura uniforme en todo el sistema $T(x,y,z)=cte$
+    \item $\hhb$ constante durante todo el proceso
+    \item $T_\infty$ no varía con el tiempo
+\end{enumerate}
+
+El número de Biot es relevante al modelar estos sistemas. 
+$$\Biot =\frac{R_\interna}{R_\externa}=\frac{\hhb \ell}{k_s}$$
+donde $\ell=\frac{V}{A}$ es la razón de volumen a superficie del sistema.
+
+Cuando $ \Biot <0,1$ el error por modelar el sistema (placa, cilindro o esfera) con resistencia interna despreciable sera menor a $5\%$. A este análisis se le dice \emph{lumped heat capacity method}.

@@ -1,0 +1,277 @@
+ \subsection*{Código \Matlab{}}
+    %%%%------------------------------------------------------------------CODE
+    \subsubsection*{Código Axisimétrico para matriz rigidez (por radian)}
+    Se va tratar con un método para el almacenado eficiente de las funciones de forma. Esto acorta el tiempo de corrido en un factor mayor a 100 para problemas medianos/grandes. Se puede tambien hacer para los nodos (código )
+    \begin{code}
+    \begin{verbatim}
+
+%% ALMACENADO EFICIENTE
+Ns=cell(npg,1); %Acelerar proceso.
+dNs=cell(npg,1);
+NLs=cell(npg,1);
+for ipg=1:npg
+    ksi=upg(ipg,1);eta=upg(ipg,2);
+    Ns{ipg}=eval(subs(N));
+    dNs{ipg}=eval(subs(dN));
+    NLs{ipg}=eval(subs(NL));
+end
+    \end{verbatim}
+    \end{code}
+    
+    \begin{code}
+    \begin{verbatim}
+    
+kG=zeros(doftot);%Matriz global
+for e=1:Nelem
+    Ke=zeros(Ndofpornod*Nnodporelem);
+    index=elementos(e,:);
+    elenod=nodos(index,:);
+    A=0;
+    for ipg=1:npg
+        ksi=upg(ipg,1); eta=upg(ipg,2);
+
+        J=dNs{ipg}*elenod;
+        Djac = det(J);
+        dNxy=J\dNs{ipg};
+        r = Ns{ipg}*elenod(:,1); 
+        
+        B = zeros(size(Caxi,2),Ndofpornod*Nnodporelem);
+        B(1,1:2:Ndofpornod*Nnodporelem-1) = dNxy(1,:);
+        B(2,1:2:Ndofpornod*Nnodporelem-1) = Ns{ipg}(1,:)/r;
+        B(3,2:2:Ndofpornod*Nnodporelem) = dNxy(2,:);
+        B(4,1:2:Ndofpornod*Nnodporelem-1) = dNxy(2,:);
+        B(4,2:2:Ndofpornod*Nnodporelem) = dNxy(1,:);%extra fila por ser axisim.
+
+        Ke = Ke + B'*Caxi*B*wpg(ipg)*r*Djac;%Despues aplicar cargas por radian
+    end
+    meindof=reshape(DOF(index,:)',1,[]);
+    kG(meindof,meindof)=kG(meindof,meindof)+Ke;
+end
+\end{verbatim}
+\end{code}
+
+\subsubsection*{Recuperación de tensiones axisimétricas.}
+\begin{code}
+\begin{verbatim}
+ 
+for e = 1:Nelem
+    index = elementos(e,:);
+    elenod = nodos(index,:);
+    for inod = 1:Nnodporelem
+        J = dNs{inod}*elenod;                  
+
+        dNxy = J\dNs{inod};     
+        r = Ns{ipg}*elenod(:,1);
+        
+        B = zeros(size(C,2),Ndofpornod*Nnodporelem);
+        B(1,1:2:Ndofpornod*Nnodporelem-1) = dNxy(1,:);
+        B(2,1:2:Ndofpornod*Nnodporelem-1) = Ns{inod}(1,:)/r;
+        B(3,2:2:Ndofpornod*Nnodporelem) = dNxy(2,:);
+        B(4,1:2:Ndofpornod*Nnodporelem-1) = dNxy(2,:);
+        B(4,2:2:Ndofpornod*Nnodporelem) = dNxy(1,:);
+        
+        meindof = reshape(DOF(index,:)',1,[]);
+        
+        deformation = B*D(meindof);
+        if r==0
+            deformation(2)=deformation(1);
+        end
+        deformation;
+        strain(e,inod,:) = deformation;
+        S(e,inod,:) = C*deformation; % Stress
+    end
+end
+\end{verbatim}
+\end{code}
+\subsubsection*{Carga centrifugas (por radian)}
+\begin{code}
+\begin{verbatim}
+
+R = zeros(doftot,1);
+for e = 1:Nelem
+    index=elementos(e,:);
+    Re = zeros(Ndofpornod*Nnodporelem,1);
+    elenod = nodos(elementos(e,:),:);
+    for ipg = 1:npg
+        ksi=upg(ipg,1); eta=upg(ipg,2);
+        J = dNs{ipg}*elenod;
+        r = Ns{ipg}*elenod(:,1);
+        
+        Re = Re + (NLs{ipg}'*[1; 0])*det(J)*wpg(ipg)*r^2*rho*omega^2;
+    end
+    meindof=reshape(DOF(index,:)',1,[]);
+    R(meindof) = R(meindof) + Re;
+end
+\end{verbatim}
+\end{code}
+
+\subsubsection*{Condicionamiento}
+\begin{code}
+\begin{verbatim}
+
+CK = max(eigvals)/min(eigvals)
+N=size(K,2);
+S=zeros(N);
+for i=1:N
+    S(i,i)=sqrt(K(i,i))^(-1);
+end
+Ks=S*K*S;
+scaledeigval=eig(Ks);
+CKscaled=max(scaledeigval)/min(scaledeigval)
+digitos_perdidos = floor(log10(CKscaled))
+\end{verbatim}
+\end{code}
+
+\subsubsection*{Desplazamientos impuestos sin \emph{skew}}
+\begin{code}
+\begin{verbatim}
+
+% Solve sin cargas por despl. impuestos
+Dr = Kr\Rr;
+%% Buscamos imponer desplazaments iniciales
+dx=-sqrt(2);
+dy=dx;
+Dc=zeros(doftot,1);
+CONOC=Fixed;
+CONOC([9 10 11]*Ndofpornod)=true;
+CONOC([9 10 11]*Ndofpornod-1)=true;
+DECONOC=~CONOC;
+Dc([9 10 11]*Ndofpornod)=dy;
+Dc([9 10 11]*Ndofpornod-1)=dx;
+
+Dx = K(DECONOC,DECONOC)\(R(DECONOC)-K(DECONOC,CONOC)*Dc(CONOC));
+Rx = K(CONOC,CONOC)*Dc(CONOC)+K(CONOC,DECONOC)*Dx;
+R(CONOC)=Rx;
+Dc(DECONOC)=Dx;
+D=Dc;
+%Voy a recuperacion de tensiones
+\end{verbatim}
+\end{code}
+\subsubsection*{Despl. impuestos con \emph{skew}}
+\begin{code}
+\begin{verbatim}
+
+%Solve sin despl. impuestos
+Dr = Kr\Rr;
+%% SKEW SYSTEM Desp. imp.
+T = eye(doftot);angulo =45;
+for i = [9 10 11]
+    nodedof = [i*2-1 i*2];
+    T(nodedof,nodedof)=[cosd(angulo) sind(angulo); ...
+    -sind(angulo) cosd(angulo)];
+end
+Dc = nan(doftot,1); Dc([1 2 3 9 10 11]*Ndofpornod)=0;
+Dc([9 10 11]*Ndofpornod-1)=-2;
+XX=isnan(Dc);CC=~XX; %DesConocidas y Conocidas
+%Resuelvo
+Kskew = T*K*T'; Rskew = T*R;
+Dx = Kskew(XX,XX)^(-1)*(Rskew(XX)-Kskew(XX,CC)*Dc(CC));
+Rskew(CC) = Kskew(CC,CC)*Dc(CC)+Kskew(CC,XX)*Dx;
+
+%Ahora son TODOS conocidos jeje
+Dc(XX)=Dx; % AhDesde ahora isnan(Dc)=0!
+
+D=T'*Dc;
+Desp = reshape(D',Ndofpornod,Nnod)';
+% Directo a Recuperacio de tensiones en nodos.
+\end{verbatim}
+\end{code}
+
+\subsubsection*{Error Q8}
+
+\begin{code}
+\begin{verbatim}
+
+%% tensiones en los puntos de superconvergencia
+stressSuper = zeros(nel,4,3);
+uNod = [-1 -1
+1 -1
+1 1
+-1 1]/sqrt(3);
+for iele = 1:nel
+nodesEle = nodes(elements(iele,:),:);
+for inode = 1:4
+% Punto de Gauss
+ksi = uNod(inode,1);
+eta = uNod(inode,2);
+% Derivadas de las funciones de forma respecto de ksi, eta
+dN = shapefunsder([ksi eta],'Q8');
+% Derivadas de x,y, respecto de ksi, eta
+jac = dN*nodesEle;
+% Derivadas de las funciones de forma respecto de x,y.
+dNxy = jac\dN; % dNxy = inv(jac)*dN
+
+B = zeros(size(C,2),nDofNod*nNodEle);
+B(1,1:2:15) = dNxy(1,:);
+B(2,2:2:16) = dNxy(2,:);
+B(3,1:2:15) = dNxy(2,:);
+B(3,2:2:16) = dNxy(1,:);
+eleDofs = nodeDofs(elements(iele,:),:);
+eleDofs = reshape(eleDofs',[],1);
+stressSuper(iele,inode,:) = C*B*D(eleDofs);
+end
+end
+% Extrapolo a los Nodos
+a = sqrt(3);
+rsExt = a*[-1 -1
+1 -1
+1 1
+-1 1
+0 -1
+1 0
+0 1
+-1 0];
+stressExtra = zeros(nel,nNodEle,3);
+for iele = 1:nel
+    for inode = 1:nNodEle
+        r = rsExt(inode,1);
+        s = rsExt(inode,2);
+        N = shapefuns([r s],'Q4');
+        stressExtra(iele,inode,:) = N * squeeze(stressSuper(iele,:,:));
+    end
+end
+%% Gauss
+[wpg, upg, npg] = gauss([3 3]);
+%% calculo de eta_el, e2, U2
+invC = C\eye(3);
+eta_el = zeros(nel,1);
+e2_el = zeros(nel,1);
+U2_el = zeros(nel,1);
+for iele = 1:nel
+    nodesEle = nodes(elements(iele,:),:);
+    for inode = 1:nNodEle
+        for ipg = 1:npg
+            % Punto de Gauss
+            ksi = upg(ipg,1);
+            eta = upg(ipg,2);
+            % Derivadas de las funciones de forma respecto de ksi, eta
+            dN = shapefunsder([ksi eta],'Q8');
+            % Derivadas de x,y, respecto de ksi, eta
+            jac = dN*nodesEle;
+            % Derivadas de las funciones de forma respecto de x,y.
+
+            dNxy = jac\dN; % dNxy = inv(jac)*dN
+            % funciones de forma
+            N = shapefuns([ksi eta],'Q8');
+            eleStress = squeeze(stress(iele,inode,:)); %
+            tensiones "directas"
+            starStress = squeeze(stressExtra(iele,inode,:)); %Str.mejoradas
+            e2_el(iele) = e2_el(iele) + (starStress - eleStress)' * ...
+            invC * (starStress - eleStress) * wpg(ipg) *det(jac);
+
+            U2_el(iele) = U2_el(iele) + eleStress' * invC * eleStress * ...
+            wpg(ipg) * det(jac);
+        end
+    end
+    eta_el(iele) = sqrt( e2_el(iele) / (e2_el(iele) + U2_el(iele)) );
+end
+etaG = sqrt( sum(e2_el) / (sum(e2_el) + sum(U2_el)) )
+%% Configuracion deformada
+D = (reshape(D,nDofNod,[]))';
+nodePosition = nodes + D(:,1:2);
+%Graficacion
+limites = [min(min(stressExtra(:,:,2))),max(max(stressExtra(:,:,2)))];
+figure(1)
+bandplot(elements,nodePosition,stress(:,:,2),limites,'k');
+\end{verbatim}
+\end{code}

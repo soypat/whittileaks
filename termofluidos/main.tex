@@ -1,0 +1,244 @@
+\documentclass[twocolumn,titlepage]{article}
+% %%%%%%%%%%%%%%%%%%%%%
+% %%  PAGE KEEPER
+% %%%%%%%%%%%%%%%%%%%%%
+% \usepackage{lipsum,atbegshi,etoolbox}% http://ctan.org/pkg/{lipsum,atbegshi,etoolbox}
+% \makeatletter
+% \newcommand{\discardpages}[1]{% \discardpages{<csv list>}
+%   \xdef\discard@pages{#1}% Store pages to discard
+%   \AtBeginShipout{% At shipout, decide whether to discard page/not
+%     \renewcommand*{\do}[1]{% How to handle each page entry in csv list
+%       \ifnum\value{page}=##1\relax%
+%         \AtBeginShipoutDiscard% Discard page/not
+%         \gdef\do####1{}% Do nothing further
+%       \fi%
+%     }%
+%     \expandafter\docsvlist\expandafter{\discard@pages}% Process list of pages to discard
+%   }%
+% }
+% \newif\ifkeeppage
+% \newcommand{\keeppages}[1]{% \keeppages{<csv list>}
+%   \xdef\keep@pages{#1}% Store pages to keep
+%   \AtBeginShipout{% At shipout, decide whether to discard page/not
+%     \keeppagefalse%
+%     \renewcommand*{\do}[1]{% How to handle each page entry in csv list
+%       \ifnum\value{page}=##1\relax%
+%         \keeppagetrue% Page should be kept
+%         \gdef\do####1{}% Do nothing further
+%       \fi%
+%     }%
+%     \expandafter\docsvlist\expandafter{\keep@pages}% Process list of pages to keep
+%     \ifkeeppage\else\AtBeginShipoutDiscard\fi% Discard page/not
+%   }%
+% }
+% \makeatother
+% % \discardpages{1,3,5,7,9,29,35,40}% Discard these pages.
+% % \keeppages{10,11}% Keep these pages.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[a4paper,left=2cm,right=2cm,top=2.6cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+% \usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{mdframed}
+\usepackage{fontawesome}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage{beton}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{bm}
+\usepackage{cancel}
+
+% \usepackage{unicode-math} %Terrible things
+% \usepackage{fontspec}  %Cambiar compiler a LuaLatex
+% \setmainfont{Comic Sans MS}% Terrible indeed
+% \setmathfont{Comic Sans MS}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{natbib}
+\sisetup{
+detect-family,
+detect-display-math = true, 
+output-decimal-marker = {,} %Esto decide si el separador decimal es coma o punto
+}
+\usepackage[pages=some]{background}
+\backgroundsetup{
+scale=1.4,
+color=black,
+opacity=0.6,
+angle=0,
+position={7.93,-10.34},
+contents={%
+  \includegraphics[width=\paperwidth]{waveoffkana.jpg}
+  }%
+}
+\title{Resúmen Transferencia Calor}
+\renewcommand\spanishtablename{Tabla}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\usepackage[mathscr]{eucal}
+
+\newcommand{\Matlab}{\mbox{\fontfamily{cmr}\selectfont \scshape{Matlab}}}
+
+\newcommand{\ttens}[1]{\underline{\underline{#1}}}
+\newcommand{\ttensb}[1]{\underline{\underline{\mathbf{#1}}}}
+\newcommand{\boltzmann}{k_{\textrm{\RM{B}}}}
+\newcommand{\derpq}{\rotatebox[origin=c]{180}{?}}
+\newcommand{\smol}[1]{{\mbox{\tiny $#1$}}}
+\newcommand{\gradient}{\textrm{grad }}
+\newcommand{\diverg}{\textrm{div }}
+\newcommand{\rotor}{\textrm{rot }}
+
+\newcommand{\RM}[1]{\mbox{\fontfamily{cmr}\selectfont\scriptsize #1}}
+\newcommand{\overtilde}[1]{\widetilde{#1}}
+\newcommand{\mhyph}{\mbox{ - }}
+\newcommand{\Dscr}{\mathscr{D}}
+\newcommand{\Uscr}{\mathscr{U}}
+\newcommand{\Lscr}{\mathscr{L}}
+\newcommand{\moldens}{\bar{n}}
+\newcommand{\crit}{{\textrm{crit}}}
+\newcommand{\pe}{p_{\mbox{\scriptsize\fontfamily{cmr}\selectfont e}}}
+\newcommand{\entrada}{{\mbox{\scriptsize\fontfamily{cmr}\selectfont entrada}}}
+\newcommand{\salida}{{\mbox{\scriptsize\fontfamily{cmr}\selectfont salida}}}
+\newcommand{\ANPA}{{\mbox{\fontfamily{cmr}\selectfont ANPA}}}
+\newcommand{\breathingspace}{\vspace{.1cm}}
+\newcommand{\hhline}{\hline\vspace{-.4cm}\\\hline}
+\newcommand{\promedio}{\textrm{prom.}}
+% \newcommand{\salida}{\textrm{salida}}
+% \newcommand{\entrada}{\textrm{entrada}}
+\newcommand{\efic}{\mathcal{E}}
+% \newcommand{\crit}{\textrm{\textbf{crit}}}
+\newcommand{\Tfilm}{T_{\textrm{film}}}
+\newcommand{\grados}{^{\circ}}
+\newcommand{\di}{\textrm{d}}
+\newcommand{\Di}{\textrm{D}}
+\newcommand{\ek}{\textrm{e}_K}
+\newcommand{\interna}{\textrm{interna}}
+\newcommand{\externa}{\textrm{externa}}
+\newcommand{\et}{\textrm{e}_T}
+\newcommand{\ei}{\textrm{e}}
+\newcommand{\hcb}{\bar{h}_c}
+\newcommand{\hrb}{\bar{h}_r}
+\newcommand{\hhb}{\bar{h}}
+\newcommand{\Brinkmann}{\textrm{Br}}
+\newcommand{\Fo}{\textrm{Fo}}
+\newcommand{\Eckert}{\textrm{Ec}}
+\newcommand{\frictionfactor}{f}
+\newcommand{\Colburnfactor}{j_H}
+\newcommand{\Peclet}{\textrm{Pe}}
+\newcommand{\Froude}{\textrm{Fr}}
+\newcommand{\Mach}{\textrm{M}}
+\newcommand{\Grashof}{\textrm{Gr}}
+\newcommand{\Rayleigh}{\textrm{Ra}}
+\newcommand{\Stanton}{\textrm{St}}
+\newcommand{\rst}{\left<u_j^\prime u_k^\prime \right>}
+
+\newcommand{\Biot}{\textrm{Bi}}
+\newcommand{\Nusselt}{\textrm{Nu}}
+\newcommand{\vol}{\mathscr{V}}
+\newcommand{\sur}{\mathscr{S}}
+\newcommand{\lin}{\mathscr{L}}
+
+\newcommand{\celsius}{^\circ\textrm{C}}
+% \newcommand{\grad}{}
+\newcommand{\Reynolds}{\textrm{Re}}
+\newcommand{\spartial}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dpartial}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+\newcommand{\fforma}{\mathscr{F}}
+\newcommand{\Prandtl}{\textrm{Pr}}
+\newcommand{\Weber}{\textrm{We}}
+\newcommand{\Bond}{\textrm{Bo}}
+\newcommand{\Eotvos}{\textrm{Eö}}
+\newcommand{\Capillary}{\textrm{Ca}}
+\begin{document}
+
+
+
+\input{chapter/ch0title.tex}%Titulo y primera parte
+\twocolumn
+\setcounter{page}{1}
+\input{chapter/ch1-1mecfluidos.tex}
+% \input{chapter/ch1-2ecbasicas.tex}
+% \input{chapter/ch1-3capalimite.tex}
+% \input{chapter/ch1-4tubulencia.tex}
+% \setcounter{footnote}{0}
+% \input{chapter/ch2calorintro.tex}
+% \setcounter{footnote}{0}
+% \input{chapter/ch3convecanalitica.tex}
+% \input{chapter/ch4convecempirica.tex}
+% \input{chapter/ch5convecinterna.tex}
+% \input{chapter/ch6intercambiador.tex}
+% \input{chapter/ch7radiacion.tex}
+% \input{chapter/appendix.tex}
+% \bibliography{labibliografia} % Indica archivo
+% \bibliographystyle{plainnat} 
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+\onecolumn
+\subsection*{Duda fluidos}
+En algun punto de la materia\footnote{Filminas 1 v2 INTRO. Slide 19/44.} dijimos
+\begin{equation} \label{eq:sigmaijMatrix}
+\sigma_{ij}= -p\delta_{ij}+
+\begin{bmatrix}
+\sigma_{11}+p&\sigma_{21}&\sigma_{31} \\
+\sigma_{12}&\sigma_{22}+p&\sigma_{32} \\
+\sigma_{13}&\sigma_{23}&\sigma_{33}+p
+\end{bmatrix} =-p\delta_{ij}+S_{ij}
+\end{equation}
+donde $p$ es la presion mecanica.
+
+En el apunte de las ecuaciones locales, entre la ecuación 5.9 y 5.10 llegamos a
+\begin{equation}
+S_{kk} =\left(\lambda +\frac{2}{3}\mu \right)e_{kk}
+\end{equation}
+
+Y finalmente se afirma que la traza de $S_{ij}$ es nula porque ``esta contenida en $p$". Esto es lo mismo que decir que $\sigma_{11}=\sigma_{22}=\sigma_{33}=-p$. 
+
+Mi pregunta es si ``los componentes de la traza de $\sigma_{ij}$ son siempre idénticos?"
+
+%% RESPUESTA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Respuesta}
+\textbf{La respuesta es no.}
+Si bien tenes a $-p$ en todas las direcciones principales,  lo cual daria que los $\sigma_{(k)(k)}$ son iguales en algunos flujos puede haber gradientes de la velocidad en la direccion de la misma, esos esfuerzos aparecen en las componentes principales de $\sigma$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Continuación}
+Siguiendo ese hilo... Es verdad que
+\begin{equation}
+p=\pe - S_{kk} = \pe - \left(\lambda +\frac{2}{3} \right)e_{kk}
+\end{equation}
+Para fluidos simples, newtonianos vale:
+\begin{equation}
+    S_{ij} = \lambda e_{kk} \delta_{ij} + 2\mu e_{ij}
+\end{equation}
+
+Entonces según \ref{eq:sigmaijMatrix} tenemos:
+\[
+  \sigma_{ij}= -\left[\pe -\left(\lambda+ \frac{2}{3}\mu \right)e_{kk}\right]\delta_{ij}+\lambda e_{kk} \delta_{ij} + 2\mu e_{ij} = -\pe \delta_{ij} + 2\lambda e_{kk}\delta_{ij}+2\mu e_{ij}+\frac{2}{3}\mu e_{kk}\delta_{ij}
+\]
+Dado que los componentes de la traza de $S_{ij}$ no son idénticos no se puede suponer que la traza de $S_{ij}$ es nula.
+
+Nos queda entonces que para flujos compresibles no nos queda otra opcion mas que expresar la ecuación de Navier--Stokes con la viscosidad de volumen $\lambda$.

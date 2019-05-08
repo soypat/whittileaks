@@ -1,0 +1,15 @@
+\newcommand{\air}{\textrm{aire}}
+\onecolumn
+\section{Appendix}
+\subsection{Correlaciones empíricas para aire seco a nivel del mar}
+Datos discretos obtenidos de Engineering Toolbox. Correlacion calculado usando \verb|nlinfit| en \Matlab. Error relativo es menor a 0,006\% para todas las formulas en el rango dado usando los coeficientes mostrados. Unidades estándares (SI).
+
+
+\begin{align}
+\beta_\air &\approx 0,0037-\num{1,43e-5}T+\num{6,58e-8}T^2 \qquad T\in [-80,40]\celsius \\
+\rho_\air &\approx  \num{2,22e-5}T^2-0,0049T+1,29\qquad T\in [-80,40]\celsius \\
+k_\air &\approx 0,0241 + \num{7.98e-5}T-\num{3,84e-8}T^2 \qquad T\in [-100,100]\celsius \\
+\mu_\air &\approx \num{1,72}{-5} +\num{5e-8}T-\num{4,34e-11}T^2\qquad T\in [-100,100]\celsius \\
+c_{p_\air} &\approx 1004 + 0,0385T-\num{2,63e-4}T^2 \qquad T\in [-100,100]\celsius \\
+\Prandtl_\air &\approx 0,716 -\num{2,61e-4}T  \qquad T\in [-100,100]\celsius
+\end{align}

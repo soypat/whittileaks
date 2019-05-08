@@ -1,0 +1,101 @@
+
+\section{Turbulencia}
+
+\subsection{Cascada turbulenta}
+Nos interesa el proceso de disipación y \textbf{por qué es inviable la simulación directa}. La energía que se transfiere de una escala a otra por una \textit{Eddy} está dada por 
+
+\[
+e_{\Lambda}=\frac{\mathscr{U}^2}{2 \mathscr{T}} \sim \mathscr{U}^3 \mathscr{L}^{-1}
+\]
+donde las cantidades $\{ \mathscr{U},\mathscr{L},\mathscr{T}\}$ son las cantidades características de velocidad, longitud y tiempo en la escala $\Lambda$.
+
+La potencia disipada en los eddies será
+\[
+\Phi_\Lambda =\nu \left( \spartial{\mathscr{U}_i}{x_j} \right)^2 \sim \nu \mathscr{U}^2 \mathscr{L}^{-2}
+\]
+y la razón entre la energía específica y la potencia específica
+\[
+\Dscr_\Lambda = \frac{e_\Lambda}{\Phi_\Lambda} \sim \frac{\mathscr{U}^3 \mathscr{L}^{-1}}{\nu \mathscr{U}^2\mathscr{L}^{-2}}\sim \Reynolds_\Lambda
+\]
+Si $\Dscr_\Lambda$ es mayor que la unidad significa que en la escala $\Lambda$ hay poca disipación.
+
+Definimos las tres escalas espaciales de la turbulencia
+
+\begin{itemize}
+    \item \textbf{Macroscópica:} $\Reynolds_L=\frac{UL}{\nu}\gg 1$ Caracterizada por baja disipación y carácter anisótropo. $\{ U,L,T\}$
+    \item \textbf{Intermedia:} $\Reynolds_\ell = \frac{u\ell}{\nu}>1$ Baja disipación. $\{ u,\ell,\tau \}$
+    \item \textbf{Microscópica o de altas frecuencias:} $\Reynolds_{\lambda_0}\sim 1$ Es la escala a la cual se produce la mayor parte de la disipación. Es un proceso isótropo. $\{ u_0,\lambda_0,\tau_0 \}$
+\end{itemize}
+
+Partiendo de una hipótesis que dice que la energía transferida es similar a toda escala $e_L\sim e_{\lambda_0}$ llegamos a que 
+\[
+U^3L^{-1}\sim u_0^3\lambda_0^{-1} \quad \Rightarrow\quad u_0\sim U \left(\frac{\lambda_0}{L} \right)^{\frac{1}{3}}
+\]
+por lo tanto tendremos
+\[
+\Reynolds_{\lambda_0}=\frac{u_0 \lambda_0}{\nu}\sim \Dscr_{\lambda_0}\sim U \left(\frac{\lambda_0}{L} \right)^{\frac{1}{3}} \frac{\lambda_0 L}{\nu L}=\Reynolds_L \left(\frac{\lambda_0}{L}\right)^{\frac{4}{3}}
+\]
+luego con la relación $\Reynolds_{\lambda_0}\sim 1 $ se obtiene que $\lambda_0\sim L \Reynolds_L^{-\frac{3}{4}}$ lo cual expresa la longitud característica a la cual sucede la mayor parte de la disipación. Lo importante que hay que llevarse de la expresión anterior es que a medida que aumenta el número de Reynolds $\lambda_0$ se vuelve diminuto. Si quisiéramos modelar estas estructuras para un problema macroscópico se necesitaría un poder de calculo que no existe ni el el supercomputador más polenta.
+
+\subsection{Reynolds-Averaged Navier--Stokes}
+Para el tratamiento de flujos turbulentos existe el metodo RANS que propone que las propiedades de un flujo turbulento pueden ser descompuestas en dos partes, el \textit{promedio} y la parte \textit{fluctuante}. 
+\[
+u_j=U_j+u^\prime_j
+\]
+la parte promediada $U_j$ es lentamente variable en el tiempo mientras que $u^\prime_j$ es rápidamente variable en el tiempo. 
+\subsubsection*{Reglas del promediado en el tiempo}
+El promedio temporal:
+\[
+\left< N_j\right>=\frac{1}{\Delta T}\int_t^{t+\Delta T}N_j\di t
+\]
+
+El álgebra:
+\begin{equation}
+\left<N +\alpha M \right>=\left< N\right> +\alpha \left< M \right>
+\end{equation}
+\[
+\left< \int N \di x \right> = \int \left< N \right> \di x
+\]
+
+Si $N$ es una propiedad lentamente variable en el tiempo y $\eta$ una propiedad rápidamente variable en el tiempo, entonces:
+\begin{gather}
+\left< N\eta \right>=N \left< \eta \right> \\
+\left< \int N \eta \di x\right> = N \int \left< \eta \right> \di x \\
+\left< \spartial{(N\eta)}{s} \right> = \spartial{N}{s}\left< \eta \right> + N \spartial{\left< \eta \right>}{s}
+\end{gather}
+\subsubsection*{Promedio temporal}
+Para el componente rapidamente variable en el tiempo se puede demostrar que su promedio temporal es nulo:
+\begin{equation} \label{eq:promediotemporalCompRapidVar}
+    \left<\eta_j^\prime\right>= 0
+\end{equation}
+dicha propiedad es importante tenerla en cuenta para todas las siguientes demostraciones.
+
+Según continuidad \eqref{eq:continuidad}:
+\[
+\left< \spartial{u_k}{x_k}\right> =0
+\]
+llegamos a que 
+\[
+\spartial{U_k}{x_k} =0
+\]
+
+\subsubsection*{RANS}
+\[
+\spartial{u_j}{t}+u_k \spartial{u_j}{x_k}=-\frac{1}{\rho}\spartial{p}{x_j}+ \nu \dpartial{u_j}{x_k}+g_j
+\]
+podemos luego expandir el término velocidad en dos componentes
+\begin{align*}
+\left< \spartial{U_j}{t}+\spartial{u^\prime_j}{t}+U_k\spartial{U_j}{x_k}+U_k\spartial{u^\prime_j}{x_k}+u^\prime_k \spartial{U_j}{x_k}+u^\prime_k \spartial{u^\prime_j}{x_k} \right> &= \\
+- \frac{1}{\rho}\left<\spartial{P}{x_j}+\spartial{p^\prime}{x_j} \right>+\nu\left< \dpartial{U_j}{x_k}+\dpartial{u^\prime_j}{x_k}+g_j\right>&
+\end{align*}
+operando 
+\[
+\spartial{U_j}{t}+U_k\spartial{U_j}{x_k}+\spartial{\left<u_j^\prime u_k^\prime\right>}{x_k}=-\frac{1}{\rho}\spartial{P}{x_j}+\nu \dpartial{U_j}{x_k}+g_j
+\]%rst=Reynolds Stress tensor
+de aqui en adelante se define el Tensor de tensiones de Reynolds $\rho\rst$ y se reescribe la ecuación anterior para obtener el RANS
+\begin{align*}\numberthis \label{eq:RANS}
+    \rho\left( \spartial{U_j}{t}\!+\!U_k\spartial{U_j}{x_k}\right)\! = \!-\spartial{P}{x_j}-\spartial{}{x_k}\left(\!-\mu \spartial{U_j}{x_k}\!+\!\rho\rst \right)\!+\!g_j
+\end{align*}
+%--------------------------------------------------------
+%       Termina Refresh de Mecánica de Fluidos
+%--------------------------------------------------------

@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Apuntes Gaussian Processes}
+\author{Patricio Whittingslow}
+\date{March 2019}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mdframed,xcolor}
+
+\newmdtheoremenv[%
+linecolor=gray,
+leftmargin=30,%
+rightmargin=0,
+backgroundcolor=blue!4,%
+innertopmargin=2pt,%
+ntheorem]{define}{Definición}[section]
+
+\newmdtheoremenv[%
+linecolor=gray,
+leftmargin=30,%
+rightmargin=0,
+backgroundcolor=blue!4,%
+innertopmargin=2pt,%
+ntheorem]{code}{Código}[section]
+
+%% Formatting Commands
+\newcommand{\glossentry}[2]{$#1$\indent #2 \par \vspace{.4cm} } %Entradas para glosario
+
+%% Macro commands
+\newcommand{\vectorbold}[1]{\mathbf{#1}}
+
+%% Definition Commands
+\newcommand{\Dim}{\mathbb{D}}
+\newcommand{\T}{\textsc{t}}
+\newcommand{\func}{f}
+\newcommand{\noise}{\varepsilon}
+\newcommand{\GD}{\mathcal{N}}
+\newcommand{\sn}{\sigma_{n}}
+\newcommand{\xbold}{\vectorbold{x}}
+\newcommand{\ybold}{\vectorbold{y}}
+\newcommand{\vbold}{\vectorbold{v}}
+\newcommand{\fbold}{\vectorbold{f}}
+\newcommand{\pbold}{\vectorbold{p}}
+\newcommand{\qbold}{\vectorbold{q}}
+\newcommand{\cov}{\textrm{cov}}
+
+\begin{document}
+
+\maketitle
+
+\section{Prefacio}
+
+Es importante la palabra lineal. Aquí no hay funciones con cuadrados ni nada por el estilo. Existe una función global lineal que toma como argumento las variables elegidas.
+\subsection*{Glosario Términos}
+
+\glossentry{\vectorbold{x}}{Input vector ($\Dim$). Que variables eligo para modelo.}
+
+\glossentry{\vectorbold{y}}{Vector objetivo ($n$). Observaciones/mediciones.}
+\glossentry{\vectorbold{w}}{Weight vector ($\Dim$). Aqui van los parámetros a obtener de la regresión lineal. La ``solución" de la regresión lineal.}
+\glossentry{\Dim}{Dimensión del problema. Cuantas variables elegí para el modelo.}
+\glossentry{n}{Cantidad de observaciones.}
+\glossentry{X}{Matriz de diseño ($\Dim \times n$). }
+\glossentry{\noise\sim \GD (0,\sn^2) }{Ruido. Sigue una distribución gausiana independiente, idénticamente distribuida con promedio $0$ y varianza $\sn^2$}
+\glossentry{|\vbold|=\left(\sum_i\vbold_i^2\right)^\frac{1}{2}}{Longitud euclidiana del vector $\vbold$. }
+\glossentry{\sn}{Asumimos que las mediciones están alejadas de la función $\func$ por causa de ruido $\noise$.}
+
+\glossentry{\Sigma_p}{Matriz de covarianza o \textbf{matriz de varianza-covarianza}.}
+\subsection*{Glosario Subindices}
+% \glossentry{\qbold,\pbold}{Refiere a un punto de datos. $\xbold_\qbold$ sería un vector de entradas.}
+\glossentry{i,j,k,p,q}{Refiere a un elemento de un tensor, sea vector,matriz, etc.}
+\subsection{Introducción}
+
+Dado datos de entrenamiento ($X,\ybold$) se quiere efectuar predicciones para nuevas entradas $\xbold_*$ usando una función $\func$, por lo tanto, es claro que el problema es \textit{inductivo}. Para lograr esto tenemos que suponer ciertas características sobre nuestra función $\func$. Si no acotáramos $\func$ entonces cualquier función que sea consistente con los datos de entrenamiento valdría. Este es el problema que intenta resolver el aprendizaje de maquina, el \textbf{Machine Learning.}
+\section{Regresion Lineal}
+Para que sea mas didáctico la aplicación de la regresión lineal se va plantear un problema a resolver:
+\textit{Se tiene un cilindro de diámetro $D$ y largo $L$ que enfrenta un fluido de viscosidad $\mu$, densidad $\rho$ y velocidad $U_\infty$. Obtener una expresión para la fuerza $F_D$ que el fluido ejerce sobre el cilindro?}
+
+Cabe destacar que el problema no es lineal y que probablemente la regresión lineal que obtengamos sea valida para unos pocos puntos. Igual intentaremos hallar la regresión lineal.
+
+Primero tenemos que partir de datos, preferiblemente \textbf{muchos} datos. Vamos a obviar la variable $L$, ya que si dividimos la fuerza por el largo obtenemos la fuerza por unidad de largo y reducimos la dimensión del problema sin perder información.
+
+Abajo esta la matriz de diseño para el problema. Se efectuaron $n$ observaciones o mediciones, por ende también se tienen $n$ resultados para la fuerza $y=F_{D_i}$.
+
+\[X=
+\begin{bmatrix}
+\mu_1 & \mu_2 &\ldots& \mu_n \\
+\rho_1 &\rho _2 &\ldots &\rho_n \\
+U_{1} & U_{2}&\ldots & U_{n}\\
+D_1 & D_2 & \ldots& D_n
+\end{bmatrix}
+\]
+\[
+\vectorbold{y} = 
+\begin{Bmatrix}
+F_1 \\
+F_2 \\
+\vdots\\
+F_n
+\end{Bmatrix}
+\]
+
+\subsection{No-Bayesiana}
+Como las mediciones nunca son exactas (siempre hay error humano o por el sistema de medición) se puede proponer ruido ($\varepsilon$) de distribución gaussiana $\varepsilon \sim \GD (0,\sigma_{n}^{2})$ que se suma a nuestra regresión para obtener los valores de $y$ tal que 
+\[
+\func(\vectorbold{x})=\vectorbold{x}^{\T} \vectorbold{w} \qquad \qquad y=\func(\vectorbold{x})+\varepsilon
+\]
+
+Se presentaron dos nuevos vectores al usuario, $\vectorbold{x}$ y $\vectorbold{w}$, los vectores \textit{input} y de \textit{pesos} (\textit{weight} en inglés), respectivamente. Ambos tienen dimensión del problema, en este caso $\Dim=4$.
+\[ \vectorbold{x} =
+\begin{Bmatrix}
+\mu_i \\
+\rho_i \\
+U_i \\
+D_i
+\end{Bmatrix} \qquad \qquad
+\vectorbold{w} =
+\begin{Bmatrix}
+w_a \\
+w_b \\
+w_c \\
+w_d
+\end{Bmatrix}
+\]
+Behold. La regresión lineal entonces quedaría de la forma
+\[
+\func(\vectorbold{x}) = w_a\mu_i +w_b\rho_i+w_cU_i+w_dD_i =y_i = F_i
+\]
+Resolver el problema (efectivamente: obtener el vector $\vectorbold{w}$) requiere un uso pesado de la probabilidad, en particular el teorema de Bayes. También se tiene que elegir un \textit{prior}, es decir, dejar expresadas nuestras creencias de los parametros (pesos) antes de mirar las observaciones. Esto toma la forma de la matriz de covarianza $\Sigma_p$. Si suponemos que los parametros se distribuyen según $\vectorbold{w} \sim \GD(\vectorbold{0},\Sigma_p)$ entonces:\footnote{Aún no se ha explicado como se calcula $\Sigma_p$. }
+
+\[
+p(\vectorbold{w}|X,\vectorbold{y}) \sim \GD(\Bar{\vectorbold{w}},A)
+\]
+\begin{equation}
+   A = \left(\sigma_n^{-2}XX^{\T}+\Sigma_p^{-1}\right)^{-1}
+\end{equation}
+\begin{equation}
+     \Bar{\vectorbold{w}} = \sigma_{n}^{-2}\left( \sigma_{n}^{-2}XX^{\T}+\Sigma_p^{-1} \right)^{-1}X\vectorbold{y}
+\end{equation}
+
+Donde $\Bar{\vectorbold{w}}$ son los promedios de los pesos hallados. $A$ es la \textit{matriz de covarianza de la distribución posterior}.
+
+Se suele referir al promedio de los pesos $\Bar{\vectorbold{w}}$ como MAP, \textit{maximum a posteriori. }
+
+\subsection{Bayesiana}
+Se ha hablado de la formulación No-Bayesiana hasta ahora. De que se trata esto de si es Bayesiano o no?  En el la formulación Bayesiana el caso prueba tiene la forma del vector de entrada, y la regresión se calcula para ese vector prueba. Por ende, en el esquema Bayesiano no existe un único vector $\vectorbold{w}$. Un subíndice $_*$ se refiere a un caso prueba.
+\begin{equation}
+    p(\func_{*}|\vectorbold{x}_*,X,\vectorbold{y}) = \GD \left( \sigma_n^{-2}\vectorbold{x}_*^{\T}AX\vectorbold{y},\vectorbold{x}_*^\T A\vectorbold{x}_* \right)
+\end{equation}
+Se usará esta formulación para la regresión en el espacio funcional. $A$ se definió anteriormente.
+
+\section{Regresión en el espacio funcional}
+Si bien hemos obtenido una regresión cuando calculamos $\Bar{\vectorbold{w}}$, no resuelve el problema debido a que el problema \textit{no es lineal}. 
+
+Esto se  resuelvo proyectando las variables de entrada a un espacio funcional. Nuestra función para la regresión tendría la forma
+
+\begin{equation}
+    \func(\vectorbold{x}) = \phi (\vectorbold{x})^{\T} \vectorbold{w}
+\end{equation}
+
+esta función $\phi$ mapea el vector de entrada $\vectorbold{x}$ de un espacio $\Dim$ a un espacio funcional $N$. La aplicación de este modelo es análoga a la regresión lineal excepto que donde antes teníamos $X$ ahora tenemos:
+\[
+\Phi =\Phi(X)
+\]
+
+\begin{equation} \label{eq:FeatureSpaceProb1}
+    p(f_*|\vectorbold{x}_*,X,\vectorbold{y})\sim \GD \left(\sigma_{n}^{-2}\phi(\vectorbold{x}_*)^\T A\Phi\vectorbold{y},\phi(\vectorbold{x}_*)^\T A\phi(\vectorbold{x}_*) \right)
+\end{equation}
+donde
+\[
+A =\left(\sigma_n^{-2}\Phi \Phi^\T +\Sigma_p^{-1}\right)^{-1}
+\]
+\subsection{Kernel}
+Si uno quisiese ahorrar tiempo y no calcular la inversa de $A$ (calculo computacional pesado) podria recurrir a la expresión (donde $\phi(x)=\phi$):
+
+\begin{equation} \label{eq:KernelTrickFeatureSpace}
+        p(f_*|\vectorbold{x}_*,X,\vectorbold{y})\sim \GD \left(\phi_*^\T \Sigma_p \Phi (K+\sn^2I)^{-1}\vectorbold{y},\phi_*^\T \Sigma_p \phi_* -\phi^\T_* \Sigma_p\Phi(K+\sn^2I)^{-1}\Phi^\T \Sigma_p\phi_* \right)
+\end{equation}
+donde $K=\Phi^T\Sigma_p\Phi$.
+
+Note que en la ecuación \ref{eq:KernelTrickFeatureSpace} es prevalente el producto de el espacio funcional en las formas $\phi_*^\T \Sigma_p \Phi$,  $\phi_*^\T \Sigma_p \phi_*$ y $\Phi^\T \Sigma_p\Phi$. Definiendo entonces una función $\psi(\xbold)=\Sigma_p^{\frac{1}{2}}\phi(\xbold)$ obtenemos
+\begin{equation}
+    k(\xbold,\xbold^{\prime}) = \psi(\xbold)\cdot \psi(\xbold^\prime)
+\end{equation}
+donde $\xbold$ y $\xbold^\prime$ pueden ser las variables de entrada o casos prueba (denotado con subíndice $*$). Se le suele decir la función kernel\footnote{También llamada función covarianza.} a $k$ y es de sumo interés en la rama del aprendizaje de maquina. Si reescribieramos \ref{eq:KernelTrickFeatureSpace}:
+\begin{equation}\label{eq:KernelTrickSubstituted}
+p\sim \GD \left(k(\xbold_*,X) (k(X,X)+\sn^2I)^{-1}\vectorbold{y},k(\xbold_*,\xbold_*) -k(\xbold_*,X)(k(X,X)+\sn^2I)^{-1}k(X,\xbold_*) \right)
+\end{equation}
+
+Puede ser que llegado a este punto el lector se sienta ansioso por no tener las herramientas de como aplicar \ref{eq:KernelTrickSubstituted}. Para aliviar dichas dudas se presenta una posible función de covarianza, la \textit{squared exponential} (SE).\footnote{también llamada la gausiana o \textit{Radial Basis Function}}
+\begin{equation}
+    \cov(\func(\xbold_p),\func(\xbold_q)) = k(\xbold_p,\xbold_q) = \exp(-\tfrac{1}{2}\left|\xbold_p-\xbold_q \right|^2/\ell)
+\end{equation}
+donde $\ell$ es la longitud característica del proceso gausiano.
+
+
+
+\begin{define}
+Un \emph{Proceso Gausiano} es una colección de cualquier número finito de variables aleatorias, todas distribuidas gausianamente.
+\end{define}
+
+\subsection{Prediccion con ruido}
+Suponiendo que $y=\func(x)+\varepsilon$ siendo el ruido $\varepsilon \sim \GD(0,\sigma_n^2)$
+\[
+\cov (y_p,y_q) = k(\xbold_p,\xbold_q) +\sn^2\delta_{pq} \qquad o \qquad \cov (\ybold) = K(X,X)+\sn^2+I
+\]
+
+La distribuci'on de $\ybold$ y las salidas según el \textit{prior} elegido son
+\[
+\begin{bmatrix}
+\ybold \\
+\fbold
+\end{bmatrix}\sim
+\GD\left(\mathbf{0},
+\begin{bmatrix}
+K(X,X)+\sn^2I & K(X,X_*) \\
+K(X_*,X) & K(X_*,X_*)
+\end{bmatrix}
+\right)
+\]
+
+\end{document}

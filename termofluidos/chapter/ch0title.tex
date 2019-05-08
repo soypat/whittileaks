@@ -1,0 +1,127 @@
+\begin{titlepage} 
+
+% Original titlepage author:
+% Peter Wilson (herries.press@earthlink.net) with modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+
+    \fontfamily{fourierenc}\selectfont %Elijo una fuente
+    \BgThispage
+    
+	\centering % Centre everything on the title page
+	
+	%------------------------------------------------
+	%	Top rules
+	%------------------------------------------------
+	
+	\rule{\textwidth}{1pt} % Thick horizontal rule
+	
+	\vspace{2pt}\vspace{-\baselineskip} % Whitespace between rules
+	
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{0.1\textheight} % Whitespace between the top rules and title
+	
+	%------------------------------------------------
+% 		Title
+	%------------------------------------------------
+	
+	\textcolor{black}{ % Red font color
+		{\Huge Termofluidos}\\[1.5\baselineskip] % Title line 1
+		 % Title line 2
+		{\Large para las masas} % Title line 3
+	}
+	
+	\vspace{0.025\textheight} % Whitespace between the title and short horizontal rule
+	
+	\rule{0.3\textwidth}{0.4pt} % Short horizontal rule under the title
+	
+	\vspace{0.1\textheight} % Whitespace between the thin horizontal rule and the author name
+	
+	%------------------------------------------------
+	%	Author
+	%------------------------------------------------
+	
+% 	{\Large \textsc{Física IV -- 93.44}} % Author name
+	\vspace{3cm}
+    
+
+
+	\vfill % Whitespace between the author name and publisher
+	
+    
+	%------------------------------------------------
+	%	Publisher
+	%------------------------------------------------
+	
+	{\Large{\fbox{$\mathscr{WL}$}}}\\[-3\baselineskip] % Publisher logo
+
+	
+	\vspace{0.1\textheight} % Whitespace under the publisher text
+	
+	%------------------------------------------------
+	%	Bottom rules
+	%------------------------------------------------
+	
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{2pt}\vspace{-\baselineskip} % Whitespace between rules
+	
+	\rule{\textwidth}{1pt} % Thick horizontal rule
+	
+\end{titlepage}
+\onecolumn
+
+\begin{table}[htb!]
+\vspace{-1cm}
+\centering
+\begin{tabularx}{12cm}{ *{2}{c}
+>{\scriptsize\arraybackslash}X }
+\multicolumn{3}{l}{Grupos adimensionales \citep{kreith2011principles}}\\\hline
+Grupo               & Definición & \normalsize Interpretación \\\hline
+Número de Reynolds ($\Reynolds$)  &   $\frac{U\rho L}{\mu}=\frac{U L}{\nu}$         &  Razón de inercia a fuerzas viscosas \breathingspace             \\
+Coeficiente de drag ($C_D$)& $\frac{F_D}{\rho U_\infty A/2}$            &  Cuantifica el \textit{drag} o la resistencia de un objeto sumergido en un fluido.             \\
+Número de Fourier ($\Fo$)  &    $\frac{\alpha t}{L^2}=\frac{k t}{\rho c_p L^2} $        & Razón de conducción de calor a
+la acumulación de energía interna en un solido. \\
+ Número de Froude    ($\Froude$)&  $\frac{U_\infty}{\sqrt{g L}}$          &   Relaciona el flujo de inercia a un campo externo (inercia de un barco perdido a su estela)            \\
+Número de Nusselt  ($\Nusselt$) &   $\frac{\hcb L}{k_f}$         & Razón de transferencia de calor convección a conducción sobre una capa de fluido de longitud $L$.              \\
+Número de Biot  ($\Biot$)    &     $\frac{\hhb \ell}{k_s} $      & Razón de la resistencia térmica interna de un cuerpo solido a la resistencia de su superficie.           \\
+Número de Bond (Eötvös) ($\Bond$ o $\Eotvos$)    &     $\frac{\rho g \ell^2}{\Upsilon} $      & Relación de fuerzas por gravedad a las capilares.           \\
+Número de Brinkmann ($\Brinkmann$) & $\frac{\mu U^2}{k_f(T_{\textrm{wall}}-T_0)}$ &Razón de calor producido por disipación viscosa a el calor transportado por conducción molecular. \\
+Número capilar ($\textrm{Ca}$)& $\frac{\mu U}{\Upsilon}$            &  Razón de fuerzas viscosas con las capilares.              \\
+Coeficiente de fricción ($c_f$)& $\frac{\tau_s}{\rho U_\infty/2}$            &  Razón del corte de superficie a la energía cinética del flujo.              \\
+Número de Eckert  ($\Eckert$)  &    $\frac{U_\infty^2}{c_p\left(T_s-T_\infty\right)}$        &Energía cinética de un flujo relativo a la diferencia de entalpía de la capa limite. Usado para caracterizar la disipación de calor.                \\
+Factor de fricción ($\frictionfactor$) & $ \frac{\Delta p}{(L/D)\left(\rho U^2_m/2\right)}$          &Caracteriza la caída de presión para flujos dentro de conductos.                \\
+Número de Grashof ($\Grashof$) &  $\frac{g\beta \left(T_s -T_\infty \right) L^3}{\nu^2}$          &Razón de fuerzas de flotación a fuerzas viscosas.                \\
+% Factor j de Colburn ($\Colburnfactor$)&   $\Stanton\Prandtl^{\frac{2}{3}}$         &    Coeficiente de transferencia de calor.            \\
+Número de Mach   ($\Mach$)   &    $\frac{U}{U_{\textrm{sonido}}}$        & Razón de velocidad de un flujo a la velocidad de sonido local.              \\
+% Número de Peclet ($\Peclet$)   &    $\Reynolds\Prandtl$        & Razón de advección a difusión de un fluido.                \\
+Número de Prandtl  ($\Prandtl$) &     $\frac{\nu}{\alpha}=\frac{c_p \mu}{k}$       &Razón de difusión viscosa a difusión térmica.               \\
+Número de Rayleigh ($\Rayleigh$) &  $\Grashof\Prandtl = \frac{\Delta \!T g\beta L^3}{\nu \alpha}$          & Caracteriza el flujo impulsado por el fenómeno de flotación o empuje. Asociado a la convección natural.             \\
+Número de Stanton ($\Stanton$)  &   $\frac{\hcb }{\rho U_\infty c_p}=\frac{\Nusselt_L}{\Reynolds_L \Prandtl}$         &Razón de transferencia de calor a capacidad térmica de un fluido. Asociado a convección forzada.\\
+Número de Weber ($\Weber$)  &   $\frac{\rho U^2 L}{\Upsilon}$         &Razón de fuerzas de inercia en un flujo a la capilar.\\
+\hhline
+\end{tabularx}
+\end{table} 
+
+\tableofcontents
+
+\section*{Sobre esta obra}
+Documento escrito en \textrm{\LaTeX} usando \href{https://www.overleaf.com}{Overleaf}. Caratula: \emph{ La Gran Ola de Kanagawa }- Katsushika Hokusai. \par
+
+Sepa diferenciar $\nu$ (nu) de $v$ (uve).\par
+ \vspace{.1cm}
+\fbox{Versión: \today}
+ \vspace{1cm}
+ \begingroup
+
+\fontfamily{pbk}\selectfont
+\noindent
+ Licencia: \faCreativeCommons~BY-NC-SA 4.0
+ \endgroup
+ \begingroup
+    $$\textrm{N--S 2-D}_x:\quad \spartial{u}{t}+u\spartial{u}{x}+v\spartial{u}{y}=b_x-\frac{1}{\rho}\spartial{p}{x}+\frac{\mu}{\rho}\left(\dpartial{u}{x}+\dpartial{u}{y}\right) + \frac{\mu}{3}\spartial{ }{x}\left( \spartial{u}{x}+\spartial{v}{y}\right)$$
+ \endgroup

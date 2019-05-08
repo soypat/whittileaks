@@ -1,0 +1,68 @@
+\section{Intercambiadores de Calor}
+El subíndice $c$ se refiere a \emph{cold}, $h$ a \emph{hot}. 
+\begin{equation}
+    q=(\dot{m}c_p)(T_{c,\salida}-T_{c,\entrada})
+\end{equation}
+
+\emph{Overall heat transfer coeficcient:}
+\begin{equation}
+    q=UA(T_h-T_c)
+\end{equation}
+\subsection{Diferencia de temperatura \textit{Log-mean}}
+La temperatura varía según la dirección del flujo. Para obtener el coeficiente de transferencia de calor se tiene que integrar la siguiente expresión a lo largo del tubo(s).
+
+\[ \di q=U\di A\Delta T
+\]
+Si $U$ es constante y no hay cambios en energía cinética, entonces 
+\begin{equation}
+    \di q = - \dot{m}_h c_{p,h} \di T_h = \pm \dot{m}_c c_{p.c} \di T_c = U \di A (T_h-T_c)
+\end{equation}
+donde el signo $\pm$ depende si los flujos son paralelos ($+$) o en \emph{counterflow} ($-$).
+
+
+\begin{equation}
+    q=UA\frac{\Delta T_a-\Delta T_b}{\ln (\Delta T_a\Delta T_b)}
+\end{equation}
+donde $\Delta T=T_h - T_c$.
+
+\subsubsection*{Promedio logarítmico para intercambiadores tipo \textit{shell}}
+El subíndice $s$ se refiere a una propiedad del \textit{shell}.
+
+Promedio generalizado con factor de corrección
+\begin{equation}
+    \Delta T_{\promedio}=F\cdot\frac{\Delta T_a-\Delta T_b}{\ln (\Delta T_a\Delta T_b)}
+\end{equation}
+
+\subsection{Efectividad de Intercambiador}
+La ecuación generalizada para intercambiadores de calor:
+
+
+\begin{equation}
+    q=UA\Delta T_{\promedio}
+\end{equation}
+
+Ahora presentamos la \emph{efectividad} $\efic$ que es la razón de calor intercambiado al calor intercambiado máximo posible (largo infinito).
+
+
+\begin{align}
+    \efic &= \frac{C_h (T_{h,\entrada}-T_{h,\salida})}{C_{\min}(T_{h,\entrada}-T_{c,\entrada})} \\
+\efic &= \frac{C_c (T_{c,\salida}-T_{c,\entrada})}{C_{\min}(T_{h,\entrada}-T_{c,\entrada})} 
+\end{align}
+donde $C_{\min}$ es la menor de las magnitudes $\dot{m}_h c_{ph}$ y $\dot{m}_c c_{pc}$.
+
+\begin{equation}
+    q= \efic C_{\min}(T_{h,\entrada}-T_{c,\entrada})
+\end{equation}
+
+\begin{equation}
+    \efic = \frac{1-\exp\left(\frac{-UA(1+C_{\min}/C_{\max})}{C_{\min}}\right)}{1+C_{\min}/C_{\max}}
+\end{equation}
+
+
+\subsection{\textit{Fouling}}
+
+Factor \emph{fouling}
+\begin{equation}
+    R_d=\frac{1}{U_d}+\frac{1}{U}
+\end{equation}
+donde $U_d$ es el coeficiente de transmisión de calor después de ocurrir el \emph{fouling}.

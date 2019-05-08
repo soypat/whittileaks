@@ -1,0 +1,247 @@
+%% ENERGY EQUATIONS of LOCALITY
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ecuaciones básicas locales}
+\textit{En este texto las ecuaciones locales se obtendrán partiendo de la forma integral de la derivada material.}
+
+Las leyes básicas de la física son:
+\begin{itemize}
+    \item Conservación de la masa
+    \item Conservación de la cantidad de movimiento
+    \item Conservación de la energía
+    \item Conservación de las especies químicas
+    \item Ecuación de estados 
+\end{itemize}
+Se puede aplicar TTR a toda propiedad extensiva de un sistema. 
+\subsection{Derivada material}
+Imagine que se tiene un flujo que puede ser descrito por un campo de velocidades $U_j(x,y,z,t)$. Si a uno le interesa puede obtener el cambio de velocidad en $x$ en $t$, obteniendo así: $\spartial{U_x}{t}$. Parecería ser que obtuvimos una aceleración por la forma pero no es el caso. Como bien sabemos, la aceleración está ligada a un objeto con masa, en este caso, las partículas del fluido cuya aceleración es influenciada por la derivada local ($\spartial{U_x}{t}$) y la \textit{convectiva} o \textit{advectiva} ($U_x\spartial{U_x}{x}+U_y\spartial{U_x}{y}+U_z\spartial{U_x}{z}$).
+
+Se define entonces el operador \textit{derivada material}
+\[
+\frac{\Di [\;]}{\Di t}=\spartial{[\;]}{t}+u_i\spartial{[\;]}{x_i}
+\]
+por ende, el componente $j$ de la aceleración que un elemento de un fluido experimenta en un punto $x_i$ en el campo $U_j(x_i,t)$ está dada por
+\[
+a_j=\frac{\Di U_j}{\Di t}=\spartial{U_j}{t}+U_i\spartial{U_j}{x_i}
+\]
+
+\subsection{Teorema de transporte de Reynolds}
+
+La ecuación general de Reynolds para una propiedad \textit{extensiva} $N$ del fluido en el volumen del control $V$ viene dada por la derivada material expresada en forma integral:
+
+\begin{equation} \label{eq:TTRgeneral}
+    \frac{\Di N_{\textrm{VC}}}{\Di t} \equiv \spartial{    }{t} \int_{V} \rho \eta \di \vol + \int_{S}\rho \eta u_i n_i \di \sur
+\end{equation}
+donde $\eta$ es la propiedad \textit{intensiva} del fluido\footnote{Intensiva son todas las propiedades que no dependen de la masa o el volumen de un cuerpo como densidad, punto de ebullición, presión, etc.} por unidad de masa del fluido y $n_i$ es el vector normal a la superficie del volumen de control.
+
+Si se emplea el teorema de la divergencia de Gauss se puede pasar el integral de superficie a uno de volumen y agrupar. El teorema de Gauss escrito tensorialmente establece
+\[
+\int_{S}  N_k n_k \di \sur = \int_{V} \partial_k N_k \di \vol
+\]
+aplicando el teorema de la divergencia, nos queda el TTR de la forma
+
+\begin{equation} \label{eq:TTRdivergence}
+\frac{\Di N}{\Di t} \equiv \int_{V} \spartial{\rho \eta}{t}\di \vol +\int_V \spartial{\eta_k}{x_k} \di \vol=\int_V\left(\spartial{\rho \eta}{t} + \spartial{\eta_k}{x_k}\right)\di \vol
+\end{equation}
+
+La ecuación \ref{eq:TTRdivergence} resulta poco útil al momento de querer calcular lo que está adentro del integrando. En el caso de que se conserve la cantidad $N$ (como podría ocurrir en régimen estacionario) y por consecuencia $\frac{\Di N}{\Di t}=0$, se puede aprovechar que $V$ está definido como un volumen arbitrario y por ende lo que está adentro del integrando debe ser cero.
+
+\subsection{Compresibilidad}
+A partir del Teorema de Transporte de Reynolds (TTR) para masa en un volumen de control $V$
+$$\frac{\Di M}{\Di t}\equiv\frac{\di }{\di t}\int_V \rho\di \vol +\int_S \rho u_k n_k \di \sur $$
+que con la identidad de divergencia se tiene
+$$\frac{\Di M}{\Di t} \equiv \int_V \left( \spartial{\rho}{t}+\spartial{\rho u_i}{x_i} \right) \di \vol $$
+para un volumen de un fluido en \textbf{régimen estacionario} se tiene que $\frac{\Di M}{\Di t}=0$. A raiz de esto se puede decir que lo que está adentro del integrando es igual a cero:
+\begin{equation} \label{eq:continuidad}
+    \spartial{\rho}{t} +\spartial{\rho u_i}{x_i}=0
+\end{equation}
+Se le suele llamar ecuación de conservación de masa o simplemente \emph{continuidad} a la expresión \ref{eq:continuidad}.\par
+
+Con la regla de la cadena, la divergencia se expande y se pueden agrupar términos tal que
+\begin{equation} \label{eq:compresibilidad}
+\frac{\Di \rho}{\Di t}+\rho \spartial{u_i}{x_i} =0
+\end{equation}
+la cual establece una definición mas precisa de la compresibilidad \citep{vieytes2018filminas}.
+
+Sí se tiene un flujo de densidad constante en todo su punto (incompresible) se llega a que la divergencia de la velocidad es cero.
+\begin{equation} \label{eq:incompresible}
+    \diverg u_i =\spartial{u_i}{x_i}=0
+\end{equation}
+
+
+\subsection{Newton o TTR de cantidad de movimiento}
+\label{sec:NewtonTTR}
+\begin{align*}\numberthis{}
+\overbrace{\frac{\Di \textbf{p}_j}{\Di t}}^{\textrm{I}}\equiv \overbrace{\frac{\di}{\di t}\int_V \rho u_j \di \vol}^{\textrm{II}} +\overbrace{\int_{S} \rho u_{j} u_{k} n_{k} \di \sur }^{\textrm{III}}& \\
+   = \underbrace{\int_V B_j \di\vol}_{\textrm{IV}} +& \underbrace{\int_S \sigma_{ij}n_i \di \sur}_{\textrm{V}} 
+\end{align*}  
+Donde $B_{j}$ son las fuerzas por unidad de volumen o fuerzas volumétricas. $\sigma_{ij}$ es el tensor de tensiones. Los términos IV y V juntos son $\sum F_j$, la suma de las fuerzas externas sobre el volumen de control 
+\begin{itemize}
+    \item[I.] Derivada material de la componente $j$ de la cantidad de movimiento adentro del volumen de control $V$
+    \item[II.] Cambio temporal del componente $j$ de la cantidad de movimiento en el interior de $V$
+    \item[III.] Flujos de cantidad de movimiento entrantes y salientes por unidad tiempo en dirección $j$ sumados sobre la superficie entera del VC $S$
+    \item[IV.] Componente $j$ de la fuerzas actuando por unidad de masa
+    \item[V.] Componente $j$ de la suma de todas las fuerzas externas que actúan sobre la superficie del volumen de control $S$
+\end{itemize}
+
+Operando de forma similar a lo visto anteriormente
+
+\begin{equation} \label{eq:ttrpTransitorio}
+\spartial{\rho u_j}{t}+\spartial{\rho u_i u_j}{x_i}=B_j+\spartial{\sigma_{ij}}{x_i}
+\end{equation}
+Esta ecuación se puede trabajar con continuidad en régimen estacionario (\ref{eq:continuidad}) para llegar a una forma mas simple:
+\begin{equation} \label{eq:ttrp}
+    \rho \spartial{u_j}{t} +\rho u_i \spartial{u_j}{x_i}=B_j+\spartial{\sigma_{ij}}{x_i}
+\end{equation}
+
+El ultimo termino de la ecuación \ref{eq:ttrp} nos complica al querer modelar la realidad. No tenemos forma de meternos a un fluido para medir el estado de deformaciones y así obtener las tensiones. Se tiene que trabajar la ecuación un poco mas...
+\begin{mdframed}
+La ecuación de Euler es valida para flujos invíscidos ($\mu=\lambda=0$):
+\begin{equation} \label{eq:eulerDiff}
+    \spartial{u_j}{t}+u_i\spartial{u_j}{x_i}+\frac{1}{\rho}\spartial{p}{x_j}=\frac{B_j}{\rho}=b_j
+\end{equation}
+Donde $b_i$ son las fuerzas por unidad de masa.
+\end{mdframed}
+\subsection{Como reescribir los esfuerzos $\sigma_{ij}$}
+Separamos $\sigma_{ij}$ en dos, su parte ``equilibrada'' isótropa y su parte desviadora similar a lo visto en la sección \ref{sec:presionmecanica}. 
+\begin{equation}\label{eq:sigma1}
+\sigma_{ij}=-p \delta_{ij} +S_{ij}
+\end{equation}
+
+
+$S_{ij}$ representa cuanto se desvía $\sigma_{ij}$ de las condiciones necesarias para el equilibrio y se lo suele llamar el tensor desviador. $\pe$ es la presión de equilibrio/termodinámica/hidrostática.
+
+\[S_{ij}=A_{ijkl}\spartial{u_k}{x_l} \]
+
+\begin{itemize}
+\item Sí el fluido es \textbf{Newtoniano} entonces nos queda que $A_{ijkl}$ es \textbf{lineal} y depende del estado termodinámico.
+
+\item Como $S_{ij}$ es \textbf{simétrico} entonces $A_{ijkl}$ es simétrico también \textbf{sobre los índices }$ij$. 
+
+\item Para \textbf{fluidos simples} $A_{ijkl}$ es un tensor isótropo y se puede escribir de la siguiente manera donde $\mu=\mu^\prime$ por la simetría de $A_{ijkl}$ sobre $ij$.
+\end{itemize}
+\begin{equation} \label{eq:Aijklexpanded}
+    A_{ijkl}=\lambda\delta_{ij}\delta_{kl} +\mu\delta_{ik}\delta_{jl}+\mu^\prime \delta_{il}\delta_{jk}=\lambda\delta_{ij}\delta_{kl} +2\mu\delta_{ik}\delta_{jl}
+\end{equation}
+
+\begin{itemize}
+\item Basándonos en \ref{eq:Aijklexpanded} vemos que $A_{ijkl}$ es \textbf{simétrico sobre} $kl$
+\end{itemize}
+Mediante una descomposición falopa, el tensor gradiente de velocidades se reescribe en su parte simétrica $e$ y antisimétrica $\xi$. Recordemos que la contracción de un tensor simétrico y uno antisimétrico es $0$.
+$$\spartial{u_k}{x_l}=e_{kl}+\xi_{kl}$$
+$$A_{ijkl}\spartial{u_k}{x_l}=A_{ijkl}e_{kl}+\cancelto{0}{A_{ijkl}\xi_{kl}} $$
+
+$$\therefore S_{ij}= A_{ijkl}e_{kl}=\lambda\delta_{ij}\delta_{kl}e_{kl} +2\mu\delta_{ik}\delta_{jl}e_{kl}$$
+\begin{equation}
+    S_{ij}=2\mu e_{ij}+\lambda e_{kk} \delta_{ij}
+\end{equation}
+$\mu$ es la viscosidad al corte o \emph{primera viscosidad}, $\lambda$ es la viscosidad de volumen o \emph{segunda viscosidad}. Ambas dependen del estado termodinámico del fluido. La igualdad $e_{kk}=\spartial{u_k}{x_k}$ es valida, en cambio $e_{ij}=\frac{1}{2}\left(\spartial{u_i}{x_j}+\spartial{u_j}{x_i}\right)$ ya que definimos el tensor desviador como el negativo de tau que se hablo en la sección \ref{sec:reologia}
+\[
+S_{ij}=-\tau_{ij}
+\]
+
+Por lo tanto, para un fluido Newtoniano tenemos:
+\begin{equation}\label{eq:sigmanewt}
+\sigma_{ij}=-p\delta_{ij}+\lambda e_{kk}\delta_{ij}+2\mu e_{ij} 
+\end{equation}
+%%%% NEW INCLUDE
+
+
+% %%%
+% Nos interesa la traza del tensor de desviaciones para definir la presión mecánica $p$ en función de la presión termodinámica
+% $$ \textrm{tr}\;S_{ij}=S_{ii}=\left( 3\lambda +2\mu \right)e_{kk}$$
+% \begin{equation}\label{eq:presionmec}
+% p\equiv -\frac{1}{3}\sigma_{kk}=\pe-\left(\lambda +\frac{2}{3}\mu\right) e_{kk}
+% \end{equation}
+% usando \eqref{eq:presionmec} 
+
+% \begin{equation} \label{eq:sigmamecanica}
+% \sigma_{ij}=-\left[\pe -\left(\lambda+\frac{2}{3}\mu \right)e_{kk}\right]\delta_{ij} + \overbrace{2\mu \left(e_{ij}-\frac{1}{3}e_{kk}\delta_{ij}\right)}^{S_{ij}\textrm{}}
+% \end{equation}
+
+
+% La \textbf{hipótesis de Stokes} supone que $\pe=p \Rightarrow\lambda=-\frac{2}{3}\mu$. Nos queda entonces
+
+% $$\sigma_{ij}=-\left(p+\frac{2}{3}\mu e_{kk} \right) \delta_{ij}+2\mu e_{ij} $$
+
+\subsection{Navier--Stokes reducida}
+Partimos de la ecuación de la conservación de momento local reescrita con $S_{ij}$ y la presión mecánica:
+\begin{equation} \label{eq:NewtonSij}
+    \frac{\Di \rho u_j}{\Di t}\equiv   \spartial{\rho u_j}{t}+\spartial{\rho u_i u_j}{x_i}=B_j-\spartial{p}{x_j}+\spartial{S_{ij}}{x_i}
+\end{equation}
+
+Consideremos ahora:
+\begin{itemize}
+\item Fluido Newtoniano
+\item Fluido simple (isótropo)
+\item Régimen estacionario
+\end{itemize}
+Estas hipótesis nos dan la ecuación de Navier--Stokes (\ref{eq:NS}) en su forma más generalizada para fluidos compresibles combinando \ref{eq:ttrp} y \ref{eq:sigmanewt}
+\begin{mdframed}
+\textbf{La ecuación de Navier--Stokes generalizada}
+\begin{equation} \label{eq:NS}
+     \rho \left( \spartial{u_j}{t}+u_i \spartial{u_j}{x_i}\right)=B_j-\spartial{p}{x_j}+2\spartial{\mu e_{ij}}{x_i}+\spartial{\lambda e_{kk} }{x_j}
+\end{equation}
+\end{mdframed}
+
+Luego proponiendo unas cuantas hipotesis más:
+\begin{itemize}
+\item Hipotesis de Stokes $\pe=p\quad\Rightarrow\quad\lambda = -\frac{2}{3}\mu$
+\end{itemize}
+nos queda una formulación más aplicable, pero aún considerando flujos incompresibles
+
+\begin{equation}\label{eq:NS_stokesHipotesis}
+     \rho \left( \spartial{u_j}{t}+u_i \spartial{u_j}{x_i}\right)=B_j-\spartial{\pe}{x_j}+2\spartial{\mu e_{ij}}{x_i}-\frac{2}{3}\spartial{\mu e_{kk}}{x_j}
+\end{equation}
+
+Si nos interesa el caso especial de un flujo incompresible e isotérmico se puede obtener la ecuación de Navier--Stokes reducida con dos hipótesis más:
+\begin{itemize}
+    \item Flujo isotérmico $\spartial{T}{x_j}=0$
+    \item Incompresibilidad ($e_{kk}=0$)\footnote{Una consecuencia de incompresibilidad es que $\rho$ sea constante.}
+\end{itemize}
+Nos queda la ecuación de N--S reducida (\ref{eq:NSr})
+\begin{mdframed}
+\textbf{Navier--Stokes reducida.}\footnote{Dado que el flujo es isotérmico la viscosidad no depende de la posición.}
+\begin{equation}\label{eq:NSr}
+\rho \left( \spartial{u_j}{t} +u_i \spartial{u_j}{x_i}\right)=B_j-\spartial{\pe}{x_j} +\mu \spartial{^2 u_j}{x_i\partial x_i}
+\end{equation}
+\end{mdframed}
+
+
+
+\subsection{Energía cinética}
+
+\begin{equation}\label{eq:eCinetica}
+\frac{\Di \ek}{\Di t}\equiv u_i b_i-\frac{1}{\rho}\spartial{(u_k p)}{x_k} +\frac{1}{\rho} \spartial{(u_i S_{ij})}{x_j}+\frac{1}{\rho} \frac{p\partial u_k}{\partial x_k}-S_{ij} \frac{\partial u_i}{\rho \partial x_j}
+\end{equation}
+
+El cambio de energía cinética en un fluido (\ref{eq:eCinetica}) viene dado por el trabajo realizado por unidad de tiempo por: las fuerzas por unidad de masa, la presión, y los esfuerzos cortantes. Los últimos dos sumandos representan la conversión \emph{reversible} de energía cinética en energía interna y la disipación \emph{irreversible} de energía por esfuerzos cortantes.
+\subsection{Energía interna}
+Se define $\et$ como la energía total del fluido.
+\begin{equation}\label{eq:etotal}
+    \dot{Q}-\dot{W}_\textrm{M}=\frac{\di }{\di t}\int_V \rho \et \di \vol +\int_S \rho \et u_j n_j \di \sur
+\end{equation}
+
+Donde $\dot{Q}$ es el calor que recibe el fluido por unidad de tiempo sea por las paredes por diferencia de temperatura o el calor generado en el seno del fluido por algún proceso (nuclear, química, disipación etc.), y $\dot{W}_\textrm{M}$ es la potencia intercambiada por el sistema (mecánica).
+
+
+ La ecuación \ref{eq:Qk} describe la potencia entregada por las superficies al fluido. Recordemos que en el curso vamos a trabajar fluidos isótropos y por lo tanto $k_{ij}=-k \delta_{ij}$. Sabiendo la potencia entregada por unidad de superficie $q_i^{\prime \prime}=k_{ij}\spartial{T}{x_j}=-k\delta_{ij}\spartial{T}{x_j}$ 
+\begin{equation}\label{eq:Qk}
+    \dot{Q}_K=\int_S q_i^{\prime \prime} n_i \di \sur = -\int_S - k\delta_{ij}\spartial{T}{x_j}n_i \di \sur
+\end{equation}
+Lo que calculamos aquí es la potencia entregada por el fluido, por lo cual le va un signo menos adelante por convención (Calor recibido es positivo). El signo menos del termino $q_i^{\prime \prime} $ sale de la necesidad que el flujo de calor sea positivo cuando $\spartial{T}{x_j}$ es negativo (Calor fluye de mayor $T$ a menor $T$).
+
+
+\begin{align*}
+    \dot{Q}=\int_S k\spartial{T}{x_j} n_j \di \sur + \int_V \dot{q}_G \di \vol &=\\
+    \int_V \bigg[ &\spartial{ }{x_j} \bigg( k   \spartial{T}{x_j} \bigg) + \dot{q}_G \bigg] \di \vol
+\end{align*}
+Ok:
+\begin{equation} \label{eq:etotalreplace}
+    \rho \frac{\Di \et}{\Di t}\equiv \spartial{}{x_j}\left(k\spartial{T}{x_j}\right) - \spartial{u_i p}{x_j}+\spartial{u_i S_{ij}}{x_j}+\rho u_i b_i+\dot{q}_G
+\end{equation}
+Entonces restando \ref{eq:eCinetica} y \ref{eq:etotalreplace} tenemos la ecuación de la energía interna \ref{eq:einterna}
+
+\begin{equation} \label{eq:einterna}
+    \rho \frac{\Di \textrm{e}}{\Di t}\equiv \spartial{}{x_j}\left( k\spartial{T}{x_j}\right) - p \spartial{u_j}{x_j} +\overbrace{S_{ij} \spartial{u_i}{x_j}}^{=\Phi \textrm{ (ver \eqref{eq:disipcartesianas})}}+\dot{q}_G
+\end{equation}
