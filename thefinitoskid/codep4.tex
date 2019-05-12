@@ -36,17 +36,18 @@ dN = [dNx;dNy];
     \end{verbatim}
     \end{code}
 
+
+
+
 \begin{code}[Dofinitions y elemDof]
 	\begin{verbatim}
 
 [Nelem, Nnodporelem]= size(elementos);  
-[Nnod, Ndim] = size(nodos); % Numero de nodos, Numero de dimensiones del problema (es 2-D)
-
+[Nnod, Ndim] = size(nodos);
 Ndofpornod = 3; %Para placa Kirchoff
 dof = Nnod*Ndofpornod;
 DOF = (1:dof)'; %vector columna
-
-n2d = @(nodo) [nodo*3-2, nodo*3-1, nodo*3]; % Función Node a DOF. Obtiene indices de dof de un nodo. Si hay mas/menos de 3 dof por nodo entonces cambia
+n2d = @(nodo) [nodo*3-2, nodo*3-1, nodo*3]; % Función Node a DOF.
 elemDof = zeros(Nelem,Ndofpornod*Nnodporelem);
 for e = 1:Nelem
 for n = 1:Nnodporelem
@@ -101,6 +102,9 @@ end
 	\end{verbatim}
 \end{code}
 
+
+
+
 \begin{code}[Cargas]
 	\begin{verbatim}
 	
@@ -118,12 +122,67 @@ end
 	\end{verbatim}
 \end{code}
 
+    \begin{code}[Funciones de Forma Kirchoff. $d\!x$ e $d\!y$ son ancho y alto del elemento]
+	\begin{verbatim}
+	
+	syms x y real
+	X = [1 x y x.^2 x.*y y.^2 x.^3 (x.^2).*y x.*(y.^2) y.^3 x^3*y x.*(y^3)];
+	Xdx = diff(X,x);
+	Xdy = diff(X,y);
+	uDof = [-1 -1;-1 -1;-1 -1;
+	1 -1; 1 -1; 1  -1
+	1  1;1  1;1  1
+	-1 1;-1 1;-1 1];
+	uDof(:,1)=uDof(:,1)*dx/2;
+	uDof(:,2)=uDof(:,2)*dy/2;
+	uNod =[-1 -1;1 -1;1 1;-1 1];
+	A = zeros(size(uDof,1),length(X));
+	for i=1:size(uDof,1)
+	x=uDof(i,1); y = uDof(i,2);
+	if mod(i,3)==0
+	A(i,:) = double(subs(Xdy));
+	elseif mod(i,3)==2
+	A(i,:) = double(subs(Xdx));
+	elseif mod(i,3)==1
+	A(i,:) = double(subs(X));
+	end
+	end
+	syms x y real
+	N = X*inv(A);
+	dNxx = diff(N,x,x);
+	dNyy = diff(N,y,y);
+	dNxy = diff(N,x,y);
+	B = [dNxx; dNyy; 2*dNxy];
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Acople matriz rigidez y cargas Kirchoff]
+	\begin{verbatim}
+	
+	Kg = sparse(dof,dof);
+	Ke = double(int(int(B'*C*B,x,[-dx dx]),y,[-dy dy]));
+	for e = 1:Nelem
+	storeTo = elemDof(e,:);
+	Ke = double(int(int(B'*C*B,x,[-dx dx]),y,[-dy dy]));
+	Kg(storeTo,storeTo) = Kg(storeTo,storeTo) + Ke;
+	end
+	p0=-0.05e6; %0.05 MPa
+	R = zeros(dof,1);
+	Nint = int(int(N.',x,[-dx dx]),y,[-dy dy]);
+	Q = double(p0*Nint);
+	for e = 1:Nelem 
+	storeTo = elemDof(e,:);
+	R(storeTo)=R(storeTo)+Q;
+	end
+	\end{verbatim}
+\end{code}
+
 \begin{code}[Recuperación de tensiones]
 	\begin{verbatim}
 	
 Sb = zeros(Nnodporelem,3,Nelem);
 Ss = zeros(Nnodporelem,2,Nelem);
-% FuncFormas en nodos
+% Funciones de forma en nodos
 Nsn = cell(Nnodporelem,1);
 dNsn = cell(Nnodporelem,1);
 for inod = 1:Nnodporelem
