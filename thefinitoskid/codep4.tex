@@ -1,0 +1,248 @@
+ \clearpage
+ \subsection*{Código \Matlab{} Finitos II}
+    %%%%------------------------------------------------------------------CODE
+    \subsubsection*{Código de Placas}
+    Se va tratar con un método para el almacenado eficiente de las funciones de forma usando structures de \Matlab{}. Esto acorta el tiempo de corrido en un factor mayor a 100 para problemas medianos/grandes. Código en anexo.
+
+    \begin{code}[Funciones de Forma Mindlin Q4]
+    \begin{verbatim}
+
+clear dN N dNaux X dNxx dNyy dNxy 
+syms ksi eta real
+X = [1 ksi eta ksi.*eta];
+Xdx = diff(X,ksi);
+Xdy = diff(X,eta);
+uNod = [-1 -1;1 -1;1 1;-1 1];
+Nnodporelem = length(uNod);
+Ndofpornod = 3; %Placas Mindlin
+Ndofporelem = Nnodporelem*Ndofpornod;
+A = zeros(Nnodporelem,length(X));
+for i=1:Nnodporelem
+  ksi=uNod(i,1); eta = uNod(i,2);
+  A(i,:) = double(subs(X));
+end
+
+syms ksi eta real
+shapefuns = X*inv(A);
+N = shapefuns;
+dNx = diff(shapefuns,ksi);
+dNy = diff(shapefuns,eta);
+B =  sym('noImporta',[5,Ndofporelem]);
+for i = 1:Nnodporelem
+  B(:,(i*3-2):(i*3)) = [0 dNx(i) 0;0 0 dNy(i);0 dNy(i) dNx(i);
+	-dNx(i) N(i) 0;-dNy(i) 0 N(i)];
+end
+dN = [dNx;dNy];
+    \end{verbatim}
+    \end{code}
+
+\begin{code}[Dofinitions y elemDof]
+	\begin{verbatim}
+
+[Nelem, Nnodporelem]= size(elementos);  
+[Nnod, Ndim] = size(nodos); % Numero de nodos, Numero de dimensiones del problema (es 2-D)
+
+Ndofpornod = 3; %Para placa Kirchoff
+dof = Nnod*Ndofpornod;
+DOF = (1:dof)'; %vector columna
+
+n2d = @(nodo) [nodo*3-2, nodo*3-1, nodo*3]; % Función Node a DOF. Obtiene indices de dof de un nodo. Si hay mas/menos de 3 dof por nodo entonces cambia
+elemDof = zeros(Nelem,Ndofpornod*Nnodporelem);
+for e = 1:Nelem
+for n = 1:Nnodporelem
+  elemDof(e,n2d(n)) = n2d(elementos(e,n));
+end
+end
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Constitutiva]
+	\begin{verbatim}
+	
+F = E*t^3/(12*(1 - NU^2)); %Rigidez ante la flexion
+G = E/(2+2*NU); % Rigidez a la torsion
+Cb = [F NU*F 0;
+NU*F F 0 
+0 0 (1-NU)*F/2];
+Cs = 5/6*[G*t 0;0 G*t];
+C = blkdiag(Cb,Cs);
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Acople matriz rigidez]
+	\begin{verbatim}
+	
+Kg = sparse(dof,dof);
+for e = 1:Nelem
+  Kb = zeros(Ndofporelem);
+  dofIndex = elemDof(e,:);
+  storeTo = elemDof(e,:);
+  nodesEle = nodos(elementos(e,:),:);
+  Bb = zeros(3,Ndofporelem);
+  Bs = zeros(2,Ndofporelem);
+  for ipg = 1:npg2
+    ksi = upg2(ipg,1); eta = upg2(ipg,2);
+    jac = dNs2{ipg}*nodesEle;
+    dNxy = jac\dNs2{ipg};   % dNxy = inv(jac)*dN
+    for i = 1:Nnodporelem 
+     Bb(:,(i*3-2):(i*3)) = [0 dNxy(1,i) 0;0 0 dNxy(2,i);0 dNxy(2,i) dNxy(1,i)];
+    end
+    Kb = Kb + Bb'*Cb*Bb*wpg2(ipg)*det(jac);
+  end
+  jac = dNs1*nodesEle;
+  dNxy = jac\dNs1;   % dNxy = inv(jac)*dN
+  for i = 1:Nnodporelem 
+    Bs(:,(i*3-2):(i*3)) = [-dNxy(1,i) Ns1(i) 0;-dNxy(2,i) 0 Ns1(i)];
+  end
+  Ks = Bs'*Cs*Bs*wpg1*det(jac);
+
+  Kg(storeTo,storeTo) = Kg(storeTo,storeTo) + Kb+ Ks;
+end
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Cargas]
+	\begin{verbatim}
+	
+p0 = -0.05e6; %MPa
+R = zeros(dof,1);
+for e = 1:Nelem
+   storeTo = elemDof(e,1:3:end);
+   nodesEle = nodos(elementos(e,:),:);
+   for ipg = 1:npg2
+     jac = dNs2{ipg}*nodesEle;
+     Q = Ns2{ipg}'*p0*wpg2(ipg)*det(jac);
+     R(storeTo)=R(storeTo)+Q;
+  end
+end
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Recuperación de tensiones]
+	\begin{verbatim}
+	
+Sb = zeros(Nnodporelem,3,Nelem);
+Ss = zeros(Nnodporelem,2,Nelem);
+% FuncFormas en nodos
+Nsn = cell(Nnodporelem,1);
+dNsn = cell(Nnodporelem,1);
+for inod = 1:Nnodporelem
+  ksi = uNod(inod,1); eta = uNod(inod,2);
+  dNsn{inod} = double(subs(dN));
+  Nsn{inod} = double(subs(N));
+end
+
+for e = 1:Nelem
+  storeTo = elemDof(e,:);
+  nodesEle = nodos(elementos(e,:),:);
+  Bb = zeros(3,Ndofporelem);
+  Bs = zeros(2,Ndofporelem);
+  for  inod = 1:Nnodporelem
+    ksi = uNod(inod,1); eta = uNod(inod,2);
+    Nder=dNsn{inod};
+    jac = Nder*nodesEle;
+    dNxy = jac\Nder;  % dNxy = inv(jac)*dN     
+    for i = 1:Nnodporelem % Armo matriz B de bending
+        Bb(:,(i*3-2):(i*3)) = [0 dNxy(1,i) 0
+        0 0 dNxy(2,i)
+        0 dNxy(2,i) dNxy(1,i)];
+    end
+    for i = 1:Nnodporelem 
+      Bs(:,(i*3-2):(i*3)) = [-dNxy(1,i) Nsn{inod}(i) 0
+     -dNxy(2,i) 0 Nsn{inod}(i)]; % Ver cook 15.3-3
+    end
+    Sb(inod,:,e) = Cb*(Bb*D(storeTo));
+    Ss(inod,:,e) = Cs*(Bs*D(storeTo));
+  end
+end
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Plot Von Mises y desplazamientos]
+	\begin{verbatim}
+	
+Svm1 = (((Sb(:,1,:)-Sb(:,2,:)).^2+(Sb(:,3,:).^2 + ...
+   Ss(:,1,:).^2+Ss(:,2,:).^2) )./2).^(.5);
+bandplot(elementos,nodos,squeeze(Svm1)',[],'k')
+
+Dz = zeros(divisionesx,divisionesy); % Matriz superficie
+xv =[];
+yv = [];
+for n=1:Nnod
+   xv = [xv nodos(n,1)];yv = [yv nodos(n,2)];
+   Dz(n) = D(n*3-2);
+end
+Dz=reshape(Dz,[],1)';
+scatter3(xv,yv,Dz)
+	\end{verbatim}
+\end{code}
+
+\subsubsection{Vibraciones}
+La rutina para acoplar a la matriz de rigidez y la matriz es la misma.
+\begin{code}[Matriz de masa  viga 2 dof]
+	\begin{verbatim}
+	
+Me= m/420 * [156    22*Le     54      -13*Le
+   22*Le    4*Le^2    13*Le    -3*Le^2
+   54      13*Le     156     -22*Le
+  -13*Le   -3*Le^2   -22*Le   4*Le^2];
+	\end{verbatim}
+\end{code}
+
+
+\begin{code}[El problema de autovalores]
+	\begin{verbatim}
+	
+A = Mg(isFree,isFree)\Kg(isFree,isFree);
+[Vr, eigVal]=eig(A);
+V=zeros(dof);
+V(isFree,isFree)=Vr;
+dofred = size(Vr,2);
+	\end{verbatim}
+\end{code}
+
+
+\begin{code}[5 formas de obtener $\COmega $]
+	\begin{verbatim}
+	
+Phi = zeros(dofred,dofred);
+omega = zeros(dofred,1);
+omegaray = zeros(dofred,1);
+ray = zeros(dofred,1);
+for i = 1:dofred
+   Dbi=Db(:,i);
+   Phi(:,i) = Dbi/sqrt(Dbi'*Mr*Dbi);
+   Phii = Phi(:,i); 
+   omegaray(i) = sqrt((Dbi' * Kg(isFree,isFree) *Dbi)/aux);% Cook (11.4-13)
+   ray(i)= sqrt((Phii' * Kg(isFree,isFree) *Phii)/(Phii' *...
+        Mg(isFree,isFree) *Phii)); %Cook (11.7-1)b
+   omega(i) = sqrt(Phii'* Kg(isFree,isFree)*Phii); % Idem
+end
+ESP  = Phi' * Kg(isFree,isFree) *Phi;
+omegaespectral = sqrt(diag(ESP));
+omegaeig = sqrt(diag(eigVal)); %y una quinta para que tengas
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Rutina barrido de frecuencia]
+	\begin{verbatim}
+	
+input_ksi = 0.05:0.05:0.3;
+Nmodos = 3;
+input_omega = 1:1:10000;
+for k = 1:Nksi
+   ksi = input_ksi(k);
+   for f = 1:Nfrec
+      Z=zeros(dofred,1);
+      for i=1:dofred
+         chi = input_omega(f)/omega(i);
+         z(i) = (Rmodalenfrecuencia(i,f)/omega(i)^2)/ ...
+              sqrt((1-chi^2)^2+(2*input_ksi(k)*chi)^2);
+      end
+      Amp(f,k) = abs(sum(z));
+   end
+   semilogy(input_omega/(2*pi),Amp(:,k))% HZ
+   hold on
+end
+	\end{verbatim}
+\end{code}

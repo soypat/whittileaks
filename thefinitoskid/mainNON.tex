@@ -35,6 +35,7 @@
     \newcommand{\sigmab}{\boldsymbol{\sigma}}
     \newcommand{\varepsilonb}{\boldsymbol{\varepsilon}}
     \newcommand{\Phib}{\boldsymbol{\Phi}}
+    \newcommand{\COmega}{\boldsymbol{\{ } \Omega \boldsymbol{\} }}
     \newcommand{\CPhi}{\boldsymbol{\{ } \Phi \boldsymbol{\} }}
     \newcommand{\Mme}[1]{\boldsymbol{[}\mathbf{#1} \boldsymbol{]}}
     \newcommand{\Rme}[1]{\boldsymbol{\lfloor}\mathbf{#1} \boldsymbol{\rfloor}}
@@ -46,6 +47,8 @@
     \newcommand{\MA}{\Mme{A}}
     \newcommand{\radial}{r}
     \newcommand{\eff}{f}
+    \newcommand{\modal}{{_{\Phib}}}
+    \newcommand{\dampfact}{\varsigma}
     
 \newmdtheoremenv[% ACA PODES MODIFICAR LAS PROPIEDADES DEL CODIGO {code}
 font=\fontsize{12pt}{16pt},
@@ -69,10 +72,8 @@ ntheorem]{code}{Codigo}[section]
 
 \end{titlepage} %Termina la caratula
 
-%input{codep1.tex}
 
-\clearpage
-\input{codep1.tex}
+%\input{codep1.tex}
 
 \section{Parcial 2}
 Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en posición una arista o punto dado cargas térmicas/fuerza? Apoyalo (fix) y mira las reacciones con la carga termica/fuerza.
@@ -243,7 +244,7 @@ La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas noda
         \item Las tensiones en los nodos suele ser de mayor interés que sobre los puntos de gauss (mas comprometidas, permiten estimar error)
     \end{itemize}
     \clearpage
- \input{codep2.tex}
+% \input{codep2.tex}
 \section{Parcial 3}
 
 \subsection{Axisimetría}
@@ -362,7 +363,7 @@ Se suele requerir que $\eta\leq 0,05$
 
 
 
-\input{codep3.tex}
+%\input{codep3.tex}
 \subsubsection*{\Adina}
 \begin{figure}[htb!]
     \centering
@@ -370,7 +371,41 @@ Se suele requerir que $\eta\leq 0,05$
     \caption{Numeración de nodos H20 en \Adina (Ejes sugeridos)}
     \label{fig:H20numbering}
 \end{figure}
+
+\section{Finitos II}
+Modal:
+\[
+\Cme{Z} = \frac{\Cme{R\modal }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \dampfact \chi)^2}}
+\]
+donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$ y $\dampfact$ se elige por el usuario.
+\\
+\\
+Proporcional:
+
+\[
+\Cme{D} = \frac{\Cme{R }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \dampfact \chi)^2}}
+\]
+donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$ y 
+$\dampfact = \tfrac{1}{2} \left(\frac{\alpha}{\omega_{\mathrm{exc}}} +\beta \omega_{\mathrm{exc}} \right) $
+
+Si se quiere estudiar un rango de frecuencias de excitación tal que $\omega_{\mathrm{exc}}\in [\omega_1, \omega_2]$ y eligiendo dos valores de damping para ambas frecuencias $\dampfact_1$ y $\dampfact_2$ se tiene:
+\begin{align*}
+	\alpha &= 2\omega_1 \omega_2 (\dampfact_1 \omega_2 -\dampfact_2 \omega_1)/(\omega_2^2 - \omega_1^2) \\ \beta &= 2(\dampfact_2\omega_2 -\dampfact_1 \omega_1)/(\omega_2^2 - \omega_1^2)
+\end{align*}
+
+
+\subsection{Sine Sweep}
+A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
+\input{codep4.tex}
+
+
+
+
+
+\input{annex.tex}
 \end{document} 
+
+
 
 
 % \begin{comment}

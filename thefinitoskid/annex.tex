@@ -1,0 +1,25 @@
+ \clearpage
+ \subsection*{Código \Matlab{} Anexo}
+    %%%%------------------------------------------------------------------CODE
+    \subsubsection*{Algoritmo rápido para funciones de formas simbólicas}
+
+\begin{code}[aplicación a Gauss $2\times 2$]
+	\begin{verbatim} 
+
+k   = 1/sqrt(3);
+upg2 = [ -k  -k
+k  -k
+k   k
+-k   k ];
+npg2 = size(upg2,1);
+wpg2 = ones(npg2,1);
+
+Ns2 = cell(npg2,1);
+dNs2 = cell(npg2,1);
+for ipg = 1:npg2
+   ksi = upg2(ipg,1); eta = upg2(ipg,2);
+   dNs2{ipg} = double(subs(dN)); 
+   Ns2{ipg} = double(subs(N));
+end
+	\end{verbatim}
+\end{code}
