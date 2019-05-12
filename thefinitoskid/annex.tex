@@ -8,9 +8,9 @@
 
 k   = 1/sqrt(3);
 upg2 = [ -k  -k
-k  -k
-k   k
--k   k ];
+          k  -k
+          k   k
+         -k   k ];
 npg2 = size(upg2,1);
 wpg2 = ones(npg2,1);
 
@@ -23,3 +23,28 @@ for ipg = 1:npg2
 end
 	\end{verbatim}
 \end{code}
+
+\subsubsection{Matriz de transformación para elementos 1D}
+\begin{code}[Barra. $\phi$ en grados]
+	\begin{verbatim}
+	
+T=[cosd(phi) 0;
+ sind(phi) 0;
+ 0 cosd(phi);
+ 0 sin(phi)];
+	\end{verbatim}
+\end{code}
+
+\begin{code}[Viga 3 dof por nodo. $\phi$ en grados]
+	\begin{verbatim}
+
+T=[cosd(phi) sind(phi) 0 0 0 0;
+  -sind(phi) cosd(phi) 0 0 0 0;
+   0 0 1 0 0 0;
+   0 0 0 cosd(phi) sind(phi) 0;
+   0 0 0 -sind(phi) cosd(phi) 0;
+   0 0 0 0 0 1];
+	\end{verbatim}
+\end{code}
+
+

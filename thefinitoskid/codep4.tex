@@ -246,3 +246,32 @@ for k = 1:Nksi
 end
 	\end{verbatim}
 \end{code}
+\subsection{Pandeo}
+
+\begin{code}[Matriz rigidez de tensiones para elementos]
+	\begin{verbatim}
+	
+		ksbar =@(P,L) P/L*[1 -1;-1 1];
+		ksviga =@(P,L) P/30/L*[36 3*L -36 3*L; 3*L 4*L^2 -3*L -L^2
+		                  -36 -3*L 36 -3*L; 3*L -L^2 -3*L 4*L^2];
+	\end{verbatim}
+\end{code}
+\begin{code}[Recuperación de fuerzas para barras y $\lambda_{\mathrm{crit}}$]
+	\begin{verbatim}
+	
+for e = 1:Nelem
+   n1 = nodos(elementos(e,1),:);
+   n2 = nodos(elementos(e,2),:);
+   T = Tbu(atan2d(n2(2)-n1(2),n2(1)-n1(1)));
+   Ke = ke(E,A,Le);
+   Kerot =T*Ke*T';
+   Dlocal=D(elemDof(e,:));
+   flocal=Ke*T'*Dlocal;
+   Kes = T*kes(flocal(2),Le)*T';
+   Ks(storeTo,storeTo) = Ks(storeTo,storeTo) + Kes;
+end
+Ksr = Ks(isFree,isFree);
+A = Ksr\Kr;
+[Vr, lambdacrit] = eig(A);
+	\end{verbatim}
+\end{code}
