@@ -1,4 +1,4 @@
-\documentclass[draft,11pt, a4paper,titlepage]{article}
+\documentclass[11pt, a4paper,titlepage]{article}
 \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=2cm,right=2cm]{geometry}
 %% Declaro simbolo
 \usepackage[T1]{fontenc}
@@ -35,9 +35,11 @@
     \newcommand{\sigmab}{\boldsymbol{\sigma}}
     \newcommand{\varepsilonb}{\boldsymbol{\varepsilon}}
     \newcommand{\Phib}{\boldsymbol{\Phi}}
+    \newcommand{\Omegab}{\boldsymbol{\Omega}}
     \newcommand{\COmega}{\boldsymbol{\{ } \Omega \boldsymbol{\} }}
     \newcommand{\CPhi}{\boldsymbol{\{ } \Phi \boldsymbol{\} }}
     \newcommand{\Mme}[1]{\boldsymbol{[}\mathbf{#1} \boldsymbol{]}}
+    \newcommand{\Mmes}[1]{\boldsymbol{[}\boldsymbol{ \mathrm{#1} }\boldsymbol{]}}
     \newcommand{\Rme}[1]{\boldsymbol{\lfloor}\mathbf{#1} \boldsymbol{\rfloor}}
     \newcommand{\Cme}[1]{\boldsymbol{\{ }\mathbf{#1} \boldsymbol{\}} }
     \newcommand{\MB}{\Mme{B}}
@@ -59,6 +61,20 @@ backgroundcolor=gray!5,%
 innertopmargin=8pt,%
 ntheorem]{code}{Codigo}[section]
 %-----------------------------------------------------------
+% Code
+%\newcommand{\feaPP}{codep1.tex}
+%\newcommand{\feaSP}{codep2.tex}
+%\newcommand{\feaTP}{codep3.tex}
+%\newcommand{\annexFile}{annex.tex}
+%\newcommand{\feaQP}{codep4.tex}
+%No code
+\newcommand{\feaPP}{null.tex}
+\newcommand{\feaSP}{null.tex}
+\newcommand{\feaTP}{null.tex}
+
+\newcommand{\feaQP}{null.tex}
+\newcommand{\annexFile}{null.tex}
+
 \begin{document}  %Aqui empieza el documento
 \begin{titlepage} %Esta es la caratula
 \centering
@@ -73,7 +89,7 @@ ntheorem]{code}{Codigo}[section]
 \end{titlepage} %Termina la caratula
 
 
-%\input{codep1.tex}
+\input{\feaPP}
 
 \section{Parcial 2}
 Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en posición una arista o punto dado cargas térmicas/fuerza? Apoyalo (fix) y mira las reacciones con la carga termica/fuerza.
@@ -244,7 +260,7 @@ La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas noda
         \item Las tensiones en los nodos suele ser de mayor interés que sobre los puntos de gauss (mas comprometidas, permiten estimar error)
     \end{itemize}
     \clearpage
-% \input{codep2.tex}
+ \input{\feaSP}
 \section{Parcial 3}
 
 \subsection{Axisimetría}
@@ -363,7 +379,7 @@ Se suele requerir que $\eta\leq 0,05$
 
 
 
-%\input{codep3.tex}
+\input{\feaTP}
 \subsubsection*{\Adina}
 \begin{figure}[htb!]
     \centering
@@ -373,39 +389,39 @@ Se suele requerir que $\eta\leq 0,05$
 \end{figure}
 
 \section{Finitos II}
-Modal:
-\[
-\Cme{Z} = \frac{\Cme{R\modal }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \dampfact \chi)^2}}
-\]
-donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$ y $\dampfact$ se elige por el usuario.
-\\
-\\
-Proporcional:
+\begin{equation} \label{eq:vibraciones}
+	\Mme{M}\Cme{\boldsymbol{\ddot{\mathrm{D}}}} + \Mme{C}\Cme{\boldsymbol{\dot{\mathrm{D}}}}+\Mme{K} \Cme{D} =\Cme{R}
+\end{equation}
+Amortiguamiento $\Mme{C} = \alpha \Mme{M}+\beta \Mme{K}$ cede una matriz no diagonal. Se complica la resolución. Existen dos otros modelos que tratan con una matriz $\Mme{C\modal}$ diagonal donde las ecuaciones se desacoplan.
 
-\[
-\Cme{D} = \frac{\Cme{R }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \dampfact \chi)^2}}
-\]
-donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$ y 
-$\dampfact = \tfrac{1}{2} \left(\frac{\alpha}{\omega_{\mathrm{exc}}} +\beta \omega_{\mathrm{exc}} \right) $
+
+Amortiguamiento Modal: Se elige un $\dampfact$ para cada modo
+\begin{equation}
+\Mme{C\modal}=\left[ \begin{array}{ccc}{2 \omega_{n} \dampfact_{n}} & {0} & {0} \\ {0} & {\ddots} & {0} \\ {0} & {0} & {2 \omega_{1} \dampfact_{1}}\end{array}\right]
+\end{equation}
+
+Amortiguamiento proporcional. Se basa el análisis 
+
+\begin{equation}
+	\Mme{C\modal} = \Mme{\Phib}^T ( \alpha \Mme{M}+\beta \Mme{K})\Mme{\Phib} = \alpha \delta \Mme{I} +\beta \Mme{\Omegab^2}
+\end{equation}
 
 Si se quiere estudiar un rango de frecuencias de excitación tal que $\omega_{\mathrm{exc}}\in [\omega_1, \omega_2]$ y eligiendo dos valores de damping para ambas frecuencias $\dampfact_1$ y $\dampfact_2$ se tiene:
 \begin{align*}
-	\alpha &= 2\omega_1 \omega_2 (\dampfact_1 \omega_2 -\dampfact_2 \omega_1)/(\omega_2^2 - \omega_1^2) \\ \beta &= 2(\dampfact_2\omega_2 -\dampfact_1 \omega_1)/(\omega_2^2 - \omega_1^2)
+\alpha &= 2\omega_1 \omega_2 (\dampfact_1 \omega_2 -\dampfact_2 \omega_1)/(\omega_2^2 - \omega_1^2) \\ \beta &= 2(\dampfact_2\omega_2 -\dampfact_1 \omega_1)/(\omega_2^2 - \omega_1^2)
 \end{align*}
 
-MODAL
-\[\left[C_{\Phi}\right]=\left[ \begin{array}{ccc}{2 \omega_{1} \xi_{1}} & {0} & {0} \\ {0} & {\ddots} & {0} \\ {0} & {0} & {2 \omega_{n} \xi_{n}}\end{array}\right]\]
-
-PROPORCIONAL
+Una vez obtenida $\Mme{C\modal}$ se pueden obtener los desplazamientos modales $\Cme{Z}$. Tome en cuenta que debido a la diagonalidad de $\Mme{\Omegab^2}$ y $\Cme{R\modal }$ se desacoplan las ecuaciones de \ref{eq:vibraciones} y por ende se pasa a tratar dichas matrices diagonales como vectores columnas. Una vez desacopladas se tiene
+ \[\Cme{\boldsymbol{\ddot{\mathrm{Z}}}}+2\COmega \Cme{C\modal} \Cme{\boldsymbol{\dot{\mathrm{Z}}}} + \COmega^2 \Cme{Z} = \Cme{R\modal} \]
 \[
-\left[C_{\Phi}\right]=[\Phi]^{T}(\alpha[M]+\beta[K])[\Phi]=\left(\alpha[I]+\beta\left[\omega^{2}\right)\right.
+\Cme{Z} = \frac{\Cme{R\modal }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \Cme{C\modal} \chi)^2}}
 \]
+donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$. 
 
 
 
 \subsection{Sine Sweep}
 A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
-%\input{codep4.tex}
 
 
 
@@ -430,13 +446,13 @@ $f(x_0+\Delta x)= f(x_0) + f'(x_0) \Delta x +\tfrac{1}{2}...$
 
 Con las ecuaciones de taylor despejadas para $n+1$ y $n-1$ puedo adivinar el futuro con el presente (y pasado).
 \[
-\{D\}_{n+1}=\{D\}_{n-1}+2 \Delta t\{\dot{D}\}_{n}
+\{D\}{n+1}=\{D\}{n-1}+2 \Delta t\{\dot{D}\}_{n}
 \]
 
 Sin conocer $\dot{D}_{n}$ esta dificil... uso taylor otra vez!
 
 \[
-\left[\frac{M}{\Delta t^{2}}+\frac{C}{2 \Delta t}\right]\{D\}_{n+1}=\left\{R^{e x t}\right\}_{n}-[K]\{D\}_{n}+\frac{2}{\Delta t^{2}}[M] \} D_{n}-\left[\frac{M}{\Delta t^{2}}-\frac{C}{2 \Delta t}\right]\{D\}_{n-1}
+\left[\frac{M}{\Delta t^{2}}+\frac{C}{2 \Delta t}\right]\{D\}{n+1}=\left\{R^{e x t}\right\}{n}-[K]\{D\}{n}+\frac{2}{\Delta t^{2}}[M] \} D{n}-\left[\frac{M}{\Delta t^{2}}-\frac{C}{2 \Delta t}\right]\{D\}_{n-1}
 \]
 
 donde $\left\{ R^{e x t}\right\}$ puede ser una función en el tiempo también! Una funcion heaviside excita TODOS los modos.
@@ -464,13 +480,17 @@ S_{i}=\frac{Z_{i}^{\text { mâx }}}{Z_{i}^{\text { st }}}
 Ataco el sistema con un ``Paquete`` de cargas y cada modo responde de su propia forma. Este metodo Sebas le dice Random. Se suele usar para sistemas tipo placas en satelites, donde tenes todas las plaquetas vibrando y no conoces que esta pasando ahi. Para estructuras no tanto porque son más estables y se conoce mejor que puede llegar a ser el modo de vibración porque los modos de vibracion estan bien separados-> cosa que no es verdad en satelites. 
 
 \[
-\mathrm{D}(\mathrm{t})_{\mathrm{j}}=[\Phi]\{\mathrm{Z}(\mathrm{t})\}=\sum_{\mathrm{j}} \Phi_{\mathrm{ji}} Z_{\mathrm{i}}(\mathrm{t})=\sum_{\mathrm{j}} \Delta_{\mathrm{ji}}(\mathrm{t})
+\mathrm{D}(\mathrm{t}){\mathrm{j}}=[\Phi]\{\mathrm{Z}(\mathrm{t})\}=\sum{\mathrm{j}} \Phi_{\mathrm{ji}} Z_{\mathrm{i}}(\mathrm{t})=\sum_{\mathrm{j}} \Delta_{\mathrm{ji}}(\mathrm{t})
 \]
 
 
 
-Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo... pero eso sucede cuando están en fase, cosa que nunca sucede porque siempre hay algun desfasaje. Hay criterios para determinar el desplazamiento máximo, una incluye sumando la primer autoforma que es la más grande y luego sumando cuadrados mínimos de las otras. Con esto te cubris de la tensión que podría llegar a ocurrir (). 
-%\input{annex.tex}
+Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo... pero eso sucede cuando están en fase, cosa que nunca sucede porque siempre hay algun desfasaje. Hay criterios para determinar el desplazamiento máximo, una incluye sumando la primer autoforma que es la más grande y luego sumando cuadrados mínimos de las otras. Con esto te cubris de la tensión que podría llegar a ocurrir ().
+
+
+
+\input{\feaQP}
+\input{\annexFile}
 \end{document} 
 
 
