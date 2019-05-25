@@ -55,11 +55,11 @@ N= n + 1
 Ley de los Gases Ideales
 \[p  = \moldens \Boltzmann T= \frac{N\tilde{R}T}{V}
 \]
-donde $N$ es la cantidad de moles, $\tilde{R}=8.314\, \si{\joule \per \kelvin\per \mole}$ es la constante universal de gases ideales, $R$ es la constante especifica de un gas ideal, $\moldens$ es la cantidad de moléculas de gas por metro cuadrado y $\Boltzmann$ es la constante de Boltzmann $\Boltzmann=\num{1,38}{-23} \si{\meter \squared \kilogram \per \second \squared \per \kelvin}$. Existe también la expresión especifica para la ley:
+donde $N$ es la cantidad de moles, $\tilde{R}=8.314\, \si{\joule \per \kelvin\per \mole}$ es la constante universal de gases ideales, $R$ es la constante especifica de un gas ideal, $\moldens$ es la cantidad de moléculas de gas por metro cuadrado y $\Boltzmann$ es la constante de Boltzmann $\Boltzmann=\SI{1,38e-23}{\meter \squared \kilogram \per \second \squared \per \kelvin}$. Existe también la expresión especifica para la ley:
 \[
 p = \frac{RT}{v}=\rho RT
 \]
-donde $R$ es la constante especifica del gas con el cual se trabaja y $v=\frac{1}{\rho}$ es el volumen especifico.
+donde $R$ \sib{\joule \per \kilogram \per \kelvin} es la constante especifica del gas con el cual se trabaja y $v=\frac{1}{\rho}$ es el volumen especifico.
 
 Para un gas ideal (ambos $\cv$ y $\cp$ en \si{\joule \per \kilogram \per \kelvin})
 \[
@@ -68,6 +68,10 @@ Para un gas ideal (ambos $\cv$ y $\cp$ en \si{\joule \per \kilogram \per \kelvin
 además se puede suponer que para gases ideales $\cp = \cv +R$\footnote{De esta igualdad sale que $\ctegas$ es constante para gases ideales.} y que la energía interna depende solo de la temperatura:
 \[
 \spartial{u}{T}=\frac{\di u}{\di T}\qquad \spartial{h}{T}=\frac{\di h}{\di T}
+\]
+por ende
+\[
+\Delta u = \int^{T_2}_{T_1} \cv (T)dT=u(T_2) - u(T_1) \qquad\quad  \Delta h = \int^{T_2}_{T_1} \cp (T)dT = h(T_2) - h(T_1)
 \]
 
 \[
@@ -89,7 +93,12 @@ Proceso isoentrópico para gas perfecto.
 \[
 \frac{p_2}{p_1} = \left(\frac{\rho_2}{\rho_1}\right)^\ctegas = \left( \frac{T_2}{T_1}\right)^{\ctegas-1}
 \]
-donde $\rho=\frac{1}{v}$ es la densidad \sib{\kilogram \per \meter \cubed}.
+donde $\rho=\frac{1}{v}$ es la densidad \sib{\kilogram \per \meter \cubed}.\par
+
+Solo para gases perfectos vale lo siguiente
+\[
+\Delta u = \cp \Delta T=\cp (T_2-T_1) \qquad \qquad \Delta h = \cv \Delta T = \cv(T_2-T_1)
+\]
 \section{Procesos}
 \subsection{Sistemas Cerrados y Abiertos}
 Ecuaciones Cardinales
@@ -98,7 +107,7 @@ Ecuaciones Cardinales
 \end{equation}
 para un sistema cerrado entonces $H = U+pV$.
 
-La primera ley de termodinámica nos dice que para un sistema cerrado el cambio en energía interna es el calor que recibe $Q$ menos el trabajo intercambiado con el enotrno $W$ 
+La primera ley de termodinámica nos dice que para un sistema cerrado el cambio en energía interna es el calor que recibe $Q$ menos el trabajo intercambiado con el entorno $W$ 
 \[
 \Delta U = Q-W \quad \rightarrow \quad \di U =\delta Q - \delta W \quad \Rightarrow\quad \delta Q -\delta W = T\di S - p\di V
 \]
@@ -150,7 +159,7 @@ Si las paredes son adiabáticas y se trata de un gas ideal tenemos que
 como la energía interna depende solo de la temperatura para un gas ideal tenemos que el proceso es isotérmico.
 
 \subsubsection*{Analogía del globo}
-Un globo inflable que revienta en el espacio: las moléculas de gas se siguen moviendo con la velocidad y dirección que tenían en el momento del accidente. Como no hay cambio de velocidad no hay intercambio de energía, $\Delta U=0$.
+Un globo inflable que revienta en el vacío sin considerar efectos de la gravedad: las moléculas de gas se siguen moviendo con la velocidad y dirección que tenían en el momento del accidente. Como no hay cambio de velocidad no hay intercambio de energía, $\Delta U=0$.
 
 
 
