@@ -488,7 +488,70 @@ Ataco el sistema con un ``Paquete`` de cargas y cada modo responde de su propia 
 Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo... pero eso sucede cuando están en fase, cosa que nunca sucede porque siempre hay algun desfasaje. Hay criterios para determinar el desplazamiento máximo, una incluye sumando la primer autoforma que es la más grande y luego sumando cuadrados mínimos de las otras. Con esto te cubris de la tensión que podría llegar a ocurrir ().
 
 
+\section{No linealidad}
+Metodo variacional: Lo que buscamos es un estado de energia minima para el sistema, y como para obtener la energia tenemos que integrar se requiere integrar todo el sistema. Buscamos un punto donde el funcional sea estable. Decimos que toda la energia interna es igual al trabajo externo. 
 
+Formula resuelta en Resistencia de materiales
+\[
+E I \frac{d^{4} v}{d x^{4}}-q=0
+\]
+
+Formula resuelta en elementos finitos
+\[
+\Phi=\int_{0}^{L} \frac{E I}{2}\left(\frac{d^{2} v}{d x^{2}}\right)^{2}-q v d x \rightarrow \delta \Phi=0
+\]
+
+Para resolver variacionalmente necesitamos un potencial. Necesitamos saber como se almacena la energia. Con plasticidad pierdo energia, se entrega a la pieza de la forma de deformacion permanente. 
+
+Segun el principio de los trabajos virtuales. Lo que en verdad estamos escribiendo es un equilibrio de fuerzas, porque me estoy preguntando el estado final y si esta en equilibrio haciendo el calculo "si me muevo un cachito cuanto trabajo hago?". Entonces no estoy mirando los procesos disipativos! 
+
+Como hago para los fluidos si quiero aplicar PTV a fluidos? Tenes que plantear el Principio de trabajo virtual, lo mismo pero ahora con el tiempo ahi metido.
+
+
+Hu-Washizu
+\[
+\int_{V^{e}}\left[\frac{1}{2} \varepsilon^{T} C \varepsilon-\sigma^{T} \varepsilon+\sigma^{T}(\nabla u)-\overline{p}^{T} u\right] d V-\int_{S_{\sigma}^{e}} \overline{T}^{T} u d S
+\]
+Separa parte elastica, deformaciones iniciales,  etc. Sebas lo uso para que elementos Q6 pasen el Patch test.
+
+\subsection{Residuos Ponderados}
+Y si no tengo la fisica? Balance de una viga de seccion $A$ con carga $q$.
+\[
+A \frac{\partial \sigma_{x}}{\partial x}+q=0
+\]
+
+Pero el ultimo elemento de la viga esta sometido a carga $P$. La condicion de borde natural es:
+\[
+A E \frac{\partial u}{\partial x}=P
+\]
+Una condicion de borde comun seria $u=0$ sobre el empotramiento.
+
+Soy vidente y digo que $\widetilde{u}=a_{1} x+a_{2} x^{2}$. el mon~o es por aproximada
+
+Metiendolo en el PDE obtengo ecuaciones y resuelvo por los $a$. Si tenes mucha suerte los Residuos te dan cero tenes mucha suerte y lo que tenes en tus manos es una solucion al sistema. Wl residuo te dice cuanto error estas cometiendo. $R_s=0$ vale cero siempre porque es una condicion que impusimos.
+
+
+Que hago? Calculo para que en $x=x_0$ el residuo valga cero (Sebas dice en $x=L/3$).  
+
+Hago una grilla de puntos y pido que se cumpla la ecuacion en ellos.
+
+Si planteo que el integral de $R$ valga cero entonces como que coloc un punto en $x=L/2$. Colocacion por puntos, es rapido y medio chotengui, pero anda bien en una malla fina. 
+
+Metodo cuadrado minimos busca reducir el $R$ violentamente. Integro el residuo al cuadrado mas el residuo en la condicion de borde al cuadrado multiplicado por un factor que podes multiplicarlo por grandes numero par a que se cumpla forzadamente. $1/L^2$ te da unidades correctas para dicho factor $\alpha$ 
+
+Galerkin: Las condiciones de borde naturales se llaman asi  porque no las ves, pero estan metidas ahi en la ecuacion. a diferencia de las comunes quelas eligo yo.
+
+Porque co`no meto una funcion a multiplicar el residuo? Porque esta proyectando de tal forma de que valga cero. Si soy inteligente para proectar voy a lograr que las proyecciones sean nulas.
+
+Al vector puedo descomponerlo en dos direcciones. Proyectamos tal que nos de cero en ciertas direcciones. Depende de cuantos coeficientes pusistes, proyectas tantas veces. 
+
+En la filmina 12 Sebas reemplaza $=\int_{V}-\frac{\partial W_{i}}{\partial x} \frac{\partial u}{\partial x} d v$ y reemplaza cada peso correpsondiente.
+
+Galerkin 1D pg 13: Proyecto las funciones de forma del nodo respecto las otras y si misma. vector de cargas $\sum_{n e l s} \int_{L} N_{i} q d x$
+
+Si es sistema es par es estable. Fluidos con alta intercia, solidos. Si es impar entonces tenes problemas al tener ecuaciones cubicas (impares) mucho problema, no bueno.
+
+Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para modelar la velocidad y la presion porque si no se traban. 
 \input{\feaQP}
 \input{\annexFile}
 \end{document} 
@@ -501,7 +564,7 @@ Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo
 %     \begin{enumerate}
 %         \item Pg. 223 Cook: $\Mk$ de un solido 8 nodos se integra con $n=2$, pero $\MB$ se integra con $n=3$. Pero se necesita $\MB$ para obtener $\Mk$.
 %         \item Si quiero verificar calidad de un elemento, me basta con pararme arriba cada punto Gauss y verificar que $\Djac$ no sea igual a cero y que no cambie de signo?
-%         \item Tengo un problema plain strain pero tengo $q(x)$ en [N/m]. No lo integro con $t$! No? Inversamente, para el mismo problema, si tengo solo presiones o fzas volumetricas puedo olvidarme que existe $t$ y no usarla para el calculo de la matriz rigidez (y presiones/fzas vol). Se le dice singularidad a un punto donde $\Djac$ es cero?
+%         \item Tengo un problema plain strain pero tengo $q(x)$ en [N/m]. No lo integro con $t$! No? Inversamente, para el mismo problema, si tengo solo presiones o fzas volumetricas puedo olvidarme que existe $t$ y no usarla para el calculo de la matriz rigidez (y presiones/fzas vol). Se le dice singularidad a un punto donde $\Djac$ es cero
 %         \item Si quiero tensiones en puntos Gauss, cambia la dimension de $\MB$ cuando itero sobre los puntos? Cook dice que $\MB$ is calculated from (lower order) displacement field. wtf?
 %         \item \textbf{Follow-up} Cuando itero sobre los mismos Puntos de Gauss para obtener tensiones, cambian mis $\MN$? Sé que puedo usar los puntos de Gauss para extrapolar tensiones en los nodos, pero hablo antes de eso
 %         \item Para un elemento me conviene siempre ser perfectamente simétrico en la elección del orden del polinomio? Hay alguna vez que voy a tomar $[1\ms x\ms y\ms xy\ms x^2]$ antes de tomar algo por el estilo de  $[1\ms x\ms y\ms y^2\ms x^2]$

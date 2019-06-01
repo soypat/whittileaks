@@ -17,6 +17,9 @@
 \newcommand{\agitacion}{\textrm{Agit.}}
 \newcommand{\inicial}{i}
 \newcommand{\Sgen}{S_{\textrm{gen}}}
+\newcommand{\dSgen}{\dot{S}_{\textrm{gen}}}
+\newcommand{\dAdestr}{\dot{A}_{\mathrm{destr}}}
+
 \newcommand{\sib}[1]{[\si{#1}]}
 \newcommand{\final}{f}
 \newcommand{\rc}{r_c}
@@ -297,5 +300,23 @@ $\rc=\frac{V_1}{V_2}$, $\rv=\frac{V_4}{V_2}=\frac{V_4}{V_3}$ y $\rp=\frac{p_3}{p
     \label{fig:dualideal}
 \end{figure}
 
+\section{Exergia}
+\subsection{Sistema Cerrado}
 
+\begin{equation}
+	A_2 - A_{1}=\int_{1}^{2}\left(1-\frac{T_{0}}{T_{i}}\right) \delta Q-\left[W-p_{0}\left(V_{2}-V_{1}\right)\right]-\quad T_{0} \Sgen
+\end{equation}
+
+\subsection{Volumen de control}
+
+\[
+a_f = h-h_{0}-T_{0}\left(s-s_{0}\right)+\frac{c^{2}}{2}+g z
+\]
+de donde sale que 
+
+\begin{equation}
+	\Delta a_f = \Delta h - T_0 \Delta s + \Delta e_c + \Delta e_p
+\end{equation}
+
+Donde la exergia destruida se puede calcular segun $\dAdestr = T_0 \dSgen $
 \end{document}
