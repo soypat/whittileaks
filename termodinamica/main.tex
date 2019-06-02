@@ -20,6 +20,9 @@
 \newcommand{\dSgen}{\dot{S}_{\textrm{gen}}}
 \newcommand{\dAdestr}{\dot{A}_{\mathrm{destr}}}
 
+\newcommand{\entrada}{{\mathrm{in}}}
+\newcommand{\salida}{{\mathrm{out}}}
+
 \newcommand{\sib}[1]{[\si{#1}]}
 \newcommand{\final}{f}
 \newcommand{\rc}{r_c}
@@ -279,12 +282,12 @@ donde $\rc=\frac{V_1}{V_2}$ y $\rv$ es la relación de \textit{cut-off} para el 
 \begin{figure}[htb!]
     \centering
     \includegraphics[width=10cm]{fig/ciclodiesel.eps}
-    \caption{Ciclo Diesel ideal.}
+    \caption{Ciclo Diésel ideal.}
     \label{fig:dieselideal}
 \end{figure}
 
 \subsection{Ciclo Dual o Sabathé}
-También conocido com \textit{Diesel mixto}. 
+También conocido como \textit{Diésel mixto}. 
 \begin{equation}
 \eta_S=1- \frac{T_5-T_1}{(T_3-T_2)+\ctegas(T_4-T_3)}
 \end{equation}
@@ -300,7 +303,25 @@ $\rc=\frac{V_1}{V_2}$, $\rv=\frac{V_4}{V_2}=\frac{V_4}{V_3}$ y $\rp=\frac{p_3}{p
     \label{fig:dualideal}
 \end{figure}
 
-\section{Exergia}
+\section{Entropía y la Segunda Ley}
+
+\subsection{Balance para volumen de control}
+
+\begin{equation}
+	\frac{\di S_{\mathrm{vc}}}{\di t}=\sum_{j} \frac{\dot{Q}_{j}}{T_{j}}+\sum_{i} \dot{m}^\entrada_{i} s^\entrada_{i}-\sum_{k} \dot{m}^\salida_{k} s^\salida_{k}+\dSgen
+\end{equation}
+que en régimen estacionario se reduce a
+
+\begin{equation}
+	\dSgen = - \sum_{j} \frac{Q_{j}}{T_{j}}+\sum_{i} \dot{m}^\salida_{i} s^\salida_{i}-\sum_{k} \dot{m}^\entrada_{k} s^\entrada_{k}
+\end{equation}
+el cual se puede reducir para un problema con una fuente a $T_{01}$ y una sola rama de caudal másico a: $\dSgen = -\frac{Q}{T_{01}} +\dot{m} \Delta s $
+
+
+%%% EXERGY
+%%% EXERGY
+%%% EXERGY
+\section{Exergía}
 \subsection{Sistema Cerrado}
 
 \begin{equation}
@@ -308,7 +329,7 @@ $\rc=\frac{V_1}{V_2}$, $\rv=\frac{V_4}{V_2}=\frac{V_4}{V_3}$ y $\rp=\frac{p_3}{p
 \end{equation}
 
 \subsection{Volumen de control}
-
+Exergía especifica del fluido
 \[
 a_f = h-h_{0}-T_{0}\left(s-s_{0}\right)+\frac{c^{2}}{2}+g z
 \]
@@ -318,5 +339,11 @@ de donde sale que
 	\Delta a_f = \Delta h - T_0 \Delta s + \Delta e_c + \Delta e_p
 \end{equation}
 
-Donde la exergia destruida se puede calcular segun $\dAdestr = T_0 \dSgen $
+Donde la exergía destruida se puede calcular según $\dAdestr = T_0 \dSgen $
+
+
+
+
+
+
 \end{document}
