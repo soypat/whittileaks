@@ -1,42 +1,6 @@
+
+
 \documentclass[twocolumn,titlepage]{article}
-% %%%%%%%%%%%%%%%%%%%%%
-% %%  PAGE KEEPER
-% %%%%%%%%%%%%%%%%%%%%%
-% \usepackage{lipsum,atbegshi,etoolbox}% http://ctan.org/pkg/{lipsum,atbegshi,etoolbox}
-% \makeatletter
-% \newcommand{\discardpages}[1]{% \discardpages{<csv list>}
-%   \xdef\discard@pages{#1}% Store pages to discard
-%   \AtBeginShipout{% At shipout, decide whether to discard page/not
-%     \renewcommand*{\do}[1]{% How to handle each page entry in csv list
-%       \ifnum\value{page}=##1\relax%
-%         \AtBeginShipoutDiscard% Discard page/not
-%         \gdef\do####1{}% Do nothing further
-%       \fi%
-%     }%
-%     \expandafter\docsvlist\expandafter{\discard@pages}% Process list of pages to discard
-%   }%
-% }
-% \newif\ifkeeppage
-% \newcommand{\keeppages}[1]{% \keeppages{<csv list>}
-%   \xdef\keep@pages{#1}% Store pages to keep
-%   \AtBeginShipout{% At shipout, decide whether to discard page/not
-%     \keeppagefalse%
-%     \renewcommand*{\do}[1]{% How to handle each page entry in csv list
-%       \ifnum\value{page}=##1\relax%
-%         \keeppagetrue% Page should be kept
-%         \gdef\do####1{}% Do nothing further
-%       \fi%
-%     }%
-%     \expandafter\docsvlist\expandafter{\keep@pages}% Process list of pages to keep
-%     \ifkeeppage\else\AtBeginShipoutDiscard\fi% Discard page/not
-%   }%
-% }
-% \makeatother
-% % \discardpages{1,3,5,7,9,29,35,40}% Discard these pages.
-% % \keeppages{10,11}% Keep these pages.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \usepackage[a4paper,left=2cm,right=2cm,top=2.6cm,bottom=2cm]{geometry}
 \usepackage[utf8]{inputenc}
@@ -47,7 +11,7 @@
 \usepackage{mdframed}
 \usepackage{fontawesome}
 \usepackage{amssymb}
-\usepackage[spanish]{babel}
+\usepackage[spanish, mexico]{babel}
 \usepackage{beton}
 \usepackage{mathtools}
 \usepackage{hyperref}
@@ -69,6 +33,8 @@
 \usepackage{tabularx}
 \usepackage{siunitx}
 \usepackage{natbib}
+ \bibliographystyle{plainnat} 
+ 
 \sisetup{
 detect-family,
 detect-display-math = true, 
@@ -86,7 +52,7 @@ contents={%
   }%
 }
 \title{Resúmen Transferencia Calor}
-\renewcommand\spanishtablename{Tabla}
+%\renewcommand\spanishtablename{Tabla}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 \usepackage[mathscr]{eucal}
@@ -166,25 +132,27 @@ contents={%
 \begin{document}
 
 
-
+\pagenumbering{roman}
 \input{chapter/ch0title.tex}%Titulo y primera parte
+%\pagestyle{plain}
 \twocolumn
 \setcounter{page}{1}
+\pagenumbering{arabic}
 \input{chapter/ch1-1mecfluidos.tex}
-% \input{chapter/ch1-2ecbasicas.tex}
-% \input{chapter/ch1-3capalimite.tex}
-% \input{chapter/ch1-4tubulencia.tex}
-% \setcounter{footnote}{0}
-% \input{chapter/ch2calorintro.tex}
-% \setcounter{footnote}{0}
-% \input{chapter/ch3convecanalitica.tex}
-% \input{chapter/ch4convecempirica.tex}
-% \input{chapter/ch5convecinterna.tex}
-% \input{chapter/ch6intercambiador.tex}
-% \input{chapter/ch7radiacion.tex}
-% \input{chapter/appendix.tex}
-% \bibliography{labibliografia} % Indica archivo
-% \bibliographystyle{plainnat} 
+\input{chapter/ch1-2ecbasicas.tex}
+\input{chapter/ch1-3capalimite.tex}
+\input{chapter/ch1-4tubulencia.tex}
+ \setcounter{footnote}{0}
+ \input{chapter/ch2calorintro.tex}
+ \setcounter{footnote}{0}
+ \input{chapter/ch3convecanalitica.tex}
+ \input{chapter/ch4convecempirica.tex}
+ \input{chapter/ch5convecinterna.tex}
+ \input{chapter/ch6intercambiador.tex}
+ \input{chapter/ch7radiacion.tex}
+ \input{chapter/appendix.tex}
+ \bibliography{labibliografia} % Indica archivo
+
 
 \end{document}
 

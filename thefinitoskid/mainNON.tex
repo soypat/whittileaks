@@ -213,7 +213,7 @@ Imaginemos un elementos Q5 cuadrado de $2\times2$ con espesor $t$  (igual al Q4 
 N_i=\left[\begin{array}{ccccc} \frac{x^2\,y^2}{4}+\frac{x\,y}{4}-\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}+\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}+\frac{x\,y}{4}+\frac{x}{4}+\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}-\frac{x}{4}+\frac{y}{4}, & 1-x^2\,y^2 \end{array}\right]
 \]
 
-Llegado a este punto nos interesa obtener la matriz de rigidez. Si queremos lograr \emph{``full integration"} deberíamos usar Gauss orden $n=3$ según $2n-1\geq O\left(\MB^T \ME \MB \right)$. El producto $\MB^T \ME \MB$ da un polinomio de orden 6 ($\MB$ tiene el mismo orden que la derivada de $\MN$). De esta forma nos aseguramos que nuestro resultado va ser exacto para el elemento sin distorsionar.
+Llegado a este punto nos interesa obtener la matriz de rigidez. Si queremos lograr \emph{``full integration"} deberíamos usar Gauss orden $n=3$ según $2n-1\geq O\left(\MB^T \ME \MB \right)$. $\MB$ es el \textit{strain-deformation matrix}. El producto $\MB^T \ME \MB$ da un polinomio de orden 6 ($\MB$ tiene el mismo orden que la derivada de $\MN$). De esta forma nos aseguramos que nuestro resultado va ser exacto para el elemento sin distorsionar.
 
 Para esté ejemplo, no se pide \emph{full integration} entonces no pasa nada si queremos \emph{underintegrate}. Usamos Gauss orden $n=2$. 
 
@@ -552,8 +552,170 @@ Galerkin 1D pg 13: Proyecto las funciones de forma del nodo respecto las otras y
 Si es sistema es par es estable. Fluidos con alta intercia, solidos. Si es impar entonces tenes problemas al tener ecuaciones cubicas (impares) mucho problema, no bueno.
 
 Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para modelar la velocidad y la presion porque si no se traban. 
+
+
+\section{Transferencia de Calor}
+
+Tenemos el flujo de calor que es $\underline{K} \nabla T$, la divergencia de esto es el flujo neto que pasa por un punto.
+\[
+\nabla(\underline{K} \nabla T)+Q=\rho c \frac{\partial T}{\partial \tau}
+\] 
+
+Ley de Newton: 
+\[
+q_{c}=h_{c}(s, T)\left(T-T_{\infty}\right)
+\]
+
+Ley de Stefan Boltzmann
+\[
+q_{r}=\varepsilon_{r} \sigma\left(T^{4}-T_{\infty}^{4}\right)
+\]
+
+Es mas jodido el tema de modelar temperaturas fijas e imponer calor transferido, pues son aseveraciones no tan reales como imponer desplazamiento cero sobre un apoyo y  fuerzas sobre vigas.
+
+\textbf{Metodo Galerkin}
+\[
+\int_{\Omega}-N_{i} k\left(\frac{\partial^{2} T}{\partial x^{2}}+\frac{\partial^{2} T}{\partial y^{2}}+\frac{\partial^{2} T}{\partial z^{2}}\right)-N_{i} q \quad d \omega=0
+\]
+
+
+Se le ocurrio a alguien derivar respecto a K 
+
+\[
+(I) \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}=\frac{\partial N_{i}}{\partial x} k \frac{\partial T}{\partial x}+N_{i} k \frac{\partial^{2} T}{\partial x^{2}}
+\]
+e integro en el volumen
+
+Lo que tenemos abajo es el integral de flujo de calor en la frontera (ultimo termino). $k \frac{\partial T}{\partial x}$ es el flujo de calor en direccion x.
+\[
+\int_{\Omega}^{\partial} \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial y}\right)}{\partial y}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial z}\right)}{\partial z} d \omega=\oint_{\Gamma} N_{i} k \frac{\partial T}{\partial \overline{n}} d s
+\]
+
+$T=N_j T_j$
+
+
+$N_j$ y $N_i$ representan dos cosas. $N_j$ nos da el perfil termico. Abajo multiplican entre ellas cruzadamente.
+\[
+\int_{\Omega} \frac{\partial N_{i}}{\partial x} k \frac{\partial N_{j}}{\partial x} T_{j}+\frac{\partial N_{i}}{\partial y} k \frac{\partial N_{j}}{\partial y} T_{j}+\frac{\partial N_{i}}{\partial z} k \frac{\partial N_{j}}{\partial z} T_{j}-\int_{\Omega} N_{i} Q d \omega-\oint_{\Gamma} N_{i} q_{\vec{n}} d s=0
+\]
+
+Temperature-Heat flux matrix $\MB$:
+
+\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
+\]
+
+Para 2D Q4
+\[
+\MB =
+\begin{Bmatrix}
+\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial x} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial x} \\
+ \frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial y} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial y} 
+\end{Bmatrix}
+\]
+
+Para aplicar conveccion 
+
+Hay una parte que depende de la temperatura interna, la parte que no depende la dejo como vector de cargas. La parte que depende la tengo que sumar a mi matriz de conductividades
+\[
+R_{C_{i}}=\oint_{\Gamma_{c o m v}} N_{i} h\left(T(x)-T_{f l}\right) d \gamma
+\]
+
+Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
+
+\[
+\mathrm{Cargas:} R_{H} : \oint_{\Gamma_{c o n v}} N_{i} h T_{f l} d \gamma \qquad \qquad \mathrm{Conductividad:}  K : \oint_{\Gamma_{c m}} N_{i} h N_{j} d \gamma
+\]
+
+La radiacion se hace de forma iterativa y converge porque es monotona. Aumenta la temperatura de mi sistema y por lo tanto aumenta la radiacion.
+
+\subsection{Transitorio}
+
+Matriz capacidad
+\[
+[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
+\]
+
+El calculin
+\[
+[C]\{\dot{T}\}+[K]\{T\}=\left\{R_{B}\right\}+\left\{R_{Q}\right\}=\left\{R_{T}\right\} = [C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
+\]
+Sebas dice $C\dot{T}+kT = R$. Cuando esta en equilibrio? En tiempo $n$ esta en equilibrio tal que $C\dot{T}^n +kT^n = R^n$, si podemos calcular el tiempo $n+1$ entonces podemos resolver el problema transitorio. Con un \textit{peso} (que llamamos beta) podemos darle mas bola al tiempo $n$ o el tiempo $n+1$.
+$(T^{n+1}-T^n)/\Delta t = \dot{T}^{n+\beta}$ es lo que puedo calcular. Si $\beta=1$ entonces
+\[
+\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n+1}
+\]
+y si $\beta=0$
+\[
+\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n}
+\]
+
+\[
+\dot{T}^{n+\beta} = (1-\beta)\dot{T}^n +\beta \dot{T}^{n+1}
+\]
+
+\[
+\dot{T}^{n+1} 
+\]
+Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonces TODO depende del futuro.
+\[
+\beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
+\]
+
+\[
+\begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
+\]
+
+
+La estabilidad es pedir que los autovalores de $A$ sean menores que 1.
+donde 
+\[
+[A]=([C]+\Delta t \beta[K])^{-1}([C]-\Delta t(1-\beta)[K])
+\]
+EStabilidad 1-D:
+\[
+A=\frac{c-\Delta t(1-\beta) k}{c+\Delta t \beta k}=\frac{1-\Delta t(1-\beta) \omega}{1+\Delta t \beta \omega}
+\]
+Donde
+\[
+\omega = \frac{k}{c}
+\]
+
+tal que 
+\[
+\left| \frac{1-\Delta t \omega + \Delta t \beta \omega}{1+\Delta t \omega} \right| <1
+\]
+
+\[
+1-\Delta t \omega + \Delta t \beta \omega > -1 - \Delta t \beta \omega
+\]
+
+\[
+2-\Delta t \omega + 2 \Delta t \beta \omega > 0
+\]
+
+\[
+2+(-1+2 \beta ) \Delta t \omega > 0
+\]
+
+\[
+(-1 + 2\beta ) \Delta t \omega > -2 
+\]
+
+\[
+\Delta t \omega > \frac{-2}{-1 + 2\beta}
+\]
+
+Si beta es menor a un medio entonces siempre es positivo y por lo tanto no importa el paso de tiempo que tome siempre va converger.
+
+
+Si beta es 0 te queda que es inestable.$\Delta t > \frac{num}{den}$
+\[
+\Delta t \omega > \frac{2}{1- 2\beta}
+\]
 \input{\feaQP}
 \input{\annexFile}
+
+
 \end{document} 
 
 
