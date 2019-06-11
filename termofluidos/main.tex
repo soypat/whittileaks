@@ -3,6 +3,15 @@
 \documentclass[twocolumn,titlepage]{article}
 
 \usepackage[a4paper,left=2cm,right=2cm,top=2.6cm,bottom=2cm]{geometry}
+%Header
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead{ \href{http://www.whittileaks.com}{\textsf{whittileaks.com}} }
+%\rhead{\thesection}
+\cfoot{\thepage}
+%End Header
+
 \usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
 % \usepackage{upgreek}
@@ -131,10 +140,10 @@ contents={%
 \newcommand{\Capillary}{\textrm{Ca}}
 \begin{document}
 
-
+\pagestyle{plain}
 \pagenumbering{roman}
 \input{chapter/ch0title.tex}%Titulo y primera parte
-%\pagestyle{plain}
+\pagestyle{fancy}
 \twocolumn
 \setcounter{page}{1}
 \pagenumbering{arabic}

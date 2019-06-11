@@ -313,6 +313,10 @@ donde $q$ es la carga distribuida en [N/m], $r$ es la distancia al eje de revolu
 \end{Bmatrix} r \di \theta \di A
 \]
 
+\subsection{Constraints}
+Rigid Links
+
+
 \subsection{Subestructuras}
 \[
 \begin{bmatrix}
@@ -601,8 +605,8 @@ $N_j$ y $N_i$ representan dos cosas. $N_j$ nos da el perfil termico. Abajo multi
 
 Temperature-Heat flux matrix $\MB$:
 
-\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
-\]
+%\[\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
+%\]
 
 Para 2D Q4
 \[
@@ -708,10 +712,20 @@ tal que
 Si beta es menor a un medio entonces siempre es positivo y por lo tanto no importa el paso de tiempo que tome siempre va converger.
 
 
-Si beta es 0 te queda que es inestable.$\Delta t > \frac{num}{den}$
+
+Si beta es 0 te queda que es inestable.
+CORREGIDO
+$\lambda > -1$ por ende la desigualdad de abajo te puede quedar positiva o negativa dependiendo del valor de $\beta $
 \[
-\Delta t \omega > \frac{2}{1- 2\beta}
+\Delta t \omega(2\beta -1) > -2
 \]
+
+\section{No-linealidad}
+
+Porque cuando deformas una regla aumenta la rigidez? En parte porque cambia la geometria (a una viga curva) y porque hay tensiones remanentes al deformarse. Las tensiones remanentes se pueden pensar como una cuerda de guitarra que al ser tensionada son mas 'rigida' las cuerdas, cuesta mas deformar...
+
+Cargando por desplazamitos no me pierdo de soluciones intermedias, como por ejemplo una viga que pandea deja de tomar fuerzas hasta que se la vuelve a deformar suficiente.
+
 \input{\feaQP}
 \input{\annexFile}
 
