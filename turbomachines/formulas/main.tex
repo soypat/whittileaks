@@ -1,0 +1,96 @@
+    \documentclass{article}
+% \usepackage[spanish]{babel}
+% \usepackage[9pt]{extsizes}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.35in,top=0.25in,bottom=0.25in,a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+
+\usepackage{mdframed}
+\newmdtheoremenv[outerlinewidth=3,leftmargin=-8pt,%
+rightmargin=-12pt,backgroundcolor=white,%
+outerlinecolor=blue,innertopmargin=1pt,
+% innerrightmargin=3pt,%
+splittopskip=\topskip,ntheorem, font = {\sffamily}]{formuleo}%
+{Ecuaciones}
+
+
+
+\newcommand{\tita}{\theta}
+\newcommand{\substy}[2]{\ensuremath{{#1_{\mathrm{#2}}}}}
+\newcommand{\sib}[1]{\ensuremath{\left[\si{#1}\right]}}
+\newcommand{\degree}{\ensuremath{{^\circ}}}
+\newcommand{\attackangle}{{\ensuremath{\bm{\alpha}}}}
+\newcommand{\cp}{c_p}
+\newcommand{\cteuniversal}{\ensuremath{\tilde{R}}}
+\newcommand{\molarmass}{\ensuremath{{\scriptstyle \bar{M}}}}
+\newcommand{\Rconst}{R}
+\newcommand{\gasconst}{k}
+\newcommand{\ctegas}{\gasconst}
+% \newcommand{\speedsound}{{c_{\!s\!}}}
+\newcommand{\relative}{\mathrm{rel}}
+\newcommand{\speedsound}{a}
+\newcommand{\ctan}[1]{\ensuremath{c_{\theta #1}}}
+\newcommand{\crad}[1]{\ensuremath{c_{r #1}}}
+\newcommand{\cax}[1]{\ensuremath{c_{a #1}}}
+\newcommand{\angvel}{\ensuremath{\omega}}
+\newcommand{\Mach}{\mathrm{M}}
+\newcommand{\di}{\textrm{d}}
+\newcommand{\cte}{\textrm{cte}}
+%Entradas para glosario 
+\newcommand{\etaiso}{\eta_{\mathrm{iso}}}
+\newcommand{\Sgen}{\substy{S}{gen}}
+\newcommand{\dQ}{\dot{Q}}
+\newcommand{\dW}{\dot{W}}
+\newcommand{\dm}{\dot{m}}
+\newcommand{\etaTot}{\substy{\eta}{iso}}
+\newcommand{\etahid}{\substy{\eta}{h}}
+\newcommand{\etamec}{\substy{\eta}{m}}
+\newcommand{\etavol}{\substy{\eta}{vol}}
+\newcommand{\slip}{\xi}
+\newcommand{\slipangle}{\ensuremath{\theta_d}}
+\newcommand{\radrel}{\nu}
+\newcommand{\rext}{\substy{r}{ext}}
+\newcommand{\rbase}{\substy{r}{base}}
+\newcommand{\powerreduction}{\mu}
+\newcommand{\degreeofreaction}{{\bm{R}}}
+\newcommand{\relcomp}{{\ensuremath{r_{\!c}}}}
+\newcommand{\epsi}{\varepsilon}
+\newcommand{\dV}{\dot{V}}
+\newcommand{\dv}{\dot{v}}
+\newcommand{\adim}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\Nusselt}{\adim{Nu}}
+\newcommand{\Reynolds}{\adim{Re}}
+\newcommand{\Grashof}{\adim{Gr}}
+\newcommand{\Prandtl}{\adim{Pr}}
+\newcommand{\Biot}{\adim{Bi}}
+\newcommand{\Fourier}{\adim{Fo}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\going}{\ensuremath{\rightarrow}}
+% \newcommand{\dQ}{\dot{Q}}
+\newcommand{\starit}{\ensuremath{^{*}}}
+\newcommand{\LMTD}{\operatorname{LMTD}}
+\newcommand{\Stanton}{\adim{St}}
+\newcommand{\separar}{\ensuremath{\pmb{  \parallel{} }}}
+\newcommand{\entrada}{\mathrm{in}}
+\newcommand{\out}{\mathrm{out}}
+\begin{document}
+{
+\centering
+{\large Formuleo Turbomáquinas \par}
+
+{\small Patricio Whittingslow --- 55423\par}
+}
+\fontsize{10}{0}
+\newcommand{\formuleoseparator}{.155cm}
+
+\input{idealgas.tex}
+\input{parcial2.tex}
+
+
+
+
+\end{document}

@@ -45,12 +45,14 @@
     \newcommand{\MB}{\Mme{B}}
     \newcommand{\MN}{\Mme{N}}
     \newcommand{\ME}{\Mme{E}}
+    \newcommand{\MK}{\Mme{K}}
     \newcommand{\Mk}{\Mme{k}}
     \newcommand{\MA}{\Mme{A}}
     \newcommand{\radial}{r}
     \newcommand{\eff}{f}
     \newcommand{\modal}{{_{\Phib}}}
     \newcommand{\dampfact}{\varsigma}
+    \newcommand{\spartial}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
     
 \newmdtheoremenv[% ACA PODES MODIFICAR LAS PROPIEDADES DEL CODIGO {code}
 font=\fontsize{12pt}{16pt},
@@ -179,7 +181,7 @@ Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en po
 \end{figure}
 
 \subsection{Como obtener cualquier función de forma}
-Se define cuantos nodos se va tener por elemento y se los ubica en el espacio $(\xi,\eta)$ que por simplicidad se trataran como $(x,y)$. Con el triangulo de Pascal para polinomios se elige el grado del polinomio y los términos. Luego se resuelve el sistema de ecuaciones $N_i\cdot X= A$ donde $N_i=[N_1\ms N_2 \ms \ldots\ms N_n]$ y $X=[1\ms x\ms y \ms\ldots\ms x^{k-1}y^{k} \ms x^{k}y^{k}]^T$, o algo por el estilo. Se tienen que elegir los grados mas convenientes teniendo en cuenta la simetría y el número de nodos, este ultimo te limita el número de términos posibles por la naturaleza de la interpolación. La matriz $A$ tendrá en su \textbf{espacio fila} el mismo polinomio evaluado en la posición del nodo correspondiente a esa fila.
+Se define cuantos nodos se va tener por elemento y se los ubica en el espacio $(\xi,\eta)$ que por simplicidad se trataran como $(x,y)$. Con el triangulo de Pascal para polinomios se elige el grado del polinomio y los términos. Luego se resuelve el sistema de ecuaciones $\MN\cdot X= A$ donde $\MN=[N_1\ms N_2 \ms \ldots\ms N_n]$ y $X=[1\ms x\ms y \ms\ldots\ms x^{k-1}y^{k} \ms x^{k}y^{k}]^T$, o algo por el estilo. Se tienen que elegir los grados mas convenientes teniendo en cuenta la simetría y el número de nodos, este ultimo te limita el número de términos posibles por la naturaleza de la interpolación. La matriz $A$ tendrá en su \textbf{espacio fila} el mismo polinomio evaluado en la posición del nodo correspondiente a esa fila.
 
 \[
 A=
@@ -190,7 +192,7 @@ A=
     1 & x_n & y_n & \dots  & x_{n}^{k-1}y_n^{k} & x_{n}^{k}y_n^{k}
 \end{bmatrix}
 \]
-Luego, las funciones de forma $N_i$ se pueden obtener así: $N_i=X^{-1} A$
+Luego, las funciones de forma $\MN$ se pueden obtener así: $\MN=X^{-1} A$
 
 \subsection{Elementos isoparamétricos}
 \begin{itemize}
@@ -208,9 +210,9 @@ Luego, las funciones de forma $N_i$ se pueden obtener así: $N_i=X^{-1} A$
 \end{figure}
 \subsection{Ejemplo elemento exótico}
 \subsubsection*{Matriz de Rigidez}
-Imaginemos un elementos Q5 cuadrado de $2\times2$ con espesor $t$  (igual al Q4 con un nodo en su centro). Si fuéramos a obtener las funciones de formas de dicho elemento quedarían iguales para $(x,y)$ y para $(\xi,\eta)$ por las dimensiones usadas. La funcionalidad que uno estaría tentado a seleccionar sería $[1\ x \ y\ x^2 \ y^2 ]$, pero está trae problemas inesperados debido a que tiene varias soluciones en la interpolación. Como nuestra prioridad siempre es mantener la simetría la funcionalidad será $[1\ x\ y\ xy\ x^2y^2 ]$.  Tomando el orden de la figura \ref{fig:elemq5}.
+Imaginemos un elementos Q5 cuadrado de $2\times2$ con espesor $t$  (igual al Q4 con un nodo en su centro). Si fuéramos a obtener las funciones de formas de dicho elemento quedarían iguales para $(x,y)$ y para $(\xi,\eta)$ por las dimensiones usadas. La funcionalidad que uno estaría tentado a seleccionar sería $[1,\ x, \ y,\ x^2, \ y^2 ]$, pero está trae problemas inesperados debido a que tiene varias soluciones en la interpolación. Como nuestra prioridad siempre es mantener la simetría la funcionalidad será $[1,\ x,\ y,\ xy,\ x^2y^2 ]$.  Tomando el orden de la figura \ref{fig:elemq5}.
 \[
-N_i=\left[\begin{array}{ccccc} \frac{x^2\,y^2}{4}+\frac{x\,y}{4}-\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}+\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}+\frac{x\,y}{4}+\frac{x}{4}+\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}-\frac{x}{4}+\frac{y}{4}, & 1-x^2\,y^2 \end{array}\right]
+\MN=\left[\begin{array}{ccccc} \frac{x^2\,y^2}{4}+\frac{x\,y}{4}-\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}+\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}+\frac{x\,y}{4}+\frac{x}{4}+\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}-\frac{x}{4}+\frac{y}{4}, & 1-x^2\,y^2 \end{array}\right]
 \]
 
 Llegado a este punto nos interesa obtener la matriz de rigidez. Si queremos lograr \emph{``full integration"} deberíamos usar Gauss orden $n=3$ según $2n-1\geq O\left(\MB^T \ME \MB \right)$. $\MB$ es el \textit{strain-deformation matrix}. El producto $\MB^T \ME \MB$ da un polinomio de orden 6 ($\MB$ tiene el mismo orden que la derivada de $\MN$). De esta forma nos aseguramos que nuestro resultado va ser exacto para el elemento sin distorsionar.
@@ -227,9 +229,13 @@ Para esté ejemplo, no se pide \emph{full integration} entonces no pasa nada si 
 La rigidez de un elemento está dada por 
 
 
-\begin{equation}
-    \Mk=\int \MB^T \ME \MB \di V=\iint \MB^T \ME \MB t \di x \di y=\int^1_{-1}\int^1_{-1} \MB^T \ME \MB t \ \Djac \  \di\xi  \di\eta
+\begin{equation} \label{eq:RigidezElemento}
+    \Mk=\int \MB^T \ME \MB \di V
 \end{equation}
+para un elemento plano la ecuación anterior es
+\[
+\Mk_{\mathrm{2D}}=\iint \MB^T \ME \MB t \di x \di y=\int^1_{-1}\int^1_{-1} \MB^T \ME \MB t \ \Djac \  \di\xi  \di\eta
+\]
 donde $\MB$ es la matriz deformación-desplazamiento del elemento, $\ME$ es la matriz constitutiva, y $\Djac$ es el determinante de la matriz Jacobiana, el cual se le suele decir simplemente el Jacobiano.
 
 Este ultimo se calcula a partir de la derivada de las funciones de forma $ $
@@ -391,6 +397,70 @@ Se suele requerir que $\eta\leq 0,05$
     \caption{Numeración de nodos H20 en \Adina (Ejes sugeridos)}
     \label{fig:H20numbering}
 \end{figure}
+
+\subsection{Formulacion elemento Hexahedro de 8 nodos}
+\newcommand{\dof}{\ensuremath{\mathrm{dof}}}
+El modelado con elementos isoparametricos hexaedros de 8 nodos es un buen punto de partida para comenzar a manejar los elementos finitos en 3 dimensiones. Un codigo hecho para obtener $\MK$ con elementos H8 se adapta con facilidad para los H20.
+
+Cada nodo tendrá $3$ grados de libertad, dándonos $24$ \dof{} por elemento. El elemento H20 de la figura \ref{fig:H20numbering} esta planteado de tal forma que los primeros nodos del 1 al 8 son los nodos del H8 que se va formular a continuación.
+
+La funcionalidad a usar es la siguiente
+
+\[
+X_{\mathrm{H8}} = \left[1, \xi, \eta, \zeta, \xi \eta, \xi \eta, \eta \zeta, \xi \eta \zeta \right]
+\]
+
+
+y la matriz constitutiva para el espacio 3D con 3 \dof{} por nodo se escribe:
+
+\begin{equation}
+	\ME =\left[\begin{array}{cccccc} 2\,G+\lambda  & \lambda  & \lambda  & 0 & 0 & 0\\ \lambda  & 2\,G+\lambda  & \lambda  & 0 & 0 & 0\\ \lambda  & \lambda  & 2\,G+\lambda  & 0 & 0 & 0\\ 0 & 0 & 0 & G & 0 & 0\\ 0 & 0 & 0 & 0 & G & 0\\ 0 & 0 & 0 & 0 & 0 & G \end{array}\right] \qquad \ME^{-1}=\frac{1}{E}\left[\begin{array}{cccccc} 1 & -\nu  & -\nu  & 0 & 0 & 0\\ -\nu  & 1 & -\nu  & 0 & 0 & 0\\ -\nu  & -\nu  & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & f & 0 & 0\\ 0 & 0 & 0 & 0 & f & 0\\ 0 & 0 & 0 & 0 & 0 & f \end{array}\right]
+\end{equation}
+donde $\lambda = \frac{E \nu}{(1+\nu)(1-2\nu)}$ y $G=\frac{E}{2(1+\nu)}$ y $f = 2+2\nu$.
+
+\subsubsection{Formulación elementos}
+El jacobiano tiene la forma
+\[
+\jac=
+\left[\begin{array}{lll}\spartial{x}{\xi} & \spartial{y}{\xi}  & \spartial{z}{\xi}  \\ \spartial{x}{\eta}  &\spartial{y}{\eta}  &\spartial{z}{\eta} \\\spartial{x}{\zeta} & \spartial{y}{\zeta} &\spartial{z}{\zeta}\end{array}\right]
+\]
+pudiendo ser calculado de la siguiente forma
+
+\begin{equation}
+	\jac = \begin{bmatrix}
+	\frac{\partial}{\partial \xi} \MN \\
+	\frac{\partial}{\partial \eta} \MN \\
+	\frac{\partial}{\partial \zeta} \MN 
+	\end{bmatrix}
+	\cdot 
+\left[\begin{array}{lll}{x_{1}} & {y_{1}} & {z_{1}} \\ {x_{2}} & {y_{2}} & {z_{2}} \\ {x_{3}} & {y_{3}} & {z_{3}} \\ {x_{4}} & {y_{4}} & {z_{4}} \\ {x_{5}} & {y_{5}} & {z_{5}} \\ {x_{6}} & {y_{6}} & {z_{6}} \\ {x_{7}} & {y_{7}} & {z_{7}} \\ {x_{8}} & {y_{8}} & {z_{8}}\end{array}\right]
+\end{equation}
+donde la primer matriz termina siendo $3\times8$ para un elemento H8. La segunda matriz son las posiciones \textit{globales} de los nodos del elemento. El jacobiano se puede entonces utilizar para calcular
+
+\begin{equation}
+	\Mme{\partial N}=\left[\begin{array}{l} \frac{\partial}{\partial x}\MN  \\ \frac{\partial}{\partial y} \MN  \\ \frac{\partial}{\partial z} \MN  \end{array}\right]=\jac^{-1}\left[\begin{array}{l}\frac{\partial}{\partial \xi} \MN \\
+	\frac{\partial}{\partial \eta} \MN \\ 
+	\frac{\partial}{\partial \zeta} \MN \end{array}\right]
+\end{equation}
+con lo obtenido se puede calcular la matriz $\MB$.
+
+La matriz \textit{strain-deformation} queda
+\[
+\MB = \begin{bmatrix}
+B_1 &B_2 &B_3 &B_4 &B_5 &B_6 &B_7 &B_8
+\end{bmatrix}
+\]
+donde
+\begin{equation}
+B_{i}=\left[\begin{array}{ccc}{\partial N_{i} / \partial x} & {0} & {0} \\ {0} & {\partial N_{i} / \partial y} & {0} \\ {0} & {0} & {\partial N_{i} / \partial z} \\ {0} & {\partial N_{i} / \partial z} & {\partial N_{i} / \partial y} \\ {\partial N_{i} / \partial z} & {0} & {\partial N_{i} / \partial x} \\ {\partial N_{i} / \partial y} & {\partial N_{i} / \partial x} & {0}\end{array}\right]
+\end{equation}
+
+Finalmente un calcula la rigidez del elemento usando \eqref{eq:RigidezElemento}.
+
+
+
+
+
 
 \section{Finitos II}
 \begin{equation} \label{eq:vibraciones}
