@@ -42,10 +42,22 @@
     \newcommand{\Mmes}[1]{\boldsymbol{[}\boldsymbol{ \mathrm{#1} }\boldsymbol{]}}
     \newcommand{\Rme}[1]{\boldsymbol{\lfloor}\mathbf{#1} \boldsymbol{\rfloor}}
     \newcommand{\Cme}[1]{\boldsymbol{\{ }\mathbf{#1} \boldsymbol{\}} }
+    \newcommand{\Cmen}[1]{\boldsymbol{\{ }#1 \boldsymbol{\}} }
+    \newcommand{\CT}{\Cme{T}}
+    \newcommand{\CD}{\Cme{D}}
+    \newcommand{\kuD}{\Cmen{k_1^{\dot{D}}}}
+    \newcommand{\kdD}{\Cmen{k_2^{\dot{D}}}}
+    \newcommand{\ktD}{\Cmen{k_3^{\dot{D}}}}
+    \newcommand{\kcD}{\Cmen{k_4^{\dot{D}}}}
+    \newcommand{\kuV}{\Cmen{k_1^{\dot{V}}}}
+    \newcommand{\kdV}{\Cmen{k_2^{\dot{V}}}}
+    \newcommand{\ktV}{\Cmen{k_3^{\dot{V}}}}
+    \newcommand{\kcV}{\Cmen{k_4^{\dot{V}}}}
     \newcommand{\MB}{\Mme{B}}
     \newcommand{\MN}{\Mme{N}}
     \newcommand{\ME}{\Mme{E}}
     \newcommand{\MK}{\Mme{K}}
+    \newcommand{\MC}{\Mme{C}}
     \newcommand{\Mk}{\Mme{k}}
     \newcommand{\MA}{\Mme{A}}
     \newcommand{\radial}{r}
@@ -533,12 +545,42 @@ donde $\left\{ R^{e x t}\right\}$ puede ser una función en el tiempo también! 
 
 Optimización: No hay mucho que se pueda hacer. Es super complicated
 
+Se presentan al lector dos formas de resolver la siguiente ecuacion:
+\[
+\left\{\begin{array}{l}{[M] \dot{V} \}+[C] V \}+[K]\{D\}=\left\{R^{\text {ert}}\right\}} \\ {\{\dot{D}\}=\{V\}}\end{array}\right.
+\]
+Integración directa
+\begin{align*}
+	\begin{cases}
+	\Cme{V}^{n+1}&=\Cme{V}^n + \frac{\Delta t}{2}  \Mme{M}^{-1}\left(\Cme{R^{\mathrm{ext}}} - \MC \Cme{V} - \MK \Cme{D} \right) \\
+	\Cme{D}^{n+1}&=\Cme{D}^n + \frac{\Delta t}{2} \Cme{V}
+	\end{cases}
+\end{align*}
+
+
 RUNGE KUTTA
 
 Tengo que resolver las dos ecuaciones simultáneamente
 \[
-\left\{\begin{array}{l}{[M] \dot{V} \}+[C] V \}+[K]\{D\}=\left\{R^{\text {ert}}\right\}} \\ {\{\dot{D}\}=\{V\}}\end{array}\right.
+\begin{cases}
+	\Cme{V}^{n+1}=\Cme{V}^n + \frac{\Delta t}{6} \left( \kuV + 2\kdV + 2\ktV + \kcV \right) \\
+	\Cme{D}^{n+1}=\Cme{D}^n + \frac{\Delta t}{6} \left( \kuD + 2\kdD + 2\ktD + \kcD \right) \\
+\end{cases}
 \]
+donde 
+\begin{align*}
+	\begin{cases}
+	\kuV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^n - \MC \Cme{V}^n - \MK \Cme{D}^n  \right) \\
+	\kuD &= \Cme{V}^n \\\hline
+	\kdV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kuV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kuD \right)  \right) \\
+	\kdD &= \Cme{V}^n + \frac{\Delta t}{2} \kuV \\	\hline
+	\ktV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kdV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kdD \right)  \right) \\
+	\ktD &= \Cme{V}^n + \frac{\Delta t}{2} \kdV \\	\hline
+	\kcV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+1} - \MC \left(\Cme{V}^n + \Delta t \ktV \right) - \MK \left( \Cme{D}^n + \Delta t \ktD \right)  \right) \\
+	\kcD &= \Cme{V}^n + \Delta t \ktV
+	\end{cases}
+\end{align*}
+
 
 Espectro de respuesta
 
@@ -702,6 +744,18 @@ Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
 
 La radiacion se hace de forma iterativa y converge porque es monotona. Aumenta la temperatura de mi sistema y por lo tanto aumenta la radiacion.
 
+\subsection{Resolución de problemas típico}
+
+Condiciones de borde de temperatura
+
+\[
+\Cme{T_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{Q_\mathrm{c}}- \Mme{K_{\mathrm{xc}}}  \Cme{T_\mathrm{c}} \right)
+\]
+luego de obtener las temperaturas desconocidas se obtiene el flujo desconocido 
+\[
+\Cme{Q_{\mathrm{x}}} = \Mme{K_{\mathrm{cx}}} \Cme{T_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{T_\mathrm{c}}  
+\]
+
 \subsection{Transitorio}
 
 Matriz capacidad
@@ -734,6 +788,13 @@ Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonce
 \[
 \beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
 \]
+
+Ecuación iterativa:
+\begin{equation}
+	\Cme{T}^{n+1} = \left( \MC +\Delta t \beta \MK \right)^{-1} \left[ \left(\MC -\Delta t(1-\beta) \MK\right) \Cme{T}^n +\Delta t \left( (1-\beta) \Cme{R}^n + \beta \Cme{R}^{n+1}  \right)\right]
+\end{equation}
+
+
 
 \[
 \begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
