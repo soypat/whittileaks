@@ -2,8 +2,9 @@
 % \usepackage[spanish]{babel}
 % \usepackage[9pt]{extsizes}
 \usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[margin=0.35in,top=0.25in,bottom=0.25in,a4paper]{geometry}
+\usepackage[margin=1cm,top=2cm,bottom=2cm,a4paper]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bm}
@@ -24,7 +25,8 @@ splittopskip=\topskip,ntheorem, font = {\sffamily}]{formuleo}%
 \newcommand{\sib}[1]{\ensuremath{\left[\si{#1}\right]}}
 \newcommand{\degree}{\ensuremath{{^\circ}}}
 \newcommand{\attackangle}{{\ensuremath{\bm{\alpha}}}}
-\newcommand{\cp}{c_p}
+\newcommand{\cp}{{c_p}}
+\newcommand{\cv}{{c_v}}
 \newcommand{\cteuniversal}{\ensuremath{\tilde{R}}}
 \newcommand{\molarmass}{\ensuremath{{\scriptstyle \bar{M}}}}
 \newcommand{\Rconst}{R}
@@ -42,6 +44,8 @@ splittopskip=\topskip,ntheorem, font = {\sffamily}]{formuleo}%
 \newcommand{\cte}{\textrm{cte}}
 %Entradas para glosario 
 \newcommand{\etaiso}{\eta_{\mathrm{iso}}}
+\newcommand{\etaint}{\eta_{\mathrm{int}}}
+% \newcommand{\etamec}{\eta_{\mathrm{mec}}}
 \newcommand{\Sgen}{\substy{S}{gen}}
 \newcommand{\dQ}{\dot{Q}}
 \newcommand{\dW}{\dot{W}}
@@ -78,6 +82,7 @@ splittopskip=\topskip,ntheorem, font = {\sffamily}]{formuleo}%
 \newcommand{\entrada}{\mathrm{in}}
 \newcommand{\out}{\mathrm{out}}
 \begin{document}
+\pagestyle{empty}
 {
 \centering
 {\large Formuleo Turbomáquinas \par}
@@ -85,11 +90,14 @@ splittopskip=\topskip,ntheorem, font = {\sffamily}]{formuleo}%
 {\small Patricio Whittingslow --- 55423\par}
 }
 \fontsize{10}{0}
-\newcommand{\formuleoseparator}{.155cm}
-
-\input{idealgas.tex}
+% \newcommand{\formuleoseparator}{\vfill}
+\newcommand{\formuleoseparator}{}
+\input{termo.tex}
+\input{parcial1.tex}
+{ \centering
+{\bf \Huge \sc Segundo Parcial $\downarrow$} 
+}
 \input{parcial2.tex}
-
 
 
 
