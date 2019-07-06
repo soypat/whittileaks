@@ -742,7 +742,7 @@ Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
 \mathrm{Cargas:} R_{H} : \oint_{\Gamma_{c o n v}} N_{i} h T_{f l} d \gamma \qquad \qquad \mathrm{Conductividad:}  K : \oint_{\Gamma_{c m}} N_{i} h N_{j} d \gamma
 \]
 
-La radiacion se hace de forma iterativa y converge porque es monotona. Aumenta la temperatura de mi sistema y por lo tanto aumenta la radiacion.
+La radiación se hace de forma iterativa y converge porque es monótona. Aumenta la temperatura de mi sistema y por lo tanto aumenta la radiación.
 
 \subsection{Resolución de problemas típico}
 
@@ -755,6 +755,25 @@ luego de obtener las temperaturas desconocidas se obtiene el flujo desconocido
 \[
 \Cme{Q_{\mathrm{x}}} = \Mme{K_{\mathrm{cx}}} \Cme{T_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{T_\mathrm{c}}  
 \]
+
+Cuando se tienen problemas de radiación se puede iterar para obtener el perfil usando \textbf{relajación.}
+
+\newcommand{\CTx}{\Cme{T_{\mathrm{x}}}}
+\newcommand{\CTc}{\Cme{T_{\mathrm{c}}}}
+\newcommand{\CRx}{\Cme{R_{\mathrm{x}}}}
+\newcommand{\CR}{\Cme{R}}
+\newcommand{\MKxx}{\Mme{K_{\mathrm{xx}}}}
+\newcommand{\MKxc}{\Mme{K_{\mathrm{xc}}}}
+\begin{equation}
+\begin{cases}
+\CTx^{n+1}_{\mathrm{unrelaxed}} =  \MKxx^{-1}  \left(\CRx^{n} - \MKxc \CTc^{n}\right)\\
+\CR^{n} = \Cme{R_{\mathrm{generado}}}+ \Cme{R_{\mathrm{rad}}}^{n} \\
+\Cme{T}^{n+1} = \Cme{T}^n + \frac{1}{k_R} \cdot \left( \Cme{T}^{n+1}_{\mathrm{unrelaxed}} - \Cme{T}^{n} \right)
+\end{cases}
+\end{equation}
+donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Se puede asegurar la convergencia de la solución pero a la vez será más lenta a mayores $k_R$.
+
+
 
 \subsection{Transitorio}
 
