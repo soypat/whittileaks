@@ -76,18 +76,20 @@ innertopmargin=8pt,%
 ntheorem]{code}{Codigo}[section]
 %-----------------------------------------------------------
 % Code
-%\newcommand{\feaPP}{codep1.tex}
-\newcommand{\feaSP}{codep2.tex}
-%\newcommand{\feaTP}{codep3.tex}
-\newcommand{\annexFile}{annex.tex}
-\newcommand{\feaQP}{codep4.tex}
-%No code
-\newcommand{\feaPP}{null.tex}
-%\newcommand{\feaSP}{null.tex}
-\newcommand{\feaTP}{null.tex}
 
-%\newcommand{\feaQP}{null.tex}
-%\newcommand{\annexFile}{null.tex}
+%\newcommand{\feaPP}{codep1.tex}
+%\newcommand{\feaSP}{codep2.tex}
+%\newcommand{\feaTP}{codep3.tex}
+%\newcommand{\annexFile}{annex.tex}
+%\newcommand{\feaQP}{codep4.tex}
+
+%No code
+
+\newcommand{\feaPP}{null.tex}
+\newcommand{\feaSP}{null.tex}
+\newcommand{\feaTP}{null.tex}
+\newcommand{\feaQP}{null.tex}
+\newcommand{\annexFile}{null.tex}
 
 \begin{document}  %Aqui empieza el documento
 \begin{titlepage} %Esta es la caratula
@@ -104,6 +106,127 @@ ntheorem]{code}{Codigo}[section]
 
 
 \input{\feaPP}
+\section{Introduccion al Metodo de los Elementos Finitos}
+El análisis o método de elementos finitos (FEA por \textit{finite element analysis}) es usado para obtener una solución numérica de un problema de campo (electrostático, térmico, tensiones). Matemáticamente estos problemas están definidos como ecuaciones diferenciales o como un integral. Ambas expresiones pueden formularse con elementos finitos.
+
+Las ventajas de FEA son
+
+\begin{itemize}
+	\item Es aplicable a cualquier problema de campo
+	\item No hay restricciones geométricas
+	\item No hay restricciones al tipo de cargas o condiciones de borde que se pueden aplicar
+	\item Se puede formular para materiales que no son isotrópicos e incluso el tipo de material puede cambiar dentro de un elemento
+	\item Se pueden combinar distintos tipos de elementos en un modelos, por ejemplo, unir barras con vigas o incluso con elementos 3D.
+	\item La aproximación se puede mejorar fácilmente refinando la malla donde hay gradientes de tensión altos
+\end{itemize}
+
+\subsection{Proceso de resolucion}
+El primer paso es identificar y \textbf{clasificar} el problema.
+\begin{itemize}
+	\item Cuales son los fenómenos físicos involucrados?
+	\item Depende del tiempo? (estático o dinámico)
+	\item Hace falta una resolución iterativa? (no linealidad: radiación, plasticidad)
+	\item Que resultados se buscan del análisis
+\end{itemize} 
+
+Luego se comienza el \textbf{modelado} del problema.
+\begin{itemize}
+	\item Se excluyen los detalles superfluos, dejando los esencial para describir el problema con un margen de error adecuado sin complicar las cosas innecesariamente 
+	\item Un \textit{modelo geométrico} se convierte en un \textit{modelo matemático} cuando se describe su comportamiento mediante ecuaciones diferenciales y condiciones de borde.\footnote{Un modelo de FEA no es la realidad, es una \textit{simulación}. Difícilmente se obtengan resultados buenos cuando se aplique FEA a un modelo matemático que no refleja la realidad de forma apropiada.}
+\end{itemize}
+Un modelo matemático es una idealización donde se simplifican la geometría, propiedades del material, cargas y/o condiciones de borde en base del entendimiento del analista acerca lo que tiene (o no) importancia al momento de obtener los resultados requeridos.
+
+
+Finalmente llega el momento de la \textbf{discretización}. Un modelo matemático se discretiza dividiéndolo en una malla de elementos finitos. De esta forma, un campo continuo es representado como una función partida la cual es definida por una cantidad finita de variables nodales e interpolación dentro de cada elemento.
+
+\subsection{Tipos de error}
+Al momento de discretizar se introduce error conocido como \textbf{error de discretización}. Eso sucede porque se aproxima un campo \textit{suave} con una función partida. Aumentar el numero de elementos puede disminuir este error pero nunca eliminarlo.
+
+Aún reduciendo el error de discretización se tendría \textbf{error numérico} porque toda computadora usa números de finita precisión para efectuar aritmética. Este error suele ser mínimo cuando se discretiza de forma adecuada y no se tiene una situación física propensa al \textit{mal condicionamiento}.
+
+Cabe destacar que se introdujo error antes de hacer una sola cuenta! El \textbf{error de modelado} se introduce por necesidad de simplificar el problema. Las cargas puntuales, los soportes fijos y los materiales perfectamente homogéneos no existen en la realidad!
+
+
+\section{Elementos 1D}
+
+
+\subsection{Viga 3D de Timoshenko}
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig/3dbeam.PNG}
+	\caption{Grados de libertad, o \textit{dof}, de una viga 3-D.}
+\end{figure}
+La viga de Timoshenko 3D tiene las siguientes funciones de forma
+\[
+\begin{cases}
+N_{1}=1-\xi \\
+N_2 = \xi \\
+H_{v_{1}}=\beta_{y}\left(2 \xi^{3}-3 \xi^{2}+\alpha_{y} \xi+1-\alpha_{y}\right)\\
+H_{v_{2}}=\beta_{y}\left(-2 \xi^{3}+3 \xi^{2}-\alpha_{y} \xi\right) \\
+H_{w_{1}}=\beta_{z}\left(2 \xi^{3}-3 \xi^{2}+\alpha_{z} \xi+1-\alpha_{z}\right) \\
+H_{w_{2}}=\beta_{z}\left(-2 \xi^{3}+3 \xi^{2}-\alpha_{z} \xi\right)\\
+H_{\theta_{1}}=L \beta_{y}\left[\xi^{3}+\left(\frac{1}{2} \alpha_{y}-2\right) \xi^{2}+\left(1-\frac{1}{2} \alpha_{y}\right) \xi\right] \\
+H_{\theta_{2}}=L \beta_{y}\left[\xi^{3}-\left(1+\frac{1}{2} \alpha_{y}\right) \xi^{2}+\left(\frac{1}{2} \alpha_{y}\right) \xi\right] \\
+H_{\psi_{1}}=L \beta_{z}\left[\xi^{3}+\left(\frac{1}{2} \alpha_{z}-2\right) \xi^{2}+\left(1-\frac{1}{2} \alpha_{z}\right) \xi\right] \\
+H_{\psi_{2}}=L \beta_{z}\left[\xi^{3}-\left(1+\frac{1}{2} \alpha_{z}\right) \xi^{2}+\left(\frac{1}{2} \alpha_{z}\right) \xi\right] \\
+G_{v_{1}}=\frac{6 \beta_{y}}{L}\left(\xi^{2}-\xi\right) \\
+G_{v_{2}}=\frac{6 \beta_{y}}{L}\left(-\xi^{2}+\xi\right) \\
+G_{w_{1}}=\frac{6 \beta_{z}}{L}\left(\xi^{2}-\xi\right) \\
+G_{w_{2}}=\frac{6 \beta_{z}}{L}\left(-\xi^{2}+\xi\right) \\
+G_{\theta_{1}}=\beta_{y}\left[3 \xi^{2}+\left(\alpha_{y}-4\right) \xi+1-\alpha_{y}\right] \\
+G_{\theta_{2}}=\beta_{y}\left[3 \xi^{2}-\left(\alpha_{y}+2\right) \xi\right] \\
+G_{\psi_{1}}=\beta_{z}\left[3 \xi^{2}+\left(\alpha_{z}-4\right) \xi+1-\alpha_{z}\right] \\
+G_{\psi_{2}}=\beta_{z}\left[3 \xi^{2}-\left(\alpha_{z}+2\right) \xi\right]
+\end{cases}
+\]
+donde $x$ es la coordenada local sobre la viga:
+\[
+\xi=\frac{x}{L}, \quad \alpha_{y}=\frac{12 E I_{y}}{k G A L^{2}}, \quad \beta_{y}=\frac{1}{1-\alpha_{y}}, \quad \alpha_{z}=\frac{12 E I_{z}}{k G A L^{2}},\quad  \beta_{z}=\frac{1}{1-\alpha_{z}}
+\]
+donde $k$ me parece que es la \textit{constante torsional}\footnote{La constante torsional $J_T$ es igual a $I_p$ para secciones de viga circulares. Para perfiles abiertos de paredes delgadas, como por ejemplo un perfil doble T o un perfil `C', $J_T$ es mucho mas chico que $I_p$.} de la viga pero no estoy seguro($J_T$, no es igual al momento de inercia polar: $I_p$).
+
+Estas funciones de forma interpolan los desplazamientos sobre la viga:
+
+\[
+\begin{cases}
+u=N_{1} u_{1}+N_{2} u_{2} \\
+v=H_{v_{1}} v_{1}+H_{\theta_{1}} \theta_{1}+H_{v_{2}} v_{2}+H_{\theta_{2}} \theta_{2} \\
+w=H_{w_{1}} w_{1}+H_{\psi_{1}} \psi_{1}+H_{w_{2}} w_{2}+H_{\psi_{2}} \psi_{2} \\
+\varphi=N_{1} \varphi_{1}+N_{2} \varphi_{2} \\
+\theta=G_{v_{1}} v_{1}+G_{\theta_{1}} \theta_{1}+G_{v_{2}} v_{2}+G_{\theta_{2}} \theta_{2} \\
+\psi=G_{w_{1}} w_{1}+G_{\psi_{1}} \psi_{1}+G_{w_{2}} w_{2}+G_{\psi_{2}} \psi_{2}
+\end{cases}
+\]
+
+para luego calcular los esfuerzos usando las mismas formulas vistas en estatica y resistencia de materiales.
+\begin{align*}
+M_{z}&=E I_{z} \frac{\di^{2} v}{\di x^{2}}, \qquad V_{y}=\frac{\di M_{z}}{\di x}=E I_{z} \frac{\di^{3} v}{\di x^{3}}, \qquad N_x=A E \frac{u_{2}-u_{1}}{L} \\
+\qquad T&=G J_T \frac{\varphi_{2}-\varphi_{1}}{L}, \qquad M_{y}=E I_{y} \frac{\di^{2} w}{\di x^{2}}, \qquad V_{z}=E I_{y} \frac{\di^{3} w}{\di x^{3}}
+\end{align*}
+donde $J_T$ es la constante torsional de la viga y $A$ es la sección.
+
+La matriz de rigidez se puede obtener
+\[ \Mk_{\mathrm{1D}} = \left[\begin{array}{cccccccccccc} X & 0 & 0 & 0 & 0 & 0 & -X & 0 & 0 & 0 & 0 & 0\\ 0 & Y_{1} & 0 & 0 & 0 & Y_{2} & 0 & -Y_{1} & 0 & 0 & 0 & Y_{2}\\ 0 & 0 & Z_{1} & 0 & -Z_{2} & 0 & 0 & 0 & -Z_{1} & 0 & -Z_{2} & 0\\ 0 & 0 & 0 & S & 0 & 0 & 0 & 0 & 0 & -S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{3} & 0 & 0 & 0 & Z_{2} & 0 & Z_{4} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{3} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{4}\\ -X & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 & 0\\ 0 & -Y_{1} & 0 & 0 & 0 & -Y_{2} & 0 & Y_{1} & 0 & 0 & 0 & -Y_{2}\\ 0 & 0 & -Z_{1} & 0 & Z_{2} & 0 & 0 & 0 & Z_{1} & 0 & Z_{2} & 0\\ 0 & 0 & 0 & -S & 0 & 0 & 0 & 0 & 0 & S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{4} & 0 & 0 & 0 & Z_{2} & 0 & Z_{3} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{4} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{3} \end{array}\right]\begin{array}{c}
+u_1\\
+v_1 \\
+w_1 \\
+\varphi_1 \\
+\theta_1 \\
+\psi_1 \\
+u_2\\
+v_2 \\
+w_2 \\
+\varphi_2 \\
+\theta_2 \\
+\psi_2 
+\end{array} \]
+donde 
+\begin{align*}
+X&=\frac{AE}{L}, \qquad Y_4 = \frac{2EI_z}{L}, \qquad Y_3 = 2Y_4, \qquad Y_2 = \frac{3Y_4}{L} ,\qquad Y_1 = \frac{2Y_2}{L} \\
+Z_4 &= \frac{2EI_y}{L}, \qquad Z_3=2Z_4, \qquad Z_2 = \frac{2Z_4}{L}, \qquad Z_1 = \frac{2Z_2}{L}, \qquad S = \frac{G J_T}{L}
+\end{align*}
+
+
 
 \section{Parcial 2}
 Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en posición una arista o punto dado cargas térmicas/fuerza? Apoyalo (fix) y mira las reacciones con la carga termica/fuerza.
