@@ -38,7 +38,7 @@ citecolor=red]{hyperref}
     \newcommand{\varepsilonb}{\boldsymbol{\varepsilon}}
     \newcommand{\Phib}{\boldsymbol{\Phi}}
     \newcommand{\Omegab}{\boldsymbol{\Omega}}
-    \newcommand{\COmega}{\boldsymbol{\{ } \Omega \boldsymbol{\} }}
+    \newcommand{\COmega}{\Cme{\Omegab}}
     \newcommand{\CPhi}{\boldsymbol{\{ } \Phi \boldsymbol{\} }}
     \newcommand{\Mme}[1]{\boldsymbol{[}\mathbf{#1} \boldsymbol{]}}
     \newcommand{\Mmes}[1]{\boldsymbol{[}\boldsymbol{ \mathrm{#1} }\boldsymbol{]}}
@@ -101,18 +101,28 @@ ntheorem]{code}{Codigo}[section]
 \begin{document}  %Aqui empieza el documento
 \begin{titlepage} %Esta es la caratula
 \centering
-{\scshape \Huge Elementos Finitos\par}
+{Instituto Tecnológico de Buenos Aires \par}
+\vspace{2cm}
+
+{\scshape \Huge \bf Elementos Finitos\par}
 
 \vspace{.8cm}
 
 {\scshape\Large Un apunte informal\par}
+\vfill
+\vspace{3cm}
 
-\vspace{1cm}
+{
+	\centering
+	\includegraphics[width=\textwidth]{fig/sear.eps}
+	
+}
+\vfill
 
-\vspace{2cm}
-{\scshape\Large\textbf{Autor} \par}
+{\scshape\Large\textbf{Patricio Whittingslow} \par}
+\vspace{4cm}
 \medskip %medskip,smallskip,vspace son todos comandos para dejar espacio en blanco entre cosas
- \textsc{55423}
+ 
 
 \end{titlepage} %Termina la caratula
 \setcounter{section}{-1}
@@ -120,7 +130,7 @@ ntheorem]{code}{Codigo}[section]
 El análisis o método de elementos finitos (FEA por \textit{finite element analysis}) es usado para obtener una solución numérica de un problema de campo (electrostático, térmico, tensiones). Matemáticamente estos problemas están definidos como ecuaciones diferenciales o como un integral. Ambas expresiones pueden formularse con elementos finitos.
 
 Las ventajas de FEA son
-
+\vspace{-.3cm}
 \begin{itemize}
 	\item Es aplicable a cualquier problema de campo
 	\item No hay restricciones geométricas
@@ -155,21 +165,67 @@ Aún reduciendo el error de discretización se tendría \textbf{error numérico}
 
 Cabe destacar que se introdujo error antes de hacer una sola cuenta! El \textbf{error de modelado} se introduce por necesidad de simplificar el problema. Las cargas puntuales, los soportes fijos y los materiales perfectamente homogéneos no existen en la realidad! \cite{cook2007concepts}.
 
+\section{Principios básicos de elementos finitos}
+
+La ecuación que se resuelve es
+\[
+M\ddot{d} + C\dot{d} + Kd = F^{\mathrm{externas}}
+\]
+para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada (conocidos) las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$ y donde se buscan los desplazamientos $d$. La ecuación a resolver el sistema es
+\[
+d =K^{-1} \cdot F^{\mathrm{externas}}
+\]
+
+El método de los elementos finitos entonces tiene su campo de rigidez $K$ que se suele llamar la matriz de rigidez global $\MK$. Esta asocia rigidez con los grados de libertad de los nodos obtenidos de la discretización. Para cuerpos solidos en el espacio hay 6 grados de libertad, 3 de desplazamiento ($u$, $v$ ,$w$) y tres de giro ($\varphi$, $\theta$, $\psi$). 
+
+Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. 
 
 \part{Elementos 1D}
+
+\section{Elemento barra}
+Uno puede pensar el elemento barra como un resorte que solo ejerce fuerza en la dirección en que apunta su eje local $x$.
+\begin{equation} \label{eq:matrizBarra}
+\Mk_{\mathrm{barra}} = \begin{bmatrix}
+X & -X \\ 
+-X & X\\
+\end{bmatrix}\begin{array}{c}
+u_1\\
+u_2 \
+\end{array} \qquad \text{donde}\qquad X=\frac{EA}{L}
+\end{equation}
+si se acopla la matriz a $\MK$ así como está solo otorga rigidez en la dirección $x$ global. Si la barra en cuestión \textbf{no} es paralela al eje $x$ global se tiene que rotar la barra según su orientación real. Si el modelo es plano, osea solo se modelan $x$ e $y$ global, se puede rotar la barra como visto en \ref{ssec:OrientacionBarras}. 
+
+Para orientar una barra que se encuentra en el espacio se puede usar la matriz de rotación para una viga 3D con una leve modificación a la matriz de rigidez de la barra. Esta tiene que incluir todos los grados de libertad del problema! Es decir, la matriz $\Mk_{\mathrm{barra}}$ termina siendo de $12 \times 12$ para un problema de 6 grados de libertad por nodo.
+\[
+\mathbf{k}_{1,1}=\mathbf{k}_{7,7}=X, \qquad \mathbf{k}_{7,1}=\mathbf{k}_{1,7}=-X, \quad \text{las demás:} \quad \mathbf{k}_{i,j} = 0
+\]
+Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano\footnote{Las formulaciones de vigas en el plano más comunes son dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.})
+\subsection*{\textit{Bar patch test}}
+Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} porque sirve para ensayar la calidad del elemento y método de resolución. 
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/barpatch.eps}
+	\caption{Un \textit{bar patch test} para verificar un \textit{solver} de elementos finitos. $v_2=1$m.}
+	\label{fig:barpatch}
+\end{figure}
+
+El \textit{bar patch test} se puede mallar como un problema plano en el plano $xy$ con dos nodos ($x_1=y_1=x_2=0$, $y_2=1$m) y un elemento que los une. La rigidez del material entonces seria $EA=1$N. Se aplican las condiciones de borde detalladas en la figura: se restringen $u_1$,$v_1$ y $u_2$ y se resuelve el sistema para obtener $v_2$. Con este patch test se verifica el método de resolución, la forma en que se rota la matriz de rigidez de la barra, la aplicación de cargas y el elemento en si.
 
 
 \section{Viga 3D de Timoshenko}
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=0.6\textwidth]{fig/3dbeam.PNG}
-	\caption{Grados de libertad (\textit{dof}) y coordenadas locales de una viga 3-D.}
+	\caption{Grados de libertad (\textit{dof}) y coordenadas locales de una viga 3D de dos nodos y 6 dof por nodo.}
 \end{figure}
 La viga de Timoshenko 3D tiene las siguientes funciones de forma (forma eficiente tomada de \cite{luo2008efficient})
 \[
 \begin{cases}
+\!\!\!\!\!
+\begin{array}{l}
 N_{1}=1-\xi \\
 N_2 = \xi \\
+\end{array}\Bigg\}\quad  \text{Funciones de forma para barras}\\
 H_{v_{1}}=\beta_{y}\left(2 \xi^{3}-3 \xi^{2}+\alpha_{y} \xi+1-\alpha_{y}\right)\\
 H_{v_{2}}=\beta_{y}\left(-2 \xi^{3}+3 \xi^{2}-\alpha_{y} \xi\right) \\
 H_{w_{1}}=\beta_{z}\left(2 \xi^{3}-3 \xi^{2}+\alpha_{z} \xi+1-\alpha_{z}\right) \\
@@ -221,14 +277,14 @@ u_1\\
 v_1 \\
 w_1 \\
 \varphi_1 \\
-\theta_1 \\
 \psi_1 \\
+\theta_1 \\
 u_2\\
 v_2 \\
 w_2 \\
 \varphi_2 \\
-\theta_2 \\
-\psi_2 
+\psi_2 \\
+\theta_2 
 \end{array}
 \end{equation} 
 donde 
@@ -237,7 +293,7 @@ donde
 	Z_4 &= \frac{2EI_y}{L}, \qquad Z_3=2Z_4, \qquad Z_2 = \frac{2Z_4}{L}, \qquad Z_1 = \frac{2Z_2}{L}, \qquad S = \frac{G J_T}{L}
 \end{align*}
 
-\section{Orientación de elementos 1D}
+\section{Orientación de elementos 1D} 
 Para orientar un elemento en el espacio para que proporcione la rigidez que corresponde se tiene que empezar de hablar de una \textit{matriz de rotación} $\Mme{T}$.
 
 \[
@@ -245,7 +301,7 @@ Para orientar un elemento en el espacio para que proporcione la rigidez que corr
 \]
 luego de ser rotada la matriz puede ser acoplada al sistema.
 
-\subsection*{Orientación de barras en el plano}
+\subsection*{Orientación de barras en el plano} \label{ssec:OrientacionBarras}
 La matriz de rigidez de una barra es definida horizontal. Esto significa que toda la rigidez está en $x$.
 
 Una barra rotada $\phi$ grados va tener una nueva rigidez en el eje global $x$, e incluso puede no tener rigidez si se rota 90 grados.
@@ -261,14 +317,14 @@ La matriz transformación de una barra en el plano está dada por
 \end{bmatrix}
 \]
 
-\subsection{Orientación de vigas en el espacio}
+\subsection*{Orientación de vigas en el espacio}
 Para orientar una viga se tiene que aportar más información que para una barra. Mientras que una barra se puede orientar con el simple input de sus nodos, la viga de Timoshenko necesita orientar su eje $y$ local (o $z$ según gustos) además de su eje $x$ .
 
 Algunos programas como \Adina, por ejemplo, permiten al usuario especificar un nodo auxiliar o un vector auxiliar que apunta en la dirección en la cual se desea que la viga tenga mayor momento de inercia. 
 
 Supongamos que elegimos este vector auxiliar $s_z=[0,1,0]$. Esto nos va dar el mayor momento ante la flexión para una carga en $y$.
  \newcommand{\versor}[1]{\hat{#1}}
-Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos diretores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener el versor orientación en $y$
+Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener el versor orientación en $y$
 \[
 \versor{v}_y = \frac{s_z\times\versor{v}_x}{||s_z\times\versor{v}_x ||}
 \]
@@ -294,6 +350,40 @@ La matriz de transformación entonces es
 \end{equation}
 \input{\feaPP}
 
+\section{Ejercicios}
+\subsection*{Pórticos}
+
+\begin{figure}[htb!]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\textwidth]{fig/ej1viga.eps}
+		\caption{Pórtico de altura $L$ a escala para el problema \ref{ej:probvigaaltura} }
+		\label{fig:ej1viga}
+	\end{subfigure}
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+	\includegraphics[width=.625\textwidth]{fig/ej2viga.eps}
+	\caption{Pórtico con una carga distribuida en dirección $z$}
+	\label{fig:ej2viga}
+	\end{subfigure}
+\caption{Se considera $E=200$GPa.}
+\label{fig:ejPorticos}
+\end{figure}
+\begin{enumerate}
+	\item Para la figura \ref{fig:ej1viga} efectuar un modelo matemático y luego discretizar para resolver:
+	\begin{enumerate}
+		\item Verificar que para el caso dado con $F_x=0$ las reacciones en $y$ de los empotramientos son $\frac{F_y}{2}$.
+		\item Se diseño el pórtico con una altura $L=7$ metros con perfiles IPN 160. Un análisis preliminar de una consultora sugiere que el punto superior supera los desplazamientos máximos permitidos de $d_{\max}=15$mm. Verificar.
+		\item ¿Que altura debería el pórtico asi el punto superior no se desplaza mas que $26.7$mm? Usar perfil IPB\footnote{Se puede buscar también como perfil HEB.} 120. ¿Es esta la configuración de la figura \ref{fig:ej1viga}? (\textit{hint:} si lo es)\label{ej:probvigaaltura}
+	\end{enumerate}
+	\item Para la figura \ref{fig:ej2viga} considerar perfiles HEB 340.
+	\begin{enumerate}
+		\item Las reacciones considerando $a=12$m, $h=2$m  y una altura de $8$m. $q_z=500$ y $F_y=20$kN. \label{ej:reaccionportico3D}
+		\item ¿Que orientación de vigas es favorable para reducir el desplazamiento del punto C? 
+	\end{enumerate}
+\end{enumerate}
+Algunas Respuestas: \ref{ej:reaccionportico3D}:$\Cme{R_B}=\{6;\ms2;\ms-10;\ms-0,8;\ms-6,4;\ms-0,5;\ms-16\}$kN o kNm
 \part{Elementos 2D}
 
 \section{Protips para el mallado}
@@ -334,7 +424,7 @@ Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en po
 
 
 
-\section{Funciones de formas para elementos 2D y 3D}
+\section{Funciones de formas para elementos 2D}
 Se define cuantos nodos se va tener por elemento y se los ubica en el espacio $(\xi,\eta)$ que por simplicidad se trataran como $(x,y)$. Con el triangulo de Pascal para polinomios se elige el grado del polinomio y los términos. Luego se resuelve el sistema de ecuaciones $\MN\cdot X= A$ donde $\MN=[N_1\ms N_2 \ms \ldots\ms N_n]$ y $X=[1\ms x\ms y \ms\ldots\ms x^{k-1}y^{k} \ms x^{k}y^{k}]^T$, o algo por el estilo. Se tienen que elegir los grados mas convenientes teniendo en cuenta la simetría y el número de nodos, este ultimo te limita el número de términos posibles por la naturaleza de la interpolación. La matriz $A$ tendrá en su \textbf{espacio fila} el mismo polinomio evaluado en la posición del nodo correspondiente a esa fila.
 
 \[
@@ -349,7 +439,7 @@ A=
 Luego, las funciones de forma $\MN$ se pueden obtener así: $\MN=X^{-1} A$
 
 \section{Cargas 2-D}
-La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas nodales, $\Cme{F}$ fuerzas volumétricas, $\CPhi$ fuerzas de tracción superficiales, $\Cme{\varepsilonb_0}$ las deformaciones iniciales y $\Cme{\sigmab_0}$ las tensiones iniciales (pg. 228)
+La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas nodales del elemento, $\Cme{F}$ fuerzas volumétricas, $\CPhi$ fuerzas de tracción superficiales, $\Cme{\varepsilonb_0}$ las deformaciones iniciales y $\Cme{\sigmab_0}$ las tensiones iniciales (pg. 228)
 \begin{equation} \label{eq:CargasGenerales}
 \Cme{r}=\int \MN^T \Cme{F} \di V +\int \MN^T \CPhi \di S+\int \MB^T \ME \Cme{\varepsilonb_0} \di V- \int \MB \Cme{\sigmab_0} \di V
 \end{equation}
@@ -642,9 +732,9 @@ Si se quiere estudiar un rango de frecuencias de excitación tal que $\omega_{\m
 \end{align*}
 
 Una vez obtenida $\Mme{C\modal}$ se pueden obtener los desplazamientos modales $\Cme{Z}$. Tome en cuenta que debido a la diagonalidad de $\Mme{\Omegab^2}$ y $\Cme{R\modal }$ se desacoplan las ecuaciones de \ref{eq:vibraciones} y por ende se pasa a tratar dichas matrices diagonales como vectores columnas. Una vez desacopladas se tiene
- \[\Cme{\boldsymbol{\ddot{\mathrm{Z}}}}+2\COmega \Cme{C\modal} \Cme{\boldsymbol{\dot{\mathrm{Z}}}} + \COmega^2 \Cme{Z} = \Cme{R\modal} \]
+ \[\Cme{\boldsymbol{\ddot{\mathrm{Z}}}}+2\COmega \Cme{C\modal} \Cme{\boldsymbol{\dot{\mathrm{Z}}}} + \Cme{\Omegab^2} \Cme{Z} = \Cme{R\modal} \]
 \[
-\Cme{Z} = \frac{\Cme{R\modal }}{{\COmega}^2 \sqrt{(1-\chi^2)^2 + (2 \Cme{C\modal} \chi)^2}}
+\Cme{Z} = \frac{\Cme{R\modal }}{ \Cme{\Omegab^2} \sqrt{(1-\chi^2)^2 + (2 \Cme{C\modal} \chi)^2}}
 \]
 donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$. 
 
