@@ -67,7 +67,19 @@ citecolor=red]{hyperref}
     \newcommand{\modal}{{_{\Phib}}}
     \newcommand{\dampfact}{\varsigma}
     \newcommand{\spartial}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
-    
+    \newcommand{\CTx}{\Cme{T_{\mathrm{x}}}}
+    \newcommand{\CTc}{\Cme{T_{\mathrm{c}}}}
+        
+    \newcommand{\CDx}{\Cme{D_{\mathrm{x}}}}
+    \newcommand{\CDc}{\Cme{D_{\mathrm{c}}}}
+
+    \newcommand{\CRx}{\Cme{R_{\mathrm{x}}}}
+    \newcommand{\CRc}{\Cme{R_{\mathrm{c}}}}
+    \newcommand{\CR}{\Cme{R}}
+    \newcommand{\MKxx}{\Mme{K_{\mathrm{xx}}}}
+    \newcommand{\MKcc}{\Mme{K_{\mathrm{cc}}}}
+    \newcommand{\MKxc}{\Mme{K_{\mathrm{xc}}}}
+    \newcommand{\MKcx}{\Mme{K_{\mathrm{cx}}}}
 \newmdtheoremenv[% ACA PODES MODIFICAR LAS PROPIEDADES DEL CODIGO {code}
 font=\fontsize{12pt}{16pt},
 linecolor=black,
@@ -190,7 +202,7 @@ X & -X \\
 -X & X\\
 \end{bmatrix}\begin{array}{c}
 u_1\\
-u_2 \
+u_2 
 \end{array} \qquad \text{donde}\qquad X=\frac{EA}{L}
 \end{equation}
 si se acopla la matriz a $\MK$ así como está solo otorga rigidez en la dirección $x$ global. Si la barra en cuestión \textbf{no} es paralela al eje $x$ global se tiene que rotar la barra según su orientación real. Si el modelo es plano, osea solo se modelan $x$ e $y$ global, se puede rotar la barra como visto en \ref{ssec:OrientacionBarras}. 
@@ -374,7 +386,7 @@ La matriz de transformación entonces es
 	\item Para la figura \ref{fig:ej1viga} efectuar un modelo matemático y luego discretizar para resolver:
 	\begin{enumerate}
 		\item Verificar que para el caso dado con $F_x=0$ las reacciones en $y$ de los empotramientos son $\frac{F_y}{2}$.
-		\item Se diseño el pórtico con una altura $L=7$ metros con perfiles IPN 160. Un análisis preliminar de una consultora sugiere que el punto superior supera los desplazamientos máximos permitidos de $d_{\max}=15$mm. Verificar.
+		\item Se diseño el pórtico con una altura $L=7$ metros con perfiles IPN 160. Un análisis preliminar de una consultora sugiere que el punto superior supera los desplazamientos máximos permitidos de $d_{\max}=15$mm. Verificar.\label{ej:porticoVerificarConsultora}
 		\item ¿Que altura debería el pórtico asi el punto superior no se desplaza mas que $26.7$mm? Usar perfil IPB\footnote{Se puede buscar también como perfil HEB.} 120. ¿Es esta la configuración de la figura \ref{fig:ej1viga}? (\textit{hint:} si lo es)\label{ej:probvigaaltura}
 	\end{enumerate}
 	\item Para la figura \ref{fig:ej2viga} considerar perfiles HEB 340.
@@ -383,7 +395,12 @@ La matriz de transformación entonces es
 		\item ¿Que orientación de vigas es favorable para reducir el desplazamiento del punto C? 
 	\end{enumerate}
 \end{enumerate}
-Algunas Respuestas: \ref{ej:reaccionportico3D}:$\Cme{R_B}=\{6;\ms2;\ms-10;\ms-0,8;\ms-6,4;\ms-0,5;\ms-16\}$kN o kNm
+Algunas Respuestas:
+\begin{itemize}
+	\item[\ref{ej:porticoVerificarConsultora}]$d=0.0155$m, $\Cme{R_A}=\{1,1;\ms4,1;\ms-1,28\}$kN o kNm
+	\item[\ref{ej:reaccionportico3D}] $\Cme{R_B}=\{6;\ms2;\ms-10;\ms-0,8;\ms-6,4;\ms-0,5;\ms-16\}$kN o kNm,  $d_{\mathrm{C}}=2.38$mm
+\end{itemize}
+
 \part{Elementos 2D}
 
 \section{Protips para el mallado}
@@ -565,8 +582,32 @@ donde $q$ es la carga distribuida en [N/m], $r$ es la distancia al eje de revolu
 \end{Bmatrix} r \di \theta \di A
 \]
 \part{Otras cosas}
-\subsection{Constraints}
-Rigid Links
+
+\section{Desplazamientos iniciales}
+Si nuestro sistema tiene desplazamientos iniciales conocidos se puede formular un sistema a resolver:
+
+\begin{equation}
+	\begin{bmatrix}
+	\MKcc & \MKcx \\
+	\MKxc & \MKxx
+	\end{bmatrix}
+	\begin{Bmatrix}
+	\CDc \\
+	\CDx 
+	\end{Bmatrix}
+	=	\begin{Bmatrix}
+	\CRx \\
+	\CRc 
+	\end{Bmatrix}
+\end{equation} 
+Note que para los nodos donde se conocen los desplazamientos (los nodos cc) \textit{se desconocen las cargas}.
+\[
+\Cme{D_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{R_\mathrm{x}}- \Mme{K_{\mathrm{xc}}}  \Cme{D_\mathrm{c}} \right)
+\]
+luego de obtener los desplazamientos desconocidas se puede obtener las cargas desconocidas (sobre los nodos conocidos):
+\[
+\Cme{R_{\mathrm{c}}} = \Mme{K_{\mathrm{cx}}} \Cme{D_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{D_\mathrm{c}}  
+\]
 
 
 \subsection{Subestructuras}
@@ -636,17 +677,69 @@ Se suele requerir que $\eta\leq 0,05$
 
 
 \input{\feaTP}
-\subsubsection*{\Adina}
-\begin{figure}[htb!]
-    \centering
-    \includegraphics[width=.6\textwidth]{fig/H20numbering.eps}
-    \caption{Numeración de nodos H20 en \Adina (Ejes sugeridos)}
-    \label{fig:H20numbering}
-\end{figure}
 
-\subsection{Formulacion elemento Hexahedro de 8 nodos}
+
+
+
+\section{Transferencia de Calor}
+
+Tenemos el flujo de calor que es $\underline{K} \nabla T$, la divergencia de esto es el flujo neto que pasa por un punto.
+\[
+\nabla(\underline{K} \nabla T)+Q=\rho c \frac{\partial T}{\partial \tau}
+\] 
+
+Ley de Newton: 
+\[
+q_{c}=h_{c}(s, T)\left(T-T_{\infty}\right)
+\]
+
+Ley de Stefan Boltzmann
+\[
+q_{r}=\varepsilon_{r} \sigma\left(T^{4}-T_{\infty}^{4}\right)
+\]
+
+Es mas jodido el tema de modelar temperaturas fijas e imponer calor transferido, pues son aseveraciones no tan reales como imponer desplazamiento cero sobre un apoyo y  fuerzas sobre vigas.
+
+Para aplicar conveccion 
+
+Hay una parte que depende de la temperatura interna, la parte que no depende la dejo como vector de cargas. La parte que depende la tengo que sumar a mi matriz de conductividades
+\[
+R_{C_{i}}=\oint_{\Gamma_{c o m v}} N_{i} h\left(T(x)-T_{f l}\right) d \gamma
+\]
+
+Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
+
+\[
+\mathrm{Cargas:} R_{H} : \oint_{\Gamma_{c o n v}} N_{i} h T_{f l} d \gamma \qquad \qquad \mathrm{Conductividad:}  K : \oint_{\Gamma_{c m}} N_{i} h N_{j} d \gamma
+\]
+
+
+\subsection{Resolución de problemas típico}
+
+Condiciones de borde de temperatura
+
+\[
+\Cme{T_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{Q_\mathrm{x}}- \Mme{K_{\mathrm{xc}}}  \Cme{T_\mathrm{c}} \right)
+\]
+luego de obtener las temperaturas desconocidas se puede obtener el flujo desconocido (sobre los nodos conocidos):
+\[
+\Cme{Q_{\mathrm{c}}} = \Mme{K_{\mathrm{cx}}} \Cme{T_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{T_\mathrm{c}}  
+\]
+
+
+
+
+
+\section{Formulación elemento Hexaedro de 8 nodos}
 \newcommand{\dof}{\ensuremath{\mathrm{dof}}}
-El modelado con elementos isoparametricos hexaedros de 8 nodos es un buen punto de partida para comenzar a manejar los elementos finitos en 3 dimensiones. Un codigo hecho para obtener $\MK$ con elementos H8 se adapta con facilidad para los H20.
+El modelado con elementos isoparamétricos hexaedros de 8 nodos es un buen punto de partida para comenzar a manejar los elementos finitos en 3 dimensiones. Un código hecho para obtener $\MK$ con elementos H8 se adapta con facilidad para los H20.
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=.6\textwidth]{fig/H20numbering.eps}
+	\caption{Numeración de nodos H20 en \Adina (Ejes sugeridos)}
+	\label{fig:H20numbering}
+\end{figure}
 
 Cada nodo tendrá $3$ grados de libertad, dándonos $24$ \dof{} por elemento. El elemento H20 de la figura \ref{fig:H20numbering} esta planteado de tal forma que los primeros nodos del 1 al 8 son los nodos del H8 que se va formular a continuación.
 
@@ -708,10 +801,28 @@ Finalmente un calcula la rigidez del elemento usando \eqref{eq:RigidezElemento}.
 
 
 
-\section{Finitos II}
-\begin{equation} \label{eq:vibraciones}
-	\Mme{M}\Cme{\boldsymbol{\ddot{\mathrm{D}}}} + \Mme{C}\Cme{\boldsymbol{\dot{\mathrm{D}}}}+\Mme{K} \Cme{D} =\Cme{R}
+\part{No-linealidad y análisis dinámico}
+
+\section{Respuesta dinámica estructural}
+
+\begin{equation} \label{eq:ecuacionDinamicaGeneral}
+	\Mme{M}\Cme{\boldsymbol{\ddot{\mathrm{D}}}} + \Mme{C}\Cme{\boldsymbol{\dot{\mathrm{D}}}}+\Mme{K} \Cme{D} =\Cme{R^{\mathrm{ext}}}
 \end{equation}
+
+Se puede resolver la ecuación de arriba para un sistema dado sin amortiguamiento y sin cargas externas\footnote{Se denomina vibración ``libre'' cuando no hay cargas asociadas. Si no hay amortiguamiento el desplazamiento es regido por $u= \bar{u}\sin \omega t$, donde $\bar{u}$ es la amplitud de vibración y $\omega$ es la frecuencia circular \cite{cook2007concepts}. $\omega$ es obtenida en radianes por segundo.} para obtener sus frecuencias naturales y los modos asociados a estos.
+\[
+\CD = \Cme{\boldsymbol{\bar{\mathrm D}}}\sin \omega t, \qquad \Cme{\boldsymbol{\ddot{\mathrm{D}}}}= -\omega^2 \Cme{\boldsymbol{\bar{\mathrm D}}} \sin \omega t
+\]
+sin considerar la matriz de amortiguamiento se obtiene el problema de autovalores:
+
+\[
+\left( \MK - \omega^2 \Mme{M} \right)\Cme{\boldsymbol{\bar{\mathrm D}}} = \Cme{0}
+\]
+donde $\omega^2$ es un autovalor y la raíz de estos son las frecuencias naturales.
+
+
+
+
 Amortiguamiento $\Mme{C} = \alpha \Mme{M}+\beta \Mme{K}$ cede una matriz no diagonal. Se complica la resolución. Existen dos otros modelos que tratan con una matriz $\Mme{C\modal}$ diagonal donde las ecuaciones se desacoplan.
 
 
@@ -731,7 +842,7 @@ Si se quiere estudiar un rango de frecuencias de excitación tal que $\omega_{\m
 \alpha &= 2\omega_1 \omega_2 (\dampfact_1 \omega_2 -\dampfact_2 \omega_1)/(\omega_2^2 - \omega_1^2) \\ \beta &= 2(\dampfact_2\omega_2 -\dampfact_1 \omega_1)/(\omega_2^2 - \omega_1^2)
 \end{align*}
 
-Una vez obtenida $\Mme{C\modal}$ se pueden obtener los desplazamientos modales $\Cme{Z}$. Tome en cuenta que debido a la diagonalidad de $\Mme{\Omegab^2}$ y $\Cme{R\modal }$ se desacoplan las ecuaciones de \ref{eq:vibraciones} y por ende se pasa a tratar dichas matrices diagonales como vectores columnas. Una vez desacopladas se tiene
+Una vez obtenida $\Mme{C\modal}$ se pueden obtener los desplazamientos modales $\Cme{Z}$. Tome en cuenta que debido a la diagonalidad de $\Mme{\Omegab^2}$ y $\Cme{R\modal }$ se desacoplan las ecuaciones de \ref{eq:ecuacionDinamicaGeneral} y por ende se pasa a tratar dichas matrices diagonales como vectores columnas. Una vez desacopladas se tiene
  \[\Cme{\boldsymbol{\ddot{\mathrm{Z}}}}+2\COmega \Cme{C\modal} \Cme{\boldsymbol{\dot{\mathrm{Z}}}} + \Cme{\Omegab^2} \Cme{Z} = \Cme{R\modal} \]
 \[
 \Cme{Z} = \frac{\Cme{R\modal }}{ \Cme{\Omegab^2} \sqrt{(1-\chi^2)^2 + (2 \Cme{C\modal} \chi)^2}}
@@ -743,9 +854,157 @@ donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$.
 \subsection{Sine Sweep}
 A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
 
+\section{Transferencia de calor no-lineal y transitoria}
+
+\subsection*{Radiacion}
+Cuando se tienen problemas de radiación se puede iterar para obtener el perfil usando \textbf{relajación.}
 
 
-\section{Apuntes Segundo Parcial}
+\begin{equation}
+\begin{cases}
+\CTx^{n+1}_{\mathrm{unrelaxed}} =  \MKxx^{-1}  \left(\CRx^{n} - \MKxc \CTc^{n}\right)\\
+\CR^{n} = \Cme{R_{\mathrm{generado}}}+ \Cme{R_{\mathrm{rad}}}^{n} \\
+\Cme{T}^{n+1} = \Cme{T}^n + \frac{1}{k_R} \cdot \left( \Cme{T}^{n+1}_{\mathrm{unrelaxed}} - \Cme{T}^{n} \right)
+\end{cases}
+\end{equation}
+donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Se puede asegurar la convergencia de la solución pero a la vez será más lenta a mayores $k_R$.
+
+\subsection*{Método Galerkin}
+
+\[
+\int_{\Omega}-N_{i} k\left(\frac{\partial^{2} T}{\partial x^{2}}+\frac{\partial^{2} T}{\partial y^{2}}+\frac{\partial^{2} T}{\partial z^{2}}\right)-N_{i} q \quad d \omega=0
+\]
+
+
+Se le ocurrio a alguien derivar respecto a K 
+
+\[
+(I) \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}=\frac{\partial N_{i}}{\partial x} k \frac{\partial T}{\partial x}+N_{i} k \frac{\partial^{2} T}{\partial x^{2}}
+\]
+e integro en el volumen
+
+Lo que tenemos abajo es el integral de flujo de calor en la frontera (ultimo termino). $k \frac{\partial T}{\partial x}$ es el flujo de calor en direccion x.
+\[
+\int_{\Omega}^{\partial} \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial y}\right)}{\partial y}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial z}\right)}{\partial z} d \omega=\oint_{\Gamma} N_{i} k \frac{\partial T}{\partial \overline{n}} d s
+\]
+
+$T=N_j T_j$
+
+
+$N_j$ y $N_i$ representan dos cosas. $N_j$ nos da el perfil termico. Abajo multiplican entre ellas cruzadamente.
+\[
+\int_{\Omega} \frac{\partial N_{i}}{\partial x} k \frac{\partial N_{j}}{\partial x} T_{j}+\frac{\partial N_{i}}{\partial y} k \frac{\partial N_{j}}{\partial y} T_{j}+\frac{\partial N_{i}}{\partial z} k \frac{\partial N_{j}}{\partial z} T_{j}-\int_{\Omega} N_{i} Q d \omega-\oint_{\Gamma} N_{i} q_{\vec{n}} d s=0
+\]
+
+Temperature-Heat flux matrix $\MB$:
+
+%\[\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
+%\]
+
+Para 2D Q4
+\[
+\MB =
+\begin{Bmatrix}
+\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial x} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial x} \\
+\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial y} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial y} 
+\end{Bmatrix}
+\]
+
+\subsection*{Transitorio}
+Matriz capacidad
+\[
+[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
+\]
+
+El calculin
+\[
+[C]\{\dot{T}\}+[K]\{T\}=\left\{R_{B}\right\}+\left\{R_{Q}\right\}=\left\{R_{T}\right\} = [C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
+\]
+Sebas dice $C\dot{T}+kT = R$. Cuando esta en equilibrio? En tiempo $n$ esta en equilibrio tal que $C\dot{T}^n +kT^n = R^n$, si podemos calcular el tiempo $n+1$ entonces podemos resolver el problema transitorio. Con un \textit{peso} (que llamamos beta) podemos darle mas bola al tiempo $n$ o el tiempo $n+1$.
+$(T^{n+1}-T^n)/\Delta t = \dot{T}^{n+\beta}$ es lo que puedo calcular. Si $\beta=1$ entonces
+\[
+\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n+1}
+\]
+y si $\beta=0$
+\[
+\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n}
+\]
+
+\[
+\dot{T}^{n+\beta} = (1-\beta)\dot{T}^n +\beta \dot{T}^{n+1}
+\]
+
+\[
+\dot{T}^{n+1} 
+\]
+Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonces TODO depende del futuro.
+\[
+\beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
+\]
+
+Ecuación iterativa:
+\begin{equation}
+\Cme{T}^{n+1} = \left( \MC +\Delta t \beta \MK \right)^{-1} \left[ \left(\MC -\Delta t(1-\beta) \MK\right) \Cme{T}^n +\Delta t \left( (1-\beta) \Cme{R}^n + \beta \Cme{R}^{n+1}  \right)\right]
+\end{equation}
+
+
+
+\[
+\begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
+\]
+
+
+La estabilidad es pedir que los autovalores de $A$ sean menores que 1.
+donde 
+\[
+[A]=([C]+\Delta t \beta[K])^{-1}([C]-\Delta t(1-\beta)[K])
+\]
+EStabilidad 1-D:
+\[
+A=\frac{c-\Delta t(1-\beta) k}{c+\Delta t \beta k}=\frac{1-\Delta t(1-\beta) \omega}{1+\Delta t \beta \omega}
+\]
+Donde
+\[
+\omega = \frac{k}{c}
+\]
+
+tal que 
+\[
+\left| \frac{1-\Delta t \omega + \Delta t \beta \omega}{1+\Delta t \omega} \right| <1
+\]
+
+\[
+1-\Delta t \omega + \Delta t \beta \omega > -1 - \Delta t \beta \omega
+\]
+
+\[
+2-\Delta t \omega + 2 \Delta t \beta \omega > 0
+\]
+
+\[
+2+(-1+2 \beta ) \Delta t \omega > 0
+\]
+
+\[
+(-1 + 2\beta ) \Delta t \omega > -2 
+\]
+
+\[
+\Delta t \omega > \frac{-2}{-1 + 2\beta}
+\]
+
+Si beta es menor a un medio entonces siempre es positivo y por lo tanto no importa el paso de tiempo que tome siempre va converger.
+
+
+
+Si beta es 0 te queda que es inestable.
+CORREGIDO
+$\lambda > -1$ por ende la desigualdad de abajo te puede quedar positiva o negativa dependiendo del valor de $\beta $
+\[
+\Delta t \omega(2\beta -1) > -2
+\]
+
+\section{Analisis Dinámico}
 
 Es cuasiestatico cuando la deformacion avanza 
 
@@ -783,7 +1042,8 @@ Se presentan al lector dos formas de resolver la siguiente ecuación:
 \[
 \left\{\begin{array}{l}{[M] \dot{V} \}+[C] V \}+[K]\{D\}=\left\{R^{\text {ert}}\right\}} \\ {\{\dot{D}\}=\{V\}}\end{array}\right.
 \]
-Integración directa
+\subsection*{Métodos de resolución}
+Integración directa. Resuelve \ref{eq:ecuacionDinamicaGeneral}.
 \begin{align*}
 	\begin{cases}
 	\Cme{V}^{n+1}&=\Cme{V}^n + \frac{\Delta t}{2}  \Mme{M}^{-1}\left(\Cme{R^{\mathrm{ext}}} - \MC \Cme{V} - \MK \Cme{D} \right) \\
@@ -839,7 +1099,13 @@ Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo
 
 
 \section{No linealidad}
-Metodo variacional: Lo que buscamos es un estado de energia minima para el sistema, y como para obtener la energia tenemos que integrar se requiere integrar todo el sistema. Buscamos un punto donde el funcional sea estable. Decimos que toda la energia interna es igual al trabajo externo. 
+
+Porque cuando deformas una regla aumenta la rigidez? En parte porque cambia la geometria (a una viga curva) y porque hay tensiones remanentes al deformarse. Las tensiones remanentes se pueden pensar como una cuerda de guitarra que al ser tensionada son mas 'rigida' las cuerdas, cuesta mas deformar...
+
+Cargando por desplazamientos no me pierdo de soluciones intermedias, como por ejemplo una viga que pandea deja de tomar fuerzas hasta que se la vuelve a deformar suficiente. Conviene no cargar por fuerzas! \cite{cook2007concepts} 
+
+
+Método variacional: Lo que buscamos es un estado de energia minima para el sistema, y como para obtener la energia tenemos que integrar se requiere integrar todo el sistema. Buscamos un punto donde el funcional sea estable. Decimos que toda la energia interna es igual al trabajo externo. 
 
 Formula resuelta en Resistencia de materiales
 \[
@@ -904,192 +1170,6 @@ Si es sistema es par es estable. Fluidos con alta intercia, solidos. Si es impar
 Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para modelar la velocidad y la presion porque si no se traban. 
 
 
-\section{Transferencia de Calor}
-
-Tenemos el flujo de calor que es $\underline{K} \nabla T$, la divergencia de esto es el flujo neto que pasa por un punto.
-\[
-\nabla(\underline{K} \nabla T)+Q=\rho c \frac{\partial T}{\partial \tau}
-\] 
-
-Ley de Newton: 
-\[
-q_{c}=h_{c}(s, T)\left(T-T_{\infty}\right)
-\]
-
-Ley de Stefan Boltzmann
-\[
-q_{r}=\varepsilon_{r} \sigma\left(T^{4}-T_{\infty}^{4}\right)
-\]
-
-Es mas jodido el tema de modelar temperaturas fijas e imponer calor transferido, pues son aseveraciones no tan reales como imponer desplazamiento cero sobre un apoyo y  fuerzas sobre vigas.
-
-\textbf{Metodo Galerkin}
-\[
-\int_{\Omega}-N_{i} k\left(\frac{\partial^{2} T}{\partial x^{2}}+\frac{\partial^{2} T}{\partial y^{2}}+\frac{\partial^{2} T}{\partial z^{2}}\right)-N_{i} q \quad d \omega=0
-\]
-
-
-Se le ocurrio a alguien derivar respecto a K 
-
-\[
-(I) \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}=\frac{\partial N_{i}}{\partial x} k \frac{\partial T}{\partial x}+N_{i} k \frac{\partial^{2} T}{\partial x^{2}}
-\]
-e integro en el volumen
-
-Lo que tenemos abajo es el integral de flujo de calor en la frontera (ultimo termino). $k \frac{\partial T}{\partial x}$ es el flujo de calor en direccion x.
-\[
-\int_{\Omega}^{\partial} \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial y}\right)}{\partial y}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial z}\right)}{\partial z} d \omega=\oint_{\Gamma} N_{i} k \frac{\partial T}{\partial \overline{n}} d s
-\]
-
-$T=N_j T_j$
-
-
-$N_j$ y $N_i$ representan dos cosas. $N_j$ nos da el perfil termico. Abajo multiplican entre ellas cruzadamente.
-\[
-\int_{\Omega} \frac{\partial N_{i}}{\partial x} k \frac{\partial N_{j}}{\partial x} T_{j}+\frac{\partial N_{i}}{\partial y} k \frac{\partial N_{j}}{\partial y} T_{j}+\frac{\partial N_{i}}{\partial z} k \frac{\partial N_{j}}{\partial z} T_{j}-\int_{\Omega} N_{i} Q d \omega-\oint_{\Gamma} N_{i} q_{\vec{n}} d s=0
-\]
-
-Temperature-Heat flux matrix $\MB$:
-
-%\[\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
-%\]
-
-Para 2D Q4
-\[
-\MB =
-\begin{Bmatrix}
-\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial x} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial x} \\
- \frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial y} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial y} 
-\end{Bmatrix}
-\]
-
-Para aplicar conveccion 
-
-Hay una parte que depende de la temperatura interna, la parte que no depende la dejo como vector de cargas. La parte que depende la tengo que sumar a mi matriz de conductividades
-\[
-R_{C_{i}}=\oint_{\Gamma_{c o m v}} N_{i} h\left(T(x)-T_{f l}\right) d \gamma
-\]
-
-Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
-
-\[
-\mathrm{Cargas:} R_{H} : \oint_{\Gamma_{c o n v}} N_{i} h T_{f l} d \gamma \qquad \qquad \mathrm{Conductividad:}  K : \oint_{\Gamma_{c m}} N_{i} h N_{j} d \gamma
-\]
-
-La radiacion se hace de forma iterativa y converge porque es monotona. Aumenta la temperatura de mi sistema y por lo tanto aumenta la radiacion.
-
-\subsection{Resolución de problemas típico}
-
-Condiciones de borde de temperatura
-
-\[
-\Cme{T_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{Q_\mathrm{c}}- \Mme{K_{\mathrm{xc}}}  \Cme{T_\mathrm{c}} \right)
-\]
-luego de obtener las temperaturas desconocidas se obtiene el flujo desconocido 
-\[
-\Cme{Q_{\mathrm{x}}} = \Mme{K_{\mathrm{cx}}} \Cme{T_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{T_\mathrm{c}}  
-\]
-
-\subsection{Transitorio}
-
-Matriz capacidad
-\[
-[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
-\]
-
-El calculin
-\[
-[C]\{\dot{T}\}+[K]\{T\}=\left\{R_{B}\right\}+\left\{R_{Q}\right\}=\left\{R_{T}\right\} = [C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
-\]
-Sebas dice $C\dot{T}+kT = R$. Cuando esta en equilibrio? En tiempo $n$ esta en equilibrio tal que $C\dot{T}^n +kT^n = R^n$, si podemos calcular el tiempo $n+1$ entonces podemos resolver el problema transitorio. Con un \textit{peso} (que llamamos beta) podemos darle mas bola al tiempo $n$ o el tiempo $n+1$.
-$(T^{n+1}-T^n)/\Delta t = \dot{T}^{n+\beta}$ es lo que puedo calcular. Si $\beta=1$ entonces
-\[
-\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n+1}
-\]
-y si $\beta=0$
-\[
-\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n}
-\]
-
-\[
-\dot{T}^{n+\beta} = (1-\beta)\dot{T}^n +\beta \dot{T}^{n+1}
-\]
-
-\[
-\dot{T}^{n+1} 
-\]
-Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonces TODO depende del futuro.
-\[
-\beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
-\]
-
-Ecuación iterativa:
-\begin{equation}
-	\Cme{T}^{n+1} = \left( \MC +\Delta t \beta \MK \right)^{-1} \left[ \left(\MC -\Delta t(1-\beta) \MK\right) \Cme{T}^n +\Delta t \left( (1-\beta) \Cme{R}^n + \beta \Cme{R}^{n+1}  \right)\right]
-\end{equation}
-
-
-
-\[
-\begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
-\]
-
-
-La estabilidad es pedir que los autovalores de $A$ sean menores que 1.
-donde 
-\[
-[A]=([C]+\Delta t \beta[K])^{-1}([C]-\Delta t(1-\beta)[K])
-\]
-EStabilidad 1-D:
-\[
-A=\frac{c-\Delta t(1-\beta) k}{c+\Delta t \beta k}=\frac{1-\Delta t(1-\beta) \omega}{1+\Delta t \beta \omega}
-\]
-Donde
-\[
-\omega = \frac{k}{c}
-\]
-
-tal que 
-\[
-\left| \frac{1-\Delta t \omega + \Delta t \beta \omega}{1+\Delta t \omega} \right| <1
-\]
-
-\[
-1-\Delta t \omega + \Delta t \beta \omega > -1 - \Delta t \beta \omega
-\]
-
-\[
-2-\Delta t \omega + 2 \Delta t \beta \omega > 0
-\]
-
-\[
-2+(-1+2 \beta ) \Delta t \omega > 0
-\]
-
-\[
-(-1 + 2\beta ) \Delta t \omega > -2 
-\]
-
-\[
-\Delta t \omega > \frac{-2}{-1 + 2\beta}
-\]
-
-Si beta es menor a un medio entonces siempre es positivo y por lo tanto no importa el paso de tiempo que tome siempre va converger.
-
-
-
-Si beta es 0 te queda que es inestable.
-CORREGIDO
-$\lambda > -1$ por ende la desigualdad de abajo te puede quedar positiva o negativa dependiendo del valor de $\beta $
-\[
-\Delta t \omega(2\beta -1) > -2
-\]
-
-\section{No-linealidad}
-
-Porque cuando deformas una regla aumenta la rigidez? En parte porque cambia la geometria (a una viga curva) y porque hay tensiones remanentes al deformarse. Las tensiones remanentes se pueden pensar como una cuerda de guitarra que al ser tensionada son mas 'rigida' las cuerdas, cuesta mas deformar...
-
-Cargando por desplazamitos no me pierdo de soluciones intermedias, como por ejemplo una viga que pandea deja de tomar fuerzas hasta que se la vuelve a deformar suficiente. \cite{cook2007concepts}
 
 \section{Anexo}
 
