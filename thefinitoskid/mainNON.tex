@@ -318,15 +318,15 @@ La matriz transformación de una barra en el plano está dada por
 \]
 
 \subsection*{Orientación de vigas en el espacio}
-Para orientar una viga se tiene que aportar más información que para una barra. Mientras que una barra se puede orientar con el simple input de sus nodos, la viga de Timoshenko necesita orientar su eje $y$ local (o $z$ según gustos) además de su eje $x$ .
+Para orientar una viga se tiene que aportar más información que para una barra. Mientras que una barra se puede orientar con el simple input de sus nodos, la viga de Timoshenko necesita orientar su eje $y$ local además de su eje $x$ .
 
 Algunos programas como \Adina, por ejemplo, permiten al usuario especificar un nodo auxiliar o un vector auxiliar que apunta en la dirección en la cual se desea que la viga tenga mayor momento de inercia. 
 
-Supongamos que elegimos este vector auxiliar $s_z=[0,1,0]$. Esto nos va dar el mayor momento ante la flexión para una carga en $y$.
+Supongamos que elegimos este vector auxiliar $s_y=[0,1,0]$. Esto nos va dar el mayor momento ante la flexión para una carga en $y$ (suponiendo que $I_z>I_y$).
  \newcommand{\versor}[1]{\hat{#1}}
-Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener el versor orientación en $y$
+Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener el versor orientación en $z$
 \[
-\versor{v}_y = \frac{s_z\times\versor{v}_x}{||s_z\times\versor{v}_x ||}
+\versor{v}_z = \frac{\versor{v}_x\times s_y}{||\versor{v}_x\times s_y||}
 \]
 Luego de armar los versores $\versor{v}_x$, $\versor{v}_y$, $\versor{v}_z$ se define la matriz de los cosenos directores $\pmb{\lambda}$
 
