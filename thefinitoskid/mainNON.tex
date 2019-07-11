@@ -111,7 +111,9 @@ ntheorem]{code}{Codigo}[section]
 \newcommand{\annexFile}{null.tex}
 
 \begin{document}  %Aqui empieza el documento
+	\pagestyle{empty}
 \begin{titlepage} %Esta es la caratula
+	
 \centering
 {Instituto Tecnológico de Buenos Aires \par}
 \vspace{2cm}
@@ -134,9 +136,13 @@ ntheorem]{code}{Codigo}[section]
 {\scshape\Large\textbf{Patricio Whittingslow} \par}
 \vspace{4cm}
 \medskip %medskip,smallskip,vspace son todos comandos para dejar espacio en blanco entre cosas
- 
 
 \end{titlepage} %Termina la caratula
+\tableofcontents
+\clearpage
+
+\pagestyle{plain}
+\setcounter{page}{1}
 \setcounter{section}{-1}
 \section{Introduccion al Metodo de los Elementos Finitos}
 El análisis o método de elementos finitos (FEA por \textit{finite element analysis}) es usado para obtener una solución numérica de un problema de campo (electrostático, térmico, tensiones). Matemáticamente estos problemas están definidos como ecuaciones diferenciales o como un integral. Ambas expresiones pueden formularse con elementos finitos.
@@ -211,7 +217,7 @@ Para orientar una barra que se encuentra en el espacio se puede usar la matriz d
 \[
 \mathbf{k}_{1,1}=\mathbf{k}_{7,7}=X, \qquad \mathbf{k}_{7,1}=\mathbf{k}_{1,7}=-X, \quad \text{las demás:} \quad \mathbf{k}_{i,j} = 0
 \]
-Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano\footnote{Las formulaciones de vigas en el plano más comunes son dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.})
+Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano\footnote{Las formulaciones de vigas en el plano más comunes son de dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.})
 \subsection*{\textit{Bar patch test}}
 Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} porque sirve para ensayar la calidad del elemento y método de resolución. 
 \begin{figure}[htb!]
@@ -610,7 +616,7 @@ luego de obtener los desplazamientos desconocidas se puede obtener las cargas de
 \]
 
 
-\subsection{Subestructuras}
+\subsection*{Subestructuras}
 \[
 \begin{bmatrix}
     K_{AA} & K_{AB} \\
@@ -633,13 +639,13 @@ D_B = K_{BB}^{-1} (R_B - K_{BA}D_A)
 D_A =K_{AA}^{-1}(R_A-K_{AB}D_B)
 \]
 
-\subsection{Pitfalls}
+\subsection*{Pitfalls}
 \subsubsection*{\Matlab{}}
 \begin{itemize}
     \item Antes de aplicar carga distribuida, verificar la orientación del elemento con sus nodos ($\xi,\eta$)
     \item
 \end{itemize}
-\subsection{Error}
+\subsection*{Error}
 Tipos de error:
 \begin{itemize}
     \item Modelado
@@ -714,7 +720,7 @@ Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
 \]
 
 
-\subsection{Resolución de problemas típico}
+\subsection*{Resolución de problemas típico}
 
 Condiciones de borde de temperatura
 
@@ -757,7 +763,7 @@ y la matriz constitutiva para el espacio 3D con 3 \dof{} por nodo se escribe:
 \end{equation}
 donde $\lambda = \frac{E \nu}{(1+\nu)(1-2\nu)}$ y $G=\frac{E}{2(1+\nu)}$ y $f = 2+2\nu$.
 
-\subsubsection{Formulación elementos}
+\subsubsection*{Formulación elementos}
 El jacobiano tiene la forma
 \[
 \jac=
@@ -851,7 +857,7 @@ donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$.
 
 
 
-\subsection{Sine Sweep}
+\subsection*{Sine Sweep}
 A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
 
 \section{Transferencia de calor no-lineal y transitoria}
@@ -1130,7 +1136,7 @@ Hu-Washizu
 \]
 Separa parte elastica, deformaciones iniciales,  etc. Sebas lo uso para que elementos Q6 pasen el Patch test.
 
-\subsection{Residuos Ponderados}
+\subsection*{Residuos Ponderados}
 Y si no tengo la fisica? Balance de una viga de seccion $A$ con carga $q$.
 \[
 A \frac{\partial \sigma_{x}}{\partial x}+q=0
@@ -1171,9 +1177,9 @@ Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para mo
 
 
 
-\section{Anexo}
+\part{Anexo}
 
-\subsection{Tablas}
+\section{Tablas}
 \begin{table}[htb!]
 	\begin{tabular}{>{$n=$}l<{ \vspace{10pt}}*{13}{c}}
 		0 &&&&&&&1&&&&&&\\
@@ -1204,7 +1210,7 @@ Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para mo
 	\label{tab:kcorrectionfactor}
 \end{table}
 
-\subsection{Expresiones útiles}
+\section{Expresiones útiles}
 
 \begin{align}
 \sigma_{v}&=\sqrt{\sigma_{x}^2+\sigma_{y}^2+\sigma_{z}^2 - \sigma_x \sigma_y-\sigma_x\sigma_z -\sigma_y \sigma_z +3(\sigma_{xy}^2+\sigma_{xz}^2 +\sigma_{yz}^2)} \\
@@ -1270,7 +1276,7 @@ I=\int^1_{-1} \phi(\xi) \di \xi \approx \phi(\xi_1) W_1+\phi(\xi_2) W_2 \ldots \
 I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta) \di \xi \di \eta\approx \sum_i \sum_j W_i W_j\phi(\xi,\eta) 
 \end{equation}
 
-\subsection{Figuras}
+\section{Figuras}
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/pascalsTetra.eps}
