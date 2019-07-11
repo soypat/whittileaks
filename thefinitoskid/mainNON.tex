@@ -381,7 +381,7 @@ La matriz de transformación entonces es
 	\end{subfigure}
 	\begin{subfigure}{0.49\linewidth}
 		\centering
-	\includegraphics[width=.625\textwidth]{fig/ej2viga.eps}
+	\includegraphics[width=.663\textwidth]{fig/ej2viga.eps}
 	\caption{Pórtico con una carga distribuida en dirección $z$}
 	\label{fig:ej2viga}
 	\end{subfigure}
@@ -395,16 +395,21 @@ La matriz de transformación entonces es
 		\item Se diseño el pórtico con una altura $L=7$ metros con perfiles IPN 160. Un análisis preliminar de una consultora sugiere que el punto superior supera los desplazamientos máximos permitidos de $d_{\max}=15$mm. Verificar.\label{ej:porticoVerificarConsultora}
 		\item ¿Que altura debería el pórtico asi el punto superior no se desplaza mas que $26.7$mm? Usar perfil IPB\footnote{Se puede buscar también como perfil HEB.} 120. ¿Es esta la configuración de la figura \ref{fig:ej1viga}? (\textit{hint:} si lo es)\label{ej:probvigaaltura}
 	\end{enumerate}
-	\item Para la figura \ref{fig:ej2viga} considerar perfiles HEB 340.
+	\item Para la figura \ref{fig:ej2viga} considerar perfiles HEB 340. 
 	\begin{enumerate}
 		\item Las reacciones considerando $a=12$m, $h=2$m  y una altura de $8$m. $q_z=500$ y $F_y=20$kN. \label{ej:reaccionportico3D}
-		\item ¿Que orientación de vigas es favorable para reducir el desplazamiento del punto C? 
+		\item ¿Que orientación de vigas es favorable para reducir el desplazamiento del punto C?\label{ej:favorableportico3D} 
 	\end{enumerate}
 \end{enumerate}
 Algunas Respuestas:
 \begin{itemize}
-	\item[\ref{ej:porticoVerificarConsultora}]$d=0.0155$m, $\Cme{R_A}=\{1,1;\ms4,1;\ms-1,28\}$kN o kNm
-	\item[\ref{ej:reaccionportico3D}] $\Cme{R_B}=\{6;\ms2;\ms-10;\ms-0,8;\ms-6,4;\ms-0,5;\ms-16\}$kN o kNm,  $d_{\mathrm{C}}=2.38$mm
+	\item[\ref{ej:porticoVerificarConsultora})]$d=0.0155$m, $\Cme{R_A}=\{1,1;\ms4,1;\ms-1,28\}$ kN o kNm
+	
+	\item[\ref{ej:reaccionportico3D})] $\Cme{R_B}=
+	\{-6,2;\ms    10;\ms   -0,79;\ms   -0,64;\ms   -6,4;\ms   -0,5;\ms   16\}$ kN o kNm,  
+	
+	\item[\ref{ej:favorableportico3D})] $d_{\mathrm{C}}=2.38$mm
+	
 \end{itemize}
 
 \part{Elementos 2D}
