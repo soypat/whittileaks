@@ -189,21 +189,21 @@ La ecuación que se resuelve es
 \[
 M\ddot{d} + C\dot{d} + Kd = F^{\mathrm{externas}}
 \]
-para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada (conocidos) las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$ y donde se buscan los desplazamientos $d$. La ecuación a resolver el sistema es
+para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$ y donde se buscan los desplazamientos $d$. La ecuación a resolver el sistema es
 \[
 d =K^{-1} \cdot F^{\mathrm{externas}}
 \]
 
 El método de los elementos finitos entonces tiene su campo de rigidez $K$ que se suele llamar la matriz de rigidez global $\MK$. Esta asocia rigidez con los grados de libertad de los nodos obtenidos de la discretización. Para cuerpos solidos en el espacio hay 6 grados de libertad, 3 de desplazamiento ($u$, $v$ ,$w$) y tres de giro ($\varphi$, $\theta$, $\psi$). 
 
-Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. 
+Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. Los desplazamientos obtenidos corresponderan a estas direcciones.
 
 \part{Elementos 1D}
 
 \section{Elemento barra}
-Uno puede pensar el elemento barra como un resorte que solo ejerce fuerza en la dirección en que apunta su eje local $x$.
+Uno puede pensar el elemento barra como un resorte que solo ejerce fuerza en la dirección en que apunta su eje local $x'$.
 \begin{equation} \label{eq:matrizBarra}
-\Mk_{\mathrm{barra}} = \begin{bmatrix}
+\Mme{k'}_{\mathrm{barra}} = \begin{bmatrix}
 X & -X \\ 
 -X & X\\
 \end{bmatrix}\begin{array}{c}
@@ -211,13 +211,14 @@ u_1\\
 u_2 
 \end{array} \qquad \text{donde}\qquad X=\frac{EA}{L}
 \end{equation}
-si se acopla la matriz a $\MK$ así como está solo otorga rigidez en la dirección $x$ global. Si la barra en cuestión \textbf{no} es paralela al eje $x$ global se tiene que rotar la barra según su orientación real. Si el modelo es plano, osea solo se modelan $x$ e $y$ global, se puede rotar la barra como visto en \ref{ssec:OrientacionBarras}. 
+si se acopla la matriz a $\MK$ así como está solo otorga rigidez en la dirección $x$ global. Si la barra en cuestión \textbf{no} es paralela al eje $x$ global se tiene que rotar la barra según su orientación real. Si el modelo es plano, osea solo se modelan $x$ e $y$ global, se puede rotar la barra como será visto en la sección \ref{ssec:OrientacionBarras}. 
 
-Para orientar una barra que se encuentra en el espacio se puede usar la matriz de rotación para una viga 3D con una leve modificación a la matriz de rigidez de la barra. Esta tiene que incluir todos los grados de libertad del problema! Es decir, la matriz $\Mk_{\mathrm{barra}}$ termina siendo de $12 \times 12$ para un problema de 6 grados de libertad por nodo.
+Para orientar una barra que se encuentra en el espacio se puede usar la matriz de rotación para una viga 3D con una leve modificación a la matriz de rigidez de la barra. Esta tiene que incluir todos los grados de libertad del problema! Es decir, la matriz $\Mme{k'}_{\mathrm{barra}}$ termina siendo de $12 \times 12$ para un problema de 6 grados de libertad por nodo.
 \[
 \mathbf{k}_{1,1}=\mathbf{k}_{7,7}=X, \qquad \mathbf{k}_{7,1}=\mathbf{k}_{1,7}=-X, \quad \text{las demás:} \quad \mathbf{k}_{i,j} = 0
 \]
-Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano\footnote{Las formulaciones de vigas en el plano más comunes son de dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.})
+Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano.\footnote{Las formulaciones de vigas en el plano más comunes son de dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.}
+
 \subsection*{\textit{Bar patch test}}
 Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} porque sirve para ensayar la calidad del elemento y método de resolución. 
 \begin{figure}[htb!]
@@ -270,16 +271,18 @@ donde $k$ es el \textbf{factor de corrección por corte}\footnote{Ideado por Tim
 
 Estas funciones de forma interpolan los desplazamientos sobre la viga:
 
-\[
-\begin{cases}
-u=N_{1} u_{1}+N_{2} u_{2} \\
-v=H_{v_{1}} v_{1}+H_{\theta_{1}} \theta_{1}+H_{v_{2}} v_{2}+H_{\theta_{2}} \theta_{2} \\
-w=H_{w_{1}} w_{1}+H_{\psi_{1}} \psi_{1}+H_{w_{2}} w_{2}+H_{\psi_{2}} \psi_{2} \\
-\varphi=N_{1} \varphi_{1}+N_{2} \varphi_{2} \\
-\theta=G_{v_{1}} v_{1}+G_{\theta_{1}} \theta_{1}+G_{v_{2}} v_{2}+G_{\theta_{2}} \theta_{2} \\
-\psi=G_{w_{1}} w_{1}+G_{\psi_{1}} \psi_{1}+G_{w_{2}} w_{2}+G_{\psi_{2}} \psi_{2}
-\end{cases}
-\]
+\begin{equation} \label{eq:interpolacionFuncForma1D}
+	\begin{cases}
+	u=N_{1} u_{1}+N_{2} u_{2} \\
+	v=H_{v_{1}} v_{1}+H_{\theta_{1}} \theta_{1}+H_{v_{2}} v_{2}+H_{\theta_{2}} \theta_{2} \\
+	w=H_{w_{1}} w_{1}+H_{\psi_{1}} \psi_{1}+H_{w_{2}} w_{2}+H_{\psi_{2}} \psi_{2} \\
+	\varphi=N_{1} \varphi_{1}+N_{2} \varphi_{2} \\
+	\theta=G_{v_{1}} v_{1}+G_{\theta_{1}} \theta_{1}+G_{v_{2}} v_{2}+G_{\theta_{2}} \theta_{2} \\
+	\psi=G_{w_{1}} w_{1}+G_{\psi_{1}} \psi_{1}+G_{w_{2}} w_{2}+G_{\psi_{2}} \psi_{2}
+	\end{cases}
+\end{equation} 
+
+
 
 para luego calcular los esfuerzos usando las mismas formulas vistas en estatica y resistencia de materiales.
 \begin{align*}
@@ -290,7 +293,7 @@ donde $J_T$ es la constante torsional de la viga y $A$ es la sección. \footnote
 
 La matriz de rigidez se puede obtener\footnote{Para una viga uniforme con sección simétrica y de  material en su rango elástico.} integrando analíticamente a la funciones de forma mencionadas anteriormente sobre el largo de la viga. En este documento no se va tratar la matriz de rigidez que resulta de dicha integración. Se presenta al lector la matriz de rigidez de una viga Timoshenko 3D clásica \cite{cook2007concepts}:
 
-\begin{equation}\label{eq:matrizRigidezTimoshenko} \Mk_{\mathrm{1D}} = \left[\begin{array}{cccccccccccc} X & 0 & 0 & 0 & 0 & 0 & -X & 0 & 0 & 0 & 0 & 0\\ 0 & Y_{1} & 0 & 0 & 0 & Y_{2} & 0 & -Y_{1} & 0 & 0 & 0 & Y_{2}\\ 0 & 0 & Z_{1} & 0 & -Z_{2} & 0 & 0 & 0 & -Z_{1} & 0 & -Z_{2} & 0\\ 0 & 0 & 0 & S & 0 & 0 & 0 & 0 & 0 & -S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{3} & 0 & 0 & 0 & Z_{2} & 0 & Z_{4} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{3} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{4}\\ -X & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 & 0\\ 0 & -Y_{1} & 0 & 0 & 0 & -Y_{2} & 0 & Y_{1} & 0 & 0 & 0 & -Y_{2}\\ 0 & 0 & -Z_{1} & 0 & Z_{2} & 0 & 0 & 0 & Z_{1} & 0 & Z_{2} & 0\\ 0 & 0 & 0 & -S & 0 & 0 & 0 & 0 & 0 & S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{4} & 0 & 0 & 0 & Z_{2} & 0 & Z_{3} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{4} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{3} \end{array}\right]\begin{array}{c}
+\begin{equation}\label{eq:matrizRigidezTimoshenko} \Mme{k'}_{\mathrm{1D}} = \left[\begin{array}{cccccccccccc} X & 0 & 0 & 0 & 0 & 0 & -X & 0 & 0 & 0 & 0 & 0\\ 0 & Y_{1} & 0 & 0 & 0 & Y_{2} & 0 & -Y_{1} & 0 & 0 & 0 & Y_{2}\\ 0 & 0 & Z_{1} & 0 & -Z_{2} & 0 & 0 & 0 & -Z_{1} & 0 & -Z_{2} & 0\\ 0 & 0 & 0 & S & 0 & 0 & 0 & 0 & 0 & -S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{3} & 0 & 0 & 0 & Z_{2} & 0 & Z_{4} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{3} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{4}\\ -X & 0 & 0 & 0 & 0 & 0 & X & 0 & 0 & 0 & 0 & 0\\ 0 & -Y_{1} & 0 & 0 & 0 & -Y_{2} & 0 & Y_{1} & 0 & 0 & 0 & -Y_{2}\\ 0 & 0 & -Z_{1} & 0 & Z_{2} & 0 & 0 & 0 & Z_{1} & 0 & Z_{2} & 0\\ 0 & 0 & 0 & -S & 0 & 0 & 0 & 0 & 0 & S & 0 & 0\\ 0 & 0 & -Z_{2} & 0 & Z_{4} & 0 & 0 & 0 & Z_{2} & 0 & Z_{3} & 0\\ 0 & Y_{2} & 0 & 0 & 0 & Y_{4} & 0 & -Y_{2} & 0 & 0 & 0 & Y_{3} \end{array}\right]\begin{array}{c}
 u_1\\
 v_1 \\
 w_1 \\
@@ -305,19 +308,26 @@ w_2 \\
 \theta_2 
 \end{array}
 \end{equation} 
-donde 
+donde  
 \begin{align*}
 	X&=\frac{AE}{L}, \qquad Y_4 = \frac{2EI_z}{L}, \qquad Y_3 = 2Y_4, \qquad Y_2 = \frac{3Y_4}{L} ,\qquad Y_1 = \frac{2Y_2}{L} \\
 	Z_4 &= \frac{2EI_y}{L}, \qquad Z_3=2Z_4, \qquad Z_2 = \frac{2Z_4}{L}, \qquad Z_1 = \frac{2Z_2}{L}, \qquad S = \frac{G J_T}{L}
 \end{align*}
 
 \section{Orientación de elementos 1D} 
-Para orientar un elemento en el espacio para que proporcione la rigidez que corresponde se tiene que empezar de hablar de una \textit{matriz de rotación} $\Mme{T}$.
+Los elementos detallados en la sección anterior están acostados sobre el eje $x$. Para orientar un elemento en el espacio se tiene que empezar de hablar de una \textit{matriz de rotación} $\Mme{T}$.
 
-\[
-\Mk_{\mathrm{rotada}}= \Mme{T}^T \Mk \Mme{T}
-\]
-luego de ser rotada la matriz puede ser acoplada al sistema.
+\begin{equation} \label{eq:rotacionElemento}
+	\Mk_{\mathrm{rotada}}= \Mme{T}^T \Mme{k'} \Mme{T}
+\end{equation}
+donde $\Mme{k'} $ es la matriz de rigidez local del elemento 1D antes de ser rotado. Luego de ser rotada la matriz puede ser acoplada a la rigidez global del sistema $\MK$.
+
+Cabe agregar que los desplazamientos relacionados con el sistema global corresponden a los ejes globales. Para obtener los desplazamientos locales de los elementos se tienen que rotar estos también!
+
+\begin{equation} \label{eq:rotacionDesplazamientos}
+\Cme{d'}= \Mme{T} \Cme{d}  
+\end{equation}
+donde $\Cme{d'}$ son los desplazamientos del elemento en las coordenadas locales. Obtener $\Cme{d'}$ resulta útil al momento de querer calcular las fuerzas\footnote{El signo negativo es para obtener las fuerzas \textbf{internas} actuando en el elemento.} locales del elemento: \( \Mme{k'}\Cme{d'}= - \Cme{r'} \) o para interpolar los desplazamientos usando las expresiones en \eqref{eq:interpolacionFuncForma1D}.
 
 \subsection*{Orientación de barras en el plano} \label{ssec:OrientacionBarras}
 La matriz de rigidez de una barra es definida horizontal. Esto significa que toda la rigidez está en $x$.
@@ -422,6 +432,7 @@ Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
 	\item Que forma tendrán mis elementos con una dada división? Habrá una mejor forma de dividir mi dominio así no tengo jacobianos estramboticos?
 \end{itemize}
 
+
 \begin{figure}[htb!]
 	\centering
 	\begin{subfigure}{0.49\textwidth}
@@ -437,14 +448,13 @@ Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
 	\end{subfigure}
 	\caption{Dos formas de dividir una paleta de una turbina pelton que recibe un chorro incidente en su esquina superior derecha.}
 \end{figure}
-
-
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[angle=90,width=\linewidth]{fig/mallaPelton.eps}
 	\caption{Ejemplo de malla usando divisiones de  \ref{fig:buendivisiondominio}. Se refina en los costados donde se tiene flexión.}
 \end{figure}
 
+\clearpage
 Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en posición una arista o punto dado cargas térmicas/fuerza? Apoyalo (fix) y mira las reacciones con la carga térmica/fuerza.
 
 
