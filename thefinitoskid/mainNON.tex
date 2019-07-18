@@ -110,6 +110,9 @@ ntheorem]{code}{Codigo}[section]
 \newcommand{\feaQP}{null.tex}
 \newcommand{\annexFile}{null.tex}
 
+\usepackage[symbol]{footmisc}
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
 \begin{document}  %Aqui empieza el documento
 	\pagestyle{empty}
 \begin{titlepage} %Esta es la caratula
@@ -158,7 +161,7 @@ Las ventajas de FEA son
 	\item La aproximación se puede mejorar fácilmente refinando la malla donde hay gradientes de tensión altos
 \end{itemize}
 \vspace{-.7cm}
-\subsection{Proceso de resolucion}
+\subsection*{Proceso de resolucion}
 El primer paso es identificar y \textbf{clasificar} el problema.
 \begin{itemize}
 	\item Cuales son los fenómenos físicos involucrados y que resultados se buscan del análisis
@@ -176,14 +179,14 @@ Un modelo matemático es una idealización donde se simplifican la geometría, p
 
 Finalmente llega el momento de la \textbf{discretización}. Un modelo matemático se discretiza dividiéndolo en una malla de elementos finitos. De esta forma, un campo continuo es representado como una función partida la cual es definida por una cantidad finita de variables nodales e interpolación dentro de cada elemento.
 \vspace{-.4cm}
-\subsection{Tipos de error}
+\subsection*{Tipos de error}
 Al momento de discretizar se introduce error conocido como \textbf{error de discretización}. Eso sucede porque se aproxima un campo \textit{suave} con una función partida. Aumentar el numero de elementos puede disminuir este error pero nunca eliminarlo.
 
 Aún reduciendo el error de discretización se tendría \textbf{error numérico} porque toda computadora usa números de finita precisión para efectuar aritmética. Este error suele ser mínimo cuando se discretiza de forma adecuada y no se tiene una situación física propensa al \textit{mal condicionamiento}.
 
 Cabe destacar que se introdujo error antes de hacer una sola cuenta! El \textbf{error de modelado} se introduce por necesidad de simplificar el problema. Las cargas puntuales, los soportes fijos y los materiales perfectamente homogéneos no existen en la realidad! \cite{cook2007concepts}.
 
-\section{Principios básicos de elementos finitos}
+\subsection*{Principios básicos de elementos finitos}
 
 La ecuación que se resuelve es
 \[
@@ -198,6 +201,112 @@ El método de los elementos finitos entonces tiene su campo de rigidez $K$ que s
 
 Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. Los desplazamientos obtenidos corresponderan a estas direcciones.
 
+\part{Programación del método de los elementos finitos}
+
+\newcommand{\Numberof}{N}
+\newcommand{\Numberlocal}{n}
+\newcommand{\DOF}{\vartheta}
+\newcommand{\Nnod}{\ensuremath{\Numberof_{\mathrm{nod.}}}}
+\newcommand{\Ndims}{\ensuremath{\Numberof_{\mathrm{dim.}}}}
+\newcommand{\Nelem}{\ensuremath{\Numberof_{\mathrm{elem.}}}}
+\newcommand{\Ndofpornod}{\ensuremath{\DOF_{\mathrm{nod.}}}}
+\newcommand{\Ndof}{\ensuremath{\Numberof_{\mathrm{dof}}}}
+
+\newcommand{\Nnodporelem}{\ensuremath{\Numberlocal_{\mathrm{nod.}}}}
+\newcommand{\Ndofporelem}{\ensuremath{\Numberlocal_{\mathrm{dof}}}}
+
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{ccl}
+		Objeto matemático & Nombre de variable & Definición \\ \hline
+	\Nnod	& \texttt{Nnod}                   &    Número de nodos        \\
+	\Nelem	& \texttt{Nelem}                   &    Número de elementos       \\
+	\Ndofpornod	& \texttt{Ndofpornod}                   &    Número dof por nodo       \\
+	$\Ndof=\Ndofpornod \cdot \Nnod$	& \texttt{Nnod}                   &    Número de nodos        \\
+	\Nnodporelem	& \texttt{Nnodporelem}                   &    Número de nodos por elemento     \\
+	$\Ndofporelem= \Ndofpornod \cdot \Nnodporelem$	& \texttt{Ndofporelem}                   &    Número de dof por elemento       \\
+	\Ndims	& \texttt{Ndim}                   &    Número de dimensiones      \\
+	$\Mk$	& \texttt{ke}                   &   Matriz de rigidez del elemento      \\
+	$\MK$	& \texttt{K}                   &   Matriz de rigidez global      \\
+	
+	\end{tabular}
+\caption{Parámetros importantes para la resolución de elementos finitos. Comúnmente denominados \textit{dofinitions}.}
+\end{table}
+
+\section{Mallado}
+Primero se requiere discretizar el problema. Se comienza con una matriz de nodos que va unir los elementos. 
+
+\begin{equation}
+	\texttt{nodos} = \begin{bmatrix}
+	0 & 0 & 0 \\
+	0 & 6.0 & 0 \\
+	6.0 & 8.0 & 0 \\
+	12.0 & 6.0 & 0 \\
+	12.0 & 0 & 0
+	\end{bmatrix}_{ \Nnod \times \Ndims }
+\end{equation}
+Para acceder a las coordenadas del nodo enésimo en \Matlab: \texttt{nodos(n,:)}
+
+La matriz de conectividad de los elementos:
+\begin{equation} \label{eq:MatrizElementosEjemplo}
+\texttt{elementos} = \begin{bmatrix}
+1 & 2  \\
+2 & 3  \\
+5 & 4 \\
+4 & 3 
+\end{bmatrix}_{ \Nelem \times \Nnodporelem } 
+\end{equation}
+El orden de la numeración es lo que orienta al elemento. Tener especial cuidado cuando se trabaje con elementos 2D y 3D, numerar los nodos contraria a la formulación escogida puede causar problemas de jacobianos negativos!
+
+Con estas dos matrices se ha definido una malla que podría resolver el caso de la figura \ref{ej:reaccionportico3D}.\footnote{Para problemas de vigas 3D se tienen 6 dof por nodo, osea \texttt{Ndofpornod=6;}.}
+
+Las matrices \texttt{nodos} y \texttt{elementos} definen algunos parámetros importantes (código \Matlab):
+\begin{verbatim}
+	    [Nnod, Ndim] = size(nodos);
+	    [Nelem, Nnodporelem] = size(nodos);
+\end{verbatim}
+
+
+\section{Mapeo de dof}
+
+Para resolver el problema de elementos finitos hay que asociar dof a los elementos. Definido abajo la \textbf{función de mapeo} nodo a dof. Se ingresa el nodo de interés $n$ y la función devuelve los dof asociados a ese nodo.
+
+\begin{equation}
+	\texttt{node2dof}(n) = \begin{bmatrix}
+	n\cdot\Ndofpornod-\Ndofpornod +1 \\ n\cdot\Ndofpornod-\Ndofpornod +2 \\ \vdots \\ n\cdot\Ndofpornod
+	\end{bmatrix}_{\Ndofpornod\times 1}
+\end{equation}
+
+Se puede entonces obtener la matriz \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab:
+\begin{verbatim}
+    aux = node2dof(reshape(elementos',[],1)');
+    elemdof = reshape(aux,size(elemdof'))'
+\end{verbatim}
+
+La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
+
+Considerando $\Ndofpornod=3$ para el ejemplo que se viene tratando se tiene:
+\begin{equation} \label{eq:MatrizElemdofEjemplo}
+\texttt{elemdof} = \begin{bmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+4 & 5 & 6 & 7 & 8 & 9  \\
+13 & 14 & 15 & 10 & 11 & 12 \\
+10 & 11 & 12 & 7 & 8 & 9 
+\end{bmatrix}_{ \Nelem \times \Ndofporelem } 
+\end{equation}
+
+\section{Acople de rigidez}
+Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos.
+
+\begin{verbatim}
+    for e = 1:Nelem
+       meindof = elemdof(e,:);
+       ke = int(B'*E*B,0,L);
+       K(meindof, meindof) = K(meindof, meindof) + ke;
+    end
+\end{verbatim}
+
+Si el lector desea profundizar su conocimiento, se lo dirige a leer \citet{chessa2002programing}.
 \part{Elementos 1D}
 
 \section{Elemento barra}
@@ -1194,7 +1303,7 @@ Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para mo
 
 \part{Anexo}
 
-\section{Tablas}
+\section*{Tablas}
 \begin{table}[htb!]
 	\begin{tabular}{>{$n=$}l<{ \vspace{10pt}}*{13}{c}}
 		0 &&&&&&&1&&&&&&\\
@@ -1225,7 +1334,7 @@ Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para mo
 	\label{tab:kcorrectionfactor}
 \end{table}
 
-\section{Expresiones útiles}
+\section*{Expresiones útiles}
 
 \begin{align}
 \sigma_{v}&=\sqrt{\sigma_{x}^2+\sigma_{y}^2+\sigma_{z}^2 - \sigma_x \sigma_y-\sigma_x\sigma_z -\sigma_y \sigma_z +3(\sigma_{xy}^2+\sigma_{xz}^2 +\sigma_{yz}^2)} \\
@@ -1291,7 +1400,7 @@ I=\int^1_{-1} \phi(\xi) \di \xi \approx \phi(\xi_1) W_1+\phi(\xi_2) W_2 \ldots \
 I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta) \di \xi \di \eta\approx \sum_i \sum_j W_i W_j\phi(\xi,\eta) 
 \end{equation}
 
-\section{Figuras}
+\section*{Figuras}
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/pascalsTetra.eps}
