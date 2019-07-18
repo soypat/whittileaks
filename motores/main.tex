@@ -1,9 +1,7 @@
-
-
-\documentclass[twocolumn,10pt]{article}
+\documentclass[twocolumn,11pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
+\usepackage[a4paper,top=2.5cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
 %Letra general
 \usepackage{mathastext}
 
@@ -12,13 +10,18 @@
 \usepackage[format=plain,
             labelfont={bf,it},
             textfont=it]{caption}
-\usepackage{color}
+\usepackage{hyperref,xcolor}
 \usepackage{fontawesome}
 \usepackage{siunitx}
 \usepackage{graphicx}
 %Math
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
 \usepackage{amsfonts}
+\usepackage{fancyhdr,framed}
+\setlength{\headheight}{22.5pt}
+\pagestyle{fancy}
+\lhead{\href{http://www.whittileaks.com}{\textsf{whittileaks.com}}}
+\chead{MCI}
 
 %commands
 \newcommand{\glossentry}[2]{$#1$\indent #2 \par \vspace{.4cm} } %Entradas para glosario
@@ -40,6 +43,8 @@
 \newcommand{\NX}{$NO_x$}
 \begin{document}
 \title{Resumen de Motores a Combustión interna}
+
+
 % \author{Carlos Oncha}
 % \maketitle
 \twocolumn[
