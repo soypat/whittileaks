@@ -72,7 +72,7 @@ citecolor=red]{hyperref}
         
     \newcommand{\CDx}{\Cme{D_{\mathrm{x}}}}
     \newcommand{\CDc}{\Cme{D_{\mathrm{c}}}}
-
+    \newcommand{\CRext}{\Cme{R^{\mathrm{ext.}}}}
     \newcommand{\CRx}{\Cme{R_{\mathrm{x}}}}
     \newcommand{\CRc}{\Cme{R_{\mathrm{c}}}}
     \newcommand{\CR}{\Cme{R}}
@@ -230,6 +230,7 @@ Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales.
 	$\MK$	& \texttt{K}                   &   Matriz de rigidez global      \\
 	$\CR$   & \texttt{R}                  &  Vector de cargas \\
 	$\CD$   & \texttt{D}                 & Vector de desplazamientos \\
+%	$\CRext $   & \texttt{Rext}                 & Vector de cargas externas \\
 	\end{tabular}
 
 \caption{Parámetros importantes para la resolución de elementos finitos. Comúnmente denominados \textit{dofinitions}.}
@@ -375,6 +376,12 @@ Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazami
 \end{verbatim}
  donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con vigas.
 
+Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuerzas externas con:
+\begin{verbatim}
+    R = K*D;
+    R(node2dof(n)) % Puedo visualizar reacciones en nodo n
+\end{verbatim}
+\texttt{R} ahora tendrá las reacciones en los dof correspondientes.
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
