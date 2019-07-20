@@ -110,7 +110,7 @@ ntheorem]{code}{Codigo}[section]
 \newcommand{\feaQP}{null.tex}
 \newcommand{\annexFile}{null.tex}
 
-\usepackage[symbol]{footmisc}
+\usepackage[symbol,perpage]{footmisc}
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
 \begin{document}  %Aqui empieza el documento
@@ -147,7 +147,7 @@ ntheorem]{code}{Codigo}[section]
 \pagestyle{plain}
 \setcounter{page}{1}
 \setcounter{section}{-1}
-\section{Introduccion al Metodo de los Elementos Finitos}
+\section{Introducción al Método de los Elementos Finitos}
 El análisis o método de elementos finitos (FEA por \textit{finite element analysis}) es usado para obtener una solución numérica de un problema de campo (electrostático, térmico, tensiones). Matemáticamente estos problemas están definidos como ecuaciones diferenciales o como un integral. Ambas expresiones pueden formularse con elementos finitos.
 
 Las ventajas de FEA son
@@ -161,7 +161,7 @@ Las ventajas de FEA son
 	\item La aproximación se puede mejorar fácilmente refinando la malla donde hay gradientes de tensión altos
 \end{itemize}
 \vspace{-.7cm}
-\subsection*{Proceso de resolucion}
+\subsection*{Proceso de resolución}
 El primer paso es identificar y \textbf{clasificar} el problema.
 \begin{itemize}
 	\item Cuales son los fenómenos físicos involucrados y que resultados se buscan del análisis
@@ -192,14 +192,14 @@ La ecuación que se resuelve es
 \[
 M\ddot{d} + C\dot{d} + Kd = F^{\mathrm{externas}}
 \]
-para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$ y donde se buscan los desplazamientos $d$. La ecuación a resolver el sistema es
+para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$. Los desplazamientos $d$ sería la variable que se desea obtener. La ecuación a resolver entonces es
 \[
 d =K^{-1} \cdot F^{\mathrm{externas}}
 \]
 
-El método de los elementos finitos entonces tiene su campo de rigidez $K$ que se suele llamar la matriz de rigidez global $\MK$. Esta asocia rigidez con los grados de libertad de los nodos obtenidos de la discretización. Para cuerpos solidos en el espacio hay 6 grados de libertad, 3 de desplazamiento ($u$, $v$ ,$w$) y tres de giro ($\varphi$, $\theta$, $\psi$). 
+El método de los elementos finitos entonces tiene su campo de rigidez $K$ que se suele llamar la matriz de rigidez global $\MK$. Esta asocia rigidez con los grados de libertad de los nodos obtenidos de la discretización. Para cuerpos sólidos en el espacio hay 6 grados de libertad, 3 de desplazamiento ($u$, $v$ ,$w$) y tres de giro ($\varphi$, $\theta$, $\psi$). 
 
-Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. Los desplazamientos obtenidos corresponderan a estas direcciones.
+Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. Los desplazamientos obtenidos corresponderán a estas direcciones.
 
 \part{Programación del método de los elementos finitos}
 
@@ -229,14 +229,14 @@ Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales.
 	$\Mk$	& \texttt{ke}                   &   Matriz de rigidez del elemento      \\
 	$\MK$	& \texttt{K}                   &   Matriz de rigidez global      \\
 	$\CR$   & \texttt{R}                  &  Vector de cargas \\
-	
+	$\CD$   & \texttt{D}                 & Vector de desplazamientos \\
 	\end{tabular}
 
 \caption{Parámetros importantes para la resolución de elementos finitos. Comúnmente denominados \textit{dofinitions}.}
 \label{tab:VariableDefinitions}
 \end{table}
 
-Se sugiere al lector usar los nombres de variables mencionados en la tabla \ref{tab:VariableDefinitions}. La motivación de los nombres de variable es que sean legibles y cortos a la vez ya que aparecen seguido en un código de elementos finitos. `\texttt{N}' se lee Número, `\texttt{elem}':elementos etc. Por ejemplo, \texttt{Ndofpornod} se leería: Número de dof por nodo.
+Se sugiere al lector usar los nombres de variables mencionados en la tabla \ref{tab:VariableDefinitions}. La motivación de los nombres de variable es que sean legibles y cortos a la vez ya que aparecen seguido en un código de elementos finitos. `\texttt{N}' se lee Número y `\texttt{elem}' se lee como elementos etc. Por ejemplo, \texttt{Ndofpornod} se leería: Número de dof por nodo.
 
 \section{Mallado}
 Primero se requiere discretizar el problema. Se comienza con una matriz de nodos que va unir los elementos. 
@@ -301,7 +301,7 @@ Considerando $\Ndofpornod=3$ para el ejemplo que se viene tratando se tiene:
 \end{equation}
 
 \section{Acople de rigidez}
-Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK$
+Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK_{\Ndof \times \Ndof}$
 
 \begin{verbatim}
     % Funcionalmente equivalente a hacer: K = zeros(Ndof);
@@ -312,7 +312,7 @@ Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma
        K(meindof, meindof) = K(meindof, meindof) + ke;
     end
 \end{verbatim}
-donde \texttt{sparse(m,n)} crea una matriz esparsa de tamaño $\texttt{m}\times\texttt{n}$. Almacenar la matriz en forma esparsa no solo ahorra espacio en memoria pero también acorta tiempos de resolución. Es recomendable su uso cuando $\Ndof>10^4$.
+donde \texttt{sparse(m,n)} crea una matriz \textit{sparse} de tamaño $\texttt{m}\times\texttt{n}$.\footnote{Una matriz esparsa es una matriz cuyos elementos son, en la gran mayoría, igual a cero.} Almacenar la matriz en forma \textit{sparse} no solo ahorra espacio en memoria pero también acorta tiempos de resolución. Es recomendable su uso cuando $\Ndof>10^4$.
 
 Si el lector desea profundizar su conocimiento, se lo dirige a leer \citet{chessa2002programing}.
 
@@ -353,25 +353,25 @@ Ya sabemos lo que es una condición de borde natural de la última sección, que
 
 
 \section{Procedimiento de resolución}
-El sistema a resolver es $\CD=\MK^{-1}\CR$ aunque no es económico invertir la matriz $\MK$ desde un punto de vista numérico: La matriz $\MK$ tiene muchos zeros (una matriz \textit{sparse}) y su inversa es una matriz \textit{full}. Hay varias formas de resolver el problema que no requieren de la inversa, \Matlab{} tiene incorporado el operador \texttt{mldivide(A,B)} que resuelve un sistema de ecuaciones lineal y devuelve \texttt{x} tal que $Ax=B$. 
+El sistema a resolver es $\CD=\MK^{-1}\CR$ aunque no es económico invertir la matriz $\MK$ desde un punto de vista numérico: La matriz $\MK$ es esparsa y su inversa es una matriz \textit{full}.\footnote{Una matriz full no tiene elementos que son cero.} Hay varias formas de resolver el problema que no requieren de la inversa, \Matlab{} tiene incorporado el operador \texttt{mldivide(A,B)} que resuelve un sistema de ecuaciones lineal y devuelve \texttt{x} tal que $Ax=B$. 
 
 \begin{verbatim}
     Dr = K(isFree,isFree)\R(isFree); % == mldivide(K(isFree,isFree),R(isFree));
 \end{verbatim}
 Se suele llamar a la matriz con condiciones de borde aplicadas la \textbf{matriz de rigidez reducida}. En el caso que el sistema sea singular (no hay suficientes condiciones de borde esenciales para hallar una solución), o que el problema esté mal condicionado, \texttt{mldivide} devuelve un aviso.  
 
-En el código de arriba se cálculo \texttt{Dr} con las matrices de carga y rigidez reducidas, por ende \texttt{Dr} tiene tamaño \texttt{Ndof-Ncb} donde \texttt{Ncb} son la cantidad de dof restringidos.\footnote{\texttt{Ncb=sum(isFixed)}} Es conveniente obtener el vector de desplazamientos global para el pos-procesado:
+En el código de arriba se cálculo \texttt{Dr} con las matrices de carga y rigidez reducidas, por ende \texttt{Dr} tiene tamaño \texttt{Ndof-Ncb} donde \texttt{Ncb} son la cantidad de dof restringidos.\footnote{A pesar de no tener mucho uso en un programa de elementos finitos se deja la definición: \texttt{Ncb=sum(isFixed)}} Es conveniente obtener el vector de desplazamientos global para el pos-procesado:
 
 \begin{verbatim}
-	D = zeros(Ndof,1);
-	D(isFree) = Dr;
+    D = zeros(Ndof,1);
+    D(isFree) = Dr;
 \end{verbatim}
 
 Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazamientos en una matriz que muestre los desplazamientos de cada nodo en sus filas. También se puede obtener la posición deformada de los nodos sumando las matrices.
 \begin{verbatim}
-	desplazamientos = reshape(D,[],Ndofpornod)';
-	% si los primeros 3 dof son u,v,w puedo sumar:
-	posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
+    desplazamientos = reshape(D,[],Ndofpornod)';
+    % si los primeros 3 dof son u,v,w puedo sumar:
+    posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
 \end{verbatim}
  donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con vigas.
 
@@ -656,7 +656,7 @@ A=
 \]
 Luego, las funciones de forma $\MN$ se pueden obtener así: $\MN=X^{-1} A$
 
-\section{Cargas 2-D}
+\section*{Cargas 2-D}
 La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas nodales del elemento, $\Cme{F}$ fuerzas volumétricas, $\CPhi$ fuerzas de tracción superficiales, $\Cme{\varepsilonb_0}$ las deformaciones iniciales y $\Cme{\sigmab_0}$ las tensiones iniciales (pg. 228)
 \begin{equation} \label{eq:CargasGenerales}
 \Cme{r}=\int \MN^T \Cme{F} \di V +\int \MN^T \CPhi \di S+\int \MB^T \ME \Cme{\varepsilonb_0} \di V- \int \MB \Cme{\sigmab_0} \di V
@@ -678,7 +678,7 @@ La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas noda
     \label{fig:gauss_n3}
 \end{figure}
 
-\section{Ejemplo elemento exótico}
+\section*{Ejemplo elemento exótico}
 \subsection*{Matriz de Rigidez}
 Imaginemos un elementos Q5 cuadrado de $2\times2$ con espesor $t$  (igual al Q4 con un nodo en su centro). Si fuéramos a obtener las funciones de formas de dicho elemento quedarían iguales para $(x,y)$ y para $(\xi,\eta)$ por las dimensiones usadas. La funcionalidad que uno estaría tentado a seleccionar sería $[1,\ x, \ y,\ x^2, \ y^2 ]$, pero está trae problemas inesperados debido a que tiene varias soluciones en la interpolación. Como nuestra prioridad siempre es mantener la simetría la funcionalidad será $[1,\ x,\ y,\ xy,\ x^2y^2 ]$.  Tomando el orden de la figura \ref{fig:elemq5}.
 \[
@@ -809,73 +809,6 @@ luego de obtener los desplazamientos desconocidas se puede obtener las cargas de
 \[
 \Cme{R_{\mathrm{c}}} = \Mme{K_{\mathrm{cx}}} \Cme{D_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{D_\mathrm{c}}  
 \]
-
-
-\subsection*{Subestructuras}
-\[
-\begin{bmatrix}
-    K_{AA} & K_{AB} \\
-    K_{BA} & K_{BB}
-\end{bmatrix}
-\begin{bmatrix}
-    D_A \\
-    D_B
-\end{bmatrix}
-= \begin{bmatrix}
-    R_A \\
-    R_B
-\end{bmatrix}
-\]
-
-\[ 
-D_B = K_{BB}^{-1} (R_B - K_{BA}D_A)
-\]
-\[
-D_A =K_{AA}^{-1}(R_A-K_{AB}D_B)
-\]
-
-\subsection*{Pitfalls}
-\subsubsection*{\Matlab{}}
-\begin{itemize}
-    \item Antes de aplicar carga distribuida, verificar la orientación del elemento con sus nodos ($\xi,\eta$)
-    \item
-\end{itemize}
-\subsection*{Error}
-Tipos de error:
-\begin{itemize}
-    \item Modelado
-    \item Bugs
-    \item Error de usuario
-    \item Error de discretización
-    \item Error de redondeo/truncado
-    \item Error de manipulación 
-    \item Error numérico (combinación de los dos anteriores)
-\end{itemize}
-
-Cálculo Tensiones en puntos superconvergencia (Gauss orden 1 para Q4, y Gauss orden 2 aproxima para Q8).
-
-Extrapolo tensiones superconvergentes a los nodos ($\sigma^*$).
-
-Energía de deformación.
-
-Se suele requerir que $\eta\leq 0,05$
-\[
-\vvert{U}^2 = \sum^m_{i=1}\int_{v_e} \Cme{\varepsilonb}_i^T \ME \Cme{\varepsilonb}_i \di V
-\]
-\[
-\vvert{e}^2=\sum_{i=1}^m \int_{v_e} \left( \Cme{\varepsilonb^*}_i - \Cme{\varepsilonb}_i\right)^T \ME \left( \Cme{\varepsilonb^*}_i - \Cme{\varepsilonb}_i\right) \di V
-\]
-
-\[
-\vvert{e}^2=\sum_{i=1}^m \int_{v_e} \left( \Cme{\sigmab^*}_i - \Cme{\sigmab}_i\right)^T \ME ^{-1} \left( \Cme{\sigmab^*}_i - \Cme{\sigmab}_i\right) \di V
-\]
-
-\[
-\eta = \sqrt{\frac{\vvert{e}^2}{\vvert{e}^2+\vvert{U}^2}}
-\]
-
-
-
 
 \input{\feaTP}
 
@@ -1070,39 +1003,13 @@ Cuando se tienen problemas de radiación se puede iterar para obtener el perfil 
 \end{equation}
 donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Se puede asegurar la convergencia de la solución pero a la vez será más lenta a mayores $k_R$.
 
-\subsection*{Método Galerkin}
 
+\subsection*{Transitorio}
+Matriz capacidad
 \[
-\int_{\Omega}-N_{i} k\left(\frac{\partial^{2} T}{\partial x^{2}}+\frac{\partial^{2} T}{\partial y^{2}}+\frac{\partial^{2} T}{\partial z^{2}}\right)-N_{i} q \quad d \omega=0
+[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
 \]
-
-
-Se le ocurrio a alguien derivar respecto a K 
-
-\[
-(I) \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}=\frac{\partial N_{i}}{\partial x} k \frac{\partial T}{\partial x}+N_{i} k \frac{\partial^{2} T}{\partial x^{2}}
-\]
-e integro en el volumen
-
-Lo que tenemos abajo es el integral de flujo de calor en la frontera (ultimo termino). $k \frac{\partial T}{\partial x}$ es el flujo de calor en direccion x.
-\[
-\int_{\Omega}^{\partial} \frac{\partial\left(N_{i} k \frac{\partial T}{\partial x}\right)}{\partial x}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial y}\right)}{\partial y}+\frac{\partial\left(N_{i} k \frac{\partial T}{\partial z}\right)}{\partial z} d \omega=\oint_{\Gamma} N_{i} k \frac{\partial T}{\partial \overline{n}} d s
-\]
-
-$T=N_j T_j$
-
-
-$N_j$ y $N_i$ representan dos cosas. $N_j$ nos da el perfil termico. Abajo multiplican entre ellas cruzadamente.
-\[
-\int_{\Omega} \frac{\partial N_{i}}{\partial x} k \frac{\partial N_{j}}{\partial x} T_{j}+\frac{\partial N_{i}}{\partial y} k \frac{\partial N_{j}}{\partial y} T_{j}+\frac{\partial N_{i}}{\partial z} k \frac{\partial N_{j}}{\partial z} T_{j}-\int_{\Omega} N_{i} Q d \omega-\oint_{\Gamma} N_{i} q_{\vec{n}} d s=0
-\]
-
-Temperature-Heat flux matrix $\MB$:
-
-%\[\MB=\left(\begin{array}{c}{\frac{\partial}{\partial x}} \\ {\frac{\partial}{\partial y}} \\ {\frac{\partial}{\partial z}}\end{array}\right) \left(\begin{array}{lll}{N_{1}} & {\cdots} & {N_{n}}\end{array}\right) =\left[\begin{array}{ccc}{N_{1, x}} & {{ } & {N_{n, x}}} \\ {N_{1, y}} & {\cdots} & {N_{n, y}} \\ {N_{1, z}} & {{ } & {N_{n, z}} }\end{array}\right]
-%\]
-
-Para 2D Q4
+Temperature-Heat flux matrix $\MB$ para Q4:
 \[
 \MB =
 \begin{Bmatrix}
@@ -1111,33 +1018,6 @@ Para 2D Q4
 \end{Bmatrix}
 \]
 
-\subsection*{Transitorio}
-Matriz capacidad
-\[
-[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
-\]
-
-El calculin
-\[
-[C]\{\dot{T}\}+[K]\{T\}=\left\{R_{B}\right\}+\left\{R_{Q}\right\}=\left\{R_{T}\right\} = [C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
-\]
-Sebas dice $C\dot{T}+kT = R$. Cuando esta en equilibrio? En tiempo $n$ esta en equilibrio tal que $C\dot{T}^n +kT^n = R^n$, si podemos calcular el tiempo $n+1$ entonces podemos resolver el problema transitorio. Con un \textit{peso} (que llamamos beta) podemos darle mas bola al tiempo $n$ o el tiempo $n+1$.
-$(T^{n+1}-T^n)/\Delta t = \dot{T}^{n+\beta}$ es lo que puedo calcular. Si $\beta=1$ entonces
-\[
-\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n+1}
-\]
-y si $\beta=0$
-\[
-\frac{T^{n+1}-T^n}{\Delta t} = \dot{T}^{n}
-\]
-
-\[
-\dot{T}^{n+\beta} = (1-\beta)\dot{T}^n +\beta \dot{T}^{n+1}
-\]
-
-\[
-\dot{T}^{n+1} 
-\]
 Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonces TODO depende del futuro.
 \[
 \beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
@@ -1154,97 +1034,10 @@ Ecuación iterativa:
 \begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
 \]
 
+\section{Análisis Dinámico}
 
-La estabilidad es pedir que los autovalores de $A$ sean menores que 1.
-donde 
-\[
-[A]=([C]+\Delta t \beta[K])^{-1}([C]-\Delta t(1-\beta)[K])
-\]
-EStabilidad 1-D:
-\[
-A=\frac{c-\Delta t(1-\beta) k}{c+\Delta t \beta k}=\frac{1-\Delta t(1-\beta) \omega}{1+\Delta t \beta \omega}
-\]
-Donde
-\[
-\omega = \frac{k}{c}
-\]
-
-tal que 
-\[
-\left| \frac{1-\Delta t \omega + \Delta t \beta \omega}{1+\Delta t \omega} \right| <1
-\]
-
-\[
-1-\Delta t \omega + \Delta t \beta \omega > -1 - \Delta t \beta \omega
-\]
-
-\[
-2-\Delta t \omega + 2 \Delta t \beta \omega > 0
-\]
-
-\[
-2+(-1+2 \beta ) \Delta t \omega > 0
-\]
-
-\[
-(-1 + 2\beta ) \Delta t \omega > -2 
-\]
-
-\[
-\Delta t \omega > \frac{-2}{-1 + 2\beta}
-\]
-
-Si beta es menor a un medio entonces siempre es positivo y por lo tanto no importa el paso de tiempo que tome siempre va converger.
-
-
-
-Si beta es 0 te queda que es inestable.
-CORREGIDO
-$\lambda > -1$ por ende la desigualdad de abajo te puede quedar positiva o negativa dependiendo del valor de $\beta $
-\[
-\Delta t \omega(2\beta -1) > -2
-\]
-
-\section{Analisis Dinámico}
-
-Es cuasiestatico cuando la deformacion avanza 
-
-Cargas armonicas: Analizo respuesta de la estructura ante cada modo. 
-
-Aumentar damping disminuye la amplitud del motor, pero a la vez lo que le otorga damping se convierte rigido y toma reacciones.
-
-Para simular transitorio podemos usar la descomposicion modal con metodos numericos usando runge kutta... porque ahora tengo una particular... la funcion 
-
-Ahora pueden variar de cualquier manera:
-\[
-D=D(x,y,z,t) = N(x,y,z)D(t)
-\]
-
-Desarrollamos $D$ en serie Taylor.
-
-$f(x_0+\Delta x)= f(x_0) + f'(x_0) \Delta x +\tfrac{1}{2}...$
-
-Con las ecuaciones de taylor despejadas para $n+1$ y $n-1$ puedo adivinar el futuro con el presente (y pasado).
-\[
-\{D\}{n+1}=\{D\}{n-1}+2 \Delta t\{\dot{D}\}_{n}
-\]
-
-Sin conocer $\dot{D}_{n}$ esta dificil... uso taylor otra vez!
-
-\[
-\left[\frac{M}{\Delta t^{2}}+\frac{C}{2 \Delta t}\right]\{D\}{n+1}=\left\{R^{e x t}\right\}{n}-[K]\{D\}{n}+\frac{2}{\Delta t^{2}}[M] \} D{n}-\left[\frac{M}{\Delta t^{2}}-\frac{C}{2 \Delta t}\right]\{D\}_{n-1}
-\]
-
-donde $\left\{ R^{e x t}\right\}$ puede ser una función en el tiempo también! Una funcion heaviside excita TODOS los modos.
-
-Optimización: No hay mucho que se pueda hacer. Es super complicated
-
-Se presentan al lector dos formas de resolver la siguiente ecuación:
-\[
-\left\{\begin{array}{l}{[M] \dot{V} \}+[C] V \}+[K]\{D\}=\left\{R^{\text {ert}}\right\}} \\ {\{\dot{D}\}=\{V\}}\end{array}\right.
-\]
-\subsection*{Métodos de resolución}
-Integración directa. Resuelve \ref{eq:ecuacionDinamicaGeneral}.
+\subsection*{Método Integración Directa}
+Resuelve \ref{eq:ecuacionDinamicaGeneral}.
 \begin{align*}
 	\begin{cases}
 	\Cme{V}^{n+1}&=\Cme{V}^n + \frac{\Delta t}{2}  \Mme{M}^{-1}\left(\Cme{R^{\mathrm{ext}}} - \MC \Cme{V} - \MK \Cme{D} \right) \\
@@ -1253,8 +1046,7 @@ Integración directa. Resuelve \ref{eq:ecuacionDinamicaGeneral}.
 \end{align*}
 
 
-RUNGE KUTTA
-
+\subsection*{Método Runge--Kutta K4}
 Tengo que resolver las dos ecuaciones simultáneamente
 \[
 \begin{cases}
@@ -1275,101 +1067,6 @@ donde
 	\kcD &= \Cme{V}^n + \Delta t \ktV
 	\end{cases}
 \end{align*}
-
-
-Espectro de respuesta
-
-
-Gráfico $\ddot{u}$--$\omega$ muestra las cargas que podría estar sometido tu sistema.
-
-A frecuencias mas altas la diferencia entre las Z es mayor:
-
-\[
-S_{i}=\frac{Z_{i}^{\text { mâx }}}{Z_{i}^{\text { st }}}
-\]
-
-Ataco el sistema con un ``Paquete`` de cargas y cada modo responde de su propia forma. Este metodo Sebas le dice Random. Se suele usar para sistemas tipo placas en satelites, donde tenes todas las plaquetas vibrando y no conoces que esta pasando ahi. Para estructuras no tanto porque son más estables y se conoce mejor que puede llegar a ser el modo de vibración porque los modos de vibracion estan bien separados-> cosa que no es verdad en satelites. 
-
-\[
-\mathrm{D}(\mathrm{t}){\mathrm{j}}=[\Phi]\{\mathrm{Z}(\mathrm{t})\}=\sum{\mathrm{j}} \Phi_{\mathrm{ji}} Z_{\mathrm{i}}(\mathrm{t})=\sum_{\mathrm{j}} \Delta_{\mathrm{ji}}(\mathrm{t})
-\]
-
-
-
-Voy a tener un desplazamiento máximo cuando los modos esten todos en su máximo... pero eso sucede cuando están en fase, cosa que nunca sucede porque siempre hay algun desfasaje. Hay criterios para determinar el desplazamiento máximo, una incluye sumando la primer autoforma que es la más grande y luego sumando cuadrados mínimos de las otras. Con esto te cubris de la tensión que podría llegar a ocurrir ().
-
-
-\section{No linealidad}
-
-Porque cuando deformas una regla aumenta la rigidez? En parte porque cambia la geometria (a una viga curva) y porque hay tensiones remanentes al deformarse. Las tensiones remanentes se pueden pensar como una cuerda de guitarra que al ser tensionada son mas 'rigida' las cuerdas, cuesta mas deformar...
-
-Cargando por desplazamientos no me pierdo de soluciones intermedias, como por ejemplo una viga que pandea deja de tomar fuerzas hasta que se la vuelve a deformar suficiente. Conviene no cargar por fuerzas! \cite{cook2007concepts} 
-
-
-Método variacional: Lo que buscamos es un estado de energia minima para el sistema, y como para obtener la energia tenemos que integrar se requiere integrar todo el sistema. Buscamos un punto donde el funcional sea estable. Decimos que toda la energia interna es igual al trabajo externo. 
-
-Formula resuelta en Resistencia de materiales
-\[
-E I \frac{d^{4} v}{d x^{4}}-q=0
-\]
-
-Formula resuelta en elementos finitos
-\[
-\Phi=\int_{0}^{L} \frac{E I}{2}\left(\frac{d^{2} v}{d x^{2}}\right)^{2}-q v d x \rightarrow \delta \Phi=0
-\]
-
-Para resolver variacionalmente necesitamos un potencial. Necesitamos saber como se almacena la energia. Con plasticidad pierdo energia, se entrega a la pieza de la forma de deformacion permanente. 
-
-Segun el principio de los trabajos virtuales. Lo que en verdad estamos escribiendo es un equilibrio de fuerzas, porque me estoy preguntando el estado final y si esta en equilibrio haciendo el calculo "si me muevo un cachito cuanto trabajo hago?". Entonces no estoy mirando los procesos disipativos! 
-
-Como hago para los fluidos si quiero aplicar PTV a fluidos? Tenes que plantear el Principio de trabajo virtual, lo mismo pero ahora con el tiempo ahi metido.
-
-
-Hu-Washizu
-\[
-\int_{V^{e}}\left[\frac{1}{2} \varepsilon^{T} C \varepsilon-\sigma^{T} \varepsilon+\sigma^{T}(\nabla u)-\overline{p}^{T} u\right] d V-\int_{S_{\sigma}^{e}} \overline{T}^{T} u d S
-\]
-Separa parte elastica, deformaciones iniciales,  etc. Sebas lo uso para que elementos Q6 pasen el Patch test.
-
-\subsection*{Residuos Ponderados}
-Y si no tengo la fisica? Balance de una viga de seccion $A$ con carga $q$.
-\[
-A \frac{\partial \sigma_{x}}{\partial x}+q=0
-\]
-
-Pero el ultimo elemento de la viga esta sometido a carga $P$. La condicion de borde natural es:
-\[
-A E \frac{\partial u}{\partial x}=P
-\]
-Una condicion de borde comun seria $u=0$ sobre el empotramiento.
-
-Soy vidente y digo que $\widetilde{u}=a_{1} x+a_{2} x^{2}$. el mon~o es por aproximada
-
-Metiendolo en el PDE obtengo ecuaciones y resuelvo por los $a$. Si tenes mucha suerte los Residuos te dan cero tenes mucha suerte y lo que tenes en tus manos es una solucion al sistema. Wl residuo te dice cuanto error estas cometiendo. $R_s=0$ vale cero siempre porque es una condicion que impusimos.
-
-
-Que hago? Calculo para que en $x=x_0$ el residuo valga cero (Sebas dice en $x=L/3$).  
-
-Hago una grilla de puntos y pido que se cumpla la ecuacion en ellos.
-
-Si planteo que el integral de $R$ valga cero entonces como que coloc un punto en $x=L/2$. Colocacion por puntos, es rapido y medio chotengui, pero anda bien en una malla fina. 
-
-Metodo cuadrado minimos busca reducir el $R$ violentamente. Integro el residuo al cuadrado mas el residuo en la condicion de borde al cuadrado multiplicado por un factor que podes multiplicarlo por grandes numero par a que se cumpla forzadamente. $1/L^2$ te da unidades correctas para dicho factor $\alpha$ 
-
-Galerkin: Las condiciones de borde naturales se llaman asi  porque no las ves, pero estan metidas ahi en la ecuacion. a diferencia de las comunes quelas eligo yo.
-
-Porque co`no meto una funcion a multiplicar el residuo? Porque esta proyectando de tal forma de que valga cero. Si soy inteligente para proectar voy a lograr que las proyecciones sean nulas.
-
-Al vector puedo descomponerlo en dos direcciones. Proyectamos tal que nos de cero en ciertas direcciones. Depende de cuantos coeficientes pusistes, proyectas tantas veces. 
-
-En la filmina 12 Sebas reemplaza $=\int_{V}-\frac{\partial W_{i}}{\partial x} \frac{\partial u}{\partial x} d v$ y reemplaza cada peso correpsondiente.
-
-Galerkin 1D pg 13: Proyecto las funciones de forma del nodo respecto las otras y si misma. vector de cargas $\sum_{n e l s} \int_{L} N_{i} q d x$
-
-Si es sistema es par es estable. Fluidos con alta intercia, solidos. Si es impar entonces tenes problemas al tener ecuaciones cubicas (impares) mucho problema, no bueno.
-
-Tener cuidado al elegir el grado. En fluidos se eligen diferentes grados para modelar la velocidad y la presion porque si no se traban. 
-
 
 
 \part{Anexo}
@@ -1470,6 +1167,24 @@ I=\int^1_{-1} \phi(\xi) \di \xi \approx \phi(\xi_1) W_1+\phi(\xi_2) W_2 \ldots \
 \begin{equation}
 I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta) \di \xi \di \eta\approx \sum_i \sum_j W_i W_j\phi(\xi,\eta) 
 \end{equation}
+
+Se suele requerir que $\eta\leq 0,05$
+\[
+\vvert{U}^2 = \sum^m_{i=1}\int_{v_e} \Cme{\varepsilonb}_i^T \ME \Cme{\varepsilonb}_i \di V
+\]
+\[
+\vvert{e}^2=\sum_{i=1}^m \int_{v_e} \left( \Cme{\varepsilonb^*}_i - \Cme{\varepsilonb}_i\right)^T \ME \left( \Cme{\varepsilonb^*}_i - \Cme{\varepsilonb}_i\right) \di V
+\]
+
+\[
+\vvert{e}^2=\sum_{i=1}^m \int_{v_e} \left( \Cme{\sigmab^*}_i - \Cme{\sigmab}_i\right)^T \ME ^{-1} \left( \Cme{\sigmab^*}_i - \Cme{\sigmab}_i\right) \di V
+\]
+
+\[
+\eta = \sqrt{\frac{\vvert{e}^2}{\vvert{e}^2+\vvert{U}^2}}
+\]
+
+
 
 \section*{Figuras}
 \begin{figure}[htb!]
