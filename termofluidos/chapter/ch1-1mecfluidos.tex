@@ -87,7 +87,7 @@ Ley para gases ideales:
 \begin{equation} \label{eq:idealGasesLaw}
     \pe= \moldens \boltzmann T=\frac{N\overtilde{R}T}{V}
 \end{equation}
-donde $\boltzmann$ es la constante de Boltzmann y vale $\SI{1.380649e-23}{\meter \squared \kilogram \per \second \squared \per \kelvin}$. $\moldens$ es la cantidad de moléculas de gas por unidad volumen. $N$ es la cantidad de moles. $R$ es la constante de gas ideal universal $\overtilde{R}=\SI{8,31447}{\joule \per \mole \per \kelvin}$. $\pe$ es la presión termodinámica
+donde $\boltzmann$ es la constante de Boltzmann y vale $\SI{1.380649e-23}{\meter \squared \kilogram \per \second \squared \per \kelvin}$. $\moldens$ es la cantidad de moléculas de gas por unidad volumen. $N$ es la cantidad de moles. $R$ es la constante de gas ideal universal $\overtilde{R}=\SI{8,31447}{\joule \per \mole \per \kelvin}$. $\pe$ es la \textbf{presión termodinámica}
 
 Existe también la expresión especifica de la ley para gases ideales
 \[
@@ -174,14 +174,16 @@ S_{ij}= \begin{bmatrix}
 
 Cabe destacar que $\ttens{\sigma}^H$ contempla las componentes normales y está asociado al equilibrio del fluido mientras que $\ttens{S}$ se relaciona a los esfuerzos tangenciales y está asociado a un gradiente de velocidades. Se los suele denominar el \textbf{tensor hidrostático} y el \textbf{tensor de desviaciones}, respectivamente. 
 
-La presión mecánica se define como $p=-\sigma_m$. Si el sistema está en equilibrio (mecánico y termodinámico) entonces $p$ resulta ser la presión termodinámica ($\pe=\moldens \boltzmann T=\frac{NRT}{V}$) \label{sec:presionmecanica}
+La presión mecánica se define como $p=-\sigma_m$. Si el sistema está en equilibrio (mecánico y termodinámico) entonces $p$ resulta ser la presión termodinámica. Si $\ttens{S}=\pmb{0}$ se puede inferir que el fluido está en equilibrio hidrostático ($p=\pe$), pero no necesariamente en reposo.
+ \label{sec:presionmecanica}
+ 
 
 \subsection{Reología} \label{sec:reologia}
 La reología es la rama de la física encargada del estudio de la deformación y flujo de la materia. Para un fluido newtoniano con solo una componente de velocidad $U_q$ se puede definir
 \begin{equation}
     \tau_{pq}=-\mu \spartial{U_q}{x_p}
 \end{equation}
-donde $\mu$ es la viscosidad dinámica, $p$ indica la dirección del transporte molecular (normal a la velocidad [ver nota \ref{foot:transporteMolecular}]) y $q$ indica el componente de velocidad.
+donde $\mu$ es la \textbf{viscosidad dinámica}, $p$ indica la dirección del transporte molecular (normal a la velocidad [ver nota \ref{foot:transporteMolecular}]) y $q$ indica el componente de velocidad.
 
 En general para fluidos
 \begin{equation}
@@ -211,7 +213,13 @@ Se define la \textbf{viscosidad aparente} como $\eta$ y depende de la velocidad 
 \[
 \eta=K\left| \dot{\gamma} \right|^{n-1}
 \]
-para fluidos newtonianos $K=2\mu$.
+para fluidos newtonianos $K$ es constante y vale dos veces las \textbf{viscosidad dinámica}: $K=2\mu$.
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=.49\textwidth]{fig/deformacion-tensionFluidos.eps}
+	\caption{Gráfico tensión-velocidad de deformación para un fluido newtoniano y varios no-newtonianos.}
+\end{figure}
 
 \derpq Alguna vez quisiste servir kétchup que tardaba en salir de la botella al principio y después de unos segundos salía a los chorros? 
 
@@ -234,7 +242,17 @@ y para el cubo grande tenemos
 \end{gather*}
 con esto resulta aparente que la relación de fuerzas $\frac{F_\smol{L}}{F_\smol{V}}$ disminuye fuertemente con el aumento del tamaño característico del problema. Para el rango de número de Bond $\Bond \lesssim 1$ se tiene que las fuerzas capilares son apreciables en comparación con la gravedad. La longitud característica $L_c$ a la cual el número de Bond es uno se denomina la longitud capilar. $\Bond_{L_c}=1$
 
-Un efecto de superficie importante es el ángulo de contacto $\theta$ medido desde el seno del fluido al ángulo que forma sobre la superficie, que aparece cuando un liquido entra en contacto con una superficie solida y otro fluido. El balance de fuerzas se realiza tomando en cuenta los parámetros $\Upsilon$ y $\theta$. Sí $\theta<90\grados$ entonces el liquido ``moja" la superficie; sí $\theta>90\grados$ entonces el liquido no moja.%fighere
+Un efecto de superficie importante es el ángulo de contacto $\theta$ medido desde el seno del fluido al ángulo que forma sobre la superficie, que aparece cuando un liquido entra en contacto con una superficie solida y otro fluido. El balance de fuerzas se realiza tomando en cuenta los parámetros $\Upsilon$ y $\theta$. Sí $\theta<90\grados$ entonces el liquido moja la superficie; sí $\theta>90\grados$ entonces el liquido no moja.%fighere
+
+\subsubsection{Inestabilidad en chorros libres pequeños}
+Los sistemas tienden al estado de menor energía. Para un chorro libre de $\Bond_R \lesssim 1$ los efectos de tensión superficial hacen que se formen gotas. Tomando un volumen de control sobre un chorro cilíndrico y planteando su superficie expuesta al medio y la superficie de un sistema de $n$ gotas de igual volumen se puede demostrar que se \textit{reduce la energía del sistema para un radio} $r$ \textit{de gota}:
+\begin{gather*}
+	V_{\mathrm{cil.}}=V_{\mathrm{esf.}} \Rightarrow	\pi R^2 L =n \frac{4}{3}\pi r^3 \\
+	S_{\mathrm{cil.}}=2\pi RL, \qquad S_{\mathrm{esf.}}=n4\pi r^2
+\end{gather*}
+se analiza el caso más favorable en donde todo el fluido del cilindro es juntado en una esfera, maximizando la reducción de superficie y por ende su energía. Con esta consideración se tiene que cumplir $r>\frac{3}{2}R$ para que la gota reduzca la energía del sistema. 
+
+
 \subsection{Cavitación}
 El fenómeno de la cavitación se refiere a la rápida formación \textit{y colapso} de burbujas de vapor en un liquido. Ocurre cuando la presión termodinámica es menor a la presión de vapor. Es importante en el diseño de aspas para bombas y hélices de barcos ya que la presencia de la cavitación daña los componentes cercanos a la implosión de las burbujas.
 
@@ -262,7 +280,7 @@ Considere una curva cerrada $C$ en un campo de velocidades $u_j$. La \textit{cir
 \end{equation}
 por el teorema de Stokes podemos llegar a relacionar la vorticidad con la circulación
 \[
-\Gamma \equiv - \oint_C u_k s_k \di \ell = -\iint_S \left( \rotor u_k \right)n_k\di \sur= -\iint_S \xi_k n_k\di \sur
+\Gamma \equiv\! -\! \oint_C\!\! u_k s_k \di \ell =\! -\!\iint_S \left( \rotor u_k \right)n_k\di \sur=\! -\!\iint_S\! \xi_k n_k\di \sur
 \]
 flujos irrotacionales (por definición $\xi=0$) por ende tienen $\Gamma=0$. Típicamente los flujos aerodinámicos son de este tipo. La única restricción a este principio general es que el contorno tiene que ser reducible a un punto dentro del campo de flujo. Un álabe es un ejemplo de un contorno no reducible con $\Gamma>0$ \citep{durst2008fluid}.
 \subsubsection{Principio de no-deslizamiento}
@@ -288,10 +306,13 @@ Una vez que el número de Reynolds es lo suficientemente alto, comienza la turbu
     \item Flujo en un caño $\Reynolds_\textrm{trans.}=2700\mhyph5000$
     \item Flujo alrededor de un cilindro $\Reynolds_\crit \approx \num{3e5}$
 \end{itemize}
+
+\subsection{Diferencia entre líquidos y gases}
+A diferencia de los gases, los líquidos no presentan un cambio apreciable de volumen cuando se les aplica una presión. Se puede suponer entonces que los líquidos \textbf{\textit{en reposo}} son incompresibles. Recordar que la incompresibilidad no es una propiedad del fluido, si no del flujo. Es decir, un flujo de gas puede comportarse de manera incompresible bajo ciertas condiciones.
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%   FLUIDOSTATICA    %%
 %%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \section{Fluidostática}
 \subsection{Ecuación de fluidostática}
@@ -525,6 +546,43 @@ En general se van a tratar problemas mecánicos ($LMT$) y termo-mecánicos ($LMT
  \]
  donde $n$ es el número de variables elegidos para describir el problema (viscosidad [$\mu$], longitud característica [$L,D,\ell$], conductividad térmica [$k$], etc.) y donde $m$ es igual a la cantidad de ecuaciones independientes formadas igualando los exponentes de cada dimensión base a cero (siempre menor o igual a la cantidad de dimensiones base) \citep{kreith2011principles}. 
  
+ \subsection{Ejemplo}
+  En 1950 Sir Goffrey Taylor, un matemático británico, publica un artículo sobre análisis dimensional en el cual incluye un cálculo de la energía liberada de la primer bomba atómica ensayada en 1945 usando el teorem Pi de Buckingham. Taylor se basa en un video de la explosión que marcaba el tiempo desde detonación y una escala. 
+  
+  \begin{figure}[thb!]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{fig/trinity1.jpg}
+  	\includegraphics[width=0.9\linewidth]{fig/trinity2.jpg}
+  	\caption{Onda de choque del primer ensayo de una bomba atómica denominado \textit{Trinity Test} [1945]. }
+  	\label{fig:trinity}
+  \end{figure}
  
+ Se plantea que la energía liberada $E$ está en función de la densidad del medio $\rho$, el radio de la onda de choque $r$, y el tiempo $t$ desde la detonación. Se desprecian la viscosidad 
  
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{l||l|lll}
+		& $E$ & $t$ & $r$ & $\rho$ \\ \hline
+		$L$ & 2   & 0   & 1   & -3     \\ \hline
+		$M$ & 1   & 0   & 0   & 1      \\ \hline
+		$T$ & -2  & 1   & 0   & 0     
+	\end{tabular}
+\end{table}
  
+\begin{equation*}
+	E = t^\alpha r^\beta \rho^\gamma = \begin{cases}
+	L:& 2=\beta - 3\rho \\
+	M:& 1= \rho \\
+	T:& -2 = \gamma
+	\end{cases}  
+\end{equation*}
+
+Resolviendo el sistema de arriba llegamos a que 
+\[E = \frac{\rho r^{5}}{t^{2}} \]
+Las dos imágenes en la figura \ref{fig:trinity} son para una explosión de $22$ kT de TNT, equivalente a aproximadamente $10 ^{14}$ joules. Con que certeza se puede calcular la energía de la \textit{Trinity Test}? 
+
+
+
+
+
+
