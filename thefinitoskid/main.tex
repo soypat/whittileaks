@@ -8,7 +8,8 @@
 \textbf{#1}}}
 \newcommand{\rmfontsc}[1]{{\fontfamily{ptm}\selectfont%
 \textsc{#1}}}
-\usepackage[urlcolor=blue,
+\usepackage[hyperfootnotes=false,
+urlcolor=blue,
 colorlinks=true,
 citecolor=red]{hyperref}
 %%----------------------------------------------------
@@ -286,7 +287,7 @@ Para resolver el problema de elementos finitos hay que asociar dof a los element
 Se puede entonces obtener la matriz \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab:
 \begin{verbatim}
     aux = node2dof(reshape(elementos',[],1)');
-    elemdof = reshape(aux,size(elemdof'))'
+    elemdof = reshape(aux,size(aux'))'; % SOLO SI Nelem>1
 \end{verbatim}
 
 La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
@@ -302,7 +303,7 @@ Considerando $\Ndofpornod=3$ para el ejemplo que se viene tratando se tiene:
 \end{equation}
 
 \section{Acople de rigidez}
-Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK_{\Ndof \times \Ndof}$
+Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura de Gauss, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK_{\Ndof \times \Ndof}$
 
 \begin{verbatim}
     % Funcionalmente equivalente a hacer: K = zeros(Ndof);
@@ -378,10 +379,13 @@ Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazami
 
 Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuerzas externas con:
 \begin{verbatim}
-    R = K*D;
-    R(node2dof(n)) % Puedo visualizar reacciones en nodo n
+    Rext = K*D;
+    Rext(node2dof(n)) % Puedo visualizar reacciones en nodo n
+    Rext(elemdof(2)) % Fuerzas externas sobre el elemento 2
 \end{verbatim}
-\texttt{R} ahora tendrá las reacciones en los dof correspondientes.
+\texttt{Rext} tendrá las reacciones en los dof restringidos y las fuerzas externas sobre el sistema \textit{en coordenadas globales}. Más acerca de las fuerzas sobre un elemento en la sección \ref{sec:OrientacionElementos}.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -501,7 +505,7 @@ donde
 	Z_4 &= \frac{2EI_y}{L}, \qquad Z_3=2Z_4, \qquad Z_2 = \frac{2Z_4}{L}, \qquad Z_1 = \frac{2Z_2}{L}, \qquad S = \frac{G J_T}{L}
 \end{align*}
 
-\section{Orientación de elementos 1D} 
+\section{Orientación de elementos 1D} \label{sec:OrientacionElementos}
 Los elementos detallados en la sección anterior están acostados sobre el eje $x$. Para orientar un elemento en el espacio se tiene que empezar de hablar de una \textit{matriz de rotación} $\Mme{T}$.
 
 \begin{equation} \label{eq:rotacionElemento}
@@ -537,7 +541,7 @@ Para orientar una viga se tiene que aportar más información que para una barra
 
 Algunos programas como \Adina, por ejemplo, permiten al usuario especificar un nodo auxiliar o un vector auxiliar que apunta en la dirección en la cual se desea que la viga tenga mayor momento de inercia. 
 
-Supongamos que elegimos este vector auxiliar $s_y=[0,1,0]$. Esto nos va dar el mayor momento ante la flexión para una carga en $y$ global (suponiendo que $I_z>I_y$).
+Supongamos que elegimos este vector auxiliar $s_y=[0,1,0]$.\footnote{\textbf{Ser cauteloso al elegir el vector $s_y$ para que bajo ninguna circunstancia quede colineal al eje $x'$ del elemento. Esto causará problemas insanables.}} Esto nos va dar el mayor momento ante la flexión para una carga en $y$ global (suponiendo que $I_z>I_y$).
  \newcommand{\versor}[1]{\hat{#1}}
 Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener $\versor{v}_z$
 \[
@@ -564,6 +568,35 @@ La matriz de transformación entonces es
 	\end{bmatrix}_{12\times 12}
 \end{equation}
 \input{\feaPP}
+
+\section{Cargas}
+\subsection{Cargas Consistentes}
+Una carga distribuida en $-y'$ sobre una viga que está fija en sus extremos tiene las cargas nodales
+
+\begin{equation} \label{eq:CargaDistribuidaElemento}
+	\Cme{r'} = \begin{Bmatrix}
+	0 \\
+	-qL/2 \\
+	0\\
+	0\\
+	0\\
+	-qL^2/12\\
+	0\\
+	-qL/2 \\
+	0\\
+	0\\
+	0\\
+	qL^2/12
+	\end{Bmatrix}
+\end{equation}
+estas son las cargas \textbf{\textit{consistentes}} porque toman en cuenta los momentos generados. Si se omiten los momentos se llaman \textit{cargas reducidas}.
+
+Si la viga tiene una carga distribuida sobre su eje $y'$ local pero está arbitrariamente orientada se pueden obtener las cargas globales a aplicar sobre los nodos del elemento usando la matriz de rotación usada para orientar el elemento
+
+\begin{equation}
+	\Cme{r}= \Mme{T}^T \Cme{r'}
+\end{equation}
+usando $\Cme{r'}$ de \eqref{eq:CargaDistribuidaElemento}. Si la carga no está sobre el eje $y'$ de la viga, se deberá usar una matriz de rotación diferente, o cambiar el vector de cargas predefinido. \textit{¿Como aplicaría un par torsor a una viga arbitrariamente orientada?}
 
 \section{Ejercicios}
 \subsection*{Pórticos}
@@ -603,7 +636,7 @@ Algunas Respuestas considerando $E=200$GPa:
 	\item[\ref{ej:porticoVerificarConsultora})]$d=0.0155$m, $\Cme{R_A}\approx\{1,1;\ms4,1;\ms-1,28\}$ kN o kNm
 	
 	\item[\ref{ej:reaccionportico3D})] $\Cme{R_B}\approx
-	\{-6,2;\ms    10;\ms   -0,79;\ms   -0,64;\ms   -6,4;\ms   -0,5;\ms   16\}$ kN o kNm,  
+	\{-6,2;\ms    10;\ms   -0,79;\ms   -0,64;\ms   -6,4;\ms   -0,5;\ms   16\}$ kN o kNm, con cargas reducidas
 	
 	\item[\ref{ej:favorableportico3D})] $d_{\mathrm{C}}=2.38$mm
 	
@@ -796,26 +829,28 @@ Si nuestro sistema tiene desplazamientos iniciales conocidos se puede formular u
 
 \begin{equation}
 	\begin{bmatrix}
-	\MKcc & \MKcx \\
-	\MKxc & \MKxx
+	\MKxx & \MKxc \\
+	\MKcx & \MKcc
 	\end{bmatrix}
 	\begin{Bmatrix}
-	\CDc \\
-	\CDx 
+	\CDx \\
+	\CDc 
 	\end{Bmatrix}
 	=	\begin{Bmatrix}
-	\CRx \\
-	\CRc 
+	\CRc \\
+	\CRx 
 	\end{Bmatrix}
 \end{equation} 
-Note que para los nodos donde se conocen los desplazamientos (los nodos cc) \textit{se desconocen las cargas}.
+Note que para los nodos donde se conocen los desplazamientos (los nodos $\mathrm{c}$) \textit{se desconocen las cargas}, por ende las cargas sobre los nodos con desplazamientos conocidos tienen subíndice $\mathrm{x}$. El sistema expandido tiene la forma
+\begin{gather*} 
+	\MKxx \CDx + \MKxc \CDc = \CRc \\
+	\MKcx \CDx + \MKcc \CDc = \CRx 
+\end{gather*}
+La matriz $\MKxx$ no es singular si se impusieron suficientes desplazamientos como para prevenir movimiento de cuerpo rígido/mecanismos. Se pueden entonces obtener los desplazamientos desconocidos
 \[
-\Cme{D_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{R_\mathrm{x}}- \Mme{K_{\mathrm{xc}}}  \Cme{D_\mathrm{c}} \right)
+\CDx = \MKxx^{-1} \left( \CRc - \MKxc  \CDc \right)
 \]
-luego de obtener los desplazamientos desconocidas se puede obtener las cargas desconocidas (sobre los nodos conocidos):
-\[
-\Cme{R_{\mathrm{c}}} = \Mme{K_{\mathrm{cx}}} \Cme{D_\mathrm{x}} + \Mme{K_{\mathrm{cc}}} \Cme{D_\mathrm{c}}  
-\]
+luego de obtener los desplazamientos desconocidas se puede obtener las cargas desconocidas $\CRx$.
 
 \input{\feaTP}
 
