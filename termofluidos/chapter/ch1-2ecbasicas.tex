@@ -14,13 +14,24 @@ Las leyes básicas de la física son:
 \end{itemize}
 Se puede aplicar TTR a toda propiedad extensiva de un sistema. 
 \subsection{Derivada material}
+Un medio fluido puede ser descrito de forma Lagrangiana o Euleriana.
+\begin{itemize}
+	\item \textbf{Lagrangiana.} Un tratamiento \textit{material} del fluido y se trabaja con funciones.
+	\item \textbf{Euleriana.} Se trabaja con campos para describir el fluido
+\end{itemize} 
+
+
 Imagine que se tiene un flujo que puede ser descrito por un campo de velocidades $U_j(x,y,z,t)$. Si a uno le interesa puede obtener el cambio de velocidad en $x$ en $t$, obteniendo así: $\spartial{U_x}{t}$. Parecería ser que obtuvimos una aceleración por la forma pero no es el caso. Como bien sabemos, la aceleración está ligada a un objeto con masa, en este caso, las partículas del fluido cuya aceleración es influenciada por la derivada local ($\spartial{U_x}{t}$) y la \textit{convectiva} o \textit{advectiva} ($U_x\spartial{U_x}{x}+U_y\spartial{U_x}{y}+U_z\spartial{U_x}{z}$).
 
 Se define entonces el operador \textit{derivada material}
+\begin{equation}
+\lim_{\Delta t \rightarrow 0} \frac{B(\vec{x}+\Delta \vec{x};t+\Delta t) - B(\vec{x};t)}{\Delta t} = \frac{\Di B}{\Di t}
+\end{equation}
+
 \[
 \frac{\Di [\;]}{\Di t}=\spartial{[\;]}{t}+u_i\spartial{[\;]}{x_i}
 \]
-por ende, el componente $j$ de la aceleración que un elemento de un fluido experimenta en un punto $x_i$ en el campo $U_j(x_i,t)$ está dada por
+ El componente $j$ de la aceleración que un elemento de un fluido experimenta en un punto $x_i$ en el campo $U_j(x_i,t)$ está dada por
 \[
 a_j=\frac{\Di U_j}{\Di t}=\spartial{U_j}{t}+U_i\spartial{U_j}{x_i}
 \]
@@ -44,7 +55,7 @@ aplicando el teorema de la divergencia, nos queda el TTR de la forma
 \frac{\Di N}{\Di t} \equiv \int_{V} \spartial{\rho \eta}{t}\di \vol +\int_V \spartial{\eta_k}{x_k} \di \vol=\int_V\left(\spartial{\rho \eta}{t} + \spartial{\eta_k}{x_k}\right)\di \vol
 \end{equation}
 
-La ecuación \ref{eq:TTRdivergence} resulta poco útil al momento de querer calcular lo que está adentro del integrando. En el caso de que se conserve la cantidad $N$ (como podría ocurrir en régimen estacionario) y por consecuencia $\frac{\Di N}{\Di t}=0$, se puede aprovechar que $V$ está definido como un volumen arbitrario y por ende lo que está adentro del integrando debe ser cero.
+La ecuación \ref{eq:TTRdivergence} resulta poco útil al momento de querer calcular lo que está adentro del integrando. En el caso de que se conserve la cantidad $N$ (como podría ocurrir en régimen estacionario) ocurre que $\frac{\Di N}{\Di t}=0$. Como $V$ está definido como un volumen arbitrario lo que está adentro del integrando debe ser cero: $\spartial{\rho \eta}{t} = - \spartial{\eta_k}{x_k}$, cuando se conserva $N$.
 
 \subsection{Compresibilidad}
 A partir del Teorema de Transporte de Reynolds (TTR) para masa en un volumen de control $V$

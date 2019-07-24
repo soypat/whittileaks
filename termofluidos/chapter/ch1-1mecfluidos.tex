@@ -283,6 +283,17 @@ por el teorema de Stokes podemos llegar a relacionar la vorticidad con la circul
 \Gamma \equiv\! -\! \oint_C\!\! u_k s_k \di \ell =\! -\!\iint_S \left( \rotor u_k \right)n_k\di \sur=\! -\!\iint_S\! \xi_k n_k\di \sur
 \]
 flujos irrotacionales (por definición $\xi=0$) por ende tienen $\Gamma=0$. Típicamente los flujos aerodinámicos son de este tipo. La única restricción a este principio general es que el contorno tiene que ser reducible a un punto dentro del campo de flujo. Un álabe es un ejemplo de un contorno no reducible con $\Gamma>0$ \citep{durst2008fluid}.
+
+
+%donde 
+%\begin{itemize}
+%	\item[I.] Derivada local
+%	\item[II.] Termino que toma en cuenta efecto convectivo/advectivo
+%\end{itemize}
+%La aceleración es una combinación de efectos locales y convectivos. Si se tiene la descripción del campo de velocidades y se desea conocer la aceleración del fluido en cierto punto entonces es necesario aplicar la derivada material:
+%\begin{equation*}
+%a_j = \frac{\Di u_j}{\Di t} = \spartial{u_j}{t}+u_i \spartial{u_j}{x_i}
+%\end{equation*} 
 \subsubsection{Principio de no-deslizamiento}
 Para el estudio ingenieril de flujos en proximidad de paredes se aplica la condición de velocidad \textit{relativa} nula del fluido sobre el interfaz solido-fluido, paralelo a la linea de borde. Esto quiere decir que el fluido se moverá a la velocidad del solido.
 
@@ -320,7 +331,7 @@ Partimos de balancear las fuerzas de un elemento de fluido \textit{estático} de
 \[
 \sum F_j = \int_V B_j \di \vol + \int_S \sigma_{ij} n_i \di \sur
 \]
-considerando que el fluido esta en reposo y en equilibrio se llega a que $\sigma_{ij}=-\pe \delta_{ij}+\cancel{S_{ij}}$ y $\sum F_j=\vec{0}$. De aquí en adelante para la sección de fluidostática la presión de equilibrio será igual a la mecánica, la llamamos simplemente $p$.
+considerando que el fluido esta en reposo y en equilibrio se llega a que $\sigma_{ij}=-\pe \delta_{ij}+\cancel{S_{ij}}$ y $\sum F_j=\pmb{0}$. De aquí en adelante para la sección de fluidostática la presión de equilibrio será igual a la mecánica, la llamamos simplemente $p$.
 \[
 0=\int_V \rho b_j \di \vol + \int_S -p\delta_{ij}n_i \di \sur
 \]
@@ -492,7 +503,7 @@ El \textbf{ANPA} (NPSH en inglés) es la Altura Neta Positiva de Aspiración. Es
 \begin{equation} \label{eq:ANPA}
     \frac{p_{\entrada}}{\rho g} - ANPA - M_s > \frac{p_v(T)}{\rho g}
 \end{equation}
-donde $p_\entrada$ es la presión a la entrada de la bomba, $M_s$ es el margen de seguridad\footnote{Puede tomarse como 5 metros.} y $p_v(T)$ es la presión de vapor del liquido bombeado, el cual depende de la temperatura! 
+donde $p_\entrada$ es la presión a la entrada de la bomba, $M_s$ es el margen de seguridad\footnote{Puede tomarse como 5 metros.} y $p_v(T)$ es la presión de vapor del liquido bombeado, el cual depende de la temperatura. 
 
 Atento a los siguientes casos que comprometen la bomba:
 \begin{itemize}
@@ -504,7 +515,7 @@ Atento a los siguientes casos que comprometen la bomba:
     \item Bomba elevada sobre el nivel del fluido aspirado
 \end{itemize}
 \subsection{Turbulencia en caños}
-Un lector ávido tal vez recuerde que $f$ está en función de $\Reynolds_D$. Esto no es un problema \textit{demasiado} grave en régimen Laminar pues $f_{\textrm{laminar}}=\frac{64}{\Reynolds}$. En régimen turbulento sobran problemas numéricos...  Iterando sobre diferentes valores de $Q$ se obtienen valores de $\Reynolds_D$ y $f$ con la siguiente ecuación
+Un lector ávido tal vez recuerde que $f$ está en función de $\Reynolds_D$. Esto no es un problema \textit{demasiado} grave en régimen laminar pues $f_{\textrm{laminar}}=\frac{64}{\Reynolds}$. En régimen turbulento sobran problemas numéricos...  Iterando sobre diferentes valores de $Q$ se obtienen valores de $\Reynolds_D$ y $f$ con la siguiente ecuación
 \begin{equation} \label{eq:darcyExact}
     \frac{1}{\sqrt{f}}=-2\log \left[ \frac{\epsilon/D}{3,7}+\frac{2,51}{\Reynolds_D \sqrt{f}} \right]
 \end{equation}
@@ -513,10 +524,23 @@ si uno no tiene ganas de resolver dado problema numérico puede usar una aproxim
 \frac{1}{\sqrt{f}}\approx -1,8\log \left[ \left(\frac{\epsilon/D}{3,7}\right)^{1,11}+\frac{6,9}{\Reynolds_D}\right]
 \]
 también se tienen diversos diagramas de Moody a disposición del ingeniero (Ver figura \ref{fig:moodydiagram}).
+
+Para hallar $\Qstar$ en régimen turbulento es necesario iterar para reducir el error cometido por no tener la solución exacta a \eqref{eq:darcyExact}. Los pasos a seguir son:
+
+\begin{enumerate}
+	\item[0.] Antes de comenzar la iteración se estima el caudal $\Qstar$ que podría estar circulando
+	\setcounter{enumi}{0}
+	\item Con el caudal se obtiene $f_{n}$ del diagrama de Moody o con la aproximación \label{enum:beginIteration}
+	\item Se calcula $B_S$ con $f_{n}$ y se resuelve $H_S=H_B$ para obtener el caudal corregido 
+	\item Se contrastan $f_{n}$ y el factor de fricción para el caudal corregido $f_{n+1}$ de tal forma que el error sea menor a 10\% para aplicaciones generales. Error $=\frac{f_{n+1}-f_{n}}{f_{n+1}}$
+	\item Si no se verifica el error se repiten los pasos desde el paso \ref{enum:beginIteration} tal que $f_n=f_{n+1}$
+	\item Se verifica la cavitación en el punto más comprometido de la instalación
+\end{enumerate}
+
 \begin{figure}[htb!]
     \centering
     \includegraphics[width=0.475\textwidth]{fig/moodydiag.eps}
-    \caption{Graficado y resuelto numéricamente en \Matlab. Observe como a grandes Reynolds $f$ es constante para una dada rugosidad relativa.}
+    \caption{Ecuación \ref{eq:darcyExact} graficada y resuelta numéricamente en \Matlab. Observe como a grandes Reynolds $f$ es constante para una dada rugosidad relativa.}
     \label{fig:moodydiagram}
 \end{figure}
 
@@ -544,10 +568,17 @@ En general se van a tratar problemas mecánicos ($LMT$) y termo-mecánicos ($LMT
  \[
  j=n-m
  \]
- donde $n$ es el número de variables elegidos para describir el problema (viscosidad [$\mu$], longitud característica [$L,D,\ell$], conductividad térmica [$k$], etc.) y donde $m$ es igual a la cantidad de ecuaciones independientes formadas igualando los exponentes de cada dimensión base a cero (siempre menor o igual a la cantidad de dimensiones base) \citep{kreith2011principles}. 
+ donde $n$ es el número de variables elegidos para describir el problema (viscosidad [$\mu$], longitud característica [$L,D,\ell$], conductividad térmica [$k$], etc.) y donde $m$ es igual a la cantidad de ecuaciones \textbf{independientes} formadas igualando los exponentes de cada dimensión base a cero (siempre menor o igual a la cantidad de dimensiones base) \citep{kreith2011principles}. 
+ 
+ Para que un sistema sea \textit{completamente semejante} a otro tiene que cumplir con:
+ \begin{itemize}
+ 	\item Semejanza Geométrica
+ 	\item Semejanza Cinemática
+ 	\item Semejanza Dinámica
+ \end{itemize}
  
  \subsection{Ejemplo}
-  En 1950 Sir Goffrey Taylor, un matemático británico, publica un artículo sobre análisis dimensional en el cual incluye un cálculo de la energía liberada de la primer bomba atómica ensayada en 1945 usando el teorem Pi de Buckingham. Taylor se basa en un video de la explosión que marcaba el tiempo desde detonación y una escala. 
+  En 1950 Sir Goffrey Taylor, un matemático británico, publica un artículo sobre análisis dimensional en el cual incluye un cálculo de la energía liberada de la primer bomba atómica ensayada en 1945 usando el teorema Pi de Buckingham. Taylor se basa en un video de la explosión que marcaba el tiempo desde detonación y una escala. 
   
   \begin{figure}[thb!]
   	\centering
@@ -557,7 +588,7 @@ En general se van a tratar problemas mecánicos ($LMT$) y termo-mecánicos ($LMT
   	\label{fig:trinity}
   \end{figure}
  
- Se plantea que la energía liberada $E$ está en función de la densidad del medio $\rho$, el radio de la onda de choque $r$, y el tiempo $t$ desde la detonación. Se desprecian la viscosidad 
+ Se plantea que la energía liberada $E$ está en función de la densidad del medio $\rho$, el radio de la onda de choque $r$, y el tiempo $t$ desde la detonación, en total, 4 variables $n=4$. Se desprecian la viscosidad y la presión interna de la explosión
  
 \begin{table}[htb!]
 	\centering
@@ -568,6 +599,7 @@ En general se van a tratar problemas mecánicos ($LMT$) y termo-mecánicos ($LMT
 		$T$ & -2  & 1   & 0   & 0     
 	\end{tabular}
 \end{table}
+El sistema es independiente, entonces $m=3$. Según el teorema Pi de Buckingham, se puede formar un grupo adimensional $\Pi_1 = t^\alpha r^\beta \rho^\gamma E^\delta $
  
 \begin{equation*}
 	E = t^\alpha r^\beta \rho^\gamma = \begin{cases}
@@ -579,7 +611,7 @@ En general se van a tratar problemas mecánicos ($LMT$) y termo-mecánicos ($LMT
 
 Resolviendo el sistema de arriba llegamos a que 
 \[E = \frac{\rho r^{5}}{t^{2}} \]
-Las dos imágenes en la figura \ref{fig:trinity} son para una explosión de $22$ kT de TNT, equivalente a aproximadamente $10 ^{14}$ joules. Con que certeza se puede calcular la energía de la \textit{Trinity Test}? 
+Las dos imágenes en la figura \ref{fig:trinity} son para una explosión de $22$ kT de TNT, equivalente a aproximadamente $10 ^{14}$ joules. Con que certeza se puede calcular la energía de la \textit{Trinity Test} usando el teorema Pi? 
 
 
 

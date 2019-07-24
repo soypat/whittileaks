@@ -2,12 +2,18 @@
 \section{Capa limite para placas planas}
 Una placa plana inmersa en un fluido con velocidad relativa puede asemejarse a una lista variada de problemas de ingeniería desde aviones hasta intercambiadores de calor. El concepto de la capa límite es simplemente el interfaz virtual entre la zona donde dominan los efectos viscosos y la zona invíscida. 
 
-Más precisamente:\textit{ La capa límite se dibuja como una linea donde la velocidad absoluta del flujo es 99\% de la velocidad del flujo ``en el infinito"{}}($U_\infty$).\footnote{Sobre la capa límite y toda la región inviscida se desprecia $\spartial{u_x}{y}$, el cual es proporcional al corte $\tau$.}
+Más precisamente:\textit{ La capa límite se dibuja como una linea donde la velocidad absoluta del flujo es 99\% de la velocidad del flujo ``en el infinito"{}}($U_\infty$).\footnote{Sobre la capa límite y toda la región inviscida se desprecia $\spartial{u}{y}$, el cual es proporcional al corte $\tau$.}
 
- Para el estudio de capas limites se parte de la hipótesis de flujo 2-D incompresible.
- \[
- \spartial{u}{x}+\spartial{v}{y}=0
- \]
+ Para el estudio de capas limites se parte de las hipótesis 
+ 
+ \begin{itemize}
+ 	\item Flujo bidimensional $u_j = u \hat{\i} + v \hat{\j}$
+ 	\item Estacionario
+ 	\item Incompresible $ \spartial{u}{x}+\spartial{v}{y}=0$
+ 	\item Newtoniano  $\tau_{xy}=\mu \spartial{u}{y}$
+ 	\item Isotérmico $\spartial{T}{x}=\spartial{T}{y}=0$
+ \end{itemize}
+
  Cantidad de movimiento:
 \[
 \rho\left(u\spartial{u}{x}+v\spartial{u}{y}\right)=\mu \dpartial{u}{y}-\spartial{p}{x}
@@ -27,6 +33,11 @@ En 1908 Paul Richard Heinrich Blasius, un físico alemán, desarrolla la teoría
 ff^{\prime\prime}+2f^{\prime\prime\prime}=0
 \]
 cuya solución (obtenida numéricamente con determinadas condiciones de borde) se denomina el perfil de velocidades de Blasius.
+\[
+\begin{array}{lll}
+u(x,0)=0, & u(x,\delta)=U_\infty, & \tau|_{y=\delta} =0
+\end{array}
+\]
 
 En base a este perfil de velocidades se desarrollan las siguientes relaciones \citep{durst2008fluid}:
 \begin{equation}
@@ -68,6 +79,19 @@ Para el caso de la figura \ref{fig:displthickness} se tiene una placa plana con 
     \caption{Efecto desviador de lineas de flujo y su efecto ``simulado"{} visto a la derecha.}
     \label{fig:displthickness}
 \end{figure}
+
+Demostración partiendo de conservación de caudal entre la entrada y salida donde $b$ es el ancho de la placa
+
+\begin{gather*}
+	\rho b \int^h_0 u(0;y)\di y = \rho b \int^{h+\dstar}_0 \!\!\!\!u(L;y)\di y \\
+	\cancel{\rho b} h U_\infty =\cancel{\rho b}\int^{h+\dstar=\delta(x)}_0 \!\!\!\!\!\!\left[u(x;y)+U_\infty-U_\infty \right]\di y\\	
+	\cancel{hU_\infty} = \int^{\delta(x)}_0 \!\!\!\!\!\!\left[u(x;y)-U_\infty \right]\di y+U_\infty (\cancel{h}+\dstar)
+\end{gather*}
+\begin{equation}
+	\dstar = \int_0^{\delta(x)} \!\!\!\left(1-\frac{u(x;y)}{U_\infty} \right) \di y
+\end{equation}
+
+
 %%%%%%%%%%%%%%%%%%%%%%
 %% TURBULENTO
 %%%%%%%%%%%%%%%%%%%%%%
@@ -89,12 +113,33 @@ Otra formula que se puede usar \citep{kreith2011principles}:
 \begin{equation}
     c_f=\frac{0,0576}{\Reynolds_x^{0,2}}
 \end{equation}
+No se pueden calcular los esfuerzos viscosos en la pared debido a la singularidad en $x=0$.
+
+\[
+\frac{\left\langle u \right\rangle}{U_\infty} = \left(\frac{y}{\delta} \right)^{\frac{1}{n}}, \quad n=7,8,9
+\]
+\subsubsection{Análisis capa mixta}
+
+En el caso que demore la transisción a régimen turbulento se puede obtener la capa límite al final de la placa $\delta_L=\delta_{\mathrm{turb}}(L-x_0)$ despejando $x_0$ en
+\[
+\delta_\crit =\delta_{\mathrm{lam.}}(x_\crit) = \delta_{\mathrm{turb.}}(x_\crit-x_0) 
+\]
+
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=0.48\textwidth]{fig/BLmixed.eps}
+	\caption{Análisis de capa límite mixta.}
+	\label{fig:BLmixed}
+\end{figure}
+
+
 
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=0.48\textwidth]{fig/BLmixed.eps}
-    \caption{Analisis de capa límite mixta de aire sobre una placa $L=10\si{\meter}$, $U_\infty=2\si{\meter\per\second}$. Note la transición de régimen laminar a turbulento. Resuelto en \Matlab.}
-    \label{fig:BLmixed}
+    \includegraphics[width=0.48\textwidth]{fig/BLmixedejemplo.eps}
+    \caption{Análisis de capa límite mixta de aire sobre una placa $L=10\si{\meter}$, $U_\infty=2\si{\meter\per\second}$. Resuelto en \Matlab.}
+    \label{fig:BLmixedExample}
 \end{figure}
 
 \section{Flujo Potencial}
