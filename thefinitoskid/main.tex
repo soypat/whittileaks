@@ -340,7 +340,7 @@ La condición de borde esencial más simple de aplicar al momento de programar e
 \end{verbatim}
 En la sección \ref{sec:desplzImpuestos} se verá como imponer desplazamientos no nulos.
 
-Siguiendo el ejemplo, como aplicaría los empotramientos $A$ y $B$ de la figura \ref{fig:ej2viga}? Y si uno fuera un apoyo simple, como haría?
+Siguiendo el ejemplo, ¿cómo aplicaría los empotramientos $A$ y $B$ de la figura \ref{fig:ej2viga}? Y si uno fuera un apoyo simple, ¿cómo haría? 
 
 
 
@@ -352,7 +352,7 @@ Ya sabemos lo que es una condición de borde natural de la última sección, que
     R([1 2 15]) = 9e3;  % Cargo mis dof 1 2 y 15 con 9000 unidades
 \end{verbatim}
 
-
+¿Tiene sentido aplicar cargas a un dof en conjunto con condiciones de borde esenciales?
 
 \section{Procedimiento de resolución}
 El sistema a resolver es $\CD=\MK^{-1}\CR$ aunque no es económico invertir la matriz $\MK$ desde un punto de vista numérico: La matriz $\MK$ es esparsa y su inversa es una matriz \textit{full}.\footnote{Una matriz full no tiene elementos que son cero.} Hay varias formas de resolver el problema que no requieren de la inversa, \Matlab{} tiene incorporado el operador \texttt{mldivide(A,B)} que resuelve un sistema de ecuaciones lineal y devuelve \texttt{x} tal que $Ax=B$. 
@@ -368,6 +368,7 @@ En el código de arriba se cálculo \texttt{Dr} con las matrices de carga y rigi
     D = zeros(Ndof,1);
     D(isFree) = Dr;
 \end{verbatim}
+\texttt{D} entonces será igual a \texttt{Dr} excepto que tendrá ceros en los dof donde se aplicaron condiciones de borde esenciales.
 
 Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazamientos en una matriz que muestre los desplazamientos de cada nodo en sus filas. También se puede obtener la posición deformada de los nodos sumando las matrices.
 \begin{verbatim}
@@ -375,7 +376,7 @@ Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazami
     % si los primeros 3 dof son u,v,w puedo sumar:
     posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
 \end{verbatim}
- donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con vigas.
+ donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con pequeños desplazamientos.
 
 Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuerzas externas con:
 \begin{verbatim}
@@ -385,7 +386,12 @@ Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuer
 \end{verbatim}
 \texttt{Rext} tendrá las reacciones en los dof restringidos y las fuerzas externas sobre el sistema \textit{en coordenadas globales}. Más acerca de las fuerzas sobre un elemento en la sección \ref{sec:OrientacionElementos}.
 
+\subsection*{Resolución de problema de autovalores}
+Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda$ son los autovalores y a cada uno le corresponde un autovector $\Cme{x}_i$.
 
+\begin{verbatim}
+	[autovec, autoval] = eig(A\B);
+\end{verbatim}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -456,7 +462,7 @@ G_{\psi_{2}}=\beta_{z}\left[3 \xi^{2}-\left(\alpha_{z}+2\right) \xi\right]
 \]
 donde $x'$ es la coordenada local sobre la viga:
 \[
-\xi=\frac{x'}{L}, \quad \alpha_{y}=\frac{12 E I_{y}}{k G A L^{2}}, \quad \beta_{y}=\frac{1}{1-\alpha_{y}}, \quad \alpha_{z}=\frac{12 E I_{z}}{k G A L^{2}},\quad  \beta_{z}=\frac{1}{1-\alpha_{z}}
+\xi=\frac{x'}{L}, \qquad \alpha_{y}=\frac{12 E I_{y}}{k G A L^{2}}, \qquad \beta_{y}=\frac{1}{1-\alpha_{y}}, \qquad \alpha_{z}=\frac{12 E I_{z}}{k G A L^{2}},\qquad \beta_{z}=\frac{1}{1-\alpha_{z}}
 \]
 donde $k$ es el \textbf{factor de corrección por corte}\footnote{Ideado por Timoshenko en 1921 para permitir un mejor cálculo de las frecuencias naturales \cite{dong2010much}.} y depende de la sección y del modulo de Poisson $\nu$. Algunos valores en la tabla \ref{tab:kcorrectionfactor} del anexo.
 
@@ -539,11 +545,11 @@ La matriz transformación de una barra en el plano está dada por
 \subsection*{Orientación de vigas en el espacio}
 Para orientar una viga se tiene que aportar más información que para una barra. Mientras que una barra se puede orientar con el simple input de sus nodos, la viga de Timoshenko necesita orientar su eje $y'$ además de su eje $x'$ .
 
-Algunos programas como \Adina, por ejemplo, permiten al usuario especificar un nodo auxiliar o un vector auxiliar que apunta en la dirección en la cual se desea que la viga tenga mayor momento de inercia. 
+Algunos programas como \Adina, por ejemplo, permiten al usuario especificar un nodo auxiliar o un vector auxiliar que apunta en la dirección en la cual se desea que la viga tenga su eje $y'$. 
 
 Supongamos que elegimos este vector auxiliar $s_y=[0,1,0]$.\footnote{\textbf{Ser cauteloso al elegir el vector $s_y$ para que bajo ninguna circunstancia quede colineal al eje $x'$ del elemento. Esto causará problemas insanables.}} Esto nos va dar el mayor momento ante la flexión para una carga en $y$ global (suponiendo que $I_z>I_y$).
  \newcommand{\versor}[1]{\hat{#1}}
-Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación $\versor{v}_x$ es trivial obtener $\versor{v}_z$
+Para hallar la matriz de transformación $\Mme{T}$ debemos buscar los cosenos directores de nuestra viga en el espacio. Una vez que obtenemos el versor de orientación\footnote{Es el que resulta de la resta entre los nodos del elemento.} $\versor{v}_x$ es trivial obtener $\versor{v}_z$
 \[
 \versor{v}_z = \frac{\versor{v}_x\times s_y}{||\versor{v}_x\times s_y||}
 \]
@@ -570,7 +576,7 @@ La matriz de transformación entonces es
 \input{\feaPP}
 
 \section{Cargas}
-\subsection{Cargas Consistentes}
+\subsection*{Cargas Consistentes}
 Una carga distribuida en $-y'$ sobre una viga que está fija en sus extremos tiene las cargas nodales
 
 \begin{equation} \label{eq:CargaDistribuidaElemento}
@@ -588,6 +594,7 @@ Una carga distribuida en $-y'$ sobre una viga que está fija en sus extremos tie
 	0\\
 	qL^2/12
 	\end{Bmatrix}
+	\qquad q \text{  en } \left[\frac{\text{Fuerza}}{\text{Longitud}} \right]
 \end{equation}
 estas son las cargas \textbf{\textit{consistentes}} porque toman en cuenta los momentos generados. Si se omiten los momentos se llaman \textit{cargas reducidas}.
 
@@ -633,15 +640,15 @@ usando $\Cme{r'}$ de \eqref{eq:CargaDistribuidaElemento}. Si la carga no está s
 \end{enumerate}
 Algunas Respuestas considerando $E=200$GPa:
 \begin{itemize}
-	\item[\ref{ej:porticoVerificarConsultora})]$d=0.0155$m, $\Cme{R_A}\approx\{1,1;\ms4,1;\ms-1,28\}$ kN o kNm
+	\item[\ref{ej:porticoVerificarConsultora})]$d=0,0155$m, $\Cme{R_A}\approx\{1,1;\ms4,1;\ms-1,28\}$ kN o kNm
 	
 	\item[\ref{ej:reaccionportico3D})] $\Cme{R_B}\approx
 	\{-6,2;\ms    10;\ms   -0,79;\ms   -0,64;\ms   -6,4;\ms   -0,5;\ms   16\}$ kN o kNm, con cargas reducidas
 	
-	\item[\ref{ej:favorableportico3D})] $d_{\mathrm{C}}=2.38$mm
+	\item[\ref{ej:favorableportico3D})] $d_{\mathrm{C}}=2,38$mm
 	
 \end{itemize}
-
+\clearpage
 \part{Elementos 2D}
 
 \section{Protips para el mallado}
@@ -674,7 +681,7 @@ Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
 	\caption{Ejemplo de malla usando divisiones de  \ref{fig:buendivisiondominio}. Se refina en los costados donde se tiene flexión.}
 \end{figure}
 
-\clearpage
+%\clearpage
 Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en posición una arista o punto dado cargas térmicas/fuerza? Apoyalo (fix) y mira las reacciones con la carga térmica/fuerza.
 
 
@@ -874,7 +881,7 @@ Ley de Stefan Boltzmann
 q_{r}=\varepsilon_{r} \sigma\left(T^{4}-T_{\infty}^{4}\right)
 \]
 
-Es mas jodido el tema de modelar temperaturas fijas e imponer calor transferido, pues son aseveraciones no tan reales como imponer desplazamiento cero sobre un apoyo y  fuerzas sobre vigas.
+Es mas complicado el tema de modelar temperaturas fijas e imponer calor transferido, pues son aseveraciones no tan reales como imponer desplazamiento cero sobre un apoyo y  fuerzas sobre vigas.
 
 Para aplicar conveccion 
 
@@ -892,7 +899,7 @@ Lo escribe sebas: $kT=q_c = HT-RT_{fl} \longrightarrow (K-H)T = -R T_{fl}$
 
 \subsection*{Resolución de problemas típico}
 
-Condiciones de borde de temperatura
+Condiciones de borde de temperatura. Idéntico a lo visto en la sección \ref{sec:desplzImpuestos}.
 
 \[
 \Cme{T_{\mathrm{x}}} = \Mme{K_{\mathrm{xx}}}^{-1} \left( \Cme{Q_\mathrm{x}}- \Mme{K_{\mathrm{xc}}}  \Cme{T_\mathrm{c}} \right)
@@ -1030,6 +1037,32 @@ donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$.
 \subsection*{Sine Sweep}
 A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
 
+\subsection*{Matriz de masa consistente para una viga 3D}
+  \begin{equation}
+  	\Mme{m}_{\mathrm{1D}} = \int_0^L \MN^T \MN \rho A \di x
+  \end{equation}
+  La matriz de masa según una fuente desconocida
+  \begin{equation}
+  	\Mme{m'}_{\mathrm{1D}}= \frac{\rho A L}{420}\left[\begin{array}{cccccccccccc} 140 & 0 & 0 & 0 & 0 & 0 & 35 & 0 & 0 & 0 & 0 & 0\\ 0 & 156 & 0 & 0 & 0 & 22\,L & 0 & 27 & 0 & 0 & 0 & -13\,L\\ 0 & 0 & 156 & 0 & -22\,L & 0 & 0 & 0 & 27 & 0 & 13\,L & 0\\ 0 & 0 & 0 & 140\,{r_{x}}^2 & 0 & 0 & 0 & 0 & 0 & -35\,{r_{x}}^2 & 0 & 0\\ 0 & 0 & -22\,L & 0 & 16\,L^2 & 0 & 0 & 0 & -13\,L & 0 & -6\,L^2 & 0\\ 0 & 22\,L & 0 & 0 & 0 & 16\,L^2 & 0 & 13\,L & 0 & 0 & 0 & -6\,L^2\\ 35 & 0 & 0 & 0 & 0 & 0 & 140 & 0 & 0 & 0 & 0 & 0\\ 0 & 27 & 0 & 0 & 0 & 13\,L & 0 & 156 & 0 & 0 & 0 & -22\,L\\ 0 & 0 & 27 & 0 & -13\,L & 0 & 0 & 0 & 156 & 0 & 22\,L & 0\\ 0 & 0 & 0 & -35\,{r_{x}}^2 & 0 & 0 & 0 & 0 & 0 & 140\,{r_{x}}^2 & 0 & 0\\ 0 & 0 & 13\,L & 0 & -6\,L^2 & 0 & 0 & 0 & 22\,L & 0 & 16\,L^2 & 0\\ 0 & -13\,L & 0 & 0 & 0 & -6\,L^2 & 0 & -22\,L & 0 & 0 & 0 & 16\,L^2 \end{array}\right]	
+  \end{equation}
+donde $r_x =\sqrt{ \frac{I_z}{A}}$. 
+
+
+La matriz de masa según un paper escrito por \cite{matas2014study}
+\[ \pmb{m_{11}}=
+\left[\begin{array}{cccccc}{\frac{1}{3}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{13}{35}} & {0} & {0} & {0} & {\frac{11 L}{210}} \\ {0} & {0} & {\frac{13}{35}} & {0} & {\frac{-11 L}{210}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{3 A}} & {0} & {0} \\ {0} & {0} & {\frac{-11 L}{210}} & {0} & {\frac{L^{2}}{105}} & {0} \\ {0} & {\frac{11 L}{210}} & {0} & {0} & {0} & {\frac{L^{2}}{105}}\end{array}\right], \quad \pmb{m_{12}}= \left[\begin{array}{cccccc}{\frac{1}{6}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{9}{70}} & {0} & {0} & {0} & {\frac{-13 L}{420}} \\ {0} & {0} & {\frac{9}{70}} & {0} & {\frac{-13 L}{420}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{6 A}} & {0} & {0} \\ {0} & {0} & {\frac{-13 L}{420}} & {0} & {\frac{-L^{2}}{140}} & {0} \\ {0} & {\frac{13 L}{420}} & {0} & {0} & {0} & {\frac{-L^{2}}{140}}\end{array}\right]
+\]
+
+\[
+\pmb{m_{21}} = \left[\begin{array}{cccccc}{\frac{1}{6}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{9}{70}} & {0} & {0} & {0} & {\frac{13 L}{420}} \\ {0} & {0} & {\frac{9}{70}} & {0} & {\frac{-13 L}{420}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{6 A}} & {0} & {0} \\ {0} & {0} & {\frac{13 L}{420}} & {0} & {\frac{-L^{2}}{140}} & {0} \\ {0} & {\frac{-13 L}{420}} & {0} & {0} & {0} & {\frac{-L^{2}}{140}}\end{array}\right], \quad \pmb{m_{22}} = \left[\begin{array}{cccccc}{\frac{1}{3}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{13}{35}} & {0} & {0} & {0} & {\frac{-11 L}{210}} \\ {0} & {0} & {\frac{13}{35}} & {0} & {\frac{11 L}{210}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{3 A}} & {0} & {0} \\ {0} & {0} & {\frac{11 L}{210}} & {0} & {\frac{L^{2}}{105}} & {0} \\ {0} & {\frac{-11 L}{210}} & {0} & {0} & {0} & {\frac{L^{2}}{105}}\end{array}\right]
+\]
+donde
+\begin{equation}
+	\Mme{m'}_{\mathrm{1D}}= \rho A L \left[\begin{array}{cc}
+	\pmb{m_{11}}  &  \pmb{m_{12}} \\
+	\pmb{m_{21}}  &  \pmb{m_{22}} 
+	\end{array}\right]
+\end{equation}
 \section{Transferencia de calor no-lineal y transitoria}
 
 \subsection*{Radiacion}
@@ -1043,7 +1076,7 @@ Cuando se tienen problemas de radiación se puede iterar para obtener el perfil 
 \Cme{T}^{n+1} = \Cme{T}^n + \frac{1}{k_R} \cdot \left( \Cme{T}^{n+1}_{\mathrm{unrelaxed}} - \Cme{T}^{n} \right)
 \end{cases}
 \end{equation}
-donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Se puede asegurar la convergencia de la solución pero a la vez será más lenta a mayores $k_R$.
+donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Usando mayores $k_R$ se puede asegurar la convergencia de la solución a costo de ser más lenta.
 
 
 \subsection*{Transitorio}
@@ -1073,7 +1106,7 @@ Ecuación iterativa:
 
 
 \[
-\begin{array}{|l|l|}\hline \beta=0 & {\text { Euler Forward Difference }} \\ \hline \beta=0.5 & {\text { Crank Nicholson }} \\ \hline \beta=0.666 & {\text { Galerkin }} \\ \hline \beta=1 & {\text { Backward Difference }} \\ \hline\end{array}
+\begin{array}{|l|l|}\hline \beta=0 & {\text {Euler Forward Difference }} \\ \hline \beta=0.5 & {\text {Crank--Nicholson }} \\ \hline \beta=0.666 & {\text {Galerkin }} \\ \hline \beta=1 & {\text {Backward Difference }} \\ \hline\end{array}
 \]
 
 \section{Análisis Dinámico}

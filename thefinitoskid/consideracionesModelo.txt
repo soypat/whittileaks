@@ -1,0 +1,24 @@
+Conceptos de modelado y de uso de software
+
+Primer step, el modelo matematico. se representan las caracteristicas esenciales y lo
+que se considera importante o relacionado al problema tratado, que pueden ser los detalles.
+
+No necesariamente se tenga en cuenta el metodo de solucion al momento de modelado matematico
+pero si sirve tener conocimiento de como funciona un FEA para saber cuanto detalle incluir.
+
+Es importante conocer la teoria que se maneja y si aplica. Teoria de vigas supone material homogeneo y 
+deflexiones pequeñas. Si se va de rango entonces te vas del rango donde es valida tu solucion.
+
+Se recomienda que se empiece con un plan flexible que puede ser modificado a medida que se aprende mas del problema
+que empezar de una con FEA. Planning requiere de 
+*que resultados son los deseados, que se busca?
+* Como serán verificados los resultados
+* Hay una tendencia de aceptar los resultados del FEA de una por el tiempo que se invirtio en ellos,
+esto se contraresta teniendo en mano los resultados aproximados ANTES de comenzar el FEA. 
+
+*No se suelen usar elementos de deformacion constante porque no muestran la variacion lineal de la 
+deformacion que aparece tan seguido en problemas con flexion y porque sufren de problemas numericos. 
+(shear locking)
+
+Thin walled sections!
+Element Shape / Distribution!
