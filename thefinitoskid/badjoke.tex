@@ -1,10 +1,13 @@
+% !TeX program = xelatex
+% !TeX spellcheck = es_ES
+% !TeX encoding = utf8
 \documentclass[11pt, a4paper,titlepage]{article}
 \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=2cm,right=2cm]{geometry}
 %% Declaro simbolo
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 
 
-\usepackage[utopia]{mathdesign}
+%\usepackage[utopia]{mathdesign}
 \newcommand{\rmfont}[1]{{\fontfamily{ptm}\selectfont%
 #1}}
 \newcommand{\rmfontbf}[1]{{\fontfamily{ptm}\selectfont%
@@ -20,12 +23,12 @@ citecolor=red]{hyperref}
 	\usepackage[spanish,mexico]{babel}
 	\selectlanguage{spanish}
    
-	\usepackage[utf8]{inputenc} % Aca va el setup para el codigo.
+%	\usepackage[utf8]{inputenc} % Aca va el setup para el codigo.
     \usepackage{graphicx,caption,subcaption,multirow}
 
     \usepackage{amsmath,array,siunitx}
     \newcommand{\vvert}[1]{\left\Vert #1\right\Vert}
-    \usepackage{listings}
+%    \usepackage{listings}
 	\usepackage{mdframed}
 	\usepackage{xcolor} 
     
@@ -226,7 +229,7 @@ Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales.
 	\Nnod	& \texttt{Nnod}                   &    Número de nodos        \\
 	\Nelem	& \texttt{Nelem}                   &    Número de elementos       \\
 	\Ndofpornod	& \texttt{Ndofpornod}                   &    Número dof por nodo       \\
-	$\Ndof=\Ndofpornod \cdot \Nnod$	& \texttt{Ndof} {\footnotesize{}o simplemente} \texttt{dof}                   &    Número de dof        \\
+	$\Ndof=\Ndofpornod \cdot \Nnod$	& \texttt{Ndof} o simplemente \texttt{dof}                   &    Número de dof        \\
 	\Nnodporelem	& \texttt{Nnodporelem}                   &    Número de nodos por elemento     \\
 	$\Ndofporelem= \Ndofpornod \cdot \Nnodporelem$	& \texttt{Ndofporelem}                   &    Número de dof por elemento       \\
 	\Ndims	& \texttt{Ndim}                   &    Número de dimensiones      \\
@@ -241,7 +244,7 @@ Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales.
 \label{tab:VariableDefinitions}
 \end{table}
 
-Se sugiere al lector usar los nombres de variables mencionados en la tabla \ref{tab:VariableDefinitions}. La motivación de los nombres de variable es que sean legibles y cortos a la vez ya que aparecen seguido en un código de elementos finitos. `\texttt{N}' se lee Número y `\texttt{elem}' se lee como elementos etc. Por ejemplo, \texttt{Ndofpornod} se leería: Número de dof (grados de libertad) por nodo.
+Se sugiere al lector usar los nombres de variables mencionados en la tabla \ref{tab:VariableDefinitions}. La motivación de los nombres de variable es que sean legibles y cortos a la vez ya que aparecen seguido en un código de elementos finitos. `\texttt{N}' se lee Número y `\texttt{elem}' se lee como elementos etc. Por ejemplo, \texttt{Ndofpornod} se leería: Número de dof por nodo.
 
 \section{Mallado}
 Primero se requiere discretizar el problema. Se comienza con una matriz de nodos que va unir los elementos. 
@@ -287,7 +290,7 @@ Para resolver el problema de elementos finitos hay que asociar dof a los element
 	\end{bmatrix}_{\Ndofpornod\times 1}
 \end{equation}
 
-Se puede entonces obtener la matriz \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{} para un sistema con más de un elemento:
+Se puede entonces obtener la matriz \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab:
 \begin{verbatim}
     aux = node2dof(reshape(elementos',[],1)');
     elemdof = reshape(aux,size(aux'))'; % SOLO SI Nelem>1
@@ -322,12 +325,12 @@ donde \texttt{sparse(m,n)} crea una matriz \textit{sparse} de tamaño $\texttt{m
 Si el lector desea profundizar su conocimiento, se lo dirige a leer \citet{chessa2002programing}.
 
 
-\section{Aplicación de condiciones de borde esenciales} \label{sec:condBordeEsenciales}
+\section{Aplicación de condiciones de borde esenciales}
 La ecuación diferencial que se resuelve mediante el método de elementos finitos tiene la forma
 
-\begin{equation}  \label{eq:condBordeGeneralizada}
+\[
 L\mathbf{u}+\mathbf{q}=0
-\end{equation}
+\]
 donde $\mathbf{u}$ es el vector de variables primario, $L$ es el operador diferencial y $\mathbf{q}$ es el vector de funciones conocidas. Una ecuación diferencial se le pueden aplicar \textbf{condiciones de borde naturales} (del tipo Neumann) y \textbf{condiciones de borde esenciales} (del tipo Dirichlet) \citep{dixit2007finite}
 \begin{enumerate}
 	\item[\textbf{Esenciales}] Es necesario por lo menos una condición de borde esencial para la resolución \textit{completa} del problema. Se imponen a la variable primaria $\mathbf{u}$ (impuesto a los desplazamientos)
@@ -393,7 +396,7 @@ Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuer
 Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda$ son los autovalores y a cada uno le corresponde un autovector $\Cme{x}_i$.
 
 \begin{verbatim}
-	[autovec, autoval] = eig(B\A);
+	[autovec, autoval] = eig(A\B);
 \end{verbatim}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
@@ -420,15 +423,15 @@ Para orientar una barra que se encuentra en el espacio se puede usar la matriz d
 Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano.\footnote{Las formulaciones de vigas en el plano más comunes son de dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.}
 
 \subsection*{\textit{Bar patch test}}
-Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} o \textit{element test} porque sirve para ensayar la calidad del unión de elementos, el elemento en si, la aplicación de condiciones de borde y método de resolución. 
+Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} porque sirve para ensayar la calidad del elemento y método de resolución. 
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=0.4\textwidth]{fig/barpatch.eps}
-	\caption{Un \textit{bar element test} para verificar un \textit{solver} de elementos finitos. $v_2=1$m.}
+	\caption{Un \textit{bar patch test} para verificar un \textit{solver} de elementos finitos. $v_2=1$m.}
 	\label{fig:barpatch}
 \end{figure}
 
-El \textit{bar patch test} se puede mallar como un problema plano en el plano $xy$ con dos nodos ($x_1=y_1=x_2=0$, $y_2=1$m) y un elemento que los une. La rigidez del material entonces seria $EA=1$N. Se aplican las condiciones de borde detalladas en la figura: se restringen $u_1$,$v_1$ y $u_2$ y se resuelve el sistema para obtener $v_2$. Con este patch test se verifica el método de resolución, la forma en que se rota la matriz de rigidez de la barra, la aplicación de condiciones de borde y el elemento en si.
+El \textit{bar patch test} se puede mallar como un problema plano en el plano $xy$ con dos nodos ($x_1=y_1=x_2=0$, $y_2=1$m) y un elemento que los une. La rigidez del material entonces seria $EA=1$N. Se aplican las condiciones de borde detalladas en la figura: se restringen $u_1$,$v_1$ y $u_2$ y se resuelve el sistema para obtener $v_2$. Con este patch test se verifica el método de resolución, la forma en que se rota la matriz de rigidez de la barra, la aplicación de cargas y el elemento en si.
 
 
 \section{Viga 3D de Timoshenko}
@@ -654,7 +657,7 @@ Algunas Respuestas considerando $E=200$GPa:
 \clearpage
 \part{Elementos 2D}
 
-%\section{Protips para el mallado}
+\section{Protips para el mallado}
 Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
 \begin{itemize}
 	\item \textbf{Donde está la sección de mi dominio que quiero estudiar}? Puedo refinar en esa zona?
@@ -864,73 +867,9 @@ luego de obtener los desplazamientos desconocidas se puede obtener las cargas de
 
 \input{\feaTP}
 
-\section{Restricciones}
-Las restricciones sirven para imponer una nueva relación a los dof del sistema ya existente $Kd=F$. Las condiciones de borde esenciales son restricciones de un punto. Se pueden tener restricciones \textit{multi punto} al relacionar los dof entre si como es el caso para rigid links.
-
-\subsection*{Multiplicadores de Lagrange}
 
 
 
-\begin{equation}
-	\begin{bmatrix}
-	\mathbf{K} & \mathbf{C}^T\\
-	\mathbf{C} & 0
-	\end{bmatrix}
-	\begin{Bmatrix}
-	\mathbf{D} \\
-	\pmb{\lambda}
-	\end{Bmatrix}
-	=
-	\begin{Bmatrix}
-	\mathbf{R} \\
-	\mathbf{Q}
-	\end{Bmatrix}
-\end{equation}
-El sistema de desconocidas se vuelve los desplazamientos $\CD$ y los multiplicadores de lagrange $\pmb{\lambda} $. $\mathbf{Q}$ es el lado derecho de la ecuación de constraints.
-
-Si se quiere restringir dos dof con una relación del tipo $u_n=u_m$ entonces la ecuación es
-\[
-\Mme{c} = \begin{bmatrix}
-0 \\ 
-\vdots \\
-1 \\
-\vdots \\
--1 \\
-\vdots \\
-0
-\end{bmatrix}\begin{array}{c}
-u_1\\
-\vdots \\
-u_n \\
-\vdots \\
-u_m \\
-\vdots \\
-u_{\Nnod}
-\end{array}
-,
-\qquad 
-\mathbf{q} = 0
-\qquad \Rightarrow \quad u_n-u_m = \mathbf{q} = 0
-\]
-donde el nodo $n$ es el \textbf{master} y el nodo $m$ es el \textbf{slave}. Cuando se tengan varias restricciones unidas a un nodo, este nodo será el \textbf{master} y se tendrán que plantear las ecuaciones adecuadamente para que sea así.
-
-\subsection*{Rigid Bar en el plano}
-Un rigid bar o un rigid beam (son restricciones inherentemente distintas) cumple la función de unir dos nodos con un elemento 1D totalmente rígido. Aunque se podría hacer con un elemento barra con rigidez alterada artificialmente, esto puede traer problemas numéricos si la rigidez alterada es muy alta. Además, para el estudio de dinámica estructural y vibraciones es indeseable tener elementos con rigidez artificialmente alta pues agregan modos de alta frecuencia. Estos modos después hacen que el análisis dinámico transitorio sea imposible de efectuar.
-
-\begin{figure}[htb!]
-	\centering
-	\includegraphics[width=7cm]{fig/rigidbarschematic.eps}
-	\caption{Un rigid bar que une el nodo $n$ con el nodo $m$.}
-	\label{fig:rigidbarschematic}
-\end{figure}
-
-El motivo del rigid bar es un elemento que \textit{no se acorta ni se alarga} con las fuerzas que transmite. Un usuario del método de elementos finitos podría pensar que alcanza con plantear dos ecuaciones $u_n=u_m$;$v_n=v_m$ sin embargo esto lograría que los nodos $n$ y $m$ se trasladen como un cuerpo rígido sin permitir rotaciones, efectivamente logrando una rigidez más alta que la propuesta en el motivo del rigid bar.
-
-Si el rigid bar de la figura \ref{fig:rigidbarschematic} permite rotaciones sin acortarse, entonces la distancia que se mueve el nodo $m$ sobre el eje local $x'$ del rigid bar debe ser igual al del nodo $n$, dando una única ecuación
-\[
-u_n\cos\phi + v_n \sin\phi = u_m\cos\phi +v_m\sin\phi  
-\]
-esta restricción se puede agregar al sistema usando los multiplicadores de Lagrange.
 \section{Transferencia de Calor}
 
 Tenemos el flujo de calor que es $\underline{K} \nabla T$, la divergencia de esto es el flujo neto que pasa por un punto.
@@ -1197,52 +1136,52 @@ Tengo que resolver las dos ecuaciones simultáneamente
 \end{cases}
 \]
 donde 
-\begin{align*}
-	\begin{cases}
-	\kuV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^n - \MC \Cme{V}^n - \MK \Cme{D}^n  \right) \\
-	\kuD &= \Cme{V}^n \\\hline
-	\kdV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kuV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kuD \right)  \right) \\
-	\kdD &= \Cme{V}^n + \frac{\Delta t}{2} \kuV \\	\hline
-	\ktV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kdV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kdD \right)  \right) \\
-	\ktD &= \Cme{V}^n + \frac{\Delta t}{2} \kdV \\	\hline
-	\kcV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+1} - \MC \left(\Cme{V}^n + \Delta t \ktV \right) - \MK \left( \Cme{D}^n + \Delta t \ktD \right)  \right) \\
-	\kcD &= \Cme{V}^n + \Delta t \ktV
-	\end{cases}
-\end{align*}
+%\begin{align*}
+%	\begin{cases}
+%	\kuV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^n - \MC \Cme{V}^n - \MK \Cme{D}^n  \right) \\
+%	\kuD &= \Cme{V}^n \\\hline
+%	\kdV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kuV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kuD \right)  \right) \\
+%	\kdD &= \Cme{V}^n + \frac{\Delta t}{2} \kuV \\	\hline
+%	\ktV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kdV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kdD \right)  \right) \\
+%	\ktD &= \Cme{V}^n + \frac{\Delta t}{2} \kdV \\	\hline
+%	\kcV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+1} - \MC \left(\Cme{V}^n + \Delta t \ktV \right) - \MK \left( \Cme{D}^n + \Delta t \ktD \right)  \right) \\
+%	\kcD &= \Cme{V}^n + \Delta t \ktV
+%	\end{cases}
+%\end{align*}
 
 
 \part{Anexo}
 
 \section*{Tablas}
-\begin{table}[htb!]
-	\begin{tabular}{>{$n=$}l<{ \vspace{10pt}}*{13}{c}}
-		0 &&&&&&&1&&&&&&\\
-		1 &&&&&&$x$&&$y$&&&&&\\
-		2 &&&&&$x^2$&&$xy$&&$y^2$&&&&\\
-		3 &&&&$x^3$&&$x^2y$&&$xy^2$&&$y^3$&&&\\
-		4 &&&$x^4$&&$x^3y$&&$x^2y^2$&&$xy^3$&&$y^4$&&\\
-		5 &&$x^5$&&$x^4y$&&$x^3y^2$&&$x^2y^3$&&$xy^4$&&$y^5$&\\
-		6 &$x^6$&&$x^5y$&&$x^4y^2$&&$x^3y^3$&&$x^2y^4$&&$xy^5$&&$y^6$
-	\end{tabular}
-	\caption{El triangulo de pascal de orden $n=6$.}
-\end{table}
-\begin{table}[htb!]
-	\centering
-	\begin{tabular}{ll}
-		\hline
-		\multicolumn{2}{c}{Factor Corrección para $\nu\approx0,25$}                             \\ \hline
-		Perfil                                                   & $k$                             \\ \hline
-		Rectangular $\frac{h}{b}\gtrsim1$                        & $\frac{5}{6}$                   \\
-		Rectangular $\frac{h}{b}=0,5$                            & $0,7961$                        \\
-		Rectangular $\frac{h}{b}=0,25$                           & $0,6308$                        \\
-		Circular                                                 & $\frac{9}{10}$                  \\
-		Tubo de paredes delgadas circular                        & $\frac{1}{2}$                   \\
-		\multicolumn{1}{c}{\multirow{2}{*}{Wide Flange doble T}} & $k_y\approx \frac{A_f}{1,2 A}$ \\
-		\multicolumn{1}{c}{}                                     & $k_z\approx \frac{A_w}{ A}$  \\ \hline 
-	\end{tabular}
-	\caption{$A_w$ es el área del alma y $A_f$ es el área del ala.}
-	\label{tab:kcorrectionfactor}
-\end{table}
+%\begin{table}[htb!]
+%	\begin{tabular}{>{$n=$}l<{ \vspace{10pt}}*{13}{c}}
+%		0 &&&&&&&1&&&&&&\\
+%		1 &&&&&&$x$&&$y$&&&&&\\
+%		2 &&&&&$x^2$&&$xy$&&$y^2$&&&&\\
+%		3 &&&&$x^3$&&$x^2y$&&$xy^2$&&$y^3$&&&\\
+%		4 &&&$x^4$&&$x^3y$&&$x^2y^2$&&$xy^3$&&$y^4$&&\\
+%		5 &&$x^5$&&$x^4y$&&$x^3y^2$&&$x^2y^3$&&$xy^4$&&$y^5$&\\
+%		6 &$x^6$&&$x^5y$&&$x^4y^2$&&$x^3y^3$&&$x^2y^4$&&$xy^5$&&$y^6$
+%	\end{tabular}
+%	\caption{El triangulo de pascal de orden $n=6$.}
+%\end{table}
+%\begin{table}[htb!]
+%	\centering
+%	\begin{tabular}{ll}
+%		\hline
+%		\multicolumn{2}{c}{Factor Corrección para $\nu\approx0,25$}                             \\ \hline
+%		Perfil                                                   & $k$                             \\ \hline
+%		Rectangular $\frac{h}{b}\gtrsim1$                        & $\frac{5}{6}$                   \\
+%		Rectangular $\frac{h}{b}=0,5$                            & $0,7961$                        \\
+%		Rectangular $\frac{h}{b}=0,25$                           & $0,6308$                        \\
+%		Circular                                                 & $\frac{9}{10}$                  \\
+%		Tubo de paredes delgadas circular                        & $\frac{1}{2}$                   \\
+%		\multicolumn{1}{c}{\multirow{2}{*}{Wide Flange doble T}} & $k_y\approx \frac{A_f}{1,2 A}$ \\
+%		\multicolumn{1}{c}{}                                     & $k_z\approx \frac{A_w}{ A}$  \\ \hline 
+%	\end{tabular}
+%	\caption{$A_w$ es el área del alma y $A_f$ es el área del ala.}
+%	\label{tab:kcorrectionfactor}
+%\end{table}
 
 \section*{Expresiones útiles}
 
