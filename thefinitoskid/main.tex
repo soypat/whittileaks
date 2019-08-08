@@ -129,7 +129,7 @@ ntheorem]{code}{Codigo}[section]
 
 \vspace{.8cm}
 
-{\scshape\Large Un apunte informal\par}
+{\scshape\Large Apunte no oficial para la materia 30.07 y 31.92 \par}
 \vfill
 \vspace{3cm}
 
@@ -277,7 +277,7 @@ Las matrices \texttt{nodos} y \texttt{elementos} definen algunos parámetros imp
 \end{verbatim}
 
 
-\section{Mapeo de dof}
+\section{Mapeo de dof} \label{sec:dofmapping}
 
 Para resolver el problema de elementos finitos hay que asociar dof a los elementos. Definido abajo la \textbf{función de mapeo} nodo a dof. Se ingresa el nodo de interés $n$ y la función devuelve los dof asociados a ese nodo.
 
@@ -419,7 +419,7 @@ Para orientar una barra que se encuentra en el espacio se puede usar la matriz d
 \]
 Un lector mosca ser dará cuenta que la matriz de rigidez de la viga Timoshenko 3-D (expresión \ref{eq:matrizRigidezTimoshenko}) es la generalización para todo elemento 1D: barras e incluso vigas en el plano.\footnote{Las formulaciones de vigas en el plano más comunes son de dos ($v$, $\theta$) y tres ($u$,$v$,$\theta$) grados de libertad por nodo.}
 
-\subsection*{\textit{Bar patch test}}
+\subsection*{\textit{Bar element test}}
 Llegado a este punto en la lectura, el autor se imagina que el lector debe estar ansioso por poner a prueba sus conocimientos. La figura \ref{fig:barpatch} describe un problema estático que se puede resolver con una breve análisis a mano alzada. Este tipo de problema se denomina \textit{patch test} o \textit{element test} porque sirve para ensayar la calidad del unión de elementos, el elemento en si, la aplicación de condiciones de borde y método de resolución. 
 \begin{figure}[htb!]
 	\centering
@@ -428,7 +428,7 @@ Llegado a este punto en la lectura, el autor se imagina que el lector debe estar
 	\label{fig:barpatch}
 \end{figure}
 
-El \textit{bar patch test} se puede mallar como un problema plano en el plano $xy$ con dos nodos ($x_1=y_1=x_2=0$, $y_2=1$m) y un elemento que los une. La rigidez del material entonces seria $EA=1$N. Se aplican las condiciones de borde detalladas en la figura: se restringen $u_1$,$v_1$ y $u_2$ y se resuelve el sistema para obtener $v_2$. Con este patch test se verifica el método de resolución, la forma en que se rota la matriz de rigidez de la barra, la aplicación de condiciones de borde y el elemento en si.
+El \textit{bar element test} se puede mallar como un problema plano en el plano $xy$ con dos nodos ($x_1=y_1=x_2=0$, $y_2=1$m) y un elemento que los une. La rigidez del material entonces seria $EA=1$N. Se aplican las condiciones de borde detalladas en la figura: se restringen $u_1$,$v_1$ y $u_2$ y se resuelve el sistema para obtener $v_2$. Con este element test se verifica el método de resolución, la forma en que se rota la matriz de rigidez de la barra, la aplicación de condiciones de borde y el elemento en si. 
 
 
 \section{Viga 3D de Timoshenko}
@@ -513,6 +513,45 @@ donde
 	X&=\frac{AE}{L}, \qquad Y_4 = \frac{2EI_z}{L}, \qquad Y_3 = 2Y_4, \qquad Y_2 = \frac{3Y_4}{L} ,\qquad Y_1 = \frac{2Y_2}{L} \\
 	Z_4 &= \frac{2EI_y}{L}, \qquad Z_3=2Z_4, \qquad Z_2 = \frac{2Z_4}{L}, \qquad Z_1 = \frac{2Z_2}{L}, \qquad S = \frac{G J_T}{L}
 \end{align*}
+
+\subsection*{Rótulas}
+
+\begin{figure}[htb!]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{fig/rotulaexample.eps}
+		\caption{Una unión rotulada y una posible discretización.}
+		\label{fig:rotulaexample}
+	\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+	\includegraphics[width=\linewidth]{fig/rotulaexample2.eps}
+	\caption{Dos sistemas de vigas unidos por una rótula y una posible discretización.}
+	\label{fig:rotulaexample2}
+	\end{subfigure}
+    \caption{}
+\end{figure}
+
+
+
+Las uniones rotuladas permiten que ciertos elementos giren libremente manteniendo rigidez ante la rotación de otros elementos. El primer paso consiste en \textbf{desacoplar} el/los\footnote{Suponiendo que la figura \ref{fig:rotulaexample} está contenida en el plano $xy$: el giro a desacoplar sería en $z$ ($\theta$) dado la geometría de la rótula.} giro/s del elemento rotulado. Esto se logra generando un nuevo grado de libertad para cada giro desacoplado, el cual \textit{no pertenece a ningún nodo}, un \textit{nodeless dof}. Este nuevo dof se puede introducir al final de la matriz de rigidez para no estropear el mapeo de dof visto anteriormente. Al momento de acoplar la rigidez del elemento a la matriz de rigidez global la matriz \texttt{elemdof} (sección \ref{sec:dofmapping}) tiene que mostrar este cambio con los dof desacoplados. Para el caso de la figura \ref{fig:rotulaexample} con grados de libertad $u,v,\theta$ por nodo:
+
+\begin{equation*} \label{eq:elemdofParaRotulaEjemplo}
+\texttt{elementos} = \begin{bmatrix}
+1 & 2  \\
+2 & 4 \\
+3 & 2\\
+\end{bmatrix},
+\qquad
+\texttt{elemdof} = \begin{bmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+4 & 5 & 6 & 10 & 11 & 12  \\
+7 & 8 & 9 & 4 & 5 & 13 \\
+\end{bmatrix}
+\end{equation*}
+note que el elemento rotulado comparte los desplazamientos $u,v$ sobre el nodo 2 (dof 4 y 5) con los otros dos elementos pero tiene su giro $\theta$ desacoplado.
+
+\textit{¿Como quedaría la matriz \texttt{elemdof} del sistema de la figura \ref{fig:rotulaexample2}?}
+
 
 \section{Orientación de elementos 1D} \label{sec:OrientacionElementos}
 Los elementos detallados en la sección anterior están acostados sobre el eje $x$. Para orientar un elemento en el espacio se tiene que empezar de hablar de una \textit{matriz de rotación} $\Mme{T}$.
@@ -607,7 +646,7 @@ Si la viga tiene una carga distribuida sobre su eje $y'$ local pero está arbitr
 	\Cme{r}= \Mme{T}^T \Cme{r'}
 \end{equation}
 usando $\Cme{r'}$ de \eqref{eq:CargaDistribuidaElemento}. Si la carga no está sobre el eje $y'$ de la viga, se deberá usar una matriz de rotación diferente, o cambiar el vector de cargas predefinido. \textit{¿Como aplicaría un par torsor a una viga arbitrariamente orientada?}
-
+ \clearpage
 \section{Ejercicios}
 \subsection*{Pórticos}
 
@@ -851,7 +890,7 @@ Si nuestro sistema tiene desplazamientos iniciales conocidos se puede formular u
 	\CRx 
 	\end{Bmatrix}
 \end{equation} 
-Note que para los nodos donde se conocen los desplazamientos (los nodos $\mathrm{c}$) \textit{se desconocen las cargas}, por ende las cargas sobre los nodos con desplazamientos conocidos tienen subíndice $\mathrm{x}$. El sistema expandido tiene la forma
+Note que para los nodos donde se conocen los desplazamientos (los nodos $\mathrm{c}$) \textit{se desconocen las cargas}, por ende las cargas sobre los nodos con desplazamientos conocidos tienen subíndice $\mathrm{x}$. La rigidez del sistema $\MK{}$ es conocida; se usan los subindices $\mathrm{x}$ y $\mathrm{c}$ solo para tener referencia. El sistema expandido tiene la forma
 \begin{gather*} 
 	\MKxx \CDx + \MKxc \CDc = \CRc \\
 	\MKcx \CDx + \MKcc \CDc = \CRx 
@@ -1325,9 +1364,7 @@ Se suele requerir que $\eta\leq 0,05$
 \[
 \eta = \sqrt{\frac{\vvert{e}^2}{\vvert{e}^2+\vvert{U}^2}}
 \]
-
-
-
+\clearpage
 \section*{Figuras}
 \begin{figure}[htb!]
 	\centering
@@ -1335,7 +1372,7 @@ Se suele requerir que $\eta\leq 0,05$
 	\caption{El tetrahedro de Pascal. Los términos de los elementos \textit{serendipidad} están encuadrados.}
 	\label{fig:PascalsTetrahedron}
 \end{figure}
-
+%\clearpage
 
 \input{\feaQP}
 \input{\annexFile}
