@@ -71,6 +71,7 @@ citecolor=red]{hyperref}
     \newcommand{\modal}{{_{\Phib}}}
     \newcommand{\dampfact}{\varsigma}
     \newcommand{\spartial}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+    \newcommand{\dpartial}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2 ^2}}}
     \newcommand{\CTx}{\Cme{T_{\mathrm{x}}}}
     \newcommand{\CTc}{\Cme{T_{\mathrm{c}}}}
         
@@ -286,11 +287,16 @@ Para resolver el problema de elementos finitos hay que asociar dof a los element
 	n\cdot\Ndofpornod-\Ndofpornod +1 \\ n\cdot\Ndofpornod-\Ndofpornod +2 \\ \vdots \\ n\cdot\Ndofpornod
 	\end{bmatrix}_{\Ndofpornod\times 1}
 \end{equation}
+la cual se programó como una función anónima vectorizada. e.g. para $\Ndofpornod=3$.
 
-Se puede entonces obtener la matriz \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{} para un sistema con más de un elemento:
 \begin{verbatim}
-    aux = node2dof(reshape(elementos',[],1)');
-    elemdof = reshape(aux,size(aux'))'; % SOLO SI Nelem>1
+    node2dof = @(n) [n*3-2; n*3-1; n*3];
+\end{verbatim}
+
+Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{} para un sistema con más de un elemento:
+\begin{verbatim}
+    aux = node2dof(reshape(elementos', [], 1)');
+    elemdof = reshape(aux, Ndofporelem, [])'; % SOLO SI Nelem>1
 \end{verbatim}
 
 La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
@@ -748,7 +754,7 @@ Luego, las funciones de forma $\MN$ se pueden obtener así: $\MN=X^{-1} A$
 \section*{Cargas 2-D}
 La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas nodales del elemento, $\Cme{F}$ fuerzas volumétricas, $\CPhi$ fuerzas de tracción superficiales, $\Cme{\varepsilonb_0}$ las deformaciones iniciales y $\Cme{\sigmab_0}$ las tensiones iniciales (pg. 228)
 \begin{equation} \label{eq:CargasGenerales}
-\Cme{r}=\int \MN^T \Cme{F} \di V +\int \MN^T \CPhi \di S+\int \MB^T \ME \Cme{\varepsilonb_0} \di V- \int \MB \Cme{\sigmab_0} \di V
+\Cme{r}=\overbrace{\int \MN^T \Cme{F} \di V}^{\text{Volumétricas}} + \overbrace{\int \MN^T \CPhi \di S}^{\text{Superficiales}}+\int \MB^T \ME \Cme{\varepsilonb_0} \di V- \int \MB \Cme{\sigmab_0} \di V
 \end{equation}
 
 
@@ -1252,6 +1258,9 @@ donde
 
 \part{Anexo}
 
+\section*{Apuntes Auxiliares (Luis)}
+Los elementos finitos siempre me dan soluciones más rígidas que la realidad porque estoy limitando sus nodos de movimientos mediante el uso de polinomios. En la realidad persisten funciones más complejas. Esto significa que el método de elementos finitos me aproxima la realidad por el lado más rígido, esto se tiene que tomar en cuenta!
+
 \section*{Tablas}
 \begin{table}[htb!]
 	\begin{tabular}{>{$n=$}l<{ \vspace{10pt}}*{13}{c}}
@@ -1284,6 +1293,17 @@ donde
 \end{table}
 
 \section*{Expresiones útiles}
+Operador derivada
+\begin{itemize}
+	\item Barra: $\partial x$
+	\item Viga: $\dpartial{v}{x}$
+	\item 2D: $\begin{bmatrix}
+	\partial/\partial x & 0\\
+	0 & \partial/\partial y \\
+	\partial/\partial y & \partial/\partial x
+	\end{bmatrix}$
+
+\end{itemize}
 
 \begin{align}
 \sigma_{v}&=\sqrt{\sigma_{x}^2+\sigma_{y}^2+\sigma_{z}^2 - \sigma_x \sigma_y-\sigma_x\sigma_z -\sigma_y \sigma_z +3(\sigma_{xy}^2+\sigma_{xz}^2 +\sigma_{yz}^2)} \\
@@ -1369,9 +1389,17 @@ Se suele requerir que $\eta\leq 0,05$
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/pascalsTetra.eps}
-	\caption{El tetrahedro de Pascal. Los términos de los elementos \textit{serendipidad} están encuadrados.}
+	\caption{El tetraedro de Pascal. Los términos de los elementos \textit{serendipidad} están encuadrados.}
 	\label{fig:PascalsTetrahedron}
 \end{figure}
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig/T10numbering.eps}
+	\caption{Numeración de un tetraedro de diez nodos y la ubicación de los puntos Gauss para un grado de precisión 2.}
+	\label{fig:T10numbering}
+\end{figure}
+
 %\clearpage
 
 \input{\feaQP}

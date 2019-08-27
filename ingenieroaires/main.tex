@@ -1,0 +1,188 @@
+\documentclass[titlepage]{article}
+
+\usepackage[a4paper,left=2cm,right=2cm,top=2.6cm,bottom=2cm]{geometry}
+%Header
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead{ \href{http://www.whittileaks.com}{\textsf{Patricio Whittingslow}} }
+%\rhead{\thesection}
+\cfoot{\thepage}
+%End Header
+
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+% \usepackage{upgreek}
+
+\usepackage{amsmath}
+\usepackage{mdframed}
+\usepackage{fontawesome}
+\usepackage{amssymb}
+\usepackage[spanish, mexico]{babel}
+\usepackage{beton}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{bm}
+\usepackage{cancel}
+
+% \usepackage{unicode-math} %Terrible things
+% \usepackage{fontspec}  %Cambiar compiler a LuaLatex
+% \setmainfont{Comic Sans MS}% Terrible indeed
+% \setmathfont{Comic Sans MS}
+\usepackage{tabularx}
+
+\usepackage{natbib}
+\bibliographystyle{plainnat} 
+
+\usepackage{siunitx}
+\sisetup{
+	detect-family,
+	detect-display-math = true, 
+	output-decimal-marker = {,} %Esto decide si el separador decimal es coma o punto
+}
+\DeclareSIUnit{\calorie}{cal}
+\DeclareSIUnit{\Calorie}{\kilo\calorie}
+
+%% SI UNITX FINISH
+\usepackage[pages=some]{background}
+\backgroundsetup{
+	scale=1.4,
+	color=black,
+	opacity=0.6,
+	angle=0,
+	position={7.93,-10.34},
+	contents={%
+		\includegraphics[width=\paperwidth]{waveoffkana.jpg}
+	}%
+}
+\title{Resúmen Transferencia Calor}
+%\renewcommand\spanishtablename{Tabla}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\usepackage[mathscr]{eucal}
+
+\newcommand{\Matlab}{\mbox{\fontfamily{cmr}\selectfont \scshape{Matlab}}}
+
+\newcommand{\ttens}[1]{\underline{\underline{#1}}}
+\newcommand{\ttensb}[1]{\underline{\underline{\mathbf{#1}}}}
+\newcommand{\boltzmann}{k_{\textrm{\RM{B}}}}
+\newcommand{\derpq}{\rotatebox[origin=c]{180}{?}}
+\newcommand{\smol}[1]{{\mbox{\tiny $#1$}}}
+\newcommand{\gradient}{\textrm{grad }}
+\newcommand{\diverg}{\textrm{div }}
+\newcommand{\rotor}{\textrm{rot }}
+
+\newcommand{\RM}[1]{\mbox{\fontfamily{cmr}\selectfont\scriptsize #1}}
+\newcommand{\overtilde}[1]{\widetilde{#1}}
+\newcommand{\mhyph}{\mbox{ - }}
+\newcommand{\Dscr}{\mathscr{D}}
+\newcommand{\Uscr}{\mathscr{U}}
+\newcommand{\Lscr}{\mathscr{L}}
+\newcommand{\moldens}{\bar{n}}
+\newcommand{\crit}{{\mathrm{crit}}}
+\newcommand{\pe}{p_{\mbox{\scriptsize\fontfamily{cmr}\selectfont e}}}
+\newcommand{\entrada}{{\mbox{\scriptsize\fontfamily{cmr}\selectfont entrada}}}
+\newcommand{\salida}{{\mbox{\scriptsize\fontfamily{cmr}\selectfont salida}}}
+\newcommand{\ANPA}{{\mbox{\fontfamily{cmr}\selectfont ANPA}}}
+\newcommand{\breathingspace}{\vspace{.1cm}}
+\newcommand{\hhline}{\hline\vspace{-.4cm}\\\hline}
+\newcommand{\promedio}{\textrm{prom.}}
+% \newcommand{\salida}{\textrm{salida}}
+% \newcommand{\entrada}{\textrm{entrada}}
+\newcommand{\efic}{\mathcal{E}}
+% \newcommand{\crit}{\textrm{\textbf{crit}}}
+\newcommand{\Tfilm}{T_{\textrm{film}}}
+\newcommand{\grados}{^{\circ}}
+\newcommand{\di}{\textrm{d}}
+\newcommand{\Di}{\textrm{D}}
+\newcommand{\ek}{\textrm{e}_K}
+\newcommand{\interna}{\textrm{interna}}
+\newcommand{\externa}{\textrm{externa}}
+\newcommand{\et}{\textrm{e}_T}
+\newcommand{\ei}{\textrm{e}}
+\newcommand{\hcb}{\bar{h}_c}
+\newcommand{\hrb}{\bar{h}_r}
+\newcommand{\hhb}{\bar{h}}
+\newcommand{\Brinkmann}{\textrm{Br}}
+\newcommand{\Fo}{\textrm{Fo}}
+\newcommand{\Eckert}{\textrm{Ec}}
+\newcommand{\frictionfactor}{f}
+\newcommand{\Colburnfactor}{j_H}
+\newcommand{\Peclet}{\textrm{Pe}}
+\newcommand{\Froude}{\textrm{Fr}}
+\newcommand{\Mach}{\textrm{M}}
+\newcommand{\Grashof}{\textrm{Gr}}
+\newcommand{\Rayleigh}{\textrm{Ra}}
+\newcommand{\Stanton}{\textrm{St}}
+\newcommand{\rst}{\left<u_j^\prime u_k^\prime \right>}
+
+\newcommand{\Biot}{\textrm{Bi}}
+\newcommand{\Nusselt}{\textrm{Nu}}
+\newcommand{\vol}{\mathscr{V}}
+\newcommand{\sur}{\mathscr{S}}
+\newcommand{\lin}{\mathscr{L}}
+
+\newcommand{\celsius}{\ensuremath{^\circ\textrm{C}}}
+% \newcommand{\grad}{}
+\newcommand{\Reynolds}{\textrm{Re}}
+\newcommand{\spartial}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dpartial}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+\newcommand{\fforma}{\mathscr{F}}
+\newcommand{\Prandtl}{\textrm{Pr}}
+\newcommand{\Weber}{\textrm{We}}
+\newcommand{\Bond}{\textrm{Bo}}
+\newcommand{\Eotvos}{\textrm{Eö}}
+\newcommand{\Capillary}{\textrm{Ca}}
+
+%% REFRIGERACION
+\newcommand{\latente}{{l}}
+\newcommand{\Qs}{Q_s}
+\newcommand{\Ql}{Q_\latente}
+\newcommand{\Ce}{C_e}
+\newcommand{\Cl}{C_\latente}
+\newcommand{\masa}{G}
+\newcommand{\alfai}{\alpha_i}
+\newcommand{\alfae}{\alpha_e}
+\begin{document}
+	\section{Conceptos básicos}
+	La kilocaloria (kcal) se define como la cantidad de calor necesaria para elevar la temperatura de agua de 14,5\celsius a 15,5\celsius a presión atmosférica. 
+	
+	\[1 \si{\Calorie} =\SI{4,185}{\kilo\joule}\]
+	
+	Una tonelada de refrigeración es 3,158kW.
+	\subsection{Cambios de estado: Calor sensible y calor latente}
+	Suponiendo que se tiene un sistema de hielo a $T_1=-20\celsius$ que se calienta con una potencia constante. Hasta los $0\celsius$ el calor aportado genera un cambio en temperatura, por ende es un calor sensible
+	\[\Qs = \Ce \masa (T_1 - T_2)\]
+	donde $\masa$ es la cantidad de sustancia en unidades de masa, $\Ce$ es el calor especifico
+	 
+	En el instante que llega a los $0\celsius$ se comienza a fundir el hielo. El cambio de estado tiene la particularidad de ocurrir a temperatura constante. El calor aportado no cambia la temperatura del sistema, este calor se llama calor latente. Para fundir todo el hielo se precisa $\Ql$
+	\[ \Ql = \Cl \masa
+	\]
+	donde $\Cl$ es el calor latente especifico de la sustancia.
+	
+	\subsection{Transferencia de calor}
+	Se analiza la transmisión de calor a través de un cuerpo prismático homogéneo en régimen estacionario tomando en cuenta convección y radiación en ambos extremos. 
+	\[
+	Q = \alfai A (T_i - \theta_i)
+	\]
+	donde $\alfai $ es el coeficiente de transmisión superficial de calor interior que tiene en cuenta la convección y radiación. $\theta_i$ es la temperatura de la cara interna del cuerpo y $T_i$ es la temperatura del interior. De forma similar se tiene para el exterior:
+	\[
+	Q = \alfae A ( \theta_e -T_e)
+	\]
+	
+	La transmisión que se efectúa por conducción (en el seno del cuerpo prismático)
+	\[
+	Q = \frac{\lambda A(\theta_e-\theta_i)}{e}
+	\]
+	donde $e$ es el espesor y $\lambda $ e
+	
+	
+\end{document}
