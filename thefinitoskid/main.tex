@@ -19,7 +19,7 @@ citecolor=red]{hyperref}
 
 	\usepackage[spanish,mexico]{babel}
 	\selectlanguage{spanish}
-   
+    
 	\usepackage[utf8]{inputenc} % Aca va el setup para el codigo.
     \usepackage{graphicx,caption,subcaption,multirow}
 
@@ -293,10 +293,12 @@ la cual se programó como una función anónima vectorizada. e.g. para $\Ndofpor
     node2dof = @(n) [n*3-2; n*3-1; n*3];
 \end{verbatim}
 
-Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{} para un sistema con más de un elemento:
+Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{}:
 \begin{verbatim}
-    aux = node2dof(reshape(elementos', [], 1)');
-    elemdof = reshape(aux, Ndofporelem, [])'; % SOLO SI Nelem>1
+    elemdof = zeros(Nelem,Ndofporelem);
+    for e = 1:Nelem
+       elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
+    end
 \end{verbatim}
 
 La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
