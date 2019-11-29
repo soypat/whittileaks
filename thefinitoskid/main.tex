@@ -117,7 +117,9 @@ ntheorem]{code}{Codigo}[section]
 
 \usepackage[symbol,perpage]{footmisc}
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\let\oldpart\part
 
+\renewcommand{\part}[1]{\clearpage \oldpart{#1}}
 \begin{document}  %Aqui empieza el documento
 	\pagestyle{empty}
 \begin{titlepage} %Esta es la caratula
@@ -150,6 +152,9 @@ ntheorem]{code}{Codigo}[section]
 \vspace{1cm}
 Este documento fue creado usando \LaTeX{} para las materias Elementos Finitos I y Elementos Finitos II del ITBA por un alumno. Edición \today.
 
+El codigo fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licensiado bajo Creative Commons 4.0 CC-BY-NC-SA.
+
+License: \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International.} 
 
 \clearpage
 
@@ -407,6 +412,9 @@ Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \righ
 \begin{verbatim}
 	[autovec, autoval] = eig(B\A);
 \end{verbatim}
+
+\section{Solver genérico para elementos 2D (Q$x$)}
+En proceso.
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1610,7 +1618,7 @@ En 2D
 
 \input{\feaQP}
 \input{\annexFile}
-
+\clearpage
 \bibliography{bibliografia} % Indica archivo
 
 \end{document} 
