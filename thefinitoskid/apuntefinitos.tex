@@ -1,6 +1,6 @@
 
 \input{apuntefinitos_preamble.tex}
-
+\input{code.tex}
 \begin{document} 
 
 \input{apuntefinitos_caratula.tex}
@@ -9,9 +9,10 @@
 \vspace{1cm}
 Este documento fue creado usando \LaTeX{} para las materias Elementos Finitos I y Elementos Finitos II del ITBA por un alumno. Edición \today.
 
-El codigo fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licensiado bajo Creative Commons 4.0 CC-BY-NC-SA.
+El código fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licensiado bajo Creative Commons 4.0 CC-BY-NC-SA.
 
 License: \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International.} 
+\lstlistoflistings
 
 \clearpage
 
@@ -122,7 +123,7 @@ Primero se requiere discretizar el problema. Se comienza con una matriz de nodos
 	12.0 & 0 & 0
 	\end{bmatrix}_{ \Nnod \times \Ndims }
 \end{equation}
-Para acceder a las coordenadas del nodo enésimo en \Matlab: \texttt{nodos(n,:)}
+Para acceder a las coordenadas del nodo enésimo en \Matlab: \texttt{nodos(n,:)}. Por ejemplo, el cuarto nodo está ubicado en las coordenadas $(x;y;z)=(12;6;0)$.
 
 La matriz de conectividad de los elementos:
 \begin{equation} \label{eq:MatrizElementosEjemplo}
@@ -138,10 +139,11 @@ El orden de la numeración es lo que orienta al elemento. Tener especial cuidado
 Con estas dos matrices se ha definido una malla que podría resolver el caso de la figura \ref{fig:ej2viga}.\footnote{Para problemas de vigas 3D se tienen 6 dof por nodo, osea \texttt{Ndofpornod=6;}.}
 
 Las matrices \texttt{nodos} y \texttt{elementos} definen algunos parámetros importantes (código \Matlab):
-\begin{verbatim}
-	    [Nnod, Ndim] = size(nodos);
-	    [Nelem, Nnodporelem] = size(nodos);
-\end{verbatim}
+%\lstinputlisting[caption = {Sample code from Matlab}]{code/hinges.m}
+\begin{lstlisting}
+[Nnod, Ndim] = size(nodos);
+[Nelem, Nnodporelem] = size(nodos);
+\end{lstlisting}
 
 
 \section{Mapeo de dof} \label{sec:dofmapping}
@@ -155,17 +157,17 @@ Para resolver el problema de elementos finitos hay que asociar dof a los element
 \end{equation}
 la cual se programó como una función anónima vectorizada. e.g. para $\Ndofpornod=3$.
 
-\begin{verbatim}
+\begin{lstlisting}
     node2dof = @(n) [n*3-2; n*3-1; n*3];
-\end{verbatim}
+\end{lstlisting}
 
 Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{}:
-\begin{verbatim}
-    elemdof = zeros(Nelem,Ndofporelem);
-    for e = 1:Nelem
-       elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
-    end
-\end{verbatim}
+\begin{lstlisting}[caption = {Obtención de matriz elemdof.}]
+elemdof = zeros(Nelem,Ndofporelem);
+for e = 1:Nelem
+   elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
+end
+\end{lstlisting}
 
 La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
 
@@ -182,15 +184,15 @@ Considerando $\Ndofpornod=3$ para el ejemplo que se viene tratando se tiene:
 \section{Acople de rigidez}
 Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura de Gauss, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK_{\Ndof \times \Ndof}$
 
-\begin{verbatim}
-    % Funcionalmente equivalente a hacer: K = zeros(Ndof);
-    K = sparse(Ndof, Ndof); 
-    for e = 1:Nelem
-       meindof = elemdof(e,:);
-       ke = int(B'*E*B,0,L);
-       K(meindof, meindof) = K(meindof, meindof) + ke;
-    end
-\end{verbatim}
+\begin{lstlisting}[caption = {Obtención generica de matriz de rigidez.}]
+K = sparse(Ndof, Ndof); %Funcionalmente equivalente a hacer: K = zeros(Ndof);
+for e = 1:Nelem
+    meindof = elemdof(e,:);
+    ke = int(B'*E*B,0,L);
+    K(meindof, meindof) = K(meindof, meindof) + ke;
+end
+\end{lstlisting}
+
 donde \texttt{sparse(m,n)} crea una matriz \textit{sparse} de tamaño $\texttt{m}\times\texttt{n}$.\footnote{Una matriz esparsa es una matriz cuyos elementos son, en la gran mayoría, igual a cero.} Almacenar la matriz en forma \textit{sparse} no solo ahorra espacio en memoria pero también acorta tiempos de resolución. Es recomendable su uso cuando $\Ndof>10^4$.
 
 Si el lector desea profundizar su conocimiento, se lo dirige a leer \citet{chessa2002programing}.
@@ -209,12 +211,12 @@ donde $\mathbf{u}$ es el vector de variables primario, $L$ es el operador difere
 \end{enumerate}
 
 La condición de borde esencial más simple de aplicar al momento de programar es igualar el desplazamientos a 0. En \Matlab{} se puede trabajar este concepto usando matrices lógicas con relativa facilidad
-\begin{verbatim}
-    isFixed = false(Ndof,1); % Crea un vector columna boolean
-    isFixed(node2dof(n)) = true;  % Se `empotra' el nodo n
-    isFixed([14 2]) = true;  % Restringo los dof 2 y 14
-    isFree = ~isFixed;   % es común llamarlos `libre' y `fijo' en castellano
-\end{verbatim}
+\begin{lstlisting}[caption = {Aplicación de condiciones de borde esenciales.}]
+isFixed = false(Ndof,1); % Crea un vector columna boolean
+isFixed(node2dof(n)) = true;  % Se `empotra' el nodo n
+isFixed([14 2]) = true;  % Restringo los dof 2 y 14
+isFree = ~isFixed;   % es comun llamarlos `libre' y `fijo' en castellano
+\end{lstlisting}
 En la sección \ref{sec:desplzImpuestos} se verá como imponer desplazamientos no nulos.
 
 Siguiendo el ejemplo, ¿cómo aplicaría los empotramientos $A$ y $B$ de la figura \ref{fig:ej2viga}? Y si uno fuera un apoyo simple, ¿cómo haría? 
@@ -224,54 +226,53 @@ Siguiendo el ejemplo, ¿cómo aplicaría los empotramientos $A$ y $B$ de la figu
 \section{Aplicación de condiciones de borde naturales}
 Ya sabemos lo que es una condición de borde natural de la última sección, queda aplicar dicho conocimiento. Llegado a este punto se remarca la importancia de usar \textbf{unidades consistentes}. El autor sugiere usar newtons, metros y pascales.  
 
-\begin{verbatim}
-    R = zeros(Ndof,1);
-    R([1 2 15]) = 9e3;  % Cargo mis dof 1 2 y 15 con 9000 unidades
-\end{verbatim}
+\begin{lstlisting}[caption = {Condiciones de borde naturales (cargas).}]
+R = zeros(Ndof,1);
+R([1 2 15]) = 9e3;  % Cargo mis dof 1 2 y 15 con 9000 unidades
+\end{lstlisting}
 
 ¿Tiene sentido aplicar cargas a un dof en conjunto con condiciones de borde esenciales?
 
 \section{Procedimiento de resolución}
 El sistema a resolver es $\CD=\MK^{-1}\CR$ aunque no es económico invertir la matriz $\MK$ desde un punto de vista numérico: La matriz $\MK$ es esparsa y su inversa es una matriz \textit{full}.\footnote{Una matriz full no tiene elementos que son cero.} Hay varias formas de resolver el problema que no requieren de la inversa, \Matlab{} tiene incorporado el operador \texttt{mldivide(A,B)} que resuelve un sistema de ecuaciones lineal y devuelve \texttt{x} tal que $Ax=B$. 
 
-\begin{verbatim}
-    Dr = K(isFree,isFree)\R(isFree); % == mldivide(K(isFree,isFree),R(isFree));
-\end{verbatim}
+\begin{lstlisting}[caption = {Resolución del sistema lineal.}]
+Dr = K(isFree,isFree)\R(isFree); % == mldivide(K(isFree,isFree),R(isFree));
+\end{lstlisting}
 Se suele llamar a la matriz con condiciones de borde aplicadas la \textbf{matriz de rigidez reducida}. En el caso que el sistema sea singular (no hay suficientes condiciones de borde esenciales para hallar una solución), o que el problema esté mal condicionado, \texttt{mldivide} devuelve un aviso.  
 
 En el código de arriba se cálculo \texttt{Dr} con las matrices de carga y rigidez reducidas, por ende \texttt{Dr} tiene tamaño \texttt{Ndof-Ncb} donde \texttt{Ncb} son la cantidad de dof restringidos.\footnote{A pesar de no tener mucho uso en un programa de elementos finitos se deja la definición: \texttt{Ncb=sum(isFixed)}} Es conveniente obtener el vector de desplazamientos global para el pos-procesado:
 
-\begin{verbatim}
-    D = zeros(Ndof,1);
-    D(isFree) = Dr;
-\end{verbatim}
+\begin{lstlisting}[caption={Recuperación de desplazamientos globales.}]
+D = zeros(Ndof,1);
+D(isFree) = Dr;
+\end{lstlisting}
 \texttt{D} entonces será igual a \texttt{Dr} excepto que tendrá ceros en los dof donde se aplicaron condiciones de borde esenciales.
 
 Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazamientos en una matriz que muestre los desplazamientos de cada nodo en sus filas. También se puede obtener la posición deformada de los nodos sumando las matrices.
-\begin{verbatim}
-    desplazamientos = reshape(D,[],Ndofpornod)';
-    % si los primeros 3 dof son u,v,w puedo sumar:
-    posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
-\end{verbatim}
+\begin{lstlisting}[caption={Obtención de posición deformada.}]
+desplazamientos = reshape(D,[],Ndofpornod)';
+% si los primeros 3 dof son u,v,w puedo sumar:
+posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
+\end{lstlisting}
  donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con pequeños desplazamientos.
 
 Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuerzas externas con:
-\begin{verbatim}
-    Rext = K*D;
-    Rext(node2dof(n)) % Puedo visualizar reacciones en nodo n
-    Rext(elemdof(2)) % Fuerzas externas sobre el elemento 2
-\end{verbatim}
+\begin{lstlisting}[caption = {Obtención de reacciones.}]
+Rext = K*D;
+Rext(node2dof(n)) % Puedo visualizar reacciones en nodo n
+Rext(elemdof(2)) % Fuerzas externas sobre el elemento 2
+\end{lstlisting}
 \texttt{Rext} tendrá las reacciones en los dof restringidos y las fuerzas externas sobre el sistema \textit{en coordenadas globales}. Más acerca de las fuerzas sobre un elemento en la sección \ref{sec:OrientacionElementos}.
 
 \subsection*{Resolución de problema de autovalores}
 Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda$ son los autovalores y a cada uno le corresponde un autovector $\Cme{x}_i$.
 
-\begin{verbatim}
-	[autovec, autoval] = eig(B\A);
-\end{verbatim}
+\begin{lstlisting}[caption={Resolución de problema de autovalores}]
+[autovec, autoval] = eig(B\A);
+\end{lstlisting}
+\clearpage
 
-\section{Solver genérico para elementos 2D (Q$x$)}
-En proceso.
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  1D  ELEMENTS  %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1191,28 +1192,28 @@ donde
 Esta sección incluye técnicas para facilitar la programación de modelos complejos (OOP) y estructuras de datos que optimizan el tiempo de corrida.
 
 \section{OOP}
-La programacion orientada a los objetos (Objected Oriented Programming) tiene sus ventajas al momento de tratar programas complejos. \Matlab{} tiene una implementacion de una estructura de datos llamada \verb|struct| cuyo comportamiento es similar al de otros lenguajes OOP. 
+La programación orientada a los objetos (Objected Oriented Programming) tiene sus ventajas al momento de tratar programas complejos. \Matlab{} tiene una implementada una estructura de datos llamada \verb|struct| cuyo comportamiento es similar al de otros lenguajes OOP. 
 
-Si se piensa que una variable es un cajon donde se puede guardar una matriz o string, un struct seria un mueble con amplio espacio para varios cajones. Los cajones se llaman \verb|fields| o campos. Crear un struct es tan facil como agregar un punto entre dos nombres de variables:
+Si se piensa que una variable es un cajón donde se puede guardar una matriz o string, un struct seria un mueble con amplio espacio para varios cajones. Los cajones se llaman \verb|fields| o campos. Crear un struct es tan fácil como agregar un punto entre dos nombres de variables:
 
-\begin{verbatim}
-    mueble.cajon1 = [0 1 2];  % mi struct se llama mueble
-    mueble.c2 = {'Ke','Ep','k'}; % cajon1 y c2 son campos del struct 
-    fprintf( '%d %s',mueble.cajon1(2),mueble.c2{1} )
-\end{verbatim}
+\begin{lstlisting}[caption={Ejemplos de structs y como acceder a sus campos.}]
+mueble.cajon1 = [0 1 2];  % mi struct se llama mueble
+mueble.c2 = {'Ke','Ep','k'}; % cajon1 y c2 son campos del struct 
+fprintf( '%d %s',mueble.cajon1(2),mueble.c2{1} )
+\end{lstlisting}
 
-Las ventajas solo resultan aparente cuando se tiene un codigo largo donde se tienen muchas variables. Su aplicacion en los elementos finitos son numerosas, pues no presentan desventaja en el tiempo de corrida y suelen disminuir la complejidad del código.
+Las ventajas solo resultan aparente cuando se tiene un código largo donde se tienen muchas variables. Su aplicación en los elementos finitos son numerosas, pues no presentan desventaja en el tiempo de corrida y suelen disminuir la complejidad del código.
 
 \begin{itemize}
-	\item Mas facilidad para funciones que llaman a structs. Resulta mas fácil modificarlas dado un cambio en el código
-	\item Usar una struct para cada tipo o grupo de elemento para almacenar su matriz de rigidez, matriz elementos etc. reduce la complejidad del codigo
-	\item Guardar resultados de una corrida es tan facil como \verb|save('solucion.mat','structSolucion')| donde \verb|structSolucion| puede contener los desplazamientos, tensiones, reacciones etc.
+	\item Mas facilidad para funciones que llaman a structs. Resulta mas fácil modificar estas dado un cambio en el código
+	\item Usar una struct para cada tipo o grupo de elemento para almacenar su matriz de rigidez, matriz elementos etc. reduce la complejidad del código
+	\item Guardar resultados de una corrida es tan fácil como \verb|save('solucion.mat','structSolucion')| donde \verb|structSolucion| puede contener los desplazamientos, tensiones, reacciones etc.
 \end{itemize}
 
 
 
-\section{Integración rápida}
-No es necesario calcular las funciones de forma sobre los puntos gauss o nodos cada vez que se itera sobre un elemento, se pueden guardar estas en un cell array y llamarlas en el momento. El uso de este método puede reducir por un factor de 10 el tiempo de corrida de un programa. A continuacion se declara una estructura \verb|gp| que contiene toda la informacion relacionada a los puntos gauss, incluyendo
+\section{Integración pre-cargada}
+No es necesario calcular las funciones de forma sobre los puntos gauss o nodos cada vez que se itera sobre un elemento, se pueden guardar estas en un cell array y llamarlas en el momento. El uso de este método puede reducir por un factor mayor a 10 el tiempo de corrida. A continuación se declara una estructura \verb|gp| que contiene toda la información relacionada a los puntos gauss, incluyendo
 
 \begin{itemize}
 	\item \verb|gp.n| La cantidad de puntos gauss a integrar
@@ -1221,20 +1222,20 @@ No es necesario calcular las funciones de forma sobre los puntos gauss o nodos c
 	\item \verb|gp.N| Las funciones de forma de los nodos evaluadas en los puntos gauss (un cell array)
 \end{itemize}
 
-\subsubsection*{Creacion del cell array}
-\begin{verbatim}
-    gp.N=cell(gp.n,1);
-    gp.dN= cell(gp.n,1);
-    for ipg =1:gp.n %Optimiza para problemas grandes 
-       xi = gp.u(ipg,1); eta = gp.u(ipg,2);
-       gp.N{ipg} = N(xi, eta);
-       gp.dN{ipg} = dN(xi, eta);% funciones de formas derivadas
-    end
-\end{verbatim}
+\subsubsection*{Creación del cell array}
+\begin{lstlisting}[caption = {Creación de struct relacionada a los puntos de Gauss.}]
+gp.N=cell(gp.n,1);
+gp.dN= cell(gp.n,1);
+for ipg =1:gp.n %Optimiza para problemas grandes 
+   xi = gp.u(ipg,1); eta = gp.u(ipg,2);
+   gp.N{ipg} = N(xi, eta);
+   gp.dN{ipg} = dN(xi, eta);% funciones de formas derivadas
+end
+\end{lstlisting}
 
-\subsubsection*{Integracion rapida}
+\subsubsection*{Integración pre-cargada}
 
-\begin{verbatim}
+\begin{lstlisting}[caption = {Aplicación del método de integración pre-cargada.}]
 DOF = reshape(1:dof,Ndofpornod,[])';
 for e = 1:Nelem
     ke = zeros(Ndofporelem);
@@ -1250,23 +1251,23 @@ for e = 1:Nelem
     end
     %Acople a matriz de rigidez K
 end
-\end{verbatim}
+\end{lstlisting}
 
 \section{Acople rápido de \(\MK \)}
 
 Se puede optimizar mucho el espacio en memoria cambiando la forma de almacenamiento de \(\MK \) a esparsa. Lo que no se sabe es que importa mucho la forma en que se acoplan los valores a \(\MK \). A continuación hay un esquema para el armado rápido de \(\MK \).
 
 \subsubsection*{Declaración de indices y vector valor}
-\begin{verbatim}
+\begin{lstlisting}
 I = zeros( Ndofporelem*Nelem ,1 ); %indice i de K
 J = zeros( Ndofporelem*Nelem ,1 ); %indice j de K
 V = zeros( Ndofporelem*Nelem ,1 ); %Valores de K
 Nentryporelem = Ndofporelem^2; %Cantidad de valores en ke
 n2de = @(e) repmat(Nentryporelem*e ,Nentryporelem ,1 ) - (Nentryporelem-1:-1:0)';
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection*{Acople Rápido}
-\begin{verbatim}
+\begin{lstlisting}[caption = {Aplicación del método de acople rápido de la matriz de rigidez.}]
 for e = 1:Ndofporelem
     ke = zeros(Ndofporelem,Ndofporelem);
     meindof = reshape(DOF(elementos(e,:),:)',1,[]);
@@ -1279,34 +1280,34 @@ for e = 1:Ndofporelem
 end
 
 K = sparse( I, J, V , dof, dof); %spalloc rapido
-\end{verbatim}
+\end{lstlisting}
 
-Este método funciona muy bien para problemas con cientos de miles de dof. Para un problema de 600000 dof con elementos tetra 10, este método permite pasar de un acople de 15.600 segundos (con integración rápida) a tan solo 50 segundos.
+Este método funciona muy bien para problemas con cientos de miles de dof. Para un problema de 600000 dof con elementos tetraedros de diez nodos (T10), este método permite pasar de un acople de 15.600 segundos (con integración rápida) a tan solo 50 segundos.
 
 \section{Verificación de \(\MK \)}
 \subsection*{Autovalores de $\MK$}
 Tomando los autovalores de $\MK$ nos puede dar una buena idea de si nos falta aplicar condiciones de borde o si hay mal condicionamiento numérico. El problema de este método es que deja de funcionar para modelos con muchos dof ya que el calculo de autovalores es muy intensivo sobre los recursos de la computadora.
-\begin{verbatim}
+\begin{lstlisting}
     [autoval, autovec] =eigs(K(isfree,isfree));
-\end{verbatim}
+\end{lstlisting}
 
 La existencia de autovalores nulos o muy cercanos a cero puede implicar 
 \begin{itemize}
-    \item Existencia de modos rigidos de desplazamiento
-    \item Una razón alta entre valores de la diagonal de $\MK$ y los no-diagonales (mal condicionamiento numerico)
+    \item Existencia de modos rígidos de desplazamiento
+    \item Una razón alta entre valores de la diagonal de $\MK$ y los no-diagonales (mal condicionamiento numérico)
 \end{itemize}
 \subsection*{Mecanismos y singularidades en NASTRAN}
-Una vez armada la matriz de rigidez global resulta util poder encontrar dofs que actuen como mecanismos o problemas de condicionamiento. Para esto NASTRAN implementa un metodo para hallar estos dofs. Primero se restringe \(\MK \) aplicando condiciones de borde esenciales y ecuaciones de restricciones. Luego se divide cada elemento de su diagonal ($\MK_{ii}$) por su elemento correspondiente de la matriz $D$ de la descomposición LDL, obteniéndose así los \textit{pivot-ratios}.
+Una vez armada la matriz de rigidez global resulta útil poder encontrar dofs que actúen como mecanismos o problemas de condicionamiento. Para esto NASTRAN implementa un método para hallar estos dofs. Primero se restringe \(\MK \) aplicando condiciones de borde esenciales y ecuaciones de restricciones. Luego se divide cada elemento de su diagonal ($\MK_{ii}$) por su elemento correspondiente de la matriz $D$ de la descomposición LDL, obteniéndose así los \textit{pivot-ratios}.
 
 \[
 \text{PIVOTRATIO} = \frac{\MK_{ii}}{D_{ii}}
 \]
 
-en matlab se puede vectorizar el problema
-\begin{verbatim}
-    KLL = K(isfree, isfree); %Condiciones de borde
-    pivots = decomposition(KLL,'ldl','lower')\diag(KLL);
-\end{verbatim}
+en \Matlab{} se puede vectorizar el problema
+\begin{lstlisting}[caption = {Rutina MAXPIVOT de NASTRAN.}]
+KLL = K(isfree, isfree); %Condiciones de borde
+pivots = decomposition(KLL,'ldl','lower')\diag(KLL);
+\end{lstlisting}
 son de interés los dof con pivot ratio mas alto. NASTRAN pone un limite superior de $10^8$ antes de finalizar la corrida con un error.
 
 Tenga cuidado al buscar el dof que causa el problema, pues redujo el problema aplicando condiciones de borde esenciales! 
@@ -1314,6 +1315,27 @@ Tenga cuidado al buscar el dof que causa el problema, pues redujo el problema ap
 
 
 \part{Anexo}
+
+\section{Solver genérico para elementos 2D (Q4)} \label{sec:q4codigo}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig/q4domain.eps}
+    \caption{Problema plane-stress a resolver. $F=10$kN, $t=1$cm.}
+\end{figure}
+
+\lstinputlisting[caption = {q4shapefun.m}]{code/q4shapefun.m}
+\lstinputlisting[caption = {q4solve.m}]{code/q4solve.m}
+\lstinputlisting[caption = {q4stress.m}]{code/q4stress.m}
+\lstinputlisting[caption = {q4graphstress.m}]{code/q4graphstress.m}
+%set(gcf,'renderer','Painters');filename='q4domain';
+%print('-depsc','-tiff','-r300', '-painters',[filename,'.eps'])
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{code/q4domain.eps}
+    \vspace{-1cm}
+    \caption{Resultado de los códigos de la sección \ref{sec:q4codigo}. }
+\end{figure}
 
 \section*{Apuntes Auxiliares (Luis)}
 Los elementos finitos siempre me dan soluciones más rígidas que la realidad porque estoy limitando sus nodos de movimientos mediante el uso de polinomios. En la realidad persisten funciones más complejas. Esto significa que el método de elementos finitos me aproxima la realidad por el lado más rígido, esto se tiene que tomar en cuenta!
