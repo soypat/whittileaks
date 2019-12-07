@@ -1,3 +1,4 @@
+clear % Conviene siempre empezar con un espacio de trabajo liberado
 q4shapefun % se crean las funciones de forma
 nodos = [0 0;
          1 0
@@ -20,9 +21,9 @@ for e = 1:Nelem
     elemdof(e,:)= reshape(n2d(elementos(e,:)),[],1);
 end
 %% Propiedades del material
-young = 200E9; % Modulo de Young para acero [Pa]
-nu = 0.3;  % Poisson
-t = 1E-2; % espesor [metros]
+young = 200E9;                            % Modulo de Young acero [Pa]
+nu = 0.3;                                 % Poisson
+t = 1E-2;                                 % espesor [metros]
 E = young/(1-nu^2)*[1 nu 0;nu 1 0;0 0 (1-nu)/2]; %plane stress
 %% Gauss para regla de 2x2 
 a   = 1/sqrt(3);
@@ -38,8 +39,8 @@ for e = 1:Nelem
     for ipg = 1:npg
         x = upg(ipg,1);
         y = upg(ipg,2);  
-        J = eval(dNaux)*elemnod;
-        dNxy = J\eval(dNaux);
+        J = eval(dN)*elemnod; % se podrian precargar los resultados de 
+        dNxy = J\eval(dN);    % la integracion para problemas con muchos elementos
         B=zeros(size(E,2),size(ke,1)); %Stress-Strain Matrix
         B(1,1:2:end) = dNxy(1,:);
         B(2,2:2:end) = dNxy(2,:); 
@@ -62,6 +63,6 @@ Dr = K(~isFixed,~isFixed)\R(~isFixed);
 D = zeros(dof,1);
 D(~isFixed) = Dr;
 Dxy = reshape(D,2,[])';
-escala = 1000; 
-posdef = nodos + escala*Dxy(:,[1 2]);
+escala = 1000; % Escala para amplificar desplazamientos
+posdef = nodos + escala*Dxy;
 q4stress

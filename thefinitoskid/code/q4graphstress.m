@@ -7,7 +7,6 @@ for e = 1:Nelem
 end
 colormap(jet(10)); %10 es el numero de colores en el bandplot
 Slims = [min(min(Sxx)) max(max(Sxx))];
-caxis(Slims);
-daspect([1 1 1]);
+daspect([1 1 1]); % Visualizacion a escala
 title('\sigma_{xx} [Pa]');xlabel('x [m]');ylabel('y [m]')
 colorbar('YTick',Slims(1):diff(Slims)/5:Slims(2));
