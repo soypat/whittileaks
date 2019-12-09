@@ -13,6 +13,6 @@
 \contentsline {lstlisting}{\numberline {6.4}Aplicación del método de acople rápido de la matriz de rigidez.}{27}{lstlisting.6.4}%
 \contentsline {lstlisting}{\numberline {6.5}Rutina MAXPIVOT de NASTRAN.}{28}{lstlisting.6.5}%
 \contentsline {lstlisting}{\numberline {7.1}q4shapefun.m}{29}{lstlisting.7.1}%
-\contentsline {lstlisting}{\numberline {7.2}q4solve.m}{29}{lstlisting.7.2}%
-\contentsline {lstlisting}{\numberline {7.3}q4stress.m}{32}{lstlisting.7.3}%
-\contentsline {lstlisting}{\numberline {7.4}q4graphstress.m}{32}{lstlisting.7.4}%
+\contentsline {lstlisting}{\numberline {7.2}q4solve.m}{30}{lstlisting.7.2}%
+\contentsline {lstlisting}{\numberline {7.3}q4stress.m}{31}{lstlisting.7.3}%
+\contentsline {lstlisting}{\numberline {7.4}q4graphstress.m}{31}{lstlisting.7.4}%
