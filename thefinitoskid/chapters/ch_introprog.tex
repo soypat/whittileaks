@@ -78,7 +78,7 @@ Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asoc
 \begin{lstlisting}[caption = {Obtención de matriz elemdof.}]
 elemdof = zeros(Nelem,Ndofporelem);
 for e = 1:Nelem
-elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
+	elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
 end
 \end{lstlisting}
 
@@ -100,9 +100,9 @@ Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma
 \begin{lstlisting}[caption = {Obtención generica de matriz de rigidez.}]
 K = sparse(Ndof, Ndof); %Funcionalmente equivalente a hacer: K = zeros(Ndof);
 for e = 1:Nelem
-meindof = elemdof(e,:);
-ke = int(B'*E*B,0,L);
-K(meindof, meindof) = K(meindof, meindof) + ke;
+	meindof = elemdof(e,:);
+	ke = int(B'*E*B,0,L);
+	K(meindof, meindof) = K(meindof, meindof) + ke;
 end
 \end{lstlisting}
 

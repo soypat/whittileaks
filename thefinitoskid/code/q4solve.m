@@ -29,7 +29,7 @@ E = young/(1-nu^2)*[1 nu 0;nu 1 0;0 0 (1-nu)/2]; %plane stress
 a   = 1/sqrt(3);
 upg = [ -a  -a;a  -a;a  a;-a  a ];% Ubicaciones puntos de Gauss
 npg = size(upg,1);
-wpg = ones(npg,1); %Weight vale 1 para orden n=2
+wpg = ones(npg,1); %Weight vale 1 para orden n=1, grado precision 2
 %% Obtencion Matriz Rigidez
 K = zeros(dof);
 for e = 1:Nelem
