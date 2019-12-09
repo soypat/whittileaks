@@ -1,0 +1,158 @@
+\part{No-linealidad y análisis dinámico}
+
+\section{Respuesta dinámica estructural}
+
+\begin{equation} \label{eq:ecuacionDinamicaGeneral}
+	\Mme{M}\Cme{\boldsymbol{\ddot{\mathrm{D}}}} + \Mme{C}\Cme{\boldsymbol{\dot{\mathrm{D}}}}+\Mme{K} \Cme{D} =\Cme{R^{\mathrm{ext}}}
+\end{equation}
+
+Se puede resolver la ecuación de arriba para un sistema dado sin amortiguamiento y sin cargas externas\footnote{Se denomina vibración ``libre'' cuando no hay cargas asociadas. Si no hay amortiguamiento el desplazamiento es regido por $u= \bar{u}\sin \omega t$, donde $\bar{u}$ es la amplitud de vibración y $\omega$ es la frecuencia circular \cite{cook2007concepts}. $\omega$ es obtenida en radianes por segundo.} para obtener sus frecuencias naturales y los modos asociados a estos.
+\[
+\CD = \Cme{\boldsymbol{\bar{\mathrm D}}}\sin \omega t, \qquad \Cme{\boldsymbol{\ddot{\mathrm{D}}}}= -\omega^2 \Cme{\boldsymbol{\bar{\mathrm D}}} \sin \omega t
+\]
+sin considerar la matriz de amortiguamiento se obtiene el problema de autovalores:
+
+\[
+\left( \MK - \omega^2 \Mme{M} \right)\Cme{\boldsymbol{\bar{\mathrm D}}} = \Cme{0}
+\]
+donde $\omega^2$ es un autovalor y la raíz de estos son las frecuencias naturales.
+
+
+
+
+Amortiguamiento $\Mme{C} = \alpha \Mme{M}+\beta \Mme{K}$ cede una matriz no diagonal. Se complica la resolución. Existen dos otros modelos que tratan con una matriz $\Mme{C\modal}$ diagonal donde las ecuaciones se desacoplan.
+
+
+Amortiguamiento Modal: Se elige un $\dampfact$ para cada modo
+\begin{equation}
+\Mme{C\modal}=\left[ \begin{array}{ccc}{2 \omega_{n} \dampfact_{n}} & {0} & {0} \\ {0} & {\ddots} & {0} \\ {0} & {0} & {2 \omega_{1} \dampfact_{1}}\end{array}\right]
+\end{equation}
+
+Amortiguamiento proporcional. Se basa el análisis 
+
+\begin{equation}
+	\Mme{C\modal} = \Mme{\Phib}^T ( \alpha \Mme{M}+\beta \Mme{K})\Mme{\Phib} = \alpha \delta \Mme{I} +\beta \Mme{\Omegab^2}
+\end{equation}
+
+Si se quiere estudiar un rango de frecuencias de excitación tal que $\omega_{\mathrm{exc}}\in [\omega_1, \omega_2]$ y eligiendo dos valores de damping para ambas frecuencias $\dampfact_1$ y $\dampfact_2$ se tiene:
+\begin{align*}
+\alpha &= 2\omega_1 \omega_2 (\dampfact_1 \omega_2 -\dampfact_2 \omega_1)/(\omega_2^2 - \omega_1^2) \\ \beta &= 2(\dampfact_2\omega_2 -\dampfact_1 \omega_1)/(\omega_2^2 - \omega_1^2)
+\end{align*}
+
+Una vez obtenida $\Mme{C\modal}$ se pueden obtener los desplazamientos modales $\Cme{Z}$. Tome en cuenta que debido a la diagonalidad de $\Mme{\Omegab^2}$ y $\Cme{R\modal }$ se desacoplan las ecuaciones de \ref{eq:ecuacionDinamicaGeneral} y por ende se pasa a tratar dichas matrices diagonales como vectores columnas. Una vez desacopladas se tiene
+ \[\Cme{\boldsymbol{\ddot{\mathrm{Z}}}}+2\COmega \Cme{C\modal} \Cme{\boldsymbol{\dot{\mathrm{Z}}}} + \Cme{\Omegab^2} \Cme{Z} = \Cme{R\modal} \]
+\[
+\Cme{Z} = \frac{\Cme{R\modal }}{ \Cme{\Omegab^2} \sqrt{(1-\chi^2)^2 + (2 \Cme{C\modal} \chi)^2}}
+\]
+donde $\chi = \frac{\omega_{\mathrm{exc}}}{\COmega}$. 
+
+
+
+\subsection*{Sine Sweep}
+A medida que la frecuencia de excitación aumenta la \textit{amplitud del sistema disminuye}\footnote{Excepto en cercanías de una frecuencia natural}. Es interesante pensar que si aumentara no tendría sentido buscar las frecuencias naturales porque estas son caracterizadas por un máximo de amplitud. Las curvas del barrido de frecuencia son decrecientes en lejanía de una frecuencia natural porque para una fuerza cíclica $F(t)=F_0\sin \omega t$ el tiempo que actúa en una dirección es inversamente proporcional a la frecuencia. Por ende la estructura no tiene tiempo para moverse lejos antes de que se invierta la dirección de la fuerza.
+
+\subsection*{Matriz de masa consistente para una viga 3D}
+  \begin{equation}
+  	\Mme{m}_{\mathrm{1D}} = \int_0^L \MN^T \MN \rho A \di x
+  \end{equation}
+  La matriz de masa según una fuente desconocida
+  \begin{equation}
+  	\Mme{m'}_{\mathrm{1D}}= \frac{\rho A L}{420}\left[\begin{array}{cccccccccccc} 140 & 0 & 0 & 0 & 0 & 0 & 35 & 0 & 0 & 0 & 0 & 0\\ 0 & 156 & 0 & 0 & 0 & 22\,L & 0 & 27 & 0 & 0 & 0 & -13\,L\\ 0 & 0 & 156 & 0 & -22\,L & 0 & 0 & 0 & 27 & 0 & 13\,L & 0\\ 0 & 0 & 0 & 140\,{r_{x}}^2 & 0 & 0 & 0 & 0 & 0 & -35\,{r_{x}}^2 & 0 & 0\\ 0 & 0 & -22\,L & 0 & 16\,L^2 & 0 & 0 & 0 & -13\,L & 0 & -6\,L^2 & 0\\ 0 & 22\,L & 0 & 0 & 0 & 16\,L^2 & 0 & 13\,L & 0 & 0 & 0 & -6\,L^2\\ 35 & 0 & 0 & 0 & 0 & 0 & 140 & 0 & 0 & 0 & 0 & 0\\ 0 & 27 & 0 & 0 & 0 & 13\,L & 0 & 156 & 0 & 0 & 0 & -22\,L\\ 0 & 0 & 27 & 0 & -13\,L & 0 & 0 & 0 & 156 & 0 & 22\,L & 0\\ 0 & 0 & 0 & -35\,{r_{x}}^2 & 0 & 0 & 0 & 0 & 0 & 140\,{r_{x}}^2 & 0 & 0\\ 0 & 0 & 13\,L & 0 & -6\,L^2 & 0 & 0 & 0 & 22\,L & 0 & 16\,L^2 & 0\\ 0 & -13\,L & 0 & 0 & 0 & -6\,L^2 & 0 & -22\,L & 0 & 0 & 0 & 16\,L^2 \end{array}\right]	
+  \end{equation}
+donde $r_x =\sqrt{ \frac{I_z}{A}}$. 
+
+
+La matriz de masa según un paper escrito por \cite{matas2014study}
+\[ \pmb{m_{11}}=
+\left[\begin{array}{cccccc}{\frac{1}{3}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{13}{35}} & {0} & {0} & {0} & {\frac{11 L}{210}} \\ {0} & {0} & {\frac{13}{35}} & {0} & {\frac{-11 L}{210}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{3 A}} & {0} & {0} \\ {0} & {0} & {\frac{-11 L}{210}} & {0} & {\frac{L^{2}}{105}} & {0} \\ {0} & {\frac{11 L}{210}} & {0} & {0} & {0} & {\frac{L^{2}}{105}}\end{array}\right], \quad \pmb{m_{12}}= \left[\begin{array}{cccccc}{\frac{1}{6}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{9}{70}} & {0} & {0} & {0} & {\frac{-13 L}{420}} \\ {0} & {0} & {\frac{9}{70}} & {0} & {\frac{-13 L}{420}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{6 A}} & {0} & {0} \\ {0} & {0} & {\frac{-13 L}{420}} & {0} & {\frac{-L^{2}}{140}} & {0} \\ {0} & {\frac{13 L}{420}} & {0} & {0} & {0} & {\frac{-L^{2}}{140}}\end{array}\right]
+\]
+
+\[
+\pmb{m_{21}} = \left[\begin{array}{cccccc}{\frac{1}{6}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{9}{70}} & {0} & {0} & {0} & {\frac{13 L}{420}} \\ {0} & {0} & {\frac{9}{70}} & {0} & {\frac{-13 L}{420}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{6 A}} & {0} & {0} \\ {0} & {0} & {\frac{13 L}{420}} & {0} & {\frac{-L^{2}}{140}} & {0} \\ {0} & {\frac{-13 L}{420}} & {0} & {0} & {0} & {\frac{-L^{2}}{140}}\end{array}\right], \quad \pmb{m_{22}} = \left[\begin{array}{cccccc}{\frac{1}{3}} & {0} & {0} & {0} & {0} & {0} \\ {0} & {\frac{13}{35}} & {0} & {0} & {0} & {\frac{-11 L}{210}} \\ {0} & {0} & {\frac{13}{35}} & {0} & {\frac{11 L}{210}} & {0} \\ {0} & {0} & {0} & {\frac{I_{y}+I_{z}}{3 A}} & {0} & {0} \\ {0} & {0} & {\frac{11 L}{210}} & {0} & {\frac{L^{2}}{105}} & {0} \\ {0} & {\frac{-11 L}{210}} & {0} & {0} & {0} & {\frac{L^{2}}{105}}\end{array}\right]
+\]
+donde
+\begin{equation}
+	\Mme{m'}_{\mathrm{1D}}= \rho A L \left[\begin{array}{cc}
+	\pmb{m_{11}}  &  \pmb{m_{12}} \\
+	\pmb{m_{21}}  &  \pmb{m_{22}} 
+	\end{array}\right]
+\end{equation}
+\section{Transferencia de calor no-lineal y transitoria}
+
+\subsection*{Radiacion}
+Cuando se tienen problemas de radiación se puede iterar para obtener el perfil usando \textbf{relajación.}
+
+
+\begin{equation}
+\begin{cases}
+\CTx^{n+1}_{\mathrm{unrelaxed}} =  \MKxx^{-1}  \left(\CRx^{n} - \MKxc \CTc^{n}\right)\\
+\CR^{n} = \Cme{R_{\mathrm{generado}}}+ \Cme{R_{\mathrm{rad}}}^{n} \\
+\Cme{T}^{n+1} = \Cme{T}^n + \frac{1}{k_R} \cdot \left( \Cme{T}^{n+1}_{\mathrm{unrelaxed}} - \Cme{T}^{n} \right)
+\end{cases}
+\end{equation}
+donde $k_R$ es la relajación o factor de atenuación de temperaturas. Cuanto mayor es más ``amortiguada'' es la convergencia del perfil. Usando mayores $k_R$ se puede asegurar la convergencia de la solución a costo de ser más lenta.
+
+
+\subsection*{Transitorio}
+Matriz capacidad
+\[
+[C]=\int_{\Omega}[N]^{T} \rho c[N] d \omega
+\]
+Temperature-Heat flux matrix $\MB$ para Q4:
+\[
+\MB =
+\begin{Bmatrix}
+\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial x} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial x} \\
+\frac{\partial N}{\partial \xi} \frac{\partial \xi}{\partial y} + \frac{\partial N}{\partial \eta} \frac{\partial \eta}{\partial y} 
+\end{Bmatrix}
+\]
+
+Si a beta le digo que vale cero el futuro muere en cambio si beta vale 1 entonces TODO depende del futuro.
+\[
+\beta[C]\{\dot{T}\}^{n+1}+(1-\beta)[C]\{\dot{T}\}^{n}+[K] \beta\{T\}^{n+1}+[K](1-\beta)\{T\}^{n}=(1-\beta)\left\{R_{T}\right\}^{n}+\beta\left\{R_{T}\right\}^{n+1}
+\]
+
+Ecuación iterativa:
+\begin{equation}
+\Cme{T}^{n+1} = \left( \MC +\Delta t \beta \MK \right)^{-1} \left[ \left(\MC -\Delta t(1-\beta) \MK\right) \Cme{T}^n +\Delta t \left( (1-\beta) \Cme{R}^n + \beta \Cme{R}^{n+1}  \right)\right]
+\end{equation}
+
+
+
+\[
+\begin{array}{|l|l|}\hline \beta=0 & {\text {Euler Forward Difference }} \\ \hline \beta=0.5 & {\text {Crank--Nicholson }} \\ \hline \beta=0.666 & {\text {Galerkin }} \\ \hline \beta=1 & {\text {Backward Difference }} \\ \hline\end{array}
+\]
+
+\section{Análisis Dinámico}
+
+\subsection*{Método Integración Directa}
+Resuelve \ref{eq:ecuacionDinamicaGeneral}.
+\begin{align*}
+	\begin{cases}
+	\Cme{V}^{n+1}&=\Cme{V}^n + \frac{\Delta t}{2}  \Mme{M}^{-1}\left(\Cme{R^{\mathrm{ext}}} - \MC \Cme{V} - \MK \Cme{D} \right) \\
+	\Cme{D}^{n+1}&=\Cme{D}^n + \frac{\Delta t}{2} \Cme{V}
+	\end{cases}
+\end{align*}
+
+
+\subsection*{Método Runge--Kutta K4}
+Tengo que resolver las dos ecuaciones simultáneamente
+\[
+\begin{cases}
+	\Cme{V}^{n+1}=\Cme{V}^n + \frac{\Delta t}{6} \left( \kuV + 2\kdV + 2\ktV + \kcV \right) \\
+	\Cme{D}^{n+1}=\Cme{D}^n + \frac{\Delta t}{6} \left( \kuD + 2\kdD + 2\ktD + \kcD \right) \\
+\end{cases}
+\]
+donde 
+\begin{align*}
+	\begin{cases}
+	\kuV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^n - \MC \Cme{V}^n - \MK \Cme{D}^n  \right) \\
+	\kuD &= \Cme{V}^n \\\hline
+	\kdV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kuV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kuD \right)  \right) \\
+	\kdD &= \Cme{V}^n + \frac{\Delta t}{2} \kuV \\	\hline
+	\ktV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+\frac{1}{2}} - \MC \left(\Cme{V}^n + \frac{\Delta t}{2} \kdV \right) - \MK \left( \Cme{D}^n + \frac{\Delta t}{2} \kdD \right)  \right) \\
+	\ktD &= \Cme{V}^n + \frac{\Delta t}{2} \kdV \\	\hline
+	\kcV &= \Mme{M}^{-1} \left( \Cme{R^{\mathrm{ext}}}^{n+1} - \MC \left(\Cme{V}^n + \Delta t \ktV \right) - \MK \left( \Cme{D}^n + \Delta t \ktD \right)  \right) \\
+	\kcD &= \Cme{V}^n + \Delta t \ktV
+	\end{cases}
+\end{align*}

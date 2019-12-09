@@ -1,0 +1,53 @@
+\section{Introducción al Método de los Elementos Finitos}
+El análisis o método de elementos finitos (FEA por \textit{finite element analysis}) es usado para obtener una solución numérica de un problema de campo (electrostático, térmico, tensiones). Matemáticamente estos problemas están definidos como ecuaciones diferenciales o como un integral. Ambas expresiones pueden formularse con elementos finitos.
+
+Las ventajas de FEA son
+\vspace{-.3cm}
+\begin{itemize}
+	\item Es aplicable a cualquier problema de campo
+	\item No hay restricciones geométricas
+	\item No hay restricciones al tipo de cargas o condiciones de borde que se pueden aplicar
+	\item Se puede formular para materiales que no son isotrópicos e incluso el tipo de material puede cambiar dentro de un elemento
+	\item Se pueden combinar distintos tipos de elementos en un modelos, por ejemplo, unir barras con vigas o incluso con elementos 3D.
+	\item La aproximación se puede mejorar fácilmente refinando la malla donde hay gradientes de tensión altos
+\end{itemize}
+\vspace{-.7cm}
+\subsection*{Proceso de resolución}
+El primer paso es identificar y \textbf{clasificar} el problema.
+\begin{itemize}
+	\item Cuales son los fenómenos físicos involucrados y que resultados se buscan del análisis
+	\item Depende del tiempo? (estático o dinámico)
+	\item Hace falta una resolución iterativa? (no linealidad: radiación, plasticidad)
+\end{itemize} 
+
+Luego se comienza el \textbf{modelado} del problema.
+\begin{itemize}
+	\item Se excluyen los detalles superfluos, dejando los esencial para describir el problema con un margen de error adecuado sin complicar las cosas innecesariamente 
+	\item Un \textit{modelo geométrico} se convierte en un \textit{modelo matemático} cuando se describe su comportamiento mediante ecuaciones diferenciales y condiciones de borde.\footnote{Un modelo de FEA no es la realidad, es una \textit{simulación}. Difícilmente se obtengan resultados buenos cuando se aplique FEA a un modelo matemático que no refleja la realidad de forma apropiada.}
+	\end{itemize}
+Un modelo matemático es una idealización donde se simplifican la geometría, propiedades del material, cargas y/o condiciones de borde en base del entendimiento del analista acerca lo que tiene (o no) importancia al momento de obtener los resultados requeridos.
+
+
+Finalmente llega el momento de la \textbf{discretización}. Un modelo matemático se discretiza dividiéndolo en una malla de elementos finitos. De esta forma, un campo continuo es representado como una función partida la cual es definida por una cantidad finita de variables nodales e interpolación dentro de cada elemento.
+\vspace{-.4cm}
+\subsection*{Tipos de error}
+Al momento de discretizar se introduce error conocido como \textbf{error de discretización}. Eso sucede porque se aproxima un campo \textit{suave} con una función partida. Aumentar el numero de elementos puede disminuir este error pero nunca eliminarlo.
+
+Aún reduciendo el error de discretización se tendría \textbf{error numérico} porque toda computadora usa números de finita precisión para efectuar aritmética. Este error suele ser mínimo cuando se discretiza de forma adecuada y no se tiene una situación física propensa al \textit{mal condicionamiento}.
+
+Cabe destacar que se introdujo error antes de hacer una sola cuenta! El \textbf{error de modelado} se introduce por necesidad de simplificar el problema. Las cargas puntuales, los soportes fijos y los materiales perfectamente homogéneos no existen en la realidad! \cite{cook2007concepts}.
+
+\subsection*{Principios básicos de elementos finitos}
+
+La ecuación que se resuelve es
+\[
+M\ddot{d} + C\dot{d} + Kd = F^{\mathrm{externas}}
+\]
+para un sistema mecánico. Es común tratar problemas estáticos tener como variables de entrada las fuerzas externas $F^{\mathrm{externas}}$ (peso propio, fuerzas aplicadas, fuerza centrifuga etc.) y la rigidez del sistema $K$. Los desplazamientos $d$ sería la variable que se desea obtener. La ecuación a resolver entonces es
+\[
+d =K^{-1} \cdot F^{\mathrm{externas}}
+\]
+
+El método de los elementos finitos entonces tiene su campo de rigidez $K$ que se suele llamar la matriz de rigidez global $\MK$. Esta asocia rigidez con los grados de libertad de los nodos obtenidos de la discretización. Para cuerpos sólidos en el espacio hay 6 grados de libertad, 3 de desplazamiento ($u$, $v$ ,$w$) y tres de giro ($\varphi$, $\theta$, $\psi$). 
+
+Antes de discretizar un modelo se eligen las direcciones $x$, $y$, $z$ globales. Los desplazamientos obtenidos corresponderán a estas direcciones.

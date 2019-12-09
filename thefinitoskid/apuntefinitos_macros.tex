@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%
+% PROGRAMMING %
+%%%%%%%%%%%%%%%
+\newcommand{\Numberof}{N}
+\newcommand{\Numberlocal}{n}
+
+\newcommand{\DOF}{\vartheta}
+\newcommand{\Nnod}{\ensuremath{\Numberof_{\mathrm{nod.}}}}
+\newcommand{\Ndims}{\ensuremath{\Numberof_{\mathrm{dim.}}}}
+\newcommand{\Nelem}{\ensuremath{\Numberof_{\mathrm{elem.}}}}
+\newcommand{\Ndofpornod}{\ensuremath{\DOF_{\mathrm{nod.}}}}
+\newcommand{\Ndof}{\ensuremath{\Numberof_{\mathrm{dof}}}}
+\newcommand{\Nnodporelem}{\ensuremath{\Numberlocal_{\mathrm{nod.}}}}
+\newcommand{\Ndofporelem}{\ensuremath{\Numberlocal_{\mathrm{dof}}}}
+
+
+\newcommand{\vvert}[1]{\left\Vert #1\right\Vert}
+ \newcommand{\versor}[1]{\hat{#1}}
+ \newcommand{\dof}{\ensuremath{\mathrm{dof}}}
+ \newcommand{\squareangles}{\vartheta}
+ 
+\newcommand{\radial}{r}
+\newcommand{\eff}{f}
+\newcommand{\modal}{{_{\Phib}}}
+\newcommand{\dampfact}{\varsigma}
+
+%%%%%%%%%%%%
+% FEA CORE %
+%%%%%%%%%%%%
+\newcommand{\jac}{\rmfontbf{J}}
+\newcommand{\Djac}{|\;\jac\;|}
+\newcommand{\dNi}{\di N_i}
+\newcommand{\sigmab}{\boldsymbol{\sigma}}
+\newcommand{\varepsilonb}{\boldsymbol{\varepsilon}}
+\newcommand{\Phib}{\boldsymbol{\Phi}}
+\newcommand{\Omegab}{\boldsymbol{\Omega}}
+\newcommand{\COmega}{\Cme{\Omegab}}
+\newcommand{\CPhi}{\boldsymbol{\{ } \Phi \boldsymbol{\} }}
+\newcommand{\Mme}[1]{\boldsymbol{[}\mathbf{#1} \boldsymbol{]}}
+\newcommand{\Mmes}[1]{\boldsymbol{[}\boldsymbol{ \mathrm{#1} }\boldsymbol{]}}
+\newcommand{\Rme}[1]{\boldsymbol{\lfloor}\mathbf{#1} \boldsymbol{\rfloor}}
+\newcommand{\Cme}[1]{\boldsymbol{\{ }\mathbf{#1} \boldsymbol{\}} }
+\newcommand{\Cmen}[1]{\boldsymbol{\{ }#1 \boldsymbol{\}} }
+\newcommand{\CT}{\Cme{T}}
+\newcommand{\CD}{\Cme{D}}
+\newcommand{\kuD}{\Cmen{k_1^{\dot{D}}}}
+\newcommand{\kdD}{\Cmen{k_2^{\dot{D}}}}
+\newcommand{\ktD}{\Cmen{k_3^{\dot{D}}}}
+\newcommand{\kcD}{\Cmen{k_4^{\dot{D}}}}
+\newcommand{\kuV}{\Cmen{k_1^{\dot{V}}}}
+\newcommand{\kdV}{\Cmen{k_2^{\dot{V}}}}
+\newcommand{\ktV}{\Cmen{k_3^{\dot{V}}}}
+\newcommand{\kcV}{\Cmen{k_4^{\dot{V}}}}
+\newcommand{\MB}{\Mme{B}}
+\newcommand{\MN}{\Mme{N}}
+\newcommand{\ME}{\Mme{E}}
+\newcommand{\MK}{\Mme{K}}
+\newcommand{\MC}{\Mme{C}}
+\newcommand{\Mk}{\Mme{k}}
+\newcommand{\MA}{\Mme{A}}
+\newcommand{\CTx}{\Cme{T_{\mathrm{x}}}}
+\newcommand{\CTc}{\Cme{T_{\mathrm{c}}}}
+\newcommand{\CDx}{\Cme{D_{\mathrm{x}}}}
+\newcommand{\CDc}{\Cme{D_{\mathrm{c}}}}
+\newcommand{\CRext}{\Cme{R^{\mathrm{ext.}}}}
+\newcommand{\CRx}{\Cme{R_{\mathrm{x}}}}
+\newcommand{\CRc}{\Cme{R_{\mathrm{c}}}}
+\newcommand{\CR}{\Cme{R}}
+\newcommand{\MKxx}{\Mme{K_{\mathrm{xx}}}}
+\newcommand{\MKcc}{\Mme{K_{\mathrm{cc}}}}
+\newcommand{\MKxc}{\Mme{K_{\mathrm{xc}}}}
+\newcommand{\MKcx}{\Mme{K_{\mathrm{cx}}}}
+
+%%%%%%%%%%
+% COMMON %
+%%%%%%%%%%
+\newcommand{\di}{\textrm{d}}
+\newcommand{\spartial}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\dpartial}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2 ^2}}}
+\newcommand{\Matlab}{\rmfont{\sc Matlab}}
+\newcommand{\Adina}{{\sc ADINA}}
+\newcommand{\refp}[1]{(\ref{#1})}
+\newcommand{\unspace}{\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!}
+\newcommand{\ms}{\ \ \ } %Matrix Spacing
+
+%%%%%%%%
+% FONT %
+%%%%%%%%
+\newcommand{\rmfont}[1]{{\fontfamily{ptm}\selectfont%
+		#1}}
+\newcommand{\rmfontbf}[1]{{\fontfamily{ptm}\selectfont%
+		\textbf{#1}}}
+\newcommand{\rmfontsc}[1]{{\fontfamily{ptm}\selectfont%
+		\textsc{#1}}}

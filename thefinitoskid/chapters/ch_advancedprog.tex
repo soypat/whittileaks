@@ -1,0 +1,123 @@
+\part{Métodos avanzados para la programación}
+Esta sección incluye técnicas para facilitar la programación de modelos complejos (OOP) y estructuras de datos que optimizan el tiempo de corrida.
+
+\section{OOP}
+La programación orientada a los objetos (Objected Oriented Programming) tiene sus ventajas al momento de tratar programas complejos. \Matlab{} tiene una implementada una estructura de datos llamada \verb|struct| cuyo comportamiento es similar al de otros lenguajes OOP. 
+
+Si se piensa que una variable es un cajón donde se puede guardar una matriz o string, un struct seria un mueble con amplio espacio para varios cajones. Los cajones se llaman \verb|fields| o campos. Crear un struct es tan fácil como agregar un punto entre dos nombres de variables:
+
+\begin{lstlisting}[caption={Ejemplos de structs y como acceder a sus campos.}]
+mueble.cajon1 = [0 1 2];  % mi struct se llama mueble
+mueble.c2 = {'Ke','Ep','k'}; % cajon1 y c2 son campos del struct 
+fprintf( '%d %s',mueble.cajon1(2),mueble.c2{1} )
+\end{lstlisting}
+
+Las ventajas solo resultan aparente cuando se tiene un código largo donde se tienen muchas variables. Su aplicación en los elementos finitos son numerosas, pues no presentan desventaja en el tiempo de corrida y suelen disminuir la complejidad del código.
+
+\begin{itemize}
+	\item Mas facilidad para funciones que llaman a structs. Resulta mas fácil modificar estas dado un cambio en el código
+	\item Usar una struct para cada tipo o grupo de elemento para almacenar su matriz de rigidez, matriz elementos etc. reduce la complejidad del código
+	\item Guardar resultados de una corrida es tan fácil como \verb|save('solucion.mat','structSolucion')| donde \verb|structSolucion| puede contener los desplazamientos, tensiones, reacciones etc.
+\end{itemize}
+
+
+
+\section{Integración pre-cargada}
+No es necesario calcular las funciones de forma sobre los puntos gauss o nodos cada vez que se itera sobre un elemento, se pueden guardar estas en un cell array y llamarlas en el momento. El uso de este método puede reducir por un factor mayor a 10 el tiempo de corrida. A continuación se declara una estructura \verb|gp| que contiene toda la información relacionada a los puntos gauss, incluyendo
+
+\begin{itemize}
+	\item \verb|gp.n| La cantidad de puntos gauss a integrar
+	\item \verb|gp.w| Los pesos de los puntos gauss
+	\item \verb|gp.u| Las posiciones de los puntos gauss
+	\item \verb|gp.N| Las funciones de forma de los nodos evaluadas en los puntos gauss (un cell array)
+\end{itemize}
+
+\subsubsection*{Creación del cell array}
+\begin{lstlisting}[caption = {Creación de struct relacionada a los puntos de Gauss.}]
+gp.N=cell(gp.n,1);
+gp.dN= cell(gp.n,1);
+for ipg =1:gp.n %Optimiza para problemas grandes 
+   xi = gp.u(ipg,1); eta = gp.u(ipg,2);
+   gp.N{ipg} = N(xi, eta);
+   gp.dN{ipg} = dN(xi, eta);% funciones de formas derivadas
+end
+\end{lstlisting}
+
+\subsubsection*{Integración pre-cargada}
+
+\begin{lstlisting}[caption = {Aplicación del método de integración pre-cargada.}]
+DOF = reshape(1:dof,Ndofpornod,[])';
+for e = 1:Nelem
+    ke = zeros(Ndofporelem);
+    meindof = reshape(DOF(elementos(e,:),:)',1,[]);
+    elenod = nodos(elementos(e,:),:);
+    for ipg = 1:gp.n
+        jac = gp.dN{ipg}*elenod; % estas dos lineas corren
+        dNxyz = jac\gp.dN{ipg}; %mucho mas rapido que integracion lenta
+        Djac = det(jac);
+        B = zeros(size(E,2),Ndofporelem);
+        %% Calculo B para mi elemento
+        ke = ke + B'*E*B*gp.w(ipg)*Djac;
+    end
+    %Acople a matriz de rigidez K
+end
+\end{lstlisting}
+
+\section{Acople rápido de \(\MK \)}
+
+Se puede optimizar mucho el espacio en memoria cambiando la forma de almacenamiento de \(\MK \) a esparsa. Lo que no se sabe es que importa mucho la forma en que se acoplan los valores a \(\MK \). A continuación hay un esquema para el armado rápido de \(\MK \).
+
+\subsubsection*{Declaración de indices y vector valor}
+\begin{lstlisting}
+I = zeros( Ndofporelem*Nelem ,1 ); %indice i de K
+J = zeros( Ndofporelem*Nelem ,1 ); %indice j de K
+V = zeros( Ndofporelem*Nelem ,1 ); %Valores de K
+Nentryporelem = Ndofporelem^2; %Cantidad de valores en ke
+n2de = @(e) repmat(Nentryporelem*e ,Nentryporelem ,1 ) - (Nentryporelem-1:-1:0)';
+\end{lstlisting}
+
+\subsubsection*{Acople Rápido}
+\begin{lstlisting}[caption = {Aplicación del método de acople rápido de la matriz de rigidez.}]
+for e = 1:Ndofporelem
+    ke = zeros(Ndofporelem,Ndofporelem);
+    meindof = reshape(DOF(elementos(e,:),:)',1,[]);
+    elenod = nodos(elementos(e,:),:);
+    % obtengo ke de alguna forma
+    idx = n2de(e);
+    I(idx) = repmat(meindof,1,Ndofporelem)' ;
+    J(idx) = reshape(repmat(meindof,Ndofporelem,1),[],1);
+    V(idx) = ke(:);
+end
+
+K = sparse( I, J, V , dof, dof); %spalloc rapido
+\end{lstlisting}
+
+Este método funciona muy bien para problemas con cientos de miles de dof. Para un problema de 600000 dof con elementos tetraedros de diez nodos (T10), este método permite pasar de un acople de 15.600 segundos (con integración rápida) a tan solo 50 segundos.
+
+\section{Verificación de \(\MK \)}
+\subsection*{Autovalores de $\MK$}
+Tomando los autovalores de $\MK$ nos puede dar una buena idea de si nos falta aplicar condiciones de borde o si hay mal condicionamiento numérico. El problema de este método es que deja de funcionar para modelos con muchos dof ya que el calculo de autovalores es muy intensivo sobre los recursos de la computadora.
+\begin{lstlisting}
+    [autoval, autovec] =eigs(K(isfree,isfree));
+\end{lstlisting}
+
+La existencia de autovalores nulos o muy cercanos a cero puede implicar 
+\begin{itemize}
+    \item Existencia de modos rígidos de desplazamiento
+    \item Una razón alta entre valores de la diagonal de $\MK$ y los no-diagonales (mal condicionamiento numérico)
+\end{itemize}
+\subsection*{Mecanismos y singularidades en NASTRAN}
+Una vez armada la matriz de rigidez global resulta útil poder encontrar dofs que actúen como mecanismos o problemas de condicionamiento. Para esto NASTRAN implementa un método para hallar estos dofs. Primero se restringe \(\MK \) aplicando condiciones de borde esenciales y ecuaciones de restricciones. Luego se divide cada elemento de su diagonal ($\MK_{ii}$) por su elemento correspondiente de la matriz $D$ de la descomposición LDL, obteniéndose así los \textit{pivot-ratios}.
+
+\[
+\text{PIVOTRATIO} = \frac{\MK_{ii}}{D_{ii}}
+\]
+
+en \Matlab{} se puede vectorizar el problema
+\begin{lstlisting}[caption = {Rutina MAXPIVOT de NASTRAN.}]
+KLL = K(isfree, isfree); %Condiciones de borde
+pivots = decomposition(KLL,'ldl','lower')\diag(KLL);
+\end{lstlisting}
+son de interés los dof con pivot ratio mas alto. NASTRAN pone un limite superior de $10^8$ antes de finalizar la corrida con un error.
+
+Tenga cuidado al buscar el dof que causa el problema, pues redujo el problema aplicando condiciones de borde esenciales! 

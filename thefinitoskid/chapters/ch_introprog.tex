@@ -1,0 +1,186 @@
+\part{Programación del método de los elementos finitos}
+
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{ccl}
+		Objeto matemático & Nombre de variable & Definición \\ \hline
+		\Nnod	& \texttt{Nnod}                   &    Número de nodos        \\
+		\Nelem	& \texttt{Nelem}                   &    Número de elementos       \\
+		\Ndofpornod	& \texttt{Ndofpornod}                   &    Número dof por nodo       \\
+		$\Ndof=\Ndofpornod \cdot \Nnod$	& \texttt{Ndof} {\footnotesize{}o simplemente} \texttt{dof}                   &    Número de dof        \\
+		\Nnodporelem	& \texttt{Nnodporelem}                   &    Número de nodos por elemento     \\
+		$\Ndofporelem= \Ndofpornod \cdot \Nnodporelem$	& \texttt{Ndofporelem}                   &    Número de dof por elemento       \\
+		\Ndims	& \texttt{Ndim}                   &    Número de dimensiones      \\
+		$\Mk$	& \texttt{ke}                   &   Matriz de rigidez del elemento      \\
+		$\MK$	& \texttt{K}                   &   Matriz de rigidez global      \\
+		$\CR$   & \texttt{R}                  &  Vector de cargas \\
+		$\CD$   & \texttt{D}                 & Vector de desplazamientos \\
+		%	$\CRext $   & \texttt{Rext}                 & Vector de cargas externas \\
+	\end{tabular}
+	
+	\caption{Parámetros importantes para la resolución de elementos finitos. Comúnmente denominados \textit{dofinitions}.}
+	\label{tab:VariableDefinitions}
+\end{table}
+
+Se sugiere al lector usar los nombres de variables mencionados en la tabla \ref{tab:VariableDefinitions}. La motivación de los nombres de variable es que sean legibles y cortos a la vez ya que aparecen seguido en un código de elementos finitos. `\texttt{N}' se lee Número y `\texttt{elem}' se lee como elementos etc. Por ejemplo, \texttt{Ndofpornod} se leería: Número de dof (grados de libertad) por nodo.
+
+\section{Mallado}
+Primero se requiere discretizar el problema. Se comienza con una matriz de nodos que va unir los elementos. 
+
+\begin{equation}
+\texttt{nodos} = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 6.0 & 0 \\
+6.0 & 8.0 & 0 \\
+12.0 & 6.0 & 0 \\
+12.0 & 0 & 0
+\end{bmatrix}_{ \Nnod \times \Ndims }
+\end{equation}
+Para acceder a las coordenadas del nodo enésimo en \Matlab: \texttt{nodos(n,:)}. Por ejemplo, el cuarto nodo está ubicado en las coordenadas $(x;y;z)=(12;6;0)$.
+
+La matriz de conectividad de los elementos:
+\begin{equation} \label{eq:MatrizElementosEjemplo}
+\texttt{elementos} = \begin{bmatrix}
+1 & 2  \\
+2 & 3  \\
+5 & 4 \\
+4 & 3 
+\end{bmatrix}_{ \Nelem \times \Nnodporelem } 
+\end{equation}
+El orden de la numeración es lo que orienta al elemento. Tener especial cuidado cuando se trabaje con elementos 2D y 3D, numerar los nodos contraria a la formulación escogida puede causar problemas de jacobianos negativos!
+
+Con estas dos matrices se ha definido una malla que podría resolver el caso de la figura \ref{fig:ej2viga}.\footnote{Para problemas de vigas 3D se tienen 6 dof por nodo, osea \texttt{Ndofpornod=6;}.}
+
+Las matrices \texttt{nodos} y \texttt{elementos} definen algunos parámetros importantes (código \Matlab):
+%\lstinputlisting[caption = {Sample code from Matlab}]{code/hinges.m}
+\begin{lstlisting}
+[Nnod, Ndim] = size(nodos);
+[Nelem, Nnodporelem] = size(nodos);
+\end{lstlisting}
+
+
+\section{Mapeo de dof} \label{sec:dofmapping}
+
+Para resolver el problema de elementos finitos hay que asociar dof a los elementos. Definido abajo la \textbf{función de mapeo} nodo a dof. Se ingresa el nodo de interés $n$ y la función devuelve los dof asociados a ese nodo.
+
+\begin{equation}
+\texttt{node2dof}(n) = \begin{bmatrix}
+n\cdot\Ndofpornod-\Ndofpornod +1 \\ n\cdot\Ndofpornod-\Ndofpornod +2 \\ \vdots \\ n\cdot\Ndofpornod
+\end{bmatrix}_{\Ndofpornod\times 1}
+\end{equation}
+la cual se programó como una función anónima vectorizada. e.g. para $\Ndofpornod=3$.
+
+\begin{lstlisting}
+node2dof = @(n) [n*3-2; n*3-1; n*3];
+\end{lstlisting}
+
+Con lo visto hasta ahora se puede entonces obtener la matriz de \textbf{dof asociados a los elementos}, \texttt{elemdof}. En \Matlab{}:
+\begin{lstlisting}[caption = {Obtención de matriz elemdof.}]
+elemdof = zeros(Nelem,Ndofporelem);
+for e = 1:Nelem
+elemdof(e,:)= reshape(node2dof(elementos(e,:)),[],1);
+end
+\end{lstlisting}
+
+La función \texttt{reshape(X,m,n)} devuelve una matriz de $\texttt{m}\times\texttt{n}$ con los elementos de la matriz \texttt{X} recorriendo las columnas de arriba para abajo.
+
+Considerando $\Ndofpornod=3$ para el ejemplo que se viene tratando se tiene:
+\begin{equation} \label{eq:MatrizElemdofEjemplo}
+\texttt{elemdof} = \begin{bmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+4 & 5 & 6 & 7 & 8 & 9  \\
+13 & 14 & 15 & 10 & 11 & 12 \\
+10 & 11 & 12 & 7 & 8 & 9 
+\end{bmatrix}_{ \Nelem \times \Ndofporelem } 
+\end{equation}
+
+\section{Acople de rigidez}
+Se itera sobre los elementos, obteniendo la rigidez del elemento de alguna forma, sea cual sea (integración directa, cuadratura de Gauss, matriz predefinida, etc). Una vez obtenida se acopla $\Mk$ al sistema usando la matriz dof asociados a los elementos para obtener $\MK_{\Ndof \times \Ndof}$
+
+\begin{lstlisting}[caption = {Obtención generica de matriz de rigidez.}]
+K = sparse(Ndof, Ndof); %Funcionalmente equivalente a hacer: K = zeros(Ndof);
+for e = 1:Nelem
+meindof = elemdof(e,:);
+ke = int(B'*E*B,0,L);
+K(meindof, meindof) = K(meindof, meindof) + ke;
+end
+\end{lstlisting}
+
+donde \texttt{sparse(m,n)} crea una matriz \textit{sparse} de tamaño $\texttt{m}\times\texttt{n}$.\footnote{Una matriz esparsa es una matriz cuyos elementos son, en la gran mayoría, igual a cero.} Almacenar la matriz en forma \textit{sparse} no solo ahorra espacio en memoria pero también acorta tiempos de resolución. Es recomendable su uso cuando $\Ndof>10^4$.
+
+Si el lector desea profundizar su conocimiento, se lo dirige a leer \citet{chessa2002programing}.
+
+
+\section{Aplicación de condiciones de borde esenciales} \label{sec:condBordeEsenciales}
+La ecuación diferencial que se resuelve mediante el método de elementos finitos tiene la forma
+
+\begin{equation}  \label{eq:condBordeGeneralizada}
+L\mathbf{u}+\mathbf{q}=0
+\end{equation}
+donde $\mathbf{u}$ es el vector de variables primario, $L$ es el operador diferencial y $\mathbf{q}$ es el vector de funciones conocidas. Una ecuación diferencial se le pueden aplicar \textbf{condiciones de borde naturales} (del tipo Neumann) y \textbf{condiciones de borde esenciales} (del tipo Dirichlet) \citep{dixit2007finite}
+\begin{enumerate}
+	\item[\textbf{Esenciales}] Es necesario por lo menos una condición de borde esencial para la resolución \textit{completa} del problema. Se imponen a la variable primaria $\mathbf{u}$ (impuesto a los desplazamientos)
+	\item[\textbf{Naturales}] Son las condiciones de borde que involucran términos derivados de orden superior y no son suficientes por si solas para la resolución del problema. Se imponen a la variable secundaria $\mathbf{q}$ (fuerzas, tracciones etc.)
+\end{enumerate}
+
+La condición de borde esencial más simple de aplicar al momento de programar es igualar el desplazamientos a 0. En \Matlab{} se puede trabajar este concepto usando matrices lógicas con relativa facilidad
+\begin{lstlisting}[caption = {Aplicación de condiciones de borde esenciales.}]
+isFixed = false(Ndof,1); % Crea un vector columna boolean
+isFixed(node2dof(n)) = true;  % Se `empotra' el nodo n
+isFixed([14 2]) = true;  % Restringo los dof 2 y 14
+isFree = ~isFixed;   % es comun llamarlos `libre' y `fijo' en castellano
+\end{lstlisting}
+En la sección \ref{sec:desplzImpuestos} se verá como imponer desplazamientos no nulos.
+
+Siguiendo el ejemplo, ¿cómo aplicaría los empotramientos $A$ y $B$ de la figura \ref{fig:ej2viga}? Y si uno fuera un apoyo simple, ¿cómo haría? 
+
+
+
+\section{Aplicación de condiciones de borde naturales}
+Ya sabemos lo que es una condición de borde natural de la última sección, queda aplicar dicho conocimiento. Llegado a este punto se remarca la importancia de usar \textbf{unidades consistentes}. El autor sugiere usar newtons, metros y pascales.  
+
+\begin{lstlisting}[caption = {Condiciones de borde naturales (cargas).}]
+R = zeros(Ndof,1);
+R([1 2 15]) = 9e3;  % Cargo mis dof 1 2 y 15 con 9000 unidades
+\end{lstlisting}
+
+¿Tiene sentido aplicar cargas a un dof en conjunto con condiciones de borde esenciales?
+
+\section{Procedimiento de resolución}
+El sistema a resolver es $\CD=\MK^{-1}\CR$ aunque no es económico invertir la matriz $\MK$ desde un punto de vista numérico: La matriz $\MK$ es esparsa y su inversa es una matriz \textit{full}.\footnote{Una matriz full no tiene elementos que son cero.} Hay varias formas de resolver el problema que no requieren de la inversa, \Matlab{} tiene incorporado el operador \texttt{mldivide(A,B)} que resuelve un sistema de ecuaciones lineal y devuelve \texttt{x} tal que $Ax=B$. 
+
+\begin{lstlisting}[caption = {Resolución del sistema lineal.}]
+Dr = K(isFree,isFree)\R(isFree); % == mldivide(K(isFree,isFree),R(isFree));
+\end{lstlisting}
+Se suele llamar a la matriz con condiciones de borde aplicadas la \textbf{matriz de rigidez reducida}. En el caso que el sistema sea singular (no hay suficientes condiciones de borde esenciales para hallar una solución), o que el problema esté mal condicionado, \texttt{mldivide} devuelve un aviso.  
+
+En el código de arriba se cálculo \texttt{Dr} con las matrices de carga y rigidez reducidas, por ende \texttt{Dr} tiene tamaño \texttt{Ndof-Ncb} donde \texttt{Ncb} son la cantidad de dof restringidos.\footnote{A pesar de no tener mucho uso en un programa de elementos finitos se deja la definición: \texttt{Ncb=sum(isFixed)}} Es conveniente obtener el vector de desplazamientos global para el pos-procesado:
+
+\begin{lstlisting}[caption={Recuperación de desplazamientos globales.}]
+D = zeros(Ndof,1);
+D(isFree) = Dr;
+\end{lstlisting}
+\texttt{D} entonces será igual a \texttt{Dr} excepto que tendrá ceros en los dof donde se aplicaron condiciones de borde esenciales.
+
+Como nadie nació leyendo vectores columnas se pueden reorganizar los desplazamientos en una matriz que muestre los desplazamientos de cada nodo en sus filas. También se puede obtener la posición deformada de los nodos sumando las matrices.
+\begin{lstlisting}[caption={Obtención de posición deformada.}]
+desplazamientos = reshape(D,[],Ndofpornod)';
+% si los primeros 3 dof son u,v,w puedo sumar:
+posiciondeformada = nodos + mag*desplazamientos(:,1:3); 
+\end{lstlisting}
+donde \texttt{mag} es una variable para amplificar las deformaciones y que se puedan ver en un gráfico. Suele estar entre 30-100 para problemas con pequeños desplazamientos.
+
+Aún se desconocen las reacciones del problema. Se pueden obtener todas las fuerzas externas con:
+\begin{lstlisting}[caption = {Obtención de reacciones.}]
+Rext = K*D;
+Rext(node2dof(n)) % Puedo visualizar reacciones en nodo n
+Rext(elemdof(2)) % Fuerzas externas sobre el elemento 2
+\end{lstlisting}
+\texttt{Rext} tendrá las reacciones en los dof restringidos y las fuerzas externas sobre el sistema \textit{en coordenadas globales}. Más acerca de las fuerzas sobre un elemento en la sección \ref{sec:OrientacionElementos}.
+
+\subsection*{Resolución de problema de autovalores}
+Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda$ son los autovalores y a cada uno le corresponde un autovector $\Cme{x}_i$.
+
+\begin{lstlisting}[caption={Resolución de problema de autovalores}]
+[autovec, autoval] = eig(B\A);
+\end{lstlisting}
