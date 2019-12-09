@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper,titlepage]{article}
+\documentclass[11pt, a4paper,titlepage,openany]{book}
 \usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
 \selectlanguage{spanish}
 %% NO AGREGAR PAQUETES ANTES DE BABEL!
@@ -41,6 +41,6 @@ citecolor=red]{hyperref}
 %%%%%%%%%%%%%
 \usepackage[symbol,perpage]{footmisc}
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
-\let\oldpart\part
 
-\renewcommand{\part}[1]{\clearpage \oldpart{#1}}
+\let\oldpart\part
+\renewcommand{\part}[1]{ \chapter{#1}}

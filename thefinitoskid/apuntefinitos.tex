@@ -3,22 +3,24 @@
 \input{apuntefinitos_macros.tex}
 \input{code.tex}
 \begin{document} 
+	\frontmatter
 \input{apuntefinitos_caratula.tex}
-
+\pagestyle{plain}
 \tableofcontents
+\clearpage
 \vspace{1cm}
+\subsection*{Sobre esta obra}
 Este documento fue creado usando \LaTeX{} para las materias Elementos Finitos I y Elementos Finitos II del ITBA por un alumno. Edición \today.
 
 El código fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licenciado bajo Creative Commons 4.0 CC-BY-NC-SA.
 
 License: \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International.} 
-%\lstlistoflistings
+\lstlistoflistings
 
-\clearpage
+\mainmatter
 
-\pagestyle{plain}
-%\setcounter{page}{1}
-%\setcounter{section}{-1}
+
+\setcounter{section}{-1}
 \input{chapters/ch_ABC.tex}
 \input{chapters/ch_introprog.tex}
 \input{chapters/ch_1delem.tex}
