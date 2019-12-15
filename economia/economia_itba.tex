@@ -1,0 +1,96 @@
+\documentclass[twocolumn,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
+%Letra general
+\usepackage{mathastext}
+
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=1]{helvet}
+\usepackage[format=plain,
+            labelfont={bf,it},
+            textfont=it]{caption}
+\usepackage{color}
+\usepackage{fontawesome}
+\usepackage{siunitx}
+
+%Math
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%commands
+\newcommand{\glossentry}[2]{$#1$\indent #2 \par \vspace{.4cm} } %Entradas para glosario
+\newcommand{\glossml}[3]{$#1$\indent #2 \emph{#3}  \par \vspace{.4cm} } %Entradas para glosario
+
+\newcommand{\bigpar}[1]{\bigg(
+#1 \bigg) }
+\newcommand{\dprime}{ {\prime \prime} }
+\newcommand{\di}{\textrm{d}}
+\newcommand{\tprime}{ {\prime \prime \prime} }
+\newcommand{\fit}{\textit{\textrm{f }}}
+\newcommand{\corr}{{\textrm{\color{red} Revisar}}}
+\newcommand{\Kf}[1]{ K_{\textit{\textrm{f}}_{\textrm{#1}}} }
+\newcommand{\Kfs}[1]{ K_{\textit{\textrm{fs}}_{\textrm{#1}}} }
+\newcommand{\siga}[1]{ \sigma_{{\textrm{a}}_{\textrm{#1}}} }
+\newcommand{\sigm}[1]{ \sigma_{{\textrm{m}}_{\textrm{#1}}} }
+\newcommand{\pe}{\textit{\textrm{p}}}
+\newcommand{\gut}{{\color{green}\faCheck}}
+\newcommand{\HC}{$H_xC_y$}
+\newcommand{\NX}{$NO_x$}
+\begin{document}
+\title{Resumen de Motores a Combustión interna}
+% \author{Carlos Oncha}
+% \maketitle
+\twocolumn[
+\centering 
+{ \bf \LARGE Resumen de Finanzas \par}
+\vspace{.2cm}
+{\sc \large Patricio Whittingslow\par }
+\vspace{.4cm}
+]
+\glossml{VF}{Valor futuro.}{Future value $(FV)$}
+\glossml{VP}{Valor presente/actual.}{Principal/present value $(PV)$}
+
+\glossml{VAN}{Valor actual neto}{Net present value $(NPV)$}
+
+\glossml{TREMA}{Tasa de rendimiento mínima aceptable.}{Minimum acceptable rate of return $(MARR)$}
+
+\glossml{r,i}{Tasa de descuento \& tasa de interés.}{Discount rate}
+
+
+
+\glossml{g}{Tasa de crecimiento.}{Growth rate}
+
+\glossml{TIR}{Tasa interna de retorno.}{Internal rate of return (a type of discount rate) $(IRR)$}
+
+\glossml{TEM}{Tasa efectiva mensual.}{Effective monthly interest rate}
+
+\glossml{TET}{Tasa efectiva trimestral (cada 3 meses).}{}
+
+\glossml{TEA}{Tasa efectiva anual.}{Effective annual interest rate}
+\glossml{CPI}{}{Consumer price index.}
+\glossml{\pi=\frac{\di CPI}{\di t}}{Inflación.}{Rate of inflation.}
+\glossml{FEO}{Flujo efectivo ordinario.}{Free cash flow from operations or operating free cash flow $(FCFO)$}
+\glossml{FEE}{Flujo efectivo extraordinario.}{}
+\glossml{UAIG=UB}{Utilidad antes de impuestos a las ganancias o utilidad bruta.}{Profit before tax $(PBT)$}
+\glossml{UN}{Utilidad neta o utilidad despues de impuestos a las ganancias.}{Net income, net profit, bottom line or net earnings $(NI)$}
+\glossml{G}{Ganancias.}{Earnings}
+\glossml{IG}{Impuestos a las ganancias.}{Income tax $(IT)$}
+\glossml{BU}{Bienes de uso.}{Durable goods}
+
+\glossml{VL}{Valor en libros.}{Carrying value/amount or book value.}
+\glossml{K_T}{Capital de trabajo.}{Capital goods}
+
+\glossml{PN}{Patrimonio neto.}{Equity (commonly used for companies) or net worth (individuals)}
+
+\glossml{EBIT}{Ganancias antes de interés y impuestos.}{Earnings before interest \& tax.}
+\glossml{EBITDA}{Ganancias antes de interés, impuestos, depreciación y amortización.}{Earnings before interest, tax, depraciation \& amortization.}
+\glossml{CV}{Costos variables.}{Variable costs}
+\glossml{CF}{Costos fijos.}{Fixed costs}
+
+
+
+\section{Valor-Tiempo del dinero}
+
+
+\end{document}
