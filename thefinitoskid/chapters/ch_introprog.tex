@@ -68,9 +68,9 @@ Para resolver el problema de elementos finitos hay que asociar dof a los element
 n\cdot\Ndofpornod-\Ndofpornod +1 \\ n\cdot\Ndofpornod-\Ndofpornod +2 \\ \vdots \\ n\cdot\Ndofpornod
 \end{bmatrix}_{\Ndofpornod\times 1}
 \end{equation}
-la cual se programó como una función anónima vectorizada. e.g. para $\Ndofpornod=3$.
+la cual se programó como una función anónima vectorizada.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption = {\texttt{node2dof} para \Ndofpornod=3. }]
 node2dof = @(n) [n*3-2; n*3-1; n*3];
 \end{lstlisting}
 

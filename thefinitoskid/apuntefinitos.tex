@@ -1,35 +1,39 @@
-% !TeX spellcheck = es_ES
+% !TeX spellcheck = es_ES   %comentario magico para TeXstudio
 \input{apuntefinitos_preamble.tex}
 \input{apuntefinitos_macros.tex}
 \input{code.tex}
-\begin{document} 
-	\frontmatter
-\input{apuntefinitos_caratula.tex}
-\pagestyle{plain}
-\tableofcontents
-\clearpage
-\vspace{1cm}
-\subsection*{Sobre esta obra}
-Este documento fue creado usando \LaTeX{} para las materias Elementos Finitos I y Elementos Finitos II del ITBA por un alumno. Edición \today.
-
-El código fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licenciado bajo Creative Commons 4.0 CC-BY-NC-SA.
-
-License: \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International.} 
-\lstlistoflistings
-
-\mainmatter
-
-
-\setcounter{section}{-1}
-\input{chapters/ch_ABC.tex}
-\input{chapters/ch_introprog.tex}
-\input{chapters/ch_1delem.tex}
-\input{chapters/ch_2delem.tex}
-\input{chapters/ch_other.tex}
-\input{chapters/ch_nonlinear.tex}
-\input{chapters/ch_advancedprog.tex}
-\input{chapters/ch_annex.tex}
-
-\clearpage
-\bibliography{bibliografia} % Indica archivo
+\begin{document}
+	
+	\frontmatter % numeracion romana, no incluido en el indice
+	
+	\input{apuntefinitos_caratula.tex} %La caratula
+	
+	\tableofcontents %Indice de contenido
+	
+	\clearpage
+	\vspace{1cm}
+	
+	\subsection*{Sobre esta obra}
+	Este documento fue creado usando \LaTeX{} para las materias Elementos Finitos I y Elementos Finitos II del ITBA por un alumno. Edición \today.
+	
+	El código fuente se puede encontrar mi repositorio de github \href{https://github.com/soypat/whittileaks}{~/soypat/whittileaks}. Licenciado bajo Creative Commons 4.0 CC-BY-NC-SA.
+	
+	License: \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution-NonCommercial-ShareAlike 4.0 International.}
+	
+	\lstlistoflistings % lista codigos matlab
+	
+	\mainmatter % Se incluye todo lo que sigue en el indice, numeracion arabe
+	
+	\setcounter{section}{-1}
+	\input{chapters/ch_ABC.tex}
+	\input{chapters/ch_introprog.tex}
+	\input{chapters/ch_1delem.tex}
+	\input{chapters/ch_2delem.tex}
+	\input{chapters/ch_other.tex}
+	\input{chapters/ch_nonlinear.tex}
+	\input{chapters/ch_advancedprog.tex}
+	\input{chapters/ch_annex.tex}
+	
+	\clearpage
+	\bibliography{bibliografia} % Indica archivo de bibliografia
 \end{document}
