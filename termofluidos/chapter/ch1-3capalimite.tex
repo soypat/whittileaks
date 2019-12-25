@@ -27,7 +27,7 @@ Solo se van a estudiar capas límites para Números de Reynolds altos $\Reynolds
     \caption{Dos casos de capa límite muy diferente. Se va tratar capas límites con $\Reynolds_\delta \gg1$.}
     \label{fig:BLintro}
 \end{figure}
-\subsection{Solución analítica: Laminar}
+\subsection{Solución analítica: Laminar}\label{ssec:capalimLaminar}
 En 1908 Paul Richard Heinrich Blasius, un físico alemán, desarrolla la teoría fundamental para el estudio de capa limites laminares sobre placas planas. Mediante un uso riguroso de la teoría de semejanza llega a la siguiente ecuación diferencial
 \[
 ff^{\prime\prime}+2f^{\prime\prime\prime}=0
@@ -61,7 +61,7 @@ donde $c_f$ es el coeficiente de fricción local sobre la placa y $C_D$ es el co
 F_D=\tfrac{1}{2}C_D \rho U_\infty A
 \]
 
-Las relaciones anteriores solo valen para régimen laminar. Se puede suponer que cualquier flujo $\Reynolds_L<\num{5e5}$ es laminar. Si el flujo no es perturbado y la superficie de la placa es pulida se puede demorar la transición a turbulento hasta $\Reynolds=\num{3e6}$ \citep{kreith2011principles}.
+Las relaciones anteriores solo valen para régimen laminar. Se puede suponer que cualquier flujo $\Reynolds_L<\Reynolds_{\crit}=\num{5e5}$ es laminar. Si el flujo no es perturbado y la superficie de la placa es pulida se puede demorar la transición a turbulento hasta $\Reynolds_{\crit}=\num{3e6}$ \citep{kreith2011principles}.
 
 \subsubsection*{Efecto desviador de lineas de flujo}
 A causa de la desaceleración del flujo cerca de la placa las lineas de flujo se tiene que desviar hacia afuera. 
@@ -113,7 +113,7 @@ Otra formula que se puede usar \citep{kreith2011principles}:
 \begin{equation}
     c_f=\frac{0,0576}{\Reynolds_x^{0,2}}
 \end{equation}
-No se pueden calcular los esfuerzos viscosos en la pared debido a la singularidad en $x=0$.
+No se pueden calcular los esfuerzos viscosos en la pared debido a la singularidad en $y=0$.
 
 \[
 \frac{\left\langle u \right\rangle}{U_\infty} = \left(\frac{y}{\delta} \right)^{\frac{1}{n}}, \quad n=7,8,9
@@ -124,7 +124,7 @@ En el caso que demore la transisción a régimen turbulento se puede obtener la 
 \[
 \delta_\crit =\delta_{\mathrm{lam.}}(x_\crit) = \delta_{\mathrm{turb.}}(x_\crit-x_0) 
 \]
-
+donde $\Reynolds(x_\crit) =\Reynolds_{\crit}$, según lo visto en la sección \ref{ssec:capalimLaminar}.
 
 \begin{figure}[htb!]
 	\centering
