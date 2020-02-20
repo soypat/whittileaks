@@ -1,9 +1,12 @@
+% !TeX spellcheck = es_ES
+
 \documentclass[twocolumn,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
 %Letra general
 \usepackage{mathastext}
+\usepackage{IEEEtrantools}
 
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[scaled=1]{helvet}
@@ -13,6 +16,7 @@
 \usepackage{color}
 \usepackage{fontawesome}
 \usepackage{siunitx}
+\usepackage{booktabs,tabularx,makecell,multirow,caption}
 
 %Math
 \usepackage{amsmath}
@@ -48,8 +52,18 @@
 {\sc \large Patricio Whittingslow\par }
 \vspace{.4cm}
 ]
+\glossml{A}{Activos.}{Assets}
+\glossml{P}{Pasivos.}{Liabilities}
+
+\glossml{PN}{Patrimonio neto.}{Equity (commonly used for companies) or net worth (individuals)}
+
+\glossml{V}{Ventas.}{Revenue}
+
+\glossml{Q}{Cantidad demanda.}{Quantity demanded}
+
 \glossml{VF}{Valor futuro.}{Future value $(FV)$}
 \glossml{VP}{Valor presente/actual.}{Principal/present value $(PV)$}
+\glossml{VA}{Valor actual. Refiere los flujos positivos y negativos a un mismo punto en el tiempo para evaluar la conveniencia del proyecto.}{Present value (PV)}
 
 \glossml{VAN}{Valor actual neto}{Net present value $(NPV)$}
 
@@ -66,7 +80,7 @@
 \glossml{TEM}{Tasa efectiva mensual.}{Effective monthly interest rate}
 
 \glossml{TET}{Tasa efectiva trimestral (cada 3 meses).}{}
-
+\glossml{PN}{Patrimonio Neto.}{}
 \glossml{TEA}{Tasa efectiva anual.}{Effective annual interest rate}
 \glossml{CPI}{}{Consumer price index.}
 \glossml{\pi=\frac{\di CPI}{\di t}}{Inflación.}{Rate of inflation.}
@@ -74,28 +88,444 @@
 \glossml{FEE}{Flujo efectivo extraordinario.}{}
 \glossml{UAIG=UB}{Utilidad antes de impuestos a las ganancias o utilidad bruta.}{Profit before tax $(PBT)$}
 \glossml{UN}{Utilidad neta o utilidad despues de impuestos a las ganancias.}{Net income, net profit, bottom line or net earnings $(NI)$}
-\glossml{G}{Ganancias.}{Earnings}
+\glossml{G}{Ganancias o beneficio.}{Earnings}
 \glossml{IG}{Impuestos a las ganancias.}{Income tax $(IT)$}
 \glossml{BU}{Bienes de uso.}{Durable goods}
 
 \glossml{VL}{Valor en libros.}{Carrying value/amount or book value.}
 \glossml{K_T}{Capital de trabajo.}{Capital goods}
+\glossml{K_S}{Capital Social.}{Social Capital}
 
-\glossml{PN}{Patrimonio neto.}{Equity (commonly used for companies) or net worth (individuals)}
-
+\glossml{EBT}{Ganancias antes de impuestos.}{Earnings before tax.}
 \glossml{EBIT}{Ganancias antes de interés y impuestos.}{Earnings before interest \& tax.}
 \glossml{EBITDA}{Ganancias antes de interés, impuestos, depreciación y amortización.}{Earnings before interest, tax, depraciation \& amortization.}
 \glossml{CV}{Costos variables.}{Variable costs}
 \glossml{CF}{Costos fijos.}{Fixed costs}
+\glossml{CT}{Costos totales.}{Total costs}
+\glossml{CT_{Me}}{Costo total promedio.}{Total cost average}
+
+\glossml{PER}{Relación precio-beneficio.}{Price to earning ratio.}
+
+
+\newcommand{\fiN}{\ensuremath{f_i^N}}
+
+\tableofcontents
+
+\part{Primer Parcial}
+\section{Curva de la demanda}
+
+\begin{description}
+	\item[Bienes normales] Si la renta aumenta, la demanda aumenta
+	\item[Bienes inferiores] Si la renta aumenta, la demanda disminuye
+	\item[Bienes complementarios] La relación entre la demanda del bien $X$ y del precio de $C_X$ es inversa tal que si aumenta el precio del bien complementario $C_X$ de $X$, entonces se reducirá la cantidad demandada de $X$ (Automóvil $X$ vs. gasolina $C_X$)
+	\item[Bienes sustitutos] Si aumenta el precio del bien sustituto $S_X$ se reduce la cantidad demandada de $S_X$ y por lo tanto aumenta la demanda de $X$. La relación entre la demanda de $X$ y del precio de $S_X$ es directa (Hellmann's vs. Heinz) 
+\end{description}
+
+\section{Elasticidad}
+La \textbf{elasticidad (de la demanda)} $\eta$ es la variación porcentual de la cantidad demandada sobre la variación porcentual del precio.
+\begin{IEEEeqnarray*}{c}
+\eta = \left| \frac{\Delta Q / Q}{\Delta P / P} \right|= \left| \frac{P\times \Delta Q}{Q \times \Delta P} \right|
+\end{IEEEeqnarray*}
+también existe la elasticidad de punto $\eta = \left| \frac{\di Q}{\di P}\cdot\frac{P}{Q} \right|$. Algunas fuentes expresan la elasticidad sin el modulo.
+
+\begin{description}
+	\item[$\eta_p> 1$] Demanda elástica
+	\item[$\eta_p = 1$] Demanda de elasticidad unitaria (ganancia máxima)
+	\item[$\eta_p < 1$] Demanda inelástica
+\end{description}
+
+\textbf{Elasticidad ingreso} o renta de la demanda $e$ es la variación porcentual de la cantidad demandada sobre el cambio porcentual en la renta o ingreso del consumidor.
+\begin{IEEEeqnarray*}{c}
+e = \frac{ \Delta Q / Q }{ \Delta Y / Y }
+\end{IEEEeqnarray*}
+
+\begin{description}
+	\item[$e>1$] Bien de lujo
+	\item[$0<e<1$] Bien básico
+	\item[$e>1$] Bien inferior
+\end{description}
+
+
+Luego se tiene la \textbf{elasticidad cruzada de la demanda} $\eta_{XY}$ que es la variación de la cantidad demandada de $X$ sobre la variación porcentual del precio de $Y$.
+
+\begin{IEEEeqnarray*}{c}
+\eta_{XY} = \frac{\Delta Q_X / Q_X}{\Delta P_Y / P_Y}
+\end{IEEEeqnarray*}
+
+\begin{description}
+	\item[$e_{XY} > 0$] Bienes sustitutos
+	\item[$e_{XY} < 0$] Bienes complementarios
+\end{description}
+
+
+La \textbf{elasticidad precio de la oferta} $\varepsilon_p$ se calcula como la variación porcentual de la cantidad ofrecida sobre la variación porcentual del precio
+\begin{IEEEeqnarray*}{c}
+ \varepsilon_p = \frac{\Delta \% Q_0}{ \Delta \% P}
+\end{IEEEeqnarray*}
+
+\section{Función de la producción}
+La función de la producción usa dos factores (Trabajo $L$ y capital $K$) y puede diferir según el plazo de análisis $\Delta t$.
+\[
+Q = f(K,L, \Delta t)
+\]
+
+\begin{description}
+	\item[Corto plazo] El lapso más largo durante el cual no es posible alterar al menos unos de los factores de producción
+	\item[Largo plazo] El lapso más corto necesario para alterar todos los factores involucrados en el proceso productivo
+\end{description}
+
+\subsection{Ley de los rendimientos marginales decrecientes}
+En el corto plazo hay un factor fijo (suele ser $K$) y uno variable (suele ser $L$). Esta ley establece que a medida que se incorporan unidades del factor variable al factor fijo, el rendimiento de cada unidad adicional es menor a partir de cierta cantidad límite.
+
+
+\section{Mercados}
+
+\subsection{Competencia perfecta}
+En una competencia perfecta se hacen las siguientes suposiciones
+\begin{itemize}
+	\item Productos homogeneos
+	\item Empresas Precio-aceptantes
+	\item Información perfecta
+\end{itemize}
+
+El mercado de competencia perfecta está en equilibrio cuando:
+
+\begin{itemize}
+	\item El precio de mercado es único
+	\item La oferta es igual a la demanda
+	\item Todos los consumidores maximizan la utilidad
+	\item Todas las empresas maximizan el beneficio
+\end{itemize}
+
+Decisiones de producción:
+\begin{itemize}
+	\item Como ya vimos, los beneficios se maximizan cuando $I_{Mg}=C_{Mg}$
+	\item Si el $P>CT_{Me}$, la empresa obtiene beneficios
+	\item $CV_{Me}<P<CT_{Me}$, la empresa incurre en pérdidas
+	\item $P<CV_{Me}<CT_{Me}$, la empresa debe cerrar
+\end{itemize}
+%\part{Segundo Parcial}
+\section{Contabilidad}
+
+\textbf{Empresa.} Organismo que coordina factores productivos destinados a producir e intercambiar bienes y servicios en la sociedad. Realiza compras, pagos, rentas, cobros, transforma insumos para obtener nuevos bienes y servicios. 
+
+\textbf{Contabilidad} Registro ordenado y cronológico de hechos económicos (uso de recursos).
+
+Los \textbf{pasivos} incluyen deudas y obligaciones con terceros. \textbf{Activos} incluye bienes y derechos de la empresa
+
+ \textbf{Patrimonio Neto} incluye aporte de socios y ganancias acumuladas menos dividendos repartidos. Es el valor contable que pertenece a accionistas, equivalente a los aportes de los socios a lo largo durante la vida de la empresa.
+
+\subsection{El balance}
+
+Ecuación patrimonial: 
+\[
+A = P + PN
+\]
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{cc}
+		\multirow{4}{*}{\shortstack[c]{\textbf{Activos}\\ \underline{Corriente}\\Caja y básicos\\ Inversiones y financiamientos\\Bienes de cambio\\Creditos por ventas\\ \underline{No Corriente}\\Bienes de uso\\Inversiones}} & \textbf{Pasivo} \\ 
+		 & \shortstack[c]{\underline{Corriente}\\Deudas comerciales\\Deudas bancarias CP\\ \underline{No Corriente}\\Deudas bancarias LP} \\
+		& \textbf{Patrimonio Neto} \\
+		 & \shortstack[c]{Capital\\Utilidades\\Reservas}
+	\end{tabular}
+\end{table}
+
+Términos de contabilidad:
+\begin{description}
+	\item[Caja y bancos"".] Efectivo, cheques, valores e rápida liquidación.
+	\item[Inversiones corrientes.] Liquidaciones antes de 1 año.
+	\item[Inversiones no corrientes.] Liquidaciones en mas de 1 año.
+	\item[Bienes de cambio] Productos terminados. En recesión aumenta (disminuyen ventas, se acumula stock). En demanda disminuye.
+	\item[Creditos por ventas] Lo que los clientes deben por mercaderia u otros conceptos a pagar en $<$ 1 año
+	\item[Bienes de uso.] Maquinaria, equipos, vehiculos, edificios. Es igual al costo menos las amortizaciones acumuladas (pérdida de valor)
+	\item[Deudas comerciales.] Contraídas con los proveedores
+	\item[Fondo de maniobra o Capital de Trabajo.] La parte del activo que permanece. $K_T=$Pasivo no corriente + PN - Activo no corriente
+	\item[Capital de trabajo operativo]  Necesidades operativas de fondo. Activos corrientes operativos - Pasivos corrientes operativos.
+\end{description}
+
+Calculo de amortizaciones:
+\[
+A = \frac{\text{Valor Original - Valor residual contable}}{\text{Vida útil}}
+\]
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|} \hline
+		+ Ingresos por ventas \\
+		- Costos variables (``de ventas") \\ \hline
+		= Utilidad bruta \\
+		- Costos fijos (``Administración y ventas") \\ \hline
+		= EBITDA \\
+		- Amortizaciones \\ \hline
+		= EBIT \\
+		- Intereses \\ \hline
+		= EBT \\
+		- Impuestos a las ganacias
+		\\ \hline
+		= Utilidad Neta\\ \hline
+	\end{tabular}
+\caption{Cuadro de resultados}
+\end{table}
+
+
+\subsection{Flujo de caja. \textit{Cash flow}}
+
+\[
+A=P+PN\rightarrow \Delta A = \Delta P + PN \rightarrow \Delta C = \Delta P + \Delta PN - \Delta A
+\]
+donde $\Delta C$ es el flujo de fondos total.
+
+
+\begin{IEEEeqnarray*}{rCl}
+\Delta C &=& \Delta D_{comerc} + \Delta D_{financ} + Utilidades + Aportes \\
+& & - Dividendos -(\Delta Cred + \Delta BC + \Delta BU)
+\end{IEEEeqnarray*}
+donde $\Delta BU$ es la inversión menos la amortización.
+
+\begin{IEEEeqnarray*}{rCl}
+	\Delta C &=& \overbrace{EBIT(1-a) + Amort. - \Delta Cred. - \Delta BC + \Delta D_{com}}^{=FFO} \\
+	& & \underbrace{-Invers.}_{=FFI} + \underbrace{\Delta D_{fin} + Aport. - Div. Inter(1-a)}_{=FFF}
+\end{IEEEeqnarray*}
+entonces la variación de caja (lo que representa el cash que entró y salió de la empresa en un periodo determinado) se puede escribir como
+\[
+\Delta C = FFO + FFI + FFF
+\]
+\subsection{Valor de mercado vs. valor de libro}
+
+\begin{description}
+	\item[Valor de libro.] Valor contable oficial de los activos y del capital de los accionistas. Valor de libro por acción = $\frac{PN}{Nro~de~acciones}$
+	\item[Valor de mercado.] Incluye cosas que el valor de libro no, como todos los activos y pasivos de la empresa, los activos estan valuados a costos de adquisicion menos amortizaciones acumuladas.
+\end{description}
+
+\subsection{Principio de lo devengado}
+
+Las ventas se devengan independientemente de si se cobran o no. Los costos de devengan independientemente de si se pagan o no.
+
+\subsection{Principio de partida doble}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|c}
+		Debe & Haber \\ \hline
+		$\uparrow$ Activo &$\uparrow$ Pasivo \\
+		$\downarrow$ Pasivo & $\uparrow$ PN \\
+		$\downarrow$ PN & $\downarrow$ Activo \\ \hline
+		Saldo Deudor & Saldo Acreedor 
+	\end{tabular}
+\caption{$\sum debe = \sum haber$}
+\end{table}
+\[
+Activo + Perdidas = Pasivo + K_S + Ganancias 
+\]
+\[
+PN = K + Utilidades
+\]
+donde $Utilidades = Ganancias + Perdidas$
+
+\subsection{Tipos de cuentas}
+\begin{description}
+	\item[Patrimoniales] Reflejan los componentes del patrimonio
+	\begingroup
+	\small
+	\begin{description}
+		\item[Del activo.] Bienes tangibles o no a favor de la empresa
+		\item[Del pasivo.]  Deudas y obligaciones de la empresa
+		\item[Del PN] Pueden ser de \textbf{Capital} (aporte de los socios) o  \textbf{Utilidades Acumulados} (resultados de la empresa)
+	\end{description}
+\endgroup
+\item[De Resultados.] Positivos o negativos. Variaciones de resultados
+\item[Regulariadores.] Activo, pasivo o PN. Llevan el valor de las cuentas que están corrigiendo un importe más cercano a ser realidad económica""
+\end{description}
+
+\section{Indices financieros}
+
+\subsection{Liquidez}
+La liquidez es de interes a los proveedores, sobre todo los que prestan dinero o CP a la empresa
+
+\begin{description}
+	\item[ILC] Índice de liquidez corriente $=\frac{AC}{PC}$
+	\item[ILS] Índice de liquidez seco $=\frac{AC-BC}{PC}$
+	\item[ILA] Índice de liquidez absoluto $=\frac{AC-BC-C}{PC}$
+\end{description}
+
+\subsection{Rentabilidad}
+\begin{description}
+	\item[ROE] Rentabilidad del PN $=\frac{UN}{PN}$
+	\item[ROA] Rentabilidad operativa $=\frac{EBIT}{A}$
+	\item[Márgen(sobre las rentas)]:
+	\begingroup
+	\small
+	\begin{description}
+		\item[Bruto] $=\frac{UB}{V}$
+		\item[Operativo] $=\frac{EBIT}{V}$
+		\item[Neto] $=\frac{UN}{V}$
+	\end{description}
+	\endgroup
+\end{description}
+El accionista esta interesado en el márgen neto. 
+\subsection{Operativos}
+\begin{description}
+	\item[PMC] Plazo medio de cobranzas $=\frac{Creditos}{V/360}[dias]$
+	\item[Liquidez de inventarios]  $=\frac{BC}{Costo~Ventas/360} [dias]$
+	\item[PPPP] Plazo promedio de pago a proveedores $=\frac{Deuda~Comercial}{Costos~Ventas/360}[dias]$ 
+	\item[Rotación] description
+	\begingroup
+	\small
+	\begin{description}
+		\item[de BC] $=\frac{Costo~Ventas}{BC}[1/a\tilde{n}o]$
+		\item[de Activos] $=\frac{V}{A}[1/a\tilde{n}o]$
+	\end{description}
+	\endgroup
+\end{description}
+
+\subsection{Endeudamiento}
+\begin{description}
+	\item[IE total] $=\frac{P}{A}$
+	\item[Solvencia] $=\frac{PN}{A}$
+	\item[Cobertura de intereses] $=\frac{EBITDA}{Intereses}$
+\end{description}
+
+
+\subsection{De mercado}
+Exclusivo de empresas públicas que cotizan en bolsa.
+
+\begin{description}
+	\item[PER] $=\frac{Precio~por~acci\acute{o}n}{Utilidad~por~acci\acute{o}n} = \frac{PPA}{UPA}$
+	\item[Rentabilidad del accionista] $=\frac{PPA_1-PPA_0 +Dividendo~Por~Acci\acute{o}n_1}{PPA_0}$
+\end{description}
+
+\subsection{Relaciones entre índices}
+Conocidas también como las ecuaciones de Dupont.
+\begin{IEEEeqnarray*}{rCl}
+	ROA = \frac{EBIT}{A} = \underbrace{\frac{EBIT}{V}}_{Mar.Op.}\cdot\underbrace{\frac{V}{A}}_{Rot.~de~Act.}
+\end{IEEEeqnarray*}
+
+\begin{IEEEeqnarray*}{rCl}
+ROE = \frac{UN}{PN} = \frac{EBIT}{V}\cdot \underbrace{\frac{V}{A}}_{Mar.Op.}\cdot\underbrace{\frac{A}{PN}}_{Endeud.}\cdot \frac{EBT}{EBIT}\cdot \underbrace{\frac{UN}{EBT}}_{Apalanc.Fiscal}
+\end{IEEEeqnarray*}
+
+\subsection{Ciclo operativo y ciclo de caja}
+
+\begin{description}
+	\item[Ciclo operativo] El tiempo que pasa entre recibir el inventario, venderlo y  cobrar los créditos generados por la venta
+	\item[Ciclo de caja] El tiempo que transcurre entre paar por el inventario y cobrar por la venta. Es igual al Ciclo operativo menos el periodo de cuentas a pagar (PPPP)
+	\item[PPPP] Tiempo entre compra de materia prima y pago de materia prima $CO = CdC - PPPP$
+\end{description}
+El ciclo de caja mide cuanto tiempo necesitamos financiar bienes de cambio y créditos.
+
+\subsection{Maximización del beneficio}
+Beneficio es igual al ingreso menos los costos totales.
+\[
+G(q) = I(q) - C(q)
+\]
+los beneficios se maximizan cuando $ C_{Mg} = \overbrace{I_{Mg}}^{=\frac{\di I}{\di Q}} \Rightarrow  \frac{\di G}{ \di q} = 0$.
+\section{Costos}
+
+\subsection{Clasificaci\'on de costos}
+
+\begin{description}
+	\item[Costos fijos] Np var\'ian frente al aumento o disminuci\'on de la cantidad producida en el corto plazo (Seguros, impuestos municipales, sueldos administrativos)
+	\item[Costos variables] Varían con la variación del nivel de actividad. Si la empresa no produce estos son nulos (Mano de obra, materia prima)
+	\item[Costo total] Suma de costos fijos y variables. El óptimo técnico se da en el \textit{mínimo costo variable medio}.
+	\item[Costo marginal] $CM = \frac{\partial CT}{\partial Q}$
+	\item[Costo recurrente y No recurrente] Costos repetitivos cuando se producen bienes y servicios con continuidad. Los \textit{no} recurrentes son lo opuesto (campaña de promoción)
+	\item[Costo directo e indirecto] Se pueden asignar de manera directa a una actividad de la empresa (Mano de obra directa, insumos generales)
+	\item[Costo estándar] Lo que debería costar el producto en condiciones normales de eficiencia y operación. Sirve para iniciar su proceso de control, actuando con el fin de que el costo real sea similar al costo presupuestado/estándar
+	\item[Costo hundido] Costo incurrido en el pasado. Por haberse ya ocasionado, \textbf{no} hay que tenerlo en cuenta en la evaluación de proyectos (Estudio de mercado contratado para evaluar viabilidad de proyecto)
+\end{description}
+
+\[
+C_{Mg} = \frac{\Delta CV}{\Delta Q}
+\]
+
+\subsection{Combinación minimizadora de los costos}
+
+
+\[
+\frac{P {Mg_L}}{w} = \frac{P {Mg_K}}{r}
+\]
+donde $w$ es el salario o costo del trabajo, $r$ es la renta o costo del capital.
+
+\subsection{Contabilidad de costos}
+Importante para mejorar rentabilidad o mejorar productividad. Cálculo del costo de fabricación de las unidades vendidas. 
+
+La suma de la materia prima, mano de obra directa y gastos generales de fabricación (GGF) valorizan el stock.
+
+\subsection{Determinación de costos de fabricación}
+Pueden ser de absorción o directo y se diferencian en cómo calcular los GGF. 
+\begin{description}
+	\item[Absorción] La utilidad depende de las ventas y el nivel de producción. Si produzco más de lo que vendo puedo tener errores de cálculo
+	\item[Directo] La utilidad solo depende de las ventas
+\end{description}
+
+\begin{IEEEeqnarray*}{C}
+C_{totales} = \underbrace{\underbrace{MP + MO_{dir.} + GGF_{var.}}_{Directo} + GGF_{fij.}}_{Absorci\acute{o}n} + GACF
+\end{IEEEeqnarray*}
+donde $GACF$ son los gastos de administración comercial y finanzas, $MP$ es materia prima y $MO$ es mano de obra.
+
+
+\subsection{Costeo basado en actividades (\textit{ABC})}
+El ABC se basa en el hecho de que una empresa para producir productos o servicios necesita llevar a cabo actividades, las cuales consumen recursos. Consiste en primero costear las actividades y, después, estos costos por actividad se adjudican a todos los productos y servicios de la empresa según la consunción de cada uno.
+
+Este modelo suele asignar más costos indirectos a costos directos que costeo convencional.
+
+\textbf{Pasos a seguir para lograr el ABC:}
+\begin{enumerate}
+	\item Identificar actividades que consumen recursos
+	\item Asignar los costos a cada actividad
+	\item Identificar los "\textit{cost-drivers}" de cada actividad
+	\item Calcular la tasa de costos indirectos para cada costo
+	\item Asignar los costos a los productos $$Costo~Producto = Tasa\times Actividad~Anual$$
+\end{enumerate}
+donde $Tasa=\frac{Costo~Ind.\approx en~c/~costo}{Nro.Unidades~de~Actividad}$
+
+El costeo tradicional adjudica los costos indirectos con respecto a una base de volumen/actividad (Horas-hombre, horas-maquinas, dolares-material)
+
+\subsection{Punto de equilibrio}
+
+\begin{description}
+	\item[Punto de Equilibrio] $Ingresos~Totales = CV+CF \implies G=0$
+\end{description}
+
+\subsection{Análisis marginal}
+
+El análisis marginal estudia el aporte de cada producto, servicio o cliente a las utilidades de la empresa.
+
+\begin{description}
+	\item[Zona A] Los ingresos por ventas no alcanzan para cubrir CV y CF, por lo que se debe actuar de inmediato
+	\item[Zona C] El lugar ideal donde se apunta como objetivo, por encima del punto de equilibrio
+	\item[Zona B] Las utilidades no alcanzan para cubrir todos los costos pero si los CV y CF propios más algo de los gastos generales. Sería un error discontinuar pero si habría que hacer algo para acercarse a la zona \textbf{C}
+\end{description}
+Utilidad unitaria de producto
+\begin{IEEEeqnarray*}{c}
+u_i = (p_i - w_i) + (F_i + F_{ei})
+\end{IEEEeqnarray*}
+
+Utilidad margina:
+\begin{IEEEeqnarray*}{c}
+UM = \frac{\partial U}{\partial Q}
+\end{IEEEeqnarray*}
+
+Tasa de UM:
+\begin{IEEEeqnarray*}{c}
+\frac{ UM}{P}
+\end{IEEEeqnarray*}
 
 
 
 \section{Valor-Tiempo del dinero}
+Es preferible tener un monto de dinero hoy antes de recibir este mismo monto en el futuro.
 
-%	Contenido micro: Oferta y demanda, mercados en acción, elasticidad de demanda, producción, costos de producción, competencia, monopolio/oligopolio, fallas de mercado, 
-%Contenido macro: PBI, ciclo exonomico, inflacion, demanda agregada, oferta agregada, Keynes, liberalismo.
-%
-%{Primer Parcial}
-%
-%Definición: Economía. Se trata 
+
+
+
+En el caso de tener un flujo idéntico a intervalos de tiempo regulares, se trata de una \textit{anualidad}. Factor de anualidad
+\[
+\fiN = \frac{(1+i)^N-1}{(1+i)^N\cdot i}
+\]
+
+Si una anualidad se repite perpetuamente con un crecimiento anual $g$ entonces el valor presente es $VP = \frac{F}{i-g}$
+
 \end{document}
