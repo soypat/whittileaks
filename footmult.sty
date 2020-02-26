@@ -1,0 +1,42 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{custom}[2013/01/13 Custom Package]
+
+\RequirePackage{alphalph}
+\makeatletter
+ \newcommand*{\myfnsymbolsingle}[1]{%
+ 	\ensuremath{%
+ 		\ifcase#1% 0
+ 		\or % 1
+ 		*%   
+ 		\or % 2
+ 		\dagger
+ 		\or % 3  
+ 		\ddagger
+ 		\or % 4   
+ 		\mathsection
+ 		\or % 5
+ 		\mathparagraph
+ 		\or
+ 		\diamond
+ 		\or
+ 		\aleph
+ 		\or
+ 		\backepsilon
+ 		\or
+ 		\flat
+ 		\else % >= 7
+ 		\@ctrerr  
+ 		\fi
+ 	}%   
+ }   
+ \makeatother
+ 
+ \newcommand*{\myfnsymbol}[1]{%
+ 	\myfnsymbolsingle{\value{#1}}%
+ }
+ % remove upper boundary by multiplying the symbols if needed
+
+ \newalphalph{\myfnsymbolmult}[mult]{\myfnsymbolsingle}{}
+ \renewcommand*{\thefootnote}{%
+ 	\myfnsymbolmult{\value{footnote}}%
+ }

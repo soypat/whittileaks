@@ -1,8 +1,15 @@
 \documentclass{article}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+
+\usepackage[spanish,mexico]{babel}
+\usepackage{graphicx}
+\graphicspath{{./fig/}}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
 \usepackage[utopia]{mathdesign}
-\usepackage{graphicx}
+
+
+
+%% MATH
 \usepackage{siunitx}
 \usepackage{amsmath}
 \usepackage{cancel}
@@ -12,7 +19,7 @@
 \newcommand{\ctegas}{k}
 \newcommand{\cte}{\textrm{cte}}
 \newcommand{\cp}{c_{p}}
-\newcommand{\cv}{c_{v}}
+\newcommand{\cv}{c_{\text{v}}}
 \newcommand{\snaught}{s^{0}}
 \newcommand{\agitacion}{\textrm{Agit.}}
 \newcommand{\inicial}{i}
@@ -43,6 +50,54 @@
  \mathchardef\mhyphen="2D
  \newcommand{\hyph}{\,\mhyphen}
  \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+ 
+ %% FOOTNOTE
+ %%%%%%%%%%%%%
+ % FOOTNOTES %
+ %%%%%%%%%%%%%
+% \usepackage{footmult}
+ \makeatletter
+ \newcommand*{\myfnsymbolsingle}[1]{%
+ 	\ensuremath{%
+ 		\ifcase#1% 0
+ 		\or % 1
+ 		*%   
+ 		\or % 2
+ 		\dagger
+ 		\or % 3  
+ 		\ddagger
+ 		\or % 4   
+ 		\mathsection
+ 		\or % 5
+ 		\mathparagraph
+ 		\or
+ 		\diamond
+ 		\or
+ 		\aleph
+ 		\or
+ 		\backepsilon
+ 		\or
+ 		\flat
+ 		\else % >= 7
+ 		\@ctrerr  
+ 		\fi
+ 	}%   
+ }   
+ \makeatother
+ 
+ \newcommand*{\myfnsymbol}[1]{%
+ 	\myfnsymbolsingle{\value{#1}}%
+ }
+ % remove upper boundary by multiplying the symbols if needed
+ \usepackage{alphalph}
+ \newalphalph{\myfnsymbolmult}[mult]{\myfnsymbolsingle}{}
+ \renewcommand*{\thefootnote}{%
+ 	\myfnsymbolmult{\value{footnote}}%
+ }
+ 
+ 
+ 
+ 
 \begin{document}
 
 \maketitle
@@ -202,7 +257,7 @@ W_{\textrm{roce}} = \int_{V_1}^{V_2}\Delta p_{\textrm{roce}} \di V = |\Delta V| 
 Se puede entonces concluir que para roce constante $W_{\textrm{roce}}>0$. 
 
 \section{Ciclos Fríos}
-Un ciclo frió tiene la virtud de ocurrir a $\ctegas$ constante, o mejor dicho, $c_p$ y $c_v$ constante (\textit{gas perfecto}). En este documento se van a tratar ciclos cerrados \textit{estándares}\footnote{Reversibles} con gases ideales. 
+Un ciclo frió tiene la virtud de ocurrir a $\ctegas$ constante, o mejor dicho, $\cp$ y $\cv$ constante (\textit{gas perfecto}). En este documento se van a tratar ciclos cerrados \textit{estándares}\footnote{Reversibles} con gases ideales. 
 
 Como sabemos, la ley para gases ideales es:
 \begin{equation}
@@ -217,14 +272,14 @@ Para los trayectos isoentrópicos de los ciclos fríos valen las formulas:
 \frac{T_\final}{T_\inicial} = \left[ \frac{p_\final}{p_\inicial}\right]^{\frac{\ctegas-1}{\ctegas}} \qquad\qquad\qquad \frac{T_\final}{T_\inicial} = \left[ \frac{V_\inicial}{V_\final} \right]^{\ctegas-1}\!\!
 \end{equation}
 
-donde $\ctegas=\frac{c_p}{c_v}$ es constante.\footnote{Se hace énfasis que $\ctegas$ es constante para ciclos fríos por tratarse de gases ideales.} En el caso que $c_p$ o $c_v$ no fueran constantes en el trayecto se tiene que recurrir a una tabla para efectuar cálculos con
+donde $\ctegas=\frac{\cp}{\cv}$ es constante.\footnote{Se hace énfasis que $\ctegas$ es constante para ciclos fríos por tratarse de gases ideales.} En el caso que $\cp$ o $\cv$ no fueran constantes en el trayecto se tiene que recurrir a una tabla para efectuar cálculos con
 \[
 \frac{p^a(T_\final)}{p^a(T_\inicial)}=\frac{p_\final}{p_\inicial}\qquad \qquad \qquad \frac{v^a(T_\final)}{v^a(T_\inicial)}=\frac{v_\final}{v_\inicial}
 \]
 
-En los trayectos verticales del diagrama $p-V$ existe solo intercambio de calor dado que es a \textit{volumen constante.} Para calcular el calor se puede optar por usar $c_v$, también conocido como el \textit{calor especifico a volumen constante}.
+En los trayectos verticales del diagrama $p-V$ existe solo intercambio de calor dado que es a \textit{volumen constante.} Para calcular el calor se puede optar por usar $\cv$, también conocido como el \textit{calor especifico a volumen constante}.
 \[
-Q_{\inicial\hyph\final} = c_v (T_\final - T_\inicial)
+Q_{\inicial\hyph\final} = \cv (T_\final - T_\inicial)
 \]
 si da positivo es porque el calor está siendo entregado a la maquina (como por ejemplo,\textit{ una combustión})
 
@@ -250,11 +305,11 @@ note que $\Wutil$ es la suma algebraica de los trabajos.
 
 \subsection{Ciclo Otto}
 \[ 
-Q_{23}=c_v(T_3-T_2) \qquad \qquad Q_{41}=c_v(T_1-T_4)
+Q_{23}=\cv(T_3-T_2) \qquad \qquad Q_{41}=\cv(T_1-T_4)
 \]
 viendo de aplicar la formula de rendimiento\ldots
 \[
-\eta_O=\frac{|c_v(T_3-T_2)|-|c_v(T_1-T_4)|}{c_v(T_3-T_2)}=\frac{(T_3-T_2)-(T_4-T_1)}{T_3-T_2}=1-\frac{T_1\left(\frac{T_4}{T_1}-1\right)}{T_2 \left( \frac{T_3}{T_2}-1\right)}
+\eta_O=\frac{|\cv(T_3-T_2)|-|\cv(T_1-T_4)|}{\cv(T_3-T_2)}=\frac{(T_3-T_2)-(T_4-T_1)}{T_3-T_2}=1-\frac{T_1\left(\frac{T_4}{T_1}-1\right)}{T_2 \left( \frac{T_3}{T_2}-1\right)}
 \]
 usando las relaciones \eqref{eq:relacionisoentrop} para volúmenes\footnote{Tener en cuenta que $V_2=V_3$ y $V_1=V_4$.} se puede llegar a la relación 
 \[
@@ -266,9 +321,10 @@ luego queda que el rendimiento térmico del Otto esta dado por
 \end{equation}
 
 donde $\rc$ es la relación de compresión $\rc=\frac{V_1}{V_2}>1$
+
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=8cm]{fig/ciclootto.eps}
+    \includegraphics[width=8cm]{ciclootto.eps}
     \caption{Ciclo Otto ideal. $q_{51}=q_{41}$}
     \label{fig:ottoideal}
 \end{figure}
@@ -281,7 +337,7 @@ donde $\rc$ es la relación de compresión $\rc=\frac{V_1}{V_2}>1$
 donde $\rc=\frac{V_1}{V_2}$ y $\rv$ es la relación de \textit{cut-off} para el trayecto plano: $\rv=\frac{V_3}{V_2}>1$
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=10cm]{fig/ciclodiesel.eps}
+    \includegraphics[width=8cm]{ciclodiesel.eps}
     \caption{Ciclo Diésel ideal.}
     \label{fig:dieselideal}
 \end{figure}
@@ -296,9 +352,11 @@ También conocido como \textit{Diésel mixto}.
 \eta_S=1-\frac{1}{\rc^{\ctegas -1}}\cdot \frac{\rp(\rv)^\ctegas-1}{(\rp -1)+\ctegas\rp(\rv-1)}
 \end{equation}
 $\rc=\frac{V_1}{V_2}$, $\rv=\frac{V_4}{V_2}=\frac{V_4}{V_3}$ y $\rp=\frac{p_3}{p_2}=\frac{p_4}{p_2}$ es la relación de presiones en la etapa a volumen constante.
+
+
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=10cm]{fig/ciclodual.eps}
+    \includegraphics[width=8cm]{ciclodual.eps}
     \caption{Ciclo Sabathé ideal.}
     \label{fig:dualideal}
 \end{figure}

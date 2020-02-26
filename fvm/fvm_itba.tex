@@ -70,7 +70,7 @@ Llegado a este punto se puede comenzar la programación. Resulta visualmente có
 
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=5cm]{fig/nsew.eps}
+     \includegraphics[width=5cm]{fig/nsew.eps}
     \caption{Orientaciones en 2D}
     \label{fig:nsew}
 \end{figure}
@@ -79,7 +79,7 @@ Llegado a este punto se puede comenzar la programación. Resulta visualmente có
 
 Se necesita obtener la matriz \texttt{vecindario} que tiene una fila por cada volumen indicando cada uno de sus vecinos y su posición respecto al volumen en cuestión. Identificaremos los bordes aislados con un $0$, los bordes calientes ($T_H$ aplicada) con un $-1$ y los bordes fríos ($T_C$) con $-2$. Para facilitar el armado de \texttt{vecindario} (y que resulte más visual lo que se está haciendo) se podría armar una matriz del dominio. Para el ejemplo tendría la forma:
 \begin{equation*}
-    \begin{bmatrix}
+    \texttt{dominio} = \begin{bmatrix}
     0 &-1 &-1 &-1 & 0 \\
     0 & 1 & 3 & 5 & 0 \\
     0 & 2 & 4 & 6 & 0 \\
@@ -102,6 +102,26 @@ Si se elige el orden $[\text{N,W,E,S}]$, entonces para el caso de la figura \tex
     \end{bmatrix}_{\Nvol\times\Ndir}
 \end{equation}
 osea que los \texttt{vecinos} del volumen 2 son $[1\ms 0\ms 4\ms-2]$. $\Nvol$ es la cantidad de volúmenes y $\Ndir$ es la direccionalidad del problema, en este caso tenemos 4 direcciones porque es un problema plano. Para problemas 3D se tienen 6 direcciones incluyendo las direcciones arriba y abajo [U,N,W,E,S,D].
+\clearpage
+\begin{lstlisting}[caption = {Armado de la matriz \texttt{vecindario} a partir de la matriz \texttt{dominio}}]
+Nvol = max(max(dominio)); % Cantidad de volumenes
+[Ny, Nx] = size(dominio(2:end-1,2:end-1));
+vecindario = zeros(Nvol,4);
+for i=2:Ny+1
+	y = (i-2)*dy;  % Se pueden calcular las coordenadas
+	for j=2:Nx+1
+		x = (j-2)*dx;  % coordenada x
+		v = dominio(i,j); 
+		if v<1
+			continue
+		end
+		vecindario(v,1) = dominio(i-1,j);
+		vecindario(v,2) = dominio(i+1,j);
+		vecindario(v,3) = dominio(i,j+1);
+		vecindario(v,4) = dominio(i,j-1);
+	end
+end
+\end{lstlisting}
 
 \subsection{Formulación para el método de volúmenes finitos}
 Una vez que conocemos el vecindario de los volúmenes se necesita saber que esquema se va aplicar. En este texto se va tratar el esquema implícito o \textit{Euler Backward}.
