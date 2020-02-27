@@ -89,7 +89,7 @@ for e = 1:Ndofporelem
     V(idx) = ke(:);
 end
 
-K = sparse( I, J, V , dof, dof); %spalloc rapido
+K = sparse( I, J, V , dof, dof); % spalloc rapido
 \end{lstlisting}
 
 Este método funciona muy bien para problemas con cientos de miles de dof. Para un problema de 600000 dof con elementos tetraedros de diez nodos (T10), este método permite pasar de un acople de 15.600 segundos (con integración rápida) a tan solo 50 segundos.
@@ -98,7 +98,7 @@ Este método funciona muy bien para problemas con cientos de miles de dof. Para 
 \subsection*{Autovalores de $\MK$}
 Tomando los autovalores de $\MK$ nos puede dar una buena idea de si nos falta aplicar condiciones de borde o si hay mal condicionamiento numérico. El problema de este método es que deja de funcionar para modelos con muchos dof ya que el calculo de autovalores es muy intensivo sobre los recursos de la computadora.
 \begin{lstlisting}
-    [autoval, autovec] =eigs(K(isfree,isfree));
+    [autoval, autovec] = eigs(K(isfree,isfree));
 \end{lstlisting}
 
 La existencia de autovalores nulos o muy cercanos a cero puede implicar 

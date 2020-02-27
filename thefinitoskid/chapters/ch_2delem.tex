@@ -1,10 +1,15 @@
+% !TeX spellcheck = es_ES
 \part{Elementos 2D}
 
-Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
+Este capítulo trata de la formulación de elementos 2D simples en base a desplazamientos. Se explica como interpolar variables de campo sobre el elemento 2D usando las funciones de forma.
+
+
+\section{Mallado}
+ Cosas a tener en mente antes de mallar
 \begin{itemize}
-	\item \textbf{Donde está la sección de mi dominio que quiero estudiar}? Puedo refinar en esa zona?
-	\item Que orientación va tener mi malla para cada división de dominio?
-	\item Que forma tendrán mis elementos con una dada división? Habrá una mejor forma de dividir mi dominio así no tengo jacobianos estramboticos?
+	\item \textbf{?`Donde está la sección de mi dominio que quiero estudiar}? ?`Puedo refinar en esa zona?
+	\item ?`Qué orientación va tener mi malla para cada división de dominio?
+	\item ?`Qué forma tendrán mis elementos con una dada división? ?`Habrá una mejor forma de dividir mi dominio así no tengo jacobianos singulares?
 \end{itemize}
 
 
@@ -18,7 +23,7 @@ Para mallar como un pro, empezar dividiendo el dominio. Cosas a tener en mente:
 	\begin{subfigure}{0.49\textwidth}
 		\centering
 		\includegraphics[width=.7\linewidth]{fig/divisionPelton2.eps}
-		\caption{Se puede mallar con elementos cuadrilateros. No hay esquinas angulosas. Es posible obtener \textit{una buena malla}. Los nodos 100 y 101 son auxiliares y no forman parte de la malla.}
+		\caption{Se puede mallar con elementos cuadrilateros. No hay esquinas angulosas. Es posible obtener \textit{una buena malla}. Los puntos 100 y 101 son auxiliares y no forman parte de la malla.}
 		\label{fig:buendivisiondominio}
 	\end{subfigure}
 	\caption{Dos formas de dividir una paleta de una turbina pelton que recibe un chorro incidente en su esquina superior derecha.}
@@ -38,7 +43,10 @@ Protip: Necesitas saber que fuerza se tiene que hacer para que se mantenga en po
 
 
 \section{Funciones de formas para elementos 2D}
-Se define cuantos nodos se va tener por elemento y se los ubica en el espacio $(\xi,\eta)$ que por simplicidad se trataran como $(x,y)$. Con el triangulo de Pascal para polinomios se elige el grado del polinomio y los términos. Luego se resuelve el sistema de ecuaciones $\MN\cdot X= A$ donde $\MN=[N_1\ms N_2 \ms \ldots\ms N_n]$ y $X=[1\ms x\ms y \ms\ldots\ms x^{k-1}y^{k} \ms x^{k}y^{k}]^T$, o algo por el estilo. Se tienen que elegir los grados mas convenientes teniendo en cuenta la simetría y el número de nodos, este ultimo te limita el número de términos posibles por la naturaleza de la interpolación. La matriz $A$ tendrá en su \textbf{espacio fila} el mismo polinomio evaluado en la posición del nodo correspondiente a esa fila.
+Las funciones de forma caracterizan un campo sobre un elemento y permiten interpolar valores dentro de este mismo. Esto nos permite integrar campos sobre ele elemento para la resolución del problema de elementos finitos. 
+
+\subsection*{Cálculo}
+Para calcular las funciones de forma primero se define cuantos nodos se va tener por elemento y se los ubica en el espacio $(x,y)$. Con el triangulo de Pascal para polinomios se elige el grado del polinomio y los términos. Luego se resuelve el sistema de ecuaciones $\MN\cdot X= A$ donde $\MN=[N_1\ms N_2 \ms \ldots\ms N_n]$ y $X=[1\ms x\ms y \ms\ldots\ms x^{k-1}y^{k} \ms x^{k}y^{k}]^T$, o algo por el estilo. Se tienen que elegir los grados mas convenientes teniendo en cuenta la simetría y el número de nodos, este ultimo te limita el número de términos posibles por la naturaleza de la interpolación. La matriz $A$ tendrá en su \textbf{espacio fila} el mismo polinomio evaluado en la posición del nodo correspondiente a esa fila.
 
 \[
 A=
@@ -51,6 +59,8 @@ A=
 \]
 Luego, las funciones de forma $\MN$ se pueden obtener así: $\MN=X^{-1} A$
 
+Se habla de interpolación de campo en la sección de elementos isoparamétricos.
+
 \section*{Cargas 2-D}
 La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas nodales del elemento, $\Cme{F}$ fuerzas volumétricas, $\CPhi$ fuerzas de tracción superficiales, $\Cme{\varepsilonb_0}$ las deformaciones iniciales y $\Cme{\sigmab_0}$ las tensiones iniciales (pg. 228)
 \begin{equation} \label{eq:CargasGenerales}
@@ -60,27 +70,79 @@ La ecuación que rige como se cargan elementos, siendo $\Cme{r}$ las cargas noda
 
 
 \section{Elementos isoparamétricos}
+La formulación isoparamétrica permite interpolar campos sobre elementos cuadriláteros no rectangulares usando las mismas funciones de forma.
+
+Se utiliza un sistema de coordenadas auxiliar $(\xi,\eta)$ en dos dimensiones y $(\xi,\eta,\zeta)$ en tres dimensiones. Para integrar se utiliza un método numérico llamado \textit{Cuadratura de Gauss}.
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm]{fig/q4isoparam.eps}
+	\caption{Elemento Q4 en el espacio físico $(x,y)$. Sistema de referencia auxiliar $(\xi,\eta)$ visible. No necesariamente tienen que ser paralelas a $(x,y)$ ni ortogonales entre sí.}
+	\label{fig:q4isoparam}
+\end{figure}
+
 \begin{itemize}
-	\item Un elemento que no esta distorsionado (sigue siendo rectangular) tiene $J$ constante
+	\item Un elemento que no esta distorsionado (sigue siendo un rectangulo o paralelogramo) tiene $\jac$ constante
 	\item Cuidado con modo espurio. Ver tabla 6.8-1 pg. 226 el tema de full/reduced integration \cite{cook2007concepts}
 	\item Como cargar tu elemento isoparamétrico en pg. 228
 \end{itemize}
 
+
+\subsection*{Interpolación de campo}
+
+Para interpolar el campo de interés (desplazamientos, coordenadas, tensión, etc.) es necesario conocer lo que vale el campo en los nodos del elemento.
+
+Para interpolar el valor desconocido del campo $\phi$ sobre el punto $(x_d,y_d)$ se suma el producto de la función de forma evaluada en $(x_d,y_d)$ multiplicada por el campo en el nodo correspondiente
+\[
+\phi(x_d,y_d) = \sum_i^{\Nnodporelem} N_i(x_d,y_d) \cdot \phi(x_i,y_i) 
+\]
+Por ende, si se interpola sobre un nodo se debería obtener el valor del campo en el mismo nodo.
+
+
+\subsection*{Integración usando cuadratura}
+Para integrar un campo dentro de un elemento isoparamétrico se emplea el método de la cuadratura de Gauss. Se precisa integrar para obtener la matriz de rigidez de un sistema, las tensiones a partir de los desplazamientos y para obtener las cargas.
+
+Para integrar se necesita conocer cuanto vale el campo sobre los denominados \textit{puntos Gauss} y multiplicar el valor por los pesos $W$ asociados al punto Gauss. Se suman estos valores para obtener la aproximación de la integral.
+\begin{equation}
+I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta) \di \xi \di \eta\approx \sum_i \sum_j W_i W_j \cdot \phi_{ij}(\xi,\eta) \cdot \Djac
+\end{equation}
+donde $\Djac$ es el determinante del jacobiano evaluado en el punto Gauss. Los pesos y las posiciones de los puntos Gauss se pueden calcular usando la función \texttt{gauss.m} del anexo (código \ref{cod:gauss}).
+
+La matriz jacobiana, o simplemente \textit{jacobiano}, es un factor de escala que relaciona el incremento de longitud por la transformación $(\xi,\eta)\rightarrow(x,y)$. Para la transformación de coordenadas Cartesianas a polares $\di x~ \di y = r \cdot \di r~  \di \theta$ el determinante es $\Djac=r$.
+
+\[
+\jac = \begin{bmatrix}
+\spartial{x}{\xi} & \spartial{y}{\xi} \\
+\spartial{x}{\eta} & \spartial{y}{\eta}
+\end{bmatrix}
+\]
+
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=12cm]{fig/gauss_n3.eps}
-	\caption{Puntos gauss para ordenes $n=2$ y $n=3$. El peso para $n=2$ es igual en todos los puntos $W_i=1$}
+	\caption{Puntos Gauss para reglas $2\times 2$ y $3\times3$. El peso vale 1 en todos los puntos Gauss para la regla $2\times2$.}
 	\label{fig:gauss_n3}
 \end{figure}
 
+
+
 \section*{Ejemplo elemento exótico}
 \subsection*{Matriz de Rigidez}
-Imaginemos un elementos Q5 cuadrado de $2\times2$ con espesor $t$  (igual al Q4 con un nodo en su centro). Si fuéramos a obtener las funciones de formas de dicho elemento quedarían iguales para $(x,y)$ y para $(\xi,\eta)$ por las dimensiones usadas. La funcionalidad que uno estaría tentado a seleccionar sería $[1,\ x, \ y,\ x^2, \ y^2 ]$, pero está trae problemas inesperados debido a que tiene varias soluciones en la interpolación. Como nuestra prioridad siempre es mantener la simetría la funcionalidad será $[1,\ x,\ y,\ xy,\ x^2y^2 ]$.  Tomando el orden de la figura \ref{fig:elemq5}.
+Imaginemos un elementos Q5 (figura \ref{fig:elemq5}) cuadrado de dimensiones $2\times2$ con espesor $t$  (igual al Q4 con un nodo en su centro). Si fuéramos a obtener las funciones de formas de dicho elemento quedarían iguales para $(x,y)$ y para $(\xi,\eta)$ por las dimensiones usadas. La funcionalidad que uno estaría tentado a seleccionar sería $[1,\ x, \ y,\ x^2, \ y^2 ]$, pero está trae problemas inesperados debido a que tiene varias soluciones en la interpolación. Como nuestra prioridad siempre es mantener la simetría la funcionalidad será $[1,\ x,\ y,\ xy,\ x^2y^2 ]$.  Tomando el orden de la figura \ref{fig:elemq5}:
 \[
 \MN=\left[\begin{array}{ccccc} \frac{x^2\,y^2}{4}+\frac{x\,y}{4}-\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}+\frac{x}{4}-\frac{y}{4}, & \frac{x^2\,y^2}{4}+\frac{x\,y}{4}+\frac{x}{4}+\frac{y}{4}, & \frac{x^2\,y^2}{4}-\frac{x\,y}{4}-\frac{x}{4}+\frac{y}{4}, & 1-x^2\,y^2 \end{array}\right]
 \]
 
-Llegado a este punto nos interesa obtener la matriz de rigidez. Si queremos lograr \emph{``full integration"} deberíamos usar Gauss orden $n=3$ según $2n-1\geq O\left(\MB^T \ME \MB \right)$. $\MB$ es el \textit{strain-deformation matrix}. El producto $\MB^T \ME \MB$ da un polinomio de orden 6 ($\MB$ tiene el mismo orden que la derivada de $\MN$). De esta forma nos aseguramos que nuestro resultado va ser exacto para el elemento sin distorsionar.
+Llegado a este punto nos interesa obtener la matriz de rigidez. Si queremos lograr \emph{``full integration"} deberíamos usar Gauss orden $n=3$ según \eqref{eq:gaussinequality}
+
+\begin{equation} \label{eq:gaussinequality}
+2n-1\geq O\left(\MB^T \ME \MB \right)
+\end{equation}
+
+
+$\MB$ es el \textit{strain-deformation matrix}. El producto $\MB^T \ME \MB$ da un polinomio de orden 6 ($\MB$ tiene el mismo orden que la derivada de $\MN$). De esta forma nos aseguramos que nuestro resultado va ser exacto para el elemento sin distorsionar.
 
 Para esté ejemplo, no se pide \emph{full integration} entonces no pasa nada si queremos \emph{underintegrate}. Usamos Gauss orden $n=2$. 
 
@@ -128,7 +190,7 @@ similarmente $r_{y3} = N_3\;q \;\jac_{11}\big|_{\xi_2} + N_3\;q\; \jac_{11}\big|
 \end{itemize}
 
 \section{Elementos Axisimetricos}
-Resuelvo problema 3-D en el plano. Los resultados son por cada unidad radian. Como sigo teniendo dos grados de libertad tengo las mismas funciones de forma. Cambia mi operador derivada.
+Resuelvo problema 3-D en el plano. \textbf{Los resultados son por cada unidad radian}. Como sigo teniendo dos grados de libertad tengo las mismas funciones de forma. Cambia mi operador derivada.
 \[
 \begin{Bmatrix}
 \sigma_\radial \\

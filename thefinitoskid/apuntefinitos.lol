@@ -8,12 +8,13 @@
 \contentsline {lstlisting}{\numberline {1.8}Obtención de posición deformada.}{6}{lstlisting.1.8}%
 \contentsline {lstlisting}{\numberline {1.9}Obtención de reacciones.}{6}{lstlisting.1.9}%
 \contentsline {lstlisting}{\numberline {1.10}Resolución de problema de autovalores}{6}{lstlisting.1.10}%
-\contentsline {lstlisting}{\numberline {6.1}Ejemplos de structs y como acceder a sus campos.}{26}{lstlisting.6.1}%
-\contentsline {lstlisting}{\numberline {6.2}Creación de struct relacionada a los puntos de Gauss.}{27}{lstlisting.6.2}%
-\contentsline {lstlisting}{\numberline {6.3}Aplicación del método de integración pre-cargada.}{27}{lstlisting.6.3}%
-\contentsline {lstlisting}{\numberline {6.4}Aplicación del método de acople rápido de la matriz de rigidez.}{27}{lstlisting.6.4}%
-\contentsline {lstlisting}{\numberline {6.5}Rutina MAXPIVOT de NASTRAN.}{28}{lstlisting.6.5}%
-\contentsline {lstlisting}{\numberline {7.1}q4shapefun.m}{29}{lstlisting.7.1}%
-\contentsline {lstlisting}{\numberline {7.2}q4solve.m}{30}{lstlisting.7.2}%
-\contentsline {lstlisting}{\numberline {7.3}q4stress.m}{31}{lstlisting.7.3}%
-\contentsline {lstlisting}{\numberline {7.4}q4graphstress.m}{31}{lstlisting.7.4}%
+\contentsline {lstlisting}{\numberline {6.1}Ejemplos de structs y como acceder a sus campos.}{28}{lstlisting.6.1}%
+\contentsline {lstlisting}{\numberline {6.2}Creación de struct relacionada a los puntos de Gauss.}{29}{lstlisting.6.2}%
+\contentsline {lstlisting}{\numberline {6.3}Aplicación del método de integración pre-cargada.}{29}{lstlisting.6.3}%
+\contentsline {lstlisting}{\numberline {6.4}Aplicación del método de acople rápido de la matriz de rigidez.}{29}{lstlisting.6.4}%
+\contentsline {lstlisting}{\numberline {6.5}Rutina MAXPIVOT de NASTRAN.}{30}{lstlisting.6.5}%
+\contentsline {lstlisting}{\numberline {7.1}q4shapefun.m}{31}{lstlisting.7.1}%
+\contentsline {lstlisting}{\numberline {7.2}q4solve.m}{32}{lstlisting.7.2}%
+\contentsline {lstlisting}{\numberline {7.3}q4stress.m}{33}{lstlisting.7.3}%
+\contentsline {lstlisting}{\numberline {7.4}q4graphstress.m}{33}{lstlisting.7.4}%
+\contentsline {lstlisting}{\numberline {7.5}gauss.m}{34}{lstlisting.7.5}%

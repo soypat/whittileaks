@@ -14,12 +14,16 @@
 \lstinputlisting[caption = {q4graphstress.m}]{code/q4graphstress.m}
 %set(gcf,'renderer','Painters');filename='q4domain';
 %print('-depsc','-tiff','-r300', '-painters',[filename,'.eps'])
+\clearpage
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{code/q4domain.eps}
 	\vspace{-1cm}
 	\caption{Resultado de los códigos de la sección \ref{sec:q4codigo}. }
 \end{figure}
+
+\section{Cuadratura de Gauss}
+\lstinputlisting[caption = {gauss.m},label={cod:gauss}]{code/gauss.m}
 
 \section*{Apuntes Auxiliares (Luis)}
 Los elementos finitos siempre me dan soluciones más rígidas que la realidad porque estoy limitando sus nodos de movimientos mediante el uso de polinomios. En la realidad persisten funciones más complejas. Esto significa que el método de elementos finitos me aproxima la realidad por el lado más rígido, esto se tiene que tomar en cuenta!
