@@ -1,0 +1,113 @@
+% !TeX program = pdflatex
+% !TeX spellcheck = es_ES
+% !TeX encoding = utf8
+\documentclass[11pt, a4paper, twoside, openright]{book}
+\input{tex/preamble.tex}
+\input{tex/macros.tex}
+\input{tex/code.tex}
+
+\newcommand{\dimin}{\dimfont{p}}
+\newcommand{\dimout}{\dimfont{q}}
+\newcommand{\dimdisturb}{\dimfont{r}}
+\newcommand{\dimss}{\dimfont{n}}
+
+\begin{document}
+%	\input{tex/titlepage.tex}
+\chapter{First}
+
+\section{Control theory}
+\subsection{Basics}
+Taylor expansion (Linearization) of two-variable nonlinear equation.
+\[
+f(x,y) = f(\overline{x},\overline{y}) + \left[ \frac{\partial f}{\partial x} (x-\overline{x}) +\frac{\partial f}{\partial y} (y-\overline{y}) \right] + \ldots
+\]
+
+
+Matlab command to convert state space to transfer function \verb|[num,den]=ss2tf(A,B,C,D,iu)| where \verb|iu| must be specified for systems with more than one input.
+
+
+
+
+
+
+
+
+\subsection{State space}
+\(\Cme{u}(t)\) is inputs vector and is of size \(\dimin\times 1\) for a given system, i.e: \( \Cme{u}(t)=\begin{bmatrix}
+u_1 \\ u_2
+\end{bmatrix}\) for two input system, \(\dimin=2\).
+
+\(\Cme{y}(t) \) is the output vector of size  \(\dimout\times 1\).
+
+\(\Cme{z}(t)\) is the \textit{disturbance input}. Only applies to dynamical systems and is of size \(\dimdisturb \times 1\)
+
+Thus we define the \textbf{state space variables} so that system output is purely in function of current system state variables and input variables.
+\[
+\text{System Output} = f\left( \text{Current System State, System Input} \right)
+\]
+
+We will define \(X\) or \(\Cme{x}\) as our system state variables. There are some important aspects to note about state space variables such as
+\begin{itemize}
+	\item System output \(\Cme{y}(t)\) will be a function of them
+	\item They change over time
+	\item They are internal to the system
+	\item They may include system outputs (outputs will be a function of themselves in part)
+	\item Their selection is inherent part of the system design process and there are different methods of selecting them.
+	\item We will assume there is a minimal quantity of state variables that is sufficient to accurately describe the system
+	\item If all system inputs \(u_j\) are defined beforehand for \(t\geq t_0\) then \(\Cme{x}(t)\) defines all system states for time \(t \geq t_0\)
+\end{itemize}
+
+
+The mathematical representation of state space variables will be will be that of the \textbf{state vector} \(\Cme{x}(t)\) of size \(\dimss \times 1\).
+
+To model our system we then define the equations that govern it in \textbf{state space}\footnote{State space can be thought of an \dimss -dimensional space whose axes are the state variables (\(x_1,x_2\ldots\))}. These are the \textbf{state-space equations} of the system. For a dynamic system these must include a variable that serves as memory of inputs for \(t \geq t_1\). \textit{Integrators} serve as memory devices for \textit{continuous-time} models, however, our state-space representation is discrete! This is when state-space variables come in handy: The outputs of integrators can be considered as the variables that define the internal state of the dynamic system (Ogata). 
+
+
+For a system of size \(\dimin=\dimout=\dimss=1\) one has the state-space representation defined as:
+\[
+\dot{x}(t)=g\left[t_0,t,x(t),x(0),u(t)\right] ,\qquad y=h\left[t,x(t),u(t)\right]
+\]
+
+For a \textit{linear time-variant dynamical system} of arbitrary size it is convenient to represent it in it's linearized form
+
+\begin{equation}
+\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Mme{E}(t) \Cme{z}(t)
+\end{equation}
+\begin{equation}
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t)
+\end{equation}
+
+where 
+\begin{itemize}
+	\item[\(\Mme{A}_{\dimss \times\dimss }\)] System matrix. Relates future state change with current state. May be zero. Also referred to as the state matrix in some bibliographies.
+	\item[\(\Mme{B}_{\dimss \times\dimin}\)] Control/input matrix. How system input influences state change. May be zero. 
+	\item[\(\Mme{C}_{\dimout\times\dimss }\)] Output matrix. How system state influences system output.
+	\item[\(\Mme{D}_{\dimout\times\dimin}\)] Feed forward or feedthrough matrix. How system input influences system output. Is usually zero for most physical systems.
+	\item[\(\Mme{E}_{\dimss \times\dimdisturb}\)] Input matrix for disturbances. Applies only for dynamical systems.
+\end{itemize}
+the system is said to be \textbf{time-invariant} if the above matrices are not dependent of time. An example of a \textbf{time-variant} system is a spacecraft, whose mass changes due to fuel consumption.
+
+One method of state space variable selection is \textbf{physical selection}. This method is based on energy acumulators. It can be said that \textit{the minimum number of state-space variables needed to model the system accurately is equal to the number of independent energy accumulators.} When state-space variable is not a energy variable it is said to be an augmented variable.
+
+
+La solución general de la ecuación diferencial lineal de estados:
+\[
+\dot{\Cme{x}}(t) = \Mme{A}~ \Cme{x} (t) + \Mme{B}~ \Cme{u} (t)
+\]
+es
+\[
+\Cme{x}(t) = e^{\Mme{A}(t-t_0)}\Cme{x})0 +  \int^{t}_0 e^{\Mme{A}(t-\tau)} \Mme{B}~ \Cme{u} (\tau) \di \tau
+\]
+
+\begin{definition}[Matrix Exponential]
+\begin{IEEEeqnarray}{c}
+	e^{\Mme{A} t} \approx 
+\end{IEEEeqnarray}
+\end{definition}
+
+A continuación se tienen dos formas de calcular la matriz exponencial en \Matlab~ usando el taylor centrado en cero.
+\lstinputlisting[caption = {matrixexponential.m}]{code/matrixexponential.m}
+
+
+
+\end{document}

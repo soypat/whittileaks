@@ -1,0 +1,60 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root = ../control.tex
+
+\usepackage[onehalfspacing]{setspace}
+
+\newlength{\stockheight}					% To prevent hyperref warning
+\setlength{\stockheight}{\paperheight}		% define \stockheigh
+
+\usepackage{hyperref}					% Hyperlinks on pdf
+% Call before geometry!
+
+\usepackage[a4paper, 					% Page Layout
+%showframe,				% This shows the frame
+twoside, includehead,
+footskip=7mm, headsep=6mm, headheight=4.8mm,
+marginparsep=2mm, marginparwidth=22mm,
+top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
+
+\usepackage[T1]{fontenc}					% Output font encoding for international characters
+\usepackage[utf8]{inputenc}			% Encoding of files: utf8
+\renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
+
+\usepackage{titlesec}					% Redefine chapter and chapter* titles
+\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+
+%\usepackage{fancyhdr}					% Package to redefine headers
+%\fancyhf{}								% No header nor footer
+%\fancyhead[LE,RO]{\thepage}				% Left even and right odd Page Number
+%\fancyhead[RE]{\nouppercase{\leftmark}}		% Right even Section
+%\fancyhead[LO]{\nouppercase{\rightmark}}		% Left odd Chapter
+%\pagestyle{fancy}
+%\fancypagestyle{plain}{					% To change the footer on chapter and chapter*
+%	\fancyhf{}							% No header nor footer
+%	%	\fancyfoot[C]{\vspace{-11mm}\thepage}	% Footer with number displaced
+%	\renewcommand{\headrulewidth}{0pt}	% No line on header
+%	\renewcommand{\footrulewidth}{0pt}		% No line on footer
+%}
+
+\RequirePackage{caption} 				% Caption customization
+\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=blue,
+	citecolor=blue,    
+}
+
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}}
+
+\usepackage{amssymb,amsmath,ieeetrantools}
+
+\usepackage[square, numbers]{natbib}		% Bibliography
+
+\usepackage[section]{placeins}				% To flush floats before new
+
+\usepackage{graphicx}
