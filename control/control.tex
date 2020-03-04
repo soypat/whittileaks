@@ -1,5 +1,5 @@
 % !TeX program = pdflatex
-% !TeX spellcheck = es_ES
+% !TeX spellcheck = en_EN
 % !TeX encoding = utf8
 \documentclass[11pt, a4paper, twoside, openright]{book}
 \input{tex/preamble.tex}
@@ -87,10 +87,9 @@ where
 \end{itemize}
 the system is said to be \textbf{time-invariant} if the above matrices are not dependent of time. An example of a \textbf{time-variant} system is a spacecraft, whose mass changes due to fuel consumption.
 
-One method of state space variable selection is \textbf{physical selection}. This method is based on energy acumulators. It can be said that \textit{the minimum number of state-space variables needed to model the system accurately is equal to the number of independent energy accumulators.} When state-space variable is not a energy variable it is said to be an augmented variable.
+One method of state space variable selection is \textbf{physical selection}. This method is based on energy accumulators. It can be said that \textit{the minimum number of state-space variables needed to model the system accurately is equal to the number of independent energy accumulators.} When state-space variable is not a energy variable it is said to be an augmented variable.
 
-
-La solución general de la ecuación diferencial lineal de estados:
+The general solution to the linear differential equation of state:
 \[
 \dot{\Cme{x}}(t) = \Mme{A}~ \Cme{x} (t) + \Mme{B}~ \Cme{u} (t)
 \]
@@ -101,11 +100,11 @@ es
 
 \begin{definition}[Matrix Exponential]
 \begin{IEEEeqnarray}{c}
-	e^{\Mme{A} t} \approx 
+	e^{\Mme{A} t} = \eye + \sum_{i=1}^{\infty} \frac{(\Mme{A}t )^ i}{i!}
 \end{IEEEeqnarray}
 \end{definition}
 
-A continuación se tienen dos formas de calcular la matriz exponencial en \Matlab~ usando el taylor centrado en cero.
+A \Matlab~ function is provided to calculate the matrix exponential. 
 \lstinputlisting[caption = {matrixexponential.m}]{code/matrixexponential.m}
 
 
