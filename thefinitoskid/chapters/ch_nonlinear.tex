@@ -1,3 +1,7 @@
+% !TEX root = ../apuntefinitos.tex
+% !TEX encoding = UTF-8 Unicode
+% !TeX spellcheck = es_ES
+
 \part{No-linealidad y análisis dinámico}
 
 \section{Respuesta dinámica estructural}
@@ -79,7 +83,7 @@ donde
 \end{equation}
 \section{Transferencia de calor no-lineal y transitoria}
 
-\subsection*{Radiacion}
+\subsection*{Radiación}
 Cuando se tienen problemas de radiación se puede iterar para obtener el perfil usando \textbf{relajación.}
 
 
@@ -123,7 +127,7 @@ Ecuación iterativa:
 \begin{array}{|l|l|}\hline \beta=0 & {\text {Euler Forward Difference }} \\ \hline \beta=0.5 & {\text {Crank--Nicholson }} \\ \hline \beta=0.666 & {\text {Galerkin }} \\ \hline \beta=1 & {\text {Backward Difference }} \\ \hline\end{array}
 \]
 
-\section{Análisis Dinámico}
+\section{Análisis Dinámico Explicito}
 
 \subsection*{Método Integración Directa}
 Resuelve \ref{eq:ecuacionDinamicaGeneral}.
@@ -156,3 +160,20 @@ donde
 	\kcD &= \Cme{V}^n + \Delta t \ktV
 	\end{cases}
 \end{align*}
+
+\section{Análisis Dinámico Implícito}
+
+\subsection{Método Newmark }
+El método Newmark consiste en plantear las ecuaciones de equilibrio en el instante de tiempo \(t+\Delta t\). Es un método \textbf{implícito} que goza de ser incondicionalmente estable cuando usado en conjunto con el esquema de aceleración promediada constante  propuesto por Newmark \eqref{eq:constantaccelNewmark}
+
+
+\begin{align}
+    \Cme{V}^{n+1} & = \Cme{V}^n + \left[ (1-\delta) \dot{\Cme{V}}^n + \delta\dot{\Cme{V}}^{n+1} \right] \Delta t \\
+    \Cme{U}^{n+1} & = \Cme{U}^{n} + \Cme{V}^{n}\Delta t +\left[ (\tfrac{1}{2} - \alpha)\dot{\Cme{V}}^n + \alpha \dot{\Cme{V}}^{n+1} \right] \Delta t ^2 \\
+    \Cme{R}^{n+1} & = \Mme{M} \dot{\Cme{V}}^{n+1} + \Mme{C} \Cme{V}^{n+1} + \Mme{K} \Cme{U}^{n+1}
+\end{align}
+
+\begin{equation} \label{eq:constantaccelNewmark}
+\alpha = \tfrac{1}{4}, \qquad \delta = \tfrac{1}{2}
+\end{equation}
+
