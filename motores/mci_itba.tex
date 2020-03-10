@@ -1,23 +1,29 @@
+% !TeX spellcheck = es_ES
+% !TeX program = pdflatex
 \documentclass[twocolumn,11pt]{article}
+
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage[a4paper,top=2.5cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
+% Hyperref antes de geometry
+\usepackage[
+hyperfootnotes=false,
+urlcolor=blue,
+colorlinks=true,
+citecolor=red,
+linkcolor=blue]{hyperref}
+
+\usepackage[a4paper,top=2.5cm,bottom=2cm,left=1.65cm,right=1.65cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
+\setlength{\columnsep}{.8cm}
 %Letra general
 \usepackage{mathastext}
 
 \renewcommand{\familydefault}{\sfdefault}
-\usepackage[scaled=1]{helvet}
+%\usepackage[scaled=1]{helvet}
 \usepackage[format=plain,
             labelfont={bf,it},
             textfont=it]{caption}
             
 \usepackage{xcolor}
-
-\usepackage[
-hyperfootnotes=false,
-urlcolor=blue,
-colorlinks=true,
-citecolor=red]{hyperref}
 
 \usepackage{fontawesome}
 \usepackage{siunitx}
@@ -55,15 +61,16 @@ citecolor=red]{hyperref}
 
 % \author{Carlos Oncha}
 % \maketitle
-\twocolumn[
+\onecolumn[
 \centering 
 {\bf \huge Resumen de Motores a Combustión Interna \par}
 \vspace{.2cm}
 {\sc \large El Chispero\par }
-\vspace{.4cm}
-]
+\vspace{.4cm}\par
 \tableofcontents
-
+]
+\twocolumn{
 \input{1p.tex}
 \input{2p.tex}
+}
 \end{document}
