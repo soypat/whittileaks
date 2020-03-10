@@ -1,13 +1,15 @@
-% !TeX spellcheck = es_ES   %comentario magico para TeXstudio
+%comentario magico para TeXstudio
+% !TeX spellcheck = es_ES 
 % !TeX program = pdflatex
-\input{apuntefinitos_preamble.tex}
-\input{apuntefinitos_macros.tex}
-\input{code.tex}
+
+\input{tex/apuntefinitos_preamble.tex}
+\input{tex/apuntefinitos_macros.tex}
+\input{tex/code.tex}
 \begin{document}
 	
 	\frontmatter % numeracion romana, no incluido en el indice
 	
-	\input{apuntefinitos_caratula.tex} %La caratula
+	\input{tex/apuntefinitos_caratula.tex} %La caratula
 	
 	\tableofcontents %Indice de contenido
 	
@@ -36,5 +38,5 @@
 	\input{chapters/ch_annex.tex}
 	
 	\clearpage
-	\bibliography{bibliografia} % Indica archivo de bibliografia
+	\bibliography{tex/bibliografia} % Indica archivo de bibliografia
 \end{document}

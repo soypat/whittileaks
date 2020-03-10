@@ -21,6 +21,7 @@
 *.log
 *.out
 *.xml
+*.lol
 *.gz
 *.toc
 # a/**/b" matches "a/b", "a/x/b", "a/x/y/b
