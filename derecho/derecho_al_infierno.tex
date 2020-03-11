@@ -2,9 +2,14 @@
 \usepackage[spanish, mexico]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs,makecell}
-\usepackage[a4paper,left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
-\usepackage[urlcolor=blue,colorlinks=true,
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{.01 , .05, .5}
+
+\usepackage[urlcolor=blue,colorlinks=true,linkcolor=darkblue,
 citecolor=red]{hyperref}
+% Hyperrefs before geometry! Always!
+\usepackage[a4paper,left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
 \newcommand{\ul}[1]{\underline{#1}}
 
 %% Header

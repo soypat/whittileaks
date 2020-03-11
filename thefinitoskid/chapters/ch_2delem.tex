@@ -111,7 +111,7 @@ Para integrar un campo dentro de un elemento isoparamétrico se emplea el métod
 
 Para integrar se necesita conocer cuanto vale el campo sobre los denominados \textit{puntos Gauss} y multiplicar el valor por los pesos $W$ asociados al punto Gauss. Se suman estos valores para obtener la aproximación de la integral.
 \begin{equation}
-I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta) \di \xi \di \eta\approx \sum_i \sum_j W_i W_j \cdot \phi_{ij}(\xi,\eta) \cdot \Djac
+I=\int^1_{-1} \int^1_{-1}\phi(\xi,\eta)~ \di \xi~ \di \eta\approx \sum_i \sum_j W_i W_j \cdot \phi_{ij}(\xi,\eta) \cdot \Djac
 \end{equation}
 donde $\Djac$ es el determinante del jacobiano evaluado en el punto Gauss. Los pesos y las posiciones de los puntos Gauss se pueden calcular usando la función \texttt{gauss.m} del anexo (código \ref{cod:gauss}).
 
@@ -176,8 +176,8 @@ Este ultimo se calcula a partir de la derivada de las funciones de forma $ $
 Si el elemento está cargado sobre la linea 4-3 con una distribuida $q(x)$ (en [N/m]) entonces procedemos de la siguiente manera según el segundo término de \refp{eq:CargasGenerales}: 
 
 \begin{align}
-r_{xi}&=\int^1_{-1}N_i (\tau \jac_{11}- \sigma \jac_{12})t\di \xi \\
-r_{yi}&=\int^1_{-1}N_i (\sigma \jac_{11}+\tau \jac_{12})t \di \xi 
+r_{xi}&=\int^1_{-1}N_i (\tau \jac_{11}- \sigma \jac_{12})\cdot t~\di \xi \\
+r_{yi}&=\int^1_{-1}N_i (\sigma \jac_{11}+\tau \jac_{12})\cdot t~ \di \xi 
 \end{align}
 donde $\sigma$ es la solicitación normal a la superficie y $\tau$ es la tangencial. Para la fuerza sobre el nodo 4 se tiene
 
@@ -241,5 +241,5 @@ donde $q$ es la carga distribuida en [N/m], $r$ es la distancia al eje de revolu
 \Cme{r_e} = \int\int_{-\pi}^{\pi} \MN^T \begin{Bmatrix}
 \rho r \omega ^2 \\
 0
-\end{Bmatrix} r \di \theta \di A
+\end{Bmatrix} r ~\di \theta ~\di A
 \]
