@@ -183,7 +183,7 @@ Rext(elemdof(2)) % Fuerzas externas sobre el elemento 2
 \texttt{Rext} tendrá las reacciones en los dof restringidos y las fuerzas externas sobre el sistema \textit{en coordenadas globales}. Más acerca de las fuerzas sobre un elemento en la sección \ref{sec:OrientacionElementos}.
 
 \subsection*{Resolución de problema de autovalores}
-Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda$ son los autovalores y a cada uno le corresponde un autovector $\Cme{x}_i$.
+Un problema de autovalores tiene la forma $\left(\Mme{A} - \lambda \Mme{B} \right) \Cme{x} = \Cme{0}$ donde hay otras soluciones ademas de la trivial. $\lambda_i$ son los autovalores que satisfagan la ecuación. A cada uno de estos autovalores le corresponde un autovector $\Cme{x}_i$.
 
 \begin{lstlisting}[caption={Resolución de problema de autovalores}]
 [autovec, autoval] = eig(B\A);
