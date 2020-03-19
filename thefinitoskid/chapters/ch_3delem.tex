@@ -14,7 +14,6 @@ donde
 \]
 
 Un esquema general para calcular la matriz de rigidez de un sistema compuesto por elementos 3D es el siguiente. Tenga en cuenta que falta la obtención de los puntos Gauss.
-
 \begin{lstlisting}[caption={Programa generalizado para obtener \( \MK \) para elementos 3D.},numbers=left,label={cod:obtencion3Drigidez}]
 %% Dofinitions
 Ndofpornod = 3; Ndn = Ndofpornod;
@@ -66,29 +65,6 @@ donde la variable \texttt{factor} es aplicada según la geometría del elemento.
 \caption{Factor que divide el determinante del jacobiano para varios elementos. Ver linea \ref{line:jacFactor} del código \ref{cod:obtencion3Drigidez}}
 \label{tab:FactorJacobianoElemento}
 \end{table}
-
-\section{Elemento tetraedro lineal (T4)}
-
-\newcommand{\one}[1]{\frac{1}{#1}}
-\begin{table}[htb!]
-    \centering
-    \begin{tabular}{cccc}
-        Nro. Puntos & Orden & Coordenadas & Pesos \\ \hline \hline
-        1 & 0 & \( \left(\frac{1}{4}, \,\frac{1}{4}, \, \frac{1}{4} \right)\) & 1 \\ [1pt] \hline
-        4 & 1 & \(  (a,b,b), (b,b,b), (b,b,a), (b,a,b) \) & \( \frac{1}{4}\) \\ [2pt]
-          &   &donde    \( a = \frac{5+3\sqrt{5}}{20}, \quad b =\frac{5-3\sqrt{5}}{20} \) & \\[2pt] \hline 
-        5 & 2 & \( \left(\frac{1}{4}, \frac{1}{4}, \frac{1}{4} \right)\) & \( -\frac{4}{5}\)   \\[5pt]
-          &   &  \( \left(\one{2},\one{6}, \one{6} \right), \left(\one{6},\one{6}, \one{6} \right), \left(\one{6},\one{6}, \one{2} \right), \left(\one{6},\one{2}, \one{6} \right) \) & \(\frac{9}{20}\)
-    \end{tabular}
-    \caption{Valores para la integración numérica de tetraedros usando cuadratura de Gauss.}
-\end{table}
-
-\begin{figure}[htb!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{fig/T10numbering.eps}
-    \caption{Numeración de un tetraedro de diez nodos y la ubicación de los puntos Gauss para un grado de precisión 2 (orden 1).}
-    \label{fig:T10numbering}
-\end{figure}
 
 \section{Formulación elemento hexaedro lineal (H8)}
 El modelado con elementos isoparamétricos hexaedros de 8 nodos es un buen punto de partida para comenzar a manejar los elementos finitos en 3 dimensiones. Un código hecho para obtener $\MK$ con elementos H8 se adapta con facilidad para los H20.
@@ -151,5 +127,44 @@ Finalmente un calcula la rigidez del elemento usando \eqref{eq:RigidezElemento}.
 \begin{lstlisting}
 pg = gauss([2 2 2]); % 8 pg para H8 
 \end{lstlisting}
+
+\section{Elemento tetraedro lineal (T4)}
+Se espera que el lector ya haya programado elementos 2D y que tenga experiencia obteniendo las funciones de formas de elementos diversos. Esto dicho, el salto de elementos 2D a elementos 3D puede presentar dificultades debido a la falta de bibliografía acerca del tema, o la omisión de la aplicación de teoría por parte de los autores.
+
+A continuación se dejan rutinas de \Matlab~ para que el usuario pueda rápidamente empezar a experimentar con tetraedros lineales. Se empieza procesando una malla de tetraedros cuadráticos de diez nodos para que se pueda resolver con un programa para tetraedros de cuatro nodos.
+
+\lstinputlisting[caption = {Descarga y procesado de malla T10 para uso con rutinas para elementos T4.},label={cod:gauss}]{code/t4/t4dominio.m}
+
+El próximo paso es definir el material en la matriz $\ME$ según la ecuación \eqref{eq:constitutive3D}. Antes de integrar usando la rutina \ref{cod:obtencion3Drigidez} se tienen que obtener las funciones de forma (Código \ref{cod:t4shapefun}) y definir la integración numérica según la tabla \ref{tab:gausstetraedros}
+
+\lstinputlisting[caption = {Obtención de las funciones de forma para elementos T4.},label={cod:t4shapefun}]{code/t4/t4shapefun.m}
+
+
+\begin{table}[htb!]
+	\newcommand{\one}[1]{\frac{1}{#1}}
+	\centering
+	\begin{tabular}{cccc}
+		Nro. Puntos & Orden & Coordenadas & Pesos \\ \hline \hline
+		1 & 0 & \( \left(\frac{1}{4}, \,\frac{1}{4}, \, \frac{1}{4} \right)\) & 1 \\ [1pt] \hline
+		4 & 1 & \(  (a,b,b), (b,b,b), (b,b,a), (b,a,b) \) & \( \frac{1}{4}\) \\ [2pt]
+		&   &donde    \( a = \frac{5+3\sqrt{5}}{20}, \quad b =\frac{5-3\sqrt{5}}{20} \) & \\[2pt] \hline 
+		5 & 2 & \( \left(\frac{1}{4}, \frac{1}{4}, \frac{1}{4} \right)\) & \( -\frac{4}{5}\)   \\[5pt]
+		&   &  \( \left(\one{2},\one{6}, \one{6} \right), \left(\one{6},\one{6}, \one{6} \right), \left(\one{6},\one{6}, \one{2} \right), \left(\one{6},\one{2}, \one{6} \right) \) & \(\frac{9}{20}\)
+	\end{tabular}
+	\caption{Valores para la integración numérica de tetraedros usando cuadratura de Gauss.}
+	\label{tab:gausstetraedros}
+\end{table}
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig/T10numbering.eps}
+	\caption{Numeración de un tetraedro de diez nodos y la ubicación de los puntos Gauss para un grado de precisión 2 (orden 1).}
+	\label{fig:T10numbering}
+\end{figure}
+
+
+%\lstinputlisting[caption = {gauss.m},label={cod:gauss}]{code/gauss.m}
+
+
 
 

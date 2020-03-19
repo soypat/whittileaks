@@ -1,28 +1,5 @@
-%% Definir Dominio. Nodos+elementos
-fprintf(fopen('nod.txt','wt'),webread('https://pastebin.com/raw/0BLPxUuu'));
-fprintf(fopen('ele.txt','wt'),webread('https://pastebin.com/raw/hfcg7wc4'));
-fclose('all');
-nodosT10 = load('nod.txt');
-elementosT10 = load('ele.txt'); % La malla es para elementos T10
-%% Post process para convertir malla T10 a T4
-elementos = elementosT10(:,2:5); % La primera columna es indice
-losNodosT4 = intersect(nodosT10(:,1),elementos(:));
-nodos = nodosT10(ismember(nodosT10(:,1),losNodosT4),1:4); %columna1=indice
-for en = 1:numel(elementos)
-    elementos(en) = find(elementos(en)==nodos(:,1));
-end
-nodos = nodos(:,2:4); % eliminamos columna indice
-%% Material Acero
-young = 200e9;
-nu = .29;
-lambda = young*nu/(1+nu)/(1-2*nu);
-G = young/(2+2*nu);
-E = [lambda+2*G lambda lambda 0 0 0; %Relacion constitutiva 3D
-           lambda lambda+2*G lambda 0 0 0;
-           lambda lambda lambda+2*G 0 0 0;
-           0     0     0     G    0  0;
-           0     0     0     0    G  0;
-           0     0     0     0    0  G];
+t4dominio
+material3d
 %% Dofinitions
 Ndofpornod = 3; Ndn = Ndofpornod;
 n2d = @(n) repmat(n*Ndn,Ndn,1) - (Ndn-1:-1:0)'; % forma generalizada
