@@ -1,0 +1,385 @@
+% !TeX program = pdflatex
+% !TeX spellcheck = es_ES
+% !TeX encoding = utf8
+\documentclass[11pt, a4paper, twoside, openright, openany]{book}
+\input{tex/preamble.tex}
+\input{tex/macros.tex}
+\input{tex/code.tex}
+
+\newcommand{\dimin}{\dimfont{p}}
+\newcommand{\dimout}{\dimfont{q}}
+\newcommand{\dimdisturb}{\dimfont{r}}
+\newcommand{\dimss}{\dimfont{n}}
+
+\begin{document}
+%	\input{tex/titlepage.tex}'
+\tableofcontents
+\part{Control Castellano - Bootcamp}
+\chapter{Sistemas lineales}
+
+El exponencial matricial es impráctico de calcular con la matriz \(\Mme{A}\).
+
+En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformacion de coordenadas de las coordenadas de x a las coordenadas de algun autovector donde es mas facil escribir el exponencial matricial y facilita entender el sistema tambien.
+
+Un autovector $\Cme{\xi}$ cumple con la siguiente igualdad
+\[
+\Mme{A}\Cme{\xi} = \lambda \Cme{\xi}
+\]
+Una forma de visualizar esto es que el producto entre la matriz $\Mme{A}$ y el autovector mantiene la dirección del autovector.
+
+\[
+\Mme{T} = \left[ \xi_1 \xi_2 \ldots \xi_\dimss \right]
+\]
+
+\[
+\Mme{D}= \begin{bmatrix}
+\lambda_1 & & & 0 \\
+ & \lambda_2 & & \\
+  & & \ddots & \\
+ 0 & & & \lambda_\dimss 
+\end{bmatrix}
+\]
+
+Es posible diagonalizar el sistema siempre que no se tengan dos autovectores cuasi-paralelos o un sistema degenerado (autovectores generalizados) (entre otros casos)
+
+Esto nos deja escribir la relación
+
+\[
+\Mme{A} \Mme{T} = \Mme{T} \Mme{D}
+\]
+
+\[
+\Cme{x} = \Mme{T}\Cme{z} \Rightarrow \Mme{T}^{-1} \Mme{A} \Mme{T} = \Mme{D}
+\]
+
+\[
+\Mme{T} \dot{\Cme{z}} = \Mme{A} \Mme{T} \Cme{z} \Rightarrow \dot{\Cme{z}} = \Mme{T}^{-1} \Mme{A} \Mme{T} \Cme{z}
+\]
+
+Se obtienen entonces un sistema de ecuaciones desacoplado! El cambio de la variable $z_i$ depende de si misma
+\[
+\boxed{\dot{\Cme{z}} = \Mme{D} \Cme{z}}
+\]
+
+Se pueden obtener estas matrices en \Matlab~ en una linea:
+\begin{lstlisting}
+[T, D] = eig(A);
+\end{lstlisting}
+
+La solución del sistema va ser simple
+
+\[
+\Cme{z}(t) = \begin{bmatrix}
+e^{\lambda_1 t} & & & 0 \\
+ &e^{\lambda_2 t}& &  \\
+ & &\ddots &  \\
+  0& & & e^{\lambda_\dimss t} \\
+\end{bmatrix} \cdot \Cme{z}(0)
+\]
+
+Es de interes poder mapear entre los dos espacios. Usando la expresión \( \Mme{A} = \Mme{T} \Mme{D} \Mme{T}^{-1}\) se puede simplificar la exponencial matricial empleando conocimientos de algebra lineal
+
+\[
+e^{\Mme{A}t} = e^{\Mme{T} \Mme{D} \Mme{T}^{-1}t} = \Mme{T} e^{\Mme{D}t} \Mme{T}^{-1}
+\]
+Cabe destacar que es barato calcular \( e^{\Mme{D}t}\) en términos computacionales. 
+
+Reescribimos la solución al sistema recordando \(\Cme{x} = \Mme{T}\Cme{z}\)
+
+\[
+\Cme{x}(t) = \Mme{T}  \underbrace{e^{\Mme{D}t} \underbrace{\Mme{T}^{-1} \Cme{x}(0)}_{\Cme{z}(0)}}_{\Cme{z}(t)}
+\]
+La igualdad de arriba se usa para computar la evolución de $\Cme{x}$ en el tiempo aprovechando la simplicidad del cálculo de \(e^{\Mme{D}t}\). 
+
+Que hicimos?
+\begin{itemize}
+	\item Descubrimos que si sabemos los autovectores/valores de \(\Mme{A}\) podemos transformar el sistema a un sistema de coordenadas donde es más facil resolver el sistema y estudiar su dinámica
+\end{itemize}
+ 
+El próximo paso es agregar la matriz de control y el vector de entrada para empezar a controlar el sistema.
+
+\chapter{Estabilidad y autovalores}
+
+
+Para el estudio de estabilidad podemos primero mirar a la igualdad
+
+ \[
+\Cme{x} = \Mme{T} e^{\Mme{D}t} \Mme{T}^{-1} \Cme{x}(0)
+\]
+Si uno de los valores diagonal de $e^{\Mme{D}t}$ se va a infinito entonces la combinación resultante que iguala a \(\Cme{x}\) también se va ir al infinito. Recordemos que $\lambda \in \Bbb{C}$
+
+\[
+\lambda = a + ib \quad \Rightarrow \quad e^{\pm \lambda t} = e^{at}\left[\cos(bt)\pm i\sin (bt)\right]
+\]
+Esto cuenta la siguiente historia
+\begin{IEEEeqnarray}{tt}
+si \(a>0\) & El sistema aumenta hasta llegar a infinito (\textbf{Inestable}) \\
+si \(a<0\) & El sistema converge a cero a tiempo infinito (\textbf{Estable}) \\
+\end{IEEEeqnarray}
+
+
+Esto significa que tal vez comenzemos con un sistema inestable, es decir, que nuestra matriz \(A\) de la siguiente ecuación tiene autovalores con $a>0$
+\[
+\dot{\Cme{x}} = \Mme{A} \Cme{x}
+\]
+
+Esto se puede remediar agregando el término $\Mme{B}\Cme{u}$ de tal forma que lleve los autovalores de la zona inestable ($a>0$) a la zona estable ($a<0$).
+
+\section{Evolución discreta}
+
+\[
+\Cme{x}_{k+1} = \Mme{\tilde{A}} \Cme{x}_k, \qquad \Cme{x}_k
+ = \Cme{x}(k\Delta t)\]
+ donde \(\Mme{\tilde{A}} = e^{\Mme{A} \Delta t}\). Sabiendo el vector de estado inicial podríamos calcular el estado para cualquier otro momento
+ 
+\[
+\Cme{x}_{N} = \Mme{\tilde{A}}^{N}\Cme{x}_0
+\]
+
+En coordenadas de autovector, cada vez que multiplicamos la matriz estamos elevando nuestros autovalores de $\Mme{\tilde{A}}$ a una potencia. Estos pueden agrandarse o achicarse dependiendo de su `radio'
+\[
+\lambda^N = R^{N}e^{i\theta }
+\]
+si el radio $R$ es menor a uno, la magnitud va decaer a medida que pasa el tiempo. Si el radio es mayor que uno crecerá sin cota superior.
+
+\begin{lstlisting}
+[Tt, Dt] = eig(At);
+aval = diag(Dt);
+inestables = aval(aval>1);
+\end{lstlisting}
+
+\chapter{Linealizando un sistema}
+
+\begin{enumerate}
+	\item Encontramos los puntos fijos $\Cme{\bar{x}}$ tal que \(f(\Cme{\bar{x}})=\Cme{0}\)
+	\item Linealizamos alrededor de $\Cme{\bar{x}}$
+\end{enumerate}
+
+Para un sistema \(2\times 2\) el jacobiano es
+\[
+\spartial{\Cme{f}}{\Cme{x}}=
+\begin{bmatrix}
+\spartial{f_1}{x_1} &\spartial{f_1}{x_2} \\
+\spartial{f_2}{x_1} & \spartial{f_2}{x_2}
+\end{bmatrix}
+\]
+
+
+\[
+\dot{\Cme{x}} = f(\Cme{x}) = f(\Cme{\bar{x}}) + \left. \spartial{\Cme{f}}{\Cme{x}}\right|_{\Cme{\bar{x}}}\cdot (\Cme{x}-\Cme{\bar{x}}) + \left.\dpartial{\Cme{f}}{\Cme{x}} \right|_{\Cme{\bar{x}}}\cdot (\Cme{x}-\Cme{\bar{x}})^2 \ldots
+\]
+Como linealizamos alrededor de un entorno reducido, los términos no-lineales van a ser muy pequeños si $\Cme{x}$ es cercano a $\Cme{\bar{x}}$. Y dado que es un punto fijo, $f(\Cme{\bar{x}})=0$.
+
+Nuestro sistema linealizado va quedar así
+\[
+\Delta \dot{\Cme{x}} = \left.\spartial{\Cme{f}}{\Cme{x}}\right|_\Cme{\bar{x}} \Delta x \Rightarrow \boxed{\Delta \dot{\Cme{x}} = \Mme{A} \Delta \Cme{x} }
+\]
+
+\begin{theorem}[Hartman--Grobman]
+Si los autovalores de $\Mme{A}$ tienen todos parte real entonces se puede describir el sistema como lineal en un vecindario de $\Cme{\bar{x}}$.
+\end{theorem}
+
+\begin{exercise}
+Determinar la estabilidad de un péndulo en su posición normal e invertida. Factor de fricción $\delta$.
+
+\[
+\ddot{\theta} = -\frac{g}{\ell} \sin(\theta) - \delta \dot{\theta}
+\]
+
+\[
+\Cme{x} = \begin{Bmatrix}
+\theta \\ \dot{\theta}
+\end{Bmatrix}, \qquad \dot{\Cme{x}} = \begin{bmatrix}
+x_2 \\
+-\frac{g}{\ell}\sin(x_1)-\delta x_2
+\end{bmatrix}
+\]
+
+Nuestro jacobiano es
+\[
+\spartial{\Cme{f}}{\Cme{x}} = \begin{bmatrix}
+0 & 1 \\
+-\frac{g}{\ell} \cos(x_1) & -\delta 
+\end{bmatrix}
+\]
+
+Los puntos fijos son 
+\[
+\Cme{\bar{x}} = \begin{bmatrix}
+0\\0
+\end{bmatrix},
+\begin{bmatrix}
+\pi\\0
+\end{bmatrix}
+\]
+
+Matriz del sistema péndulo en posiciones normal $d$ e invertida $u$:
+
+\[
+\Mme{A}_d = \begin{bmatrix}
+0 & 1 \\
+-\frac{g}{\ell} & -\delta
+\end{bmatrix},\qquad
+\Mme{A}_u = \begin{bmatrix}
+0 & 1 \\
+\frac{g}{\ell} & -\delta
+\end{bmatrix}
+\]
+
+Los autovalores son
+\[
+\lambda_{d}=\begin{cases}
+-\frac{\ell \,\delta +\sqrt{-\ell\,\left(4\,g-\ell\,{\delta }^2\right)}}{2\,\ell} \\
+-\frac{\ell\,\delta -\sqrt{-\ell\,\left(4\,g-\ell\,\delta ^2\right)}}{2\,\ell} 
+\end{cases}, \qquad \lambda_u = \begin{cases}
+-\frac{\ell\,\delta +\sqrt{\ell\,\left(\ell\,\delta ^2+4\,g\right)}}{2\,\ell } \\
+-\frac{\ell\,\delta -\sqrt{\ell\,\left(\ell\,{\delta }^2+4\,g\right)}}{2\,\ell}
+\end{cases}
+\]
+
+Si se estudia el caso de un péndulo con valores $\frac{g}{\ell}=1$ y $\delta = 0,1$
+
+\[
+\lambda_{d}=
+-0,05 \pm 0,9987i
+, \qquad \lambda_u = \begin{cases}
+-1,0512 \\
+0,9512
+\end{cases}
+\]
+
+Podemos ver que los autovalores del péndulo normal tienen parte real menor a cero. Esto significa que es un sistema \textbf{estable}, tiende a cero la solución. En cambio, el péndulo invertido tiene un autovalor mayor que cero, característica de un sistema \textbf{inestable}.
+
+\end{exercise}
+
+\chapter{Controlabilidad}
+
+donde $\Cme{x}\in \Bbb{R}^\dimss $ y $\Cme{u}\in \Bbb{R}^\dimin$. El control `óptimo'~ para un sistema lineal se logra realimentando $-\Mme{K}\Cme{x}$, es decir:
+\[
+\qquad \Cme{u} = - \Mme{K} \Cme{x} \quad \text{Control `óptimo'}
+\]
+
+Entonces nuestro sistema se describe de la siguiente forma
+\begin{IEEEeqnarray*}{c}
+\dot{\Cme{x}} = \Mme{A} \Cme{x} + \Mme{B} \Cme{u} \\
+\dot{\Cme{x}} = \Mme{A} \Cme{x} - \Mme{B}\Mme{K} \Cme{x} \\
+\boxed{\dot{\Cme{x}} =\left( \Mme{A} - \Mme{B}\Mme{K}   \right)  \Cme{x} }
+\end{IEEEeqnarray*}
+
+Nuestro objetivo ahora es elegir $\Mme{K}$ para modificar las propiedades de mi sistema, como por ejemplo, la estabilidad. Si nuestro sistema es \textbf{controlable} va ser posible hacer estas modificaciones.
+
+\begin{definition}
+	A grosso modo, mi sistema es controlable si puedo elegir $\Cme{u} = -\Mme{K} \Cme{x}$ y así poner mis autovalores de $\Mme{A} - \Mme{B}\Mme{K}$ en cualquier lugar del plano complejo. Si puedo elegir la posición de mis autovalores entonces se puede controlar la evolución del \textit{state-space}  eligiendo $\Cme{u}$. 
+\end{definition}
+
+Para determinar si un sistema es controlable se construye la matriz de controlabilidad. El sistema es controlable si y soli si se verifica que la cantidad de columnas linealmente independientes sea igual a \dimss. 
+\begin{definition}{Matriz de controlabilidad}
+\[
+\ctrb = \begin{bmatrix}
+\MB & \MA \MB & \MA^2 \MB & \ldots & \MA^{\dimss-1}\MB 
+\end{bmatrix}
+\]	
+En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de contrabilidad
+\begin{lstlisting}[caption={Obtención del rango de \(\ctrb\)}]
+r = rank(ctrb(A,B));
+\end{lstlisting}
+\end{definition}
+
+\part{Control English}
+\chapter{Introduction}
+
+\section{Control theory}
+\subsection{Basics}
+Taylor expansion (Linearization) of two-variable nonlinear equation.
+\[
+f(x,y) = f(\overline{x},\overline{y}) + \left[ \frac{\partial f}{\partial x} (x-\overline{x}) +\frac{\partial f}{\partial y} (y-\overline{y}) \right] + \ldots
+\]
+
+
+Matlab command to convert state space to transfer function \verb|[num,den]=ss2tf(A,B,C,D,iu)| where \verb|iu| must be specified for systems with more than one input.
+
+
+
+
+
+
+
+
+\subsection{State space}
+\(\Cme{u}(t)\) is inputs vector and is of size \(\dimin\times 1\) for a given system, i.e: \( \Cme{u}(t)=\begin{bmatrix}
+u_1 \\ u_2
+\end{bmatrix}\) for two input system, \(\dimin=2\).
+
+\(\Cme{y}(t) \) is the output vector of size  \(\dimout\times 1\).
+
+\(\Cme{z}(t)\) is the \textit{disturbance input}. Only applies to dynamical systems and is of size \(\dimdisturb \times 1\)
+
+Thus we define the \textbf{state space variables} so that system output is purely in function of current system state variables and input variables.
+\[
+\text{System Output} = f\left( \text{Current System State, System Input} \right)
+\]
+
+We will define \(X\) or \(\Cme{x}\) as our system state variables. There are some important aspects to note about state space variables such as
+\begin{itemize}
+	\item System output \(\Cme{y}(t)\) will be a function of them
+	\item They change over time
+	\item They are internal to the system
+	\item They may include system outputs (outputs will be a function of themselves in part)
+	\item Their selection is inherent part of the system design process and there are different methods of selecting them.
+	\item We will assume there is a minimal quantity of state variables that is sufficient to accurately describe the system
+	\item If all system inputs \(u_j\) are defined beforehand for \(t\geq t_0\) then \(\Cme{x}(t)\) defines all system states for time \(t \geq t_0\)
+\end{itemize}
+
+
+The mathematical representation of state space variables will be will be that of the \textbf{state vector} \(\Cme{x}(t)\) of size \(\dimss \times 1\).
+
+To model our system we then define the equations that govern it in \textbf{state space}\footnote{State space can be thought of an \dimss -dimensional space whose axes are the state variables (\(x_1,x_2\ldots\))}. These are the \textbf{state-space equations} of the system. For a dynamic system these must include a variable that serves as memory of inputs for \(t \geq t_1\). \textit{Integrators} serve as memory devices for \textit{continuous-time} models, however, our state-space representation is discrete! This is when state-space variables come in handy: The outputs of integrators can be considered as the variables that define the internal state of the dynamic system (Ogata). 
+
+
+For a system of size \(\dimin=\dimout=\dimss=1\) one has the state-space representation defined as:
+\[
+\dot{x}(t)=g\left[t_0,t,x(t),x(0),u(t)\right] ,\qquad y=h\left[t,x(t),u(t)\right]
+\]
+
+For a \textit{linear time-variant dynamical system} of arbitrary size it is convenient to represent it in it's linearized form
+
+\begin{equation}
+\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Mme{E}(t) \Cme{z}(t)
+\end{equation}
+\begin{equation}
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t)
+\end{equation}
+
+where 
+\begin{itemize}
+	\item[\(\Mme{A}_{\dimss \times\dimss }\)] System matrix. Relates future state change with current state. May be zero. Also referred to as the state matrix in some bibliographies.
+	\item[\(\Mme{B}_{\dimss \times\dimin}\)] Control/input matrix. How system input influences state change. May be zero. 
+	\item[\(\Mme{C}_{\dimout\times\dimss }\)] Output matrix. How system state influences system output.
+	\item[\(\Mme{D}_{\dimout\times\dimin}\)] Feed forward or feedthrough matrix. How system input influences system output. Is usually zero for most physical systems.
+	\item[\(\Mme{E}_{\dimss \times\dimdisturb}\)] Input matrix for disturbances. Applies only for dynamical systems.
+\end{itemize}
+the system is said to be \textbf{time-invariant} if the above matrices are not dependent of time. An example of a \textbf{time-variant} system is a spacecraft, whose mass changes due to fuel consumption.
+
+One method of state space variable selection is \textbf{physical selection}. This method is based on energy accumulators. It can be said that \textit{the minimum number of state-space variables needed to model the system accurately is equal to the number of independent energy accumulators.} When state-space variable is not a energy variable it is said to be an augmented variable.
+
+The general solution to the linear differential equation of state:
+\[
+\dot{\Cme{x}}(t) = \Mme{A}~ \Cme{x} (t) + \Mme{B}~ \Cme{u} (t)
+\]
+es
+\[
+\Cme{x}(t) = e^{\Mme{A}(t-t_0)}\Cme{x})0 +  \int^{t}_0 e^{\Mme{A}(t-\tau)} \Mme{B}~ \Cme{u} (\tau) \di \tau
+\]
+
+\begin{definition}[Matrix Exponential]
+\begin{IEEEeqnarray}{c}
+	e^{\Mme{A} t} = \eye + \sum_{i=1}^{\infty} \frac{(\Mme{A}t )^ i}{i!}
+\end{IEEEeqnarray}
+\end{definition}
+
+A \Matlab~ function is provided to calculate the matrix exponential. 
+\lstinputlisting[caption = {matrixexponential.m}]{code/matrixexponential.m}
+
+
+
+\end{document}
