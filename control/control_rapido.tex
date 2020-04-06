@@ -17,18 +17,18 @@
 \part{Control Castellano - Bootcamp}
 \chapter{Sistemas lineales}
 
-El exponencial matricial es impráctico de calcular con la matriz \(\Mme{A}\).
+El exponencial matricial es poco práctica para calcular con la matriz \(\Mme{A}\).
 
-En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformacion de coordenadas de las coordenadas de x a las coordenadas de algun autovector donde es mas facil escribir el exponencial matricial y facilita entender el sistema tambien.
+En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformación de coordenadas de las coordenadas de $\Cx$ a las coordenadas de algún autovector donde es mas fácil escribir el exponencial matricial y facilita entender el sistema también.
 
-Un autovector $\Cme{\xi}$ cumple con la siguiente igualdad
+Un \textbf{autovector} $\Cme{\xi}\in\mathbb{C}^\dimss$ cumple con la siguiente igualdad. $\lambda \in \mathbb{C}$ son los \textbf{autovalores} del sistema.
 \[
 \Mme{A}\Cme{\xi} = \lambda \Cme{\xi}
 \]
 Una forma de visualizar esto es que el producto entre la matriz $\Mme{A}$ y el autovector mantiene la dirección del autovector.
 
 \[
-\Mme{T} = \left[ \xi_1 \xi_2 \ldots \xi_\dimss \right]
+\Mme{T} = \left[ \xi_1,\, \xi_2,\, \ldots\, \xi_\dimss \right]
 \]
 
 \[
@@ -40,7 +40,7 @@ Una forma de visualizar esto es que el producto entre la matriz $\Mme{A}$ y el a
 \end{bmatrix}
 \]
 
-Es posible diagonalizar el sistema siempre que no se tengan dos autovectores cuasi-paralelos o un sistema degenerado (autovectores generalizados) (entre otros casos)
+Es posible diagonalizar el sistema siempre que no se tengan dos autovectores cuasi-paralelos o un sistema degenerado (autovectores generalizados) (entre otros casos). 
 
 Esto nos deja escribir la relación
 
@@ -138,7 +138,7 @@ Esto se puede remediar agregando el término $\Mme{B}\Cme{u}$ de tal forma que l
 
 En coordenadas de autovector, cada vez que multiplicamos la matriz estamos elevando nuestros autovalores de $\Mme{\tilde{A}}$ a una potencia. Estos pueden agrandarse o achicarse dependiendo de su `radio'
 \[
-\lambda^N = R^{N}e^{i\theta }
+\lambda^N = R^{N}e^{i \,N\theta }
 \]
 si el radio $R$ es menor a uno, la magnitud va decaer a medida que pasa el tiempo. Si el radio es mayor que uno crecerá sin cota superior.
 
@@ -283,6 +283,21 @@ En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de contrabil
 \begin{lstlisting}[caption={Obtención del rango de \(\ctrb\)}]
 r = rank(ctrb(A,B));
 \end{lstlisting}
+\end{definition}
+
+\section{Grados de contrabilidad y gramianes}
+Mirar el rango de la matriz de contrabilidad nos da un valor binario de la contrabilidad del sistema. Hay estudios más ricos que se pueden hacer para conocer que tan controlable es el sistema.
+
+
+\[
+\Cx (t) = e^{\MA t} \Cx(0) + \int_0^t e^{\MA(t-\tau)} \MB \Cu(\tau) \di \tau
+\]
+
+\begin{definition}{Gramian}
+\[
+\MW_t = \int_0^t e^{\MA\tau} \MB \MB\tp e^{\MA\tp \tau} \di \tau  \quad \in \mathbb{R}^{\dimss\times\dimss}
+\]
+
 \end{definition}
 
 \part{Control English}

@@ -41,7 +41,7 @@ Cuerpos opacos no transmiten radiación incidente $\Rightarrow \tau=0$. Cuando u
 
 {\bf Equilibrio entre tierra y sol} Encontrar $T_{tierra}$:
 
-$T_{sol}=5778K, \quad R_{ts}=\SI{149,6e9}{\meter}, \quad R_T=6371 km,\quad R_S=695508km$, $albedo\approx0,35$
+$T_{sol}=5778K, \quad R_{ts}=\SI{149,6e9}{\meter}, \quad R_T=6371 km,\quad R_S=695508km$, $albedo\approx0,35$, $\, \epsilon_{tierra} \approx 0,612$
 
 Buscamos los steradianes de la tierra respecto el sol: $\omega=\frac{A_T}{R_{ts}^2}=\num{5,698e-9}$
 
@@ -55,6 +55,6 @@ La energía absorbida por la tierra se puede calcular de dos formas:
 $q_r=I\cdot \pi R_T^2=I_e\cdot \omega=\num{1,74e17}\si{\watt} $
 
 Tomando en cuenta que la tierra es un cuerpo gris: 
-$E_{absorbido}=q_r(1-albedo)$ y lo que emite: $E_{emite}=4\pi R_T^2 \sigma T_{tierra}^4$.\footnote{La tierra absorbe luz en un plano e irradia como una esfera} Planteando $E_{emit}=E_{abs}$
-\[ T_{tierra} = \sqrt[4]{\frac{q_r(1-albedo)}{4\pi R_T^2 \sigma}}\approx 250k \approx -23^\circ C\]
+$E_{absorbido}=q_r(1-albedo)$ y lo que emite: $E_{emite}=4\pi \epsilon R_T^2 \sigma T_{tierra}^4$.\footnote{La tierra absorbe luz en un plano e irradia como una esfera} Planteando $E_{emit}=E_{abs}$
+\[ T_{tierra} = \sqrt[4]{\frac{q_r(1-albedo)}{4\pi \epsilon R_T^2 \sigma}}\approx 283\, K \approx 10^\circ \textrm{C}\]
 
