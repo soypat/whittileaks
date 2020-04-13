@@ -131,6 +131,22 @@ La matriz jacobiana, o simplemente \textit{jacobiano}, es un factor de escala qu
 	\label{fig:gauss_n3}
 \end{figure}
 
+Los elementos triangulares y tetraedricos son un caso particular. El código \ref{cod:gauss} no está generalizado para estos casos. En lugar de una función \texttt{gausstri} se ofrece al usuario las tablas \ref{tab:gausstriangulos} y \ref{tab:gausstetraedros}.
+
+
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{cccc}
+		Nro. Puntos & Orden & Coordenadas & Pesos \\ \hline \hline
+		1 & 0 & \( \left(\frac{1}{3}, \,\frac{1}{3} \right)\) & 1 \\ [1pt] \hline
+		3 & 1 & \(  \left(\two{3},\one{6}\right), \left(\one{6},\one{6}\right), \left(\one{6},\two{3} \right) \) & \( \frac{1}{3}\) \\ [2pt]\hline
+		4 & 2 & \( \left(\one{3}, \one{3}\right)\) & \( -\frac{27}{48}\)   \\[5pt]
+		&   &  \( \left(\three{5},\one{5}\right),\left(\one{5},\one{5}\right),\left(\one{5},\three{5}\right)  \) & \(\frac{25}{48}\)
+	\end{tabular}
+	\caption{Valores para la integración numérica de triangulos usando cuadratura de Gauss.}
+	\label{tab:gausstriangulos}
+\end{table}
+
 
 
 \section*{Ejemplo elemento exótico}

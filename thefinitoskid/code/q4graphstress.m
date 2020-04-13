@@ -2,7 +2,7 @@
 for e = 1:Nelem
     elenod = elementos(e,:);
     h=patch('Faces',1:4,'Vertices',posdef(elenod,:),...
-            'FaceVertexCData',Sxx(:,e));
+            'FaceVertexCData',Sxx(e,:)');
     set(h,'FaceColor','interp','CDataMapping','scaled');
 end
 colormap(jet(10)); %10 es el numero de colores en el bandplot

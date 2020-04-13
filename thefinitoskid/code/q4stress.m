@@ -16,7 +16,7 @@ for e = 1:Nelem
         stress(:,n,e)  = E*B*D(meindof);
     end
 end
-Sxx = squeeze(stress(1,:,:)); %Tensiones xx por elemento, por nodo
-Syy = squeeze(stress(2,:,:));
-Sxy = squeeze(stress(3,:,:));
+Sxx = squeeze(stress(1,:,:))'; %Tensiones xx por elemento, por nodo
+Syy = squeeze(stress(2,:,:))';
+Sxy = squeeze(stress(3,:,:))';
 Svm2d = sqrt( Sxx.^2 + Syy.^2 + 3*Sxy.^2 ); % Von mises. Tension efectiva
