@@ -281,7 +281,8 @@ Para determinar si un sistema es controlable se construye la matriz de controlab
 \]	
 En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de contrabilidad
 \begin{lstlisting}[caption={Obtención del rango de \(\ctrb\)}]
-r = rank(ctrb(A,B));
+Y = ctrb(A,B);
+r = rank(Y);
 \end{lstlisting}
 \end{definition}
 
@@ -293,12 +294,56 @@ Mirar el rango de la matriz de contrabilidad nos da un valor binario de la contr
 \Cx (t) = e^{\MA t} \Cx(0) + \int_0^t e^{\MA(t-\tau)} \MB \Cu(\tau) \di \tau
 \]
 
-\begin{definition}{Gramian}
+\begin{definition}{Gramian de controlabilidad}
 \[
-\MW_t = \int_0^t e^{\MA\tau} \MB \MB\tp e^{\MA\tp \tau} \di \tau  \quad \in \mathbb{R}^{\dimss\times\dimss}
+\MW_t = \int_0^t e^{\MA\tau} \MB \MB\tp e^{\tau\MA\tp } \di \tau  \quad \in \mathbb{R}^{\dimss\times\dimss}
+	\]
+Si $\MA$ y $\MB$ tienen valores reales y positivos entonces $\MW_t$ va tener autovalores reales tal que 
+\[
+\MW_t \Cme{\xi} = \lambda \Cme{\xi}
 \]
+donde los autovectores ($\Cme{\xi}$ de $\MW_t$) correspondientes a los autovalores más grandes serán las `direcciones' más controlables en el espacio de estados. 
+\end{definition}
+
+Una aproximación del gramian de controlabilidad para sistemas discretos
+\[
+\MW_t \approx \ctrb \ctrb\tp
+\]
+donde los autovalores de $\ctrb\ctrb\tp$ son los valores singulares 	de $\ctrb$
+
+
+\begin{lstlisting}
+	[U,sig, V] = svd(Y,'econ');
+\end{lstlisting}
+donde se listan las columnas de \texttt{U} como las direcciones más controlables en orden decreciente. La primer columna de \texttt{U} va ser la dirección más controlable en el espacio de estados. 
+
+Es decir, si nuestro vector de input $\Cu$ tiene norma 1 nuestro sistema $\Cx$ va poder evolucionar $\xi_1\lambda_1$, $\xi_2\lambda_2$, etc. Esto tiene fuerte implicaciones en el estudio de estabilidad ya que nos interesa que las direcciones en $\Cx$ inestables ($\Cme{\xi}$ inestables) sean controlables.
+
+\begin{definition}{Estabilización}
+	Un sistema es estabilizable si y solo si todos los autovectores inestables\footnote{También se incluye a veces los autovectores amortiguados en esta definición} de $\MA$ están contenidos en el subespacio controlable.
+\end{definition}
+
+
+\begin{definition}{Popov-Belevitch-Hautus test}
+El par $\MA$ y $\MB$ es controlable si y solo si 
+\[
+\operatorname{rango}\left[(\MA - a\eye)\quad \MB \right] = \dimss  \qquad \forall a \in \mathbb{C}
+\]
+Consecuencias del ensayo PBH:
+\begin{enumerate}
+\item \(\operatorname{rango}(\MA - a\eye)=n\) excepto para autovalores $a=\lambda$. Por ende, solo se necesita hacer el test para los autovalores de $\MA$
+\item $\MB$ necesita  tener algun componente en cada en cada dirección de los autovectores de $\MA$.
+\item  Si $\MB$ es una proyección aleatoria, entonces es muy probable que el sistema sea controlable. Esto se debe a que $\MB$ solo necesita tener \textbf{una} componente en dirección de cada autovector de $\MA$
+\end{enumerate}
 
 \end{definition}
+
+
+
+
+
+
+
 
 \part{Control English}
 \chapter{Introduction}
