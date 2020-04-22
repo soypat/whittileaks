@@ -1,5 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
-% !TEX root = ../control.tex
+% !TEX root = ../control_rapido.tex
 % !TeX spellcheck = en_EN
 
 \usepackage[onehalfspacing]{setspace}
@@ -53,4 +53,13 @@
 
 \usepackage[section]{placeins}				% To flush floats before new
 
+% GRAPHICS
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,babel}
+\tikzstyle{block} = [draw, fill=blue!20, rectangle, 
+minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]

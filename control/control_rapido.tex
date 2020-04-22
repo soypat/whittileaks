@@ -16,10 +16,55 @@
 \tableofcontents
 \part{Control Castellano - Bootcamp}
 \chapter{Sistemas lineales}
+El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:systemCtrb}. Su solución analítica requiere evaluar exponencial de la matriz $\MA$
+\begin{equation} \label{eq:systemCtrb}
+\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Mme{E}(t) \Cme{z}(t)
+\end{equation}
+\begin{equation} \label{eq:systemObsv}
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t)
+\end{equation}
 
-El exponencial matricial es poco práctica para calcular con la matriz \(\Mme{A}\).
 
-En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformación de coordenadas de las coordenadas de $\Cx$ a las coordenadas de algún autovector donde es mas fácil escribir el exponencial matricial y facilita entender el sistema también.
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+	% We start by placing the blocks
+	\node [input, name=input] {};
+	\node [sum, right of=input] (sum) {};
+	%	\node [kalbranch0, right of=sum] {};
+	%	\node [kalbranch1, below of=kalbranch0];
+	%	\node [kalbranch2, right of=kalbranch1];
+	%	\node [kalbranch3, ]
+	%	\node [node, name]
+	\node [block, right of=sum] (controller) {Controlador};
+	\node [block, right of=controller, pin={[pinstyle]above:Peturbaciones ($\ME$)},
+	node distance=3cm] (system) {Sistema};
+	%% We draw an edge between the controller and system block to 
+	%% calculate the coordinate u. We need it to place the measurement block. 
+	\draw [->] (controller) -- node[name=u] {$\Cu$} (system);
+	\node [output, right of=system] (output) {};
+	\coordinate [below of=u] (tmp);
+	
+	% Once the nodes are placed, connecting them is easy. 
+	\draw [->] (input) -- node {$\Cme{r}$} (sum);
+	\draw [->] (sum) -- node {$\Cme{e}$} (controller);
+	\draw [->] (system) -- node [name=y] {$\Cy$}(output);
+	\draw [->] (y) |- (tmp) -| node[pos=0.99] {$-$} 
+	node [near end] {$\Cy_m$} (sum);
+	\end{tikzpicture}
+	\caption{Esquema de un sistema de control genérico.}
+\end{figure}
+
+La exponencial de una matriz \eqref{eq:matrixExponential} es poco práctica para calcular con la matriz \(\Mme{A}\) y muy costosa numéricamente.
+
+\begin{definition}{Exponencial de una matriz}
+	\begin{IEEEeqnarray}{c}\label{eq:matrixExponential}
+	e^{\MX} = \eye + \sum_{k=1}^{\infty} \frac{\MX^ k}{k!}
+	\end{IEEEeqnarray}
+donde $\eye$ es la matriz identidad.
+\end{definition}
+
+En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformación de coordenadas de las coordenadas de $\Cx$ a las coordenadas de algún autovector donde es mas fácil escribir la exponencial de una matriz y facilita entender el sistema también.
 
 Un \textbf{autovector} $\Cme{\xi}\in\mathbb{C}^\dimss$ cumple con la siguiente igualdad. $\lambda \in \mathbb{C}$ son los \textbf{autovalores} del sistema.
 \[
@@ -77,7 +122,7 @@ e^{\lambda_1 t} & & & 0 \\
 \end{bmatrix} \cdot \Cme{z}(0)
 \]
 
-Es de interes poder mapear entre los dos espacios. Usando la expresión \( \Mme{A} = \Mme{T} \Mme{D} \Mme{T}^{-1}\) se puede simplificar la exponencial matricial empleando conocimientos de algebra lineal
+Es de interes poder mapear entre los dos espacios. Usando la expresión \( \Mme{A} = \Mme{T} \Mme{D} \Mme{T}^{-1}\) se puede simplificar la exponencial de una matriz empleando conocimientos de algebra lineal
 
 \[
 e^{\Mme{A}t} = e^{\Mme{T} \Mme{D} \Mme{T}^{-1}t} = \Mme{T} e^{\Mme{D}t} \Mme{T}^{-1}
@@ -98,7 +143,7 @@ Que hicimos?
  
 El próximo paso es agregar la matriz de control y el vector de entrada para empezar a controlar el sistema.
 
-\chapter{Estabilidad y autovalores}
+\chapter{Estabilidad y autovalores} \label{chap:estabilidadAutovalores}
 
 
 Para el estudio de estabilidad podemos primero mirar a la igualdad
@@ -148,7 +193,7 @@ aval = diag(Dt);
 inestables = aval(aval>1);
 \end{lstlisting}
 
-\chapter{Linealizando un sistema}
+\section{Linealizando un sistema}
 
 \begin{enumerate}
 	\item Encontramos los puntos fijos $\Cme{\bar{x}}$ tal que \(f(\Cme{\bar{x}})=\Cme{0}\)
@@ -253,41 +298,41 @@ Podemos ver que los autovalores del péndulo normal tienen parte real menor a ce
 \end{exercise}
 
 \chapter{Controlabilidad}
+En el capítulo \ref{chap:estabilidadAutovalores} (\nameref{chap:estabilidadAutovalores}) se vio que constituye un sistema estable. Para poder controlarlo se deben poder mover los autovalores desde el plano real hacia el complejo (estabilizar el sistema). Esto se hace con control óptimo.
 
-donde $\Cme{x}\in \Bbb{R}^\dimss $ y $\Cme{u}\in \Bbb{R}^\dimin$. El control `óptimo'~ para un sistema lineal se logra realimentando $-\Mme{K}\Cme{x}$, es decir:
-\[
-\qquad \Cme{u} = - \Mme{K} \Cme{x} \quad \text{Control `óptimo'}
-\]
-
-Entonces nuestro sistema se describe de la siguiente forma
+Recordando la ecuación de nuestro sistema \eqref{eq:systemCtrb}, escribimos nuestro sistema de una forma diferente para poder caracterizar el efecto del input $\Cu$ sobre la estabilidad (los autovalores):
 \begin{IEEEeqnarray*}{c}
 \dot{\Cme{x}} = \Mme{A} \Cme{x} + \Mme{B} \Cme{u} \\
 \dot{\Cme{x}} = \Mme{A} \Cme{x} - \Mme{B}\Mme{K} \Cme{x} \\
 \boxed{\dot{\Cme{x}} =\left( \Mme{A} - \Mme{B}\Mme{K}   \right)  \Cme{x} }
 \end{IEEEeqnarray*}
+donde $\Cme{x}\in \Bbb{R}^\dimss $ y $\Cme{u}\in \Bbb{R}^\dimin$. El control `óptimo'~ para un sistema lineal se logra realimentando $-\Mme{K}\Cme{x}$, es decir:
+\[
+\qquad \Cme{u} = - \Mme{K} \Cme{x} \quad \text{Control `óptimo'}
+\]
 
 Nuestro objetivo ahora es elegir $\Mme{K}$ para modificar las propiedades de mi sistema, como por ejemplo, la estabilidad. Si nuestro sistema es \textbf{controlable} va ser posible hacer estas modificaciones.
 
-\begin{definition}
+\begin{definition} \label{def:controlabilidad}
 	A grosso modo, mi sistema es controlable si puedo elegir $\Cme{u} = -\Mme{K} \Cme{x}$ y así poner mis autovalores de $\Mme{A} - \Mme{B}\Mme{K}$ en cualquier lugar del plano complejo. Si puedo elegir la posición de mis autovalores entonces se puede controlar la evolución del \textit{state-space}  eligiendo $\Cme{u}$. 
 \end{definition}
 
-Para determinar si un sistema es controlable se construye la matriz de controlabilidad. El sistema es controlable si y soli si se verifica que la cantidad de columnas linealmente independientes sea igual a \dimss. 
+Para determinar si un sistema es controlable se construye la matriz de controlabilidad. El sistema es controlable si y solo si se verifica que la cantidad de columnas linealmente independientes sea igual a \dimss. 
 \begin{definition}{Matriz de controlabilidad}
 \[
 \ctrb = \begin{bmatrix}
 \MB & \MA \MB & \MA^2 \MB & \ldots & \MA^{\dimss-1}\MB 
 \end{bmatrix}
 \]	
-En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de contrabilidad
+En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de controlabilidad
 \begin{lstlisting}[caption={Obtención del rango de \(\ctrb\)}]
 Y = ctrb(A,B);
 r = rank(Y);
 \end{lstlisting}
 \end{definition}
 
-\section{Grados de contrabilidad y gramianes}
-Mirar el rango de la matriz de contrabilidad nos da un valor binario de la contrabilidad del sistema. Hay estudios más ricos que se pueden hacer para conocer que tan controlable es el sistema.
+\section{Grados de controlabilidad y gramianes}
+Mirar el rango de la matriz de controlabilidad nos da un valor binario de la controlabilidad del sistema. Hay estudios más ricos que se pueden hacer para conocer que tan controlable es el sistema.
 
 
 \[
@@ -313,7 +358,7 @@ donde los autovalores de $\ctrb\ctrb\tp$ son los valores singulares 	de $\ctrb$
 
 
 \begin{lstlisting}
-	[U,sig, V] = svd(Y,'econ');
+[U,SIG, V] = svd(Y,'econ');
 \end{lstlisting}
 donde se listan las columnas de \texttt{U} como las direcciones más controlables en orden decreciente. La primer columna de \texttt{U} va ser la dirección más controlable en el espacio de estados. 
 
@@ -329,15 +374,87 @@ El par $\MA$ y $\MB$ es controlable si y solo si
 \[
 \operatorname{rango}\left[(\MA - a\eye)\quad \MB \right] = \dimss  \qquad \forall a \in \mathbb{C}
 \]
+
+\end{definition}
+
 Consecuencias del ensayo PBH:
 \begin{enumerate}
-\item \(\operatorname{rango}(\MA - a\eye)=n\) excepto para autovalores $a=\lambda$. Por ende, solo se necesita hacer el test para los autovalores de $\MA$
-\item $\MB$ necesita  tener algun componente en cada en cada dirección de los autovectores de $\MA$.
-\item  Si $\MB$ es una proyección aleatoria, entonces es muy probable que el sistema sea controlable. Esto se debe a que $\MB$ solo necesita tener \textbf{una} componente en dirección de cada autovector de $\MA$
+	\item \(\operatorname{rango}(\MA - a\eye)=n\) excepto para autovalores $a=\lambda$. Por ende, solo se necesita hacer el test para los autovalores de $\MA$
+	\item $\MB$ necesita  tener algun componente en cada en cada dirección de los autovectores de $\MA$.
+	\item  Si $\MB$ es una proyección aleatoria, entonces es muy probable que el sistema sea controlable. Esto se debe a que $\MB$ solo necesita tener \textbf{una} componente en dirección de cada autovector de $\MA$
 \end{enumerate}
 
+
+Si tengo multiplicidad de autovalores (sistema degenerado) entonces voy a necesitar más de una columna en $\MB$ para que se cumpla PBH. 
+
+\section{Posicionamiento de autovalores (polos)}
+
+Equivalencias de la definición \ref{def:controlabilidad}
+\begin{enumerate}
+	\item El sistema es controlable
+	\item Se pueden elegir posiciones arbitrarias para los autovalores (polos): $\Cu =-\MK\Cx \Rightarrow \dot{\Cx} =(\MA - \MB \MK)\Cx$
+	\item Accesibilidad completa en $\mathbb{R}^{\dimss}$. Es decir, para todo estado $\xi\in\mathbb{R}^\dimss$ existe un input $\Cu(t)$ tal que $\Cx(t)=\xi$.
+\end{enumerate}
+
+Para posicionar autovalores en \Matlab~ se usa el comando \texttt{place}
+
+\begin{lstlisting}[caption={Posicionamiento de autovalores en las posiciones \texttt{eigs} deseadas.}]
+K = place(A,B,eigs)
+\end{lstlisting}
+
+\chapter{Observabilidad}
+Ahora hablaremos de estimadores y de la observabilidad del sistema. El algebra para determinar la observabilidad es muy similar al visto en el capítulo de controlabilidad y se comienza a notar una dualidad entre la matriz $\MA$ y las matrices $\MB$, $\MC$.
+
+\begin{definition}{Matriz de observabilidad}
+\[
+\obsv =  \left[\begin{array}{c}
+\MC \\ \MC \MA \\ \MC \MA^2 \\ \vdots \\ \MC \MA^{n-1}
+\end{array}\right]
+\]
+\end{definition}
+\begin{definition}{Observabilidad}
+	El sistema es observable si el rango (espacio fila) de la matriz $\obsv$ es igual a $\dimss$. Verificado en \Matlab:
+	\begin{lstlisting}[caption={Como calcular $\obsv$ y su rango en \Matlab}]
+	OB = obsv(A,C)
+	r = rank(OB)
+	\end{lstlisting}
 \end{definition}
 
+Si el sistema es observable entonces se puede estimar todo valor de $\Cx$ con los valores medidos u observados $\Cy$. Más adelante veremos que los filtros Kalman tienen su propio sistema lineal dinámico con autovalores que indican que tan rápido converge el estimador $\hat{\Cx}$ a $\Cx$
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+     	\node [block] (system) {Sistema};
+		\coordinate [left of=system] (input);
+		\coordinate [below of=system] (kout);
+		\node [block, right of=kout] (kalman) {Filtro Kalman};
+		\node [output, right of=system] (output) {};
+		\node [block, left of=kout] (lqr) {LQR};
+		\coordinate [left of=lqr] (lqrout);
+		% Kalman inputs
+		\path (kalman.-10)+(.5,0) node (kin1) [coordinate] {};
+		\path (kalman.15)+(.25,0) node (kin2) [coordinate] {};
+		\path (kalman)+(0,1) node (aux) [coordinate] {};	
+		%% Drawing arrows
+		\draw [->] (kalman) -- node {$\hat{\Cx}$} (lqr);
+		\draw [->] (input) -- node {$\Cu$} (system);
+		\draw [-] (lqr) -- (lqrout) |- (input);
+		\draw [-] (system) --  (output);
+		\draw [->] (input) |- (aux) -| (kin2) -- (kalman.east |- kin2);
+		\draw [->] (output) -| node {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
+	\end{tikzpicture}
+	\caption{Sistema de control óptimo con estimador Kalman}
+\end{figure}
+
+
+Similarmente al estudio de gramianes de controlabilidad, se puede efectuar un \textit{singular value decomposition} para determinar el grado de observabilidad del sistema. En \Matlab:
+\begin{lstlisting}
+[U, SIG, V] = svd(OB)
+\end{lstlisting}
+donde \texttt{V} va contener los vectores singulares de la matriz de observabilidad que apuntan en la dirección que se tiene mejor relación señal a ruido, también conocido en ingles como \textit{Signal to Noise ratio} y S/N.
+
+Lo que se hace en la práctica es asegurar que el sistema sea observable verificando el rango de $\obsv$, mirar la descomposicion singular para determinar direcciones en las cuales se tiene mejor S/N, y construir un filtro de Kalman que estime las variables de estado dado que hay ruido y peturbaciones en el sistema.
 
 
 
@@ -345,100 +462,9 @@ Consecuencias del ensayo PBH:
 
 
 
-\part{Control English}
-\chapter{Introduction}
-
-\section{Control theory}
-\subsection{Basics}
-Taylor expansion (Linearization) of two-variable nonlinear equation.
-\[
-f(x,y) = f(\overline{x},\overline{y}) + \left[ \frac{\partial f}{\partial x} (x-\overline{x}) +\frac{\partial f}{\partial y} (y-\overline{y}) \right] + \ldots
-\]
-
-
-Matlab command to convert state space to transfer function \verb|[num,den]=ss2tf(A,B,C,D,iu)| where \verb|iu| must be specified for systems with more than one input.
 
 
 
-
-
-
-
-
-\subsection{State space}
-\(\Cme{u}(t)\) is inputs vector and is of size \(\dimin\times 1\) for a given system, i.e: \( \Cme{u}(t)=\begin{bmatrix}
-u_1 \\ u_2
-\end{bmatrix}\) for two input system, \(\dimin=2\).
-
-\(\Cme{y}(t) \) is the output vector of size  \(\dimout\times 1\).
-
-\(\Cme{z}(t)\) is the \textit{disturbance input}. Only applies to dynamical systems and is of size \(\dimdisturb \times 1\)
-
-Thus we define the \textbf{state space variables} so that system output is purely in function of current system state variables and input variables.
-\[
-\text{System Output} = f\left( \text{Current System State, System Input} \right)
-\]
-
-We will define \(X\) or \(\Cme{x}\) as our system state variables. There are some important aspects to note about state space variables such as
-\begin{itemize}
-	\item System output \(\Cme{y}(t)\) will be a function of them
-	\item They change over time
-	\item They are internal to the system
-	\item They may include system outputs (outputs will be a function of themselves in part)
-	\item Their selection is inherent part of the system design process and there are different methods of selecting them.
-	\item We will assume there is a minimal quantity of state variables that is sufficient to accurately describe the system
-	\item If all system inputs \(u_j\) are defined beforehand for \(t\geq t_0\) then \(\Cme{x}(t)\) defines all system states for time \(t \geq t_0\)
-\end{itemize}
-
-
-The mathematical representation of state space variables will be will be that of the \textbf{state vector} \(\Cme{x}(t)\) of size \(\dimss \times 1\).
-
-To model our system we then define the equations that govern it in \textbf{state space}\footnote{State space can be thought of an \dimss -dimensional space whose axes are the state variables (\(x_1,x_2\ldots\))}. These are the \textbf{state-space equations} of the system. For a dynamic system these must include a variable that serves as memory of inputs for \(t \geq t_1\). \textit{Integrators} serve as memory devices for \textit{continuous-time} models, however, our state-space representation is discrete! This is when state-space variables come in handy: The outputs of integrators can be considered as the variables that define the internal state of the dynamic system (Ogata). 
-
-
-For a system of size \(\dimin=\dimout=\dimss=1\) one has the state-space representation defined as:
-\[
-\dot{x}(t)=g\left[t_0,t,x(t),x(0),u(t)\right] ,\qquad y=h\left[t,x(t),u(t)\right]
-\]
-
-For a \textit{linear time-variant dynamical system} of arbitrary size it is convenient to represent it in it's linearized form
-
-\begin{equation}
-\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Mme{E}(t) \Cme{z}(t)
-\end{equation}
-\begin{equation}
-\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t)
-\end{equation}
-
-where 
-\begin{itemize}
-	\item[\(\Mme{A}_{\dimss \times\dimss }\)] System matrix. Relates future state change with current state. May be zero. Also referred to as the state matrix in some bibliographies.
-	\item[\(\Mme{B}_{\dimss \times\dimin}\)] Control/input matrix. How system input influences state change. May be zero. 
-	\item[\(\Mme{C}_{\dimout\times\dimss }\)] Output matrix. How system state influences system output.
-	\item[\(\Mme{D}_{\dimout\times\dimin}\)] Feed forward or feedthrough matrix. How system input influences system output. Is usually zero for most physical systems.
-	\item[\(\Mme{E}_{\dimss \times\dimdisturb}\)] Input matrix for disturbances. Applies only for dynamical systems.
-\end{itemize}
-the system is said to be \textbf{time-invariant} if the above matrices are not dependent of time. An example of a \textbf{time-variant} system is a spacecraft, whose mass changes due to fuel consumption.
-
-One method of state space variable selection is \textbf{physical selection}. This method is based on energy accumulators. It can be said that \textit{the minimum number of state-space variables needed to model the system accurately is equal to the number of independent energy accumulators.} When state-space variable is not a energy variable it is said to be an augmented variable.
-
-The general solution to the linear differential equation of state:
-\[
-\dot{\Cme{x}}(t) = \Mme{A}~ \Cme{x} (t) + \Mme{B}~ \Cme{u} (t)
-\]
-es
-\[
-\Cme{x}(t) = e^{\Mme{A}(t-t_0)}\Cme{x})0 +  \int^{t}_0 e^{\Mme{A}(t-\tau)} \Mme{B}~ \Cme{u} (\tau) \di \tau
-\]
-
-\begin{definition}[Matrix Exponential]
-\begin{IEEEeqnarray}{c}
-	e^{\Mme{A} t} = \eye + \sum_{i=1}^{\infty} \frac{(\Mme{A}t )^ i}{i!}
-\end{IEEEeqnarray}
-\end{definition}
-
-A \Matlab~ function is provided to calculate the matrix exponential. 
-\lstinputlisting[caption = {matrixexponential.m}]{code/matrixexponential.m}
 
 
 
