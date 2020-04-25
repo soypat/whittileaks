@@ -18,12 +18,12 @@
 \chapter{Sistemas lineales}
 El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:systemCtrb}. Su solución analítica requiere evaluar exponencial de la matriz $\MA$
 \begin{equation} \label{eq:systemCtrb}
-\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Mme{E}(t) \Cme{z}(t)
+\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Cw_{\disturb} %\Mme{E}(t) \Cme{z}(t)
 \end{equation}
 \begin{equation} \label{eq:systemObsv}
-\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t)
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}
 \end{equation}
-
+donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las peturbaciones sobre el sistema y $\Cw_{\noise}$ es el ruido en la medición.
 
 \begin{figure}[htb!]
 	\centering
@@ -50,7 +50,7 @@ El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:
 	\draw [->] (sum) -- node {$\Cme{e}$} (controller);
 	\draw [->] (system) -- node [name=y] {$\Cy$}(output);
 	\draw [->] (y) |- (tmp) -| node[pos=0.99] {$-$} 
-	node [near end] {$\Cy_m$} (sum);
+	node [near end] {$\Cy+\Cw_{\noise}$} (sum);
 	\end{tikzpicture}
 	\caption{Esquema de un sistema de control genérico.}
 \end{figure}
@@ -425,11 +425,12 @@ Si el sistema es observable entonces se puede estimar todo valor de $\Cx$ con lo
 \begin{figure}[htb!]
 	\centering
 	\begin{tikzpicture}[auto, node distance=2cm]
-     	\node [block] (system) {Sistema};
+     	\node [block, pin={[pinstyle]above:$\Cw_{\disturb}$}] (system) {Sistema};
+     	\node [sum, right of=system,node distance=2cm,pin={[pinstyle]above:$\Cw_{\noise}$}] (noise) {};
 		\coordinate [left of=system] (input);
 		\coordinate [below of=system] (kout);
 		\node [block, right of=kout] (kalman) {Filtro Kalman};
-		\node [output, right of=system] (output) {};
+		\node [output, right of=noise] (output) {};
 		\node [block, left of=kout] (lqr) {LQR};
 		\coordinate [left of=lqr] (lqrout);
 		% Kalman inputs
@@ -440,13 +441,14 @@ Si el sistema es observable entonces se puede estimar todo valor de $\Cx$ con lo
 		\draw [->] (kalman) -- node {$\hat{\Cx}$} (lqr);
 		\draw [->] (input) -- node {$\Cu$} (system);
 		\draw [-] (lqr) -- (lqrout) |- (input);
-		\draw [-] (system) --  (output);
+		\draw [-] (system) -- node[pos=.99] {$+$} (noise) -- (output); %--  (output);
 		
 		\draw [->] (input) |- (aux) -| (kin2) -- (kalman.east |- kin2);
 		
-		\draw [->] (output) -| node {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
+		\draw [->] (output) |- node[pos=-.03]  {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
 	\end{tikzpicture}
 	\caption{Sistema de control óptimo con estimador Kalman}
+	\label{fig:blockLQGfundamental}
 \end{figure}
 
 
@@ -458,6 +460,13 @@ donde \texttt{V} va contener los vectores singulares de la matriz de observabili
 
 Lo que se hace en la práctica es asegurar que el sistema sea observable verificando el rango de $\obsv$, mirar la descomposicion singular para determinar direcciones en las cuales se tiene mejor S/N, y construir un filtro de Kalman que estime las variables de estado dado que hay ruido y peturbaciones en el sistema.
 
+\begin{exercise}{Estimación de variables `más'~ observables}
+Se obtiene el gramian del sistema en \Matlab~ y se toma el determinante para obtener el volúmen del elipsoide de controlabilidad. Cambiando la matriz $\MC$ se puede encontrar el esquema de medición más controlable
+\begin{lstlisting}
+sys = ss(A,B,C,D)
+det(gram(ss,'o')) % Cuanto mas grande, mas controlable
+\end{lstlisting} 
+\end{exercise}
 
 \section{Estimación de estado completo}
 
@@ -499,11 +508,159 @@ Recordando la ecuación \eqref{eq:systemCtrb} (sin peturbaciones) podemos escrib
 \begin{IEEEeqnarray*}{ll }
 \frac{\diff }{\diff t} \error &\,= \MA \Cx + \MB \Cu + \MA \hat{\Cx} + \MK_f \MC \hat{\Cx} - \MK_f \Cy - \MB \Cu \\
 &\,=\MA(\Cx - \hat{\Cx}) -\MK_f \MC (\Cx - \hat{\Cx}) \\
-&\boxed{= \left(\MA - \MK_f \MC \right) \error}
+&\boxed{= \left(\MA - \MK_f \MC \right) \error} \IEEEyesnumber \label{eq:lqeerror}
 \end{IEEEeqnarray*}
 Lo que me dice esto es que si es observable el sistema entonces puedo elegir un $\MK_f$ tal que el sistema sea estable (posicionamiento de autovalores). De esta forma $\error$ converge a 0. La razón por la que no es deseable tener autovalores negativos (convergencia muy rápida) es por la presencia de peturbaciones en el sistema y ruido en las mediciones. La decision de la matriz de ganancia $\MK_f$ del filtro Kalman se elige en base a la magnitud de estas dos últimas variables.
 
+\chapter{Control lineal cuadrático}
+
 \section{Filtro Kalman}
+El filtro Kalman es un estimador óptimo que tiene el balance perfecto para rechazar peturbaciones y despreciar ruido. Como mencionamos anteriormente, para diseñar un filtro Kalman se necesita saber que magnitud tienen nuestras peturbaciones $\Cw_{\disturb}$ y ruido $\Cw_{\noise}$. Las suponemos de distribución gaussiana. La razón entre las varianzas $\Cv_{\disturb}$ y $\Cv_{\noise}$ nos dirá cual confiamos más de $\Cw_{\disturb}$ y $\Cw_{\noise}$. Si el sistema tiene peturbaciones grandes entonces confiaremos más en las mediciones $\Cy$, si se mide mucho más ruido que peturbaciones confiaremos más en el estimador $\hat{\Cx}$. 
+
+Nuestro filtro Kalman ideal minimizará una función de costo $\Jcost$ (estimador lineal cuadratico)
+
+\begin{IEEEeqnarray}{c}
+\Jcost = E\left( (\Cx - \hat{\Cx})\tp (\Cx - \hat{\Cx}) \right)
+\end{IEEEeqnarray}
+donde el valor esperado dependerá de las varianzas $\Cv_{\disturb}$ y $\Cv_{\noise}$. En \Matlab~ se puede calcular la ganancia de nuestro filtro Kalman $\MK_f$ con el comando \texttt{lqe}
+\begin{lstlisting}
+Kf = lqe(A, C, vd, vn)
+\end{lstlisting}
+
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+	\node [block, pin={[pinstyle]above:$\Cw_{\disturb}$}] (system) {Sistema};
+	\node [sum, right of=system,node distance=2cm,pin={[pinstyle]above:$\Cw_{\noise}$}] (noise) {};
+	\coordinate [left of=system] (input);
+	\coordinate [below of=system] (kout);
+	\coordinate [above of=system,node distance=1.5cm,label=above:{Sistema aumentado}] (asys);
+	\node [block, right of=kout] (kalman) {Filtro Kalman};
+	\node [output, right of=noise] (output) {};
+	\node [block, left of=kout] (lqr) {LQR};
+	\coordinate [left of=lqr] (lqrout);
+	% Kalman inputs
+	\path (kalman.-10)+(.5,0) node (kin1) [coordinate] {};
+	\path (kalman.15)+(.25,0) node (kin2) [coordinate] {};
+	\path (kalman)+(0,1) node (aux) [coordinate] {};	
+	%% Drawing arrows
+	\draw [->] (kalman) -- node {$\hat{\Cx}$} (lqr);
+	\draw [->] (input) -- node {$\Cu$} (system);
+	\draw [-] (lqr) -- (lqrout) |- (input);
+	\draw [-] (system) -- node[pos=.99] {$+$} (noise) -- (output); %--  (output);
+	\node [fit=(system) (asys) (noise),draw,dotted,blue] {};
+	
+	\draw [->] (input) |- (aux) -| (kin2) -- (kalman.east |- kin2);
+	\draw [->] (output) |- node[pos=-.03]  {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
+	\end{tikzpicture}
+	\caption{Sistema de control óptimo con estimador Kalman}
+\end{figure}
+
+Ecuaciones del sistema aumentado 
+
+\begin{IEEEeqnarray}{rc}
+\dot{\Cme{x}} & = \MA \Cx + \overbrace{\MB \Cu + \MV_{\disturb} \Cd + \Mzero \Cn}^{=\MB \text{ del sist. aum.}} \\
+\Cy & = \MC \Cx + \underbrace{\MD \Cu + \Mzero \Cd + \MV_{\noise} \Cn}_{=\MD \text{ del sist. aum.}}
+\end{IEEEeqnarray}
+donde $\MV_{\disturb}\in \mathbb{R}^{\dimss \times \dimss}$ y $\MV_{\noise}\mathbb{R}^{\dimout \times \dimout}$ son matrices de covarianzas entre peturbaciones de variables de estado y ruido en las mediciones, respectivamente. Si es una matriz diagonal entonces el ruido/peturbacion está desacoplado. El vector de entrada para el sistema aummentado será
+\begin{IEEEeqnarray}{c}
+\begin{bmatrix}
+\Cu \\
+\Cd \\
+\Cn
+\end{bmatrix}
+\end{IEEEeqnarray}
+
+Mi nuevo vector de entrada tomará los inputs $\Cu$, las peturbaciones $\Cd$, y el ruido $\Cn$. La matriz $\MB$ asociada a mi nuevo vector de entrada de mi sistema aumentado puede construirse en \Matlab~:
+\begin{lstlisting}
+BF = [B Vd 0*B] % Input aumentado con petrubaciones y ruido
+\end{lstlisting}
+
+La matriz $\MD$ asociada a mi nuevo vector de entrada tendrá la forma
+\begin{lstlisting}
+DF = [D 0*D Vn] % Input aumentado con petrubaciones y ruido
+\end{lstlisting}
+
+Como el filtro Kalman es su propio sistema dinámico lineal se puede armar su sistema en \Matlab
+\begin{lstlisting}
+[Kf,P , E] = lqe(A, Vd, C, Vd, Vn)
+Kf = (lqr(A', C', Vd, Vn))'
+sysKF = ss(A-Kf*C, [B Kf], eye(n), D*[B Kf])
+\end{lstlisting}
+donde el vector de entrada al filtro Kalman será 
+\begin{IEEEeqnarray}{c}
+\begin{bmatrix}
+	\Cu \\
+	\Cy
+\end{bmatrix}
+\end{IEEEeqnarray}
+
+\begin{lstlisting}[caption={Ejemplo de simulación de sistema $\dimout=1$ y filtro kalman sin LQR.}]
+sysFullOutput = ss(A, BF, eye(n), zeros(n,size(BF,2)))
+dt = 0.01;
+t = dt:dt:50;
+uDIST = randn(4,size(t,2)); % Senal de peturbacion
+uNOISE = randn(size(t)); % senal de ruido
+u = 0*t; % un solo input
+u = (100:120) = 100; % input force right
+u(1500:1520) = -100; % input force left
+
+uAUG = [u; Vd*Vd*uDIST; uNOISE];
+%% 
+figure(1)
+[y, t] = lsim(sysC, uAUG, t); % lsim simula el sistema con un dado input
+plot(t,y);
+%%
+[xtrue, t] = lsim(sysFullOutput, uAUG, t)
+hold on
+plot(t, xtrue(:,1), 'r', 'LineWidth',2.0)
+%% Plotea variables de estado estimados (punteada) sobre los verdaderos 
+figure(2) 
+[xest, t] = lsim(sysKF, [u;y'], t);
+plot(t,xtrue,'-',t,xest, 'k--', 'LineWidth', 2.0)
+\end{lstlisting}
+
+\section{Control Lineal Cuadrático Gaussiano}
+Si miramos al esquema de la figura \ref{fig:blockLQGfundamental} vemos que se combina un estimador Kalman con un regulador cuadrático lineal para obtener lo que se conoce como un Controlador Lineal Cuadrático Gaussiano (LQG). Lineal porque la dinámica de nuestro sistema es lineal, cuadrático porque la función que quiere minimizar es cuadrática, y Gaussiano porque la distribución del ruido y las perturbaciones se suponen Gaussianas. Se trabaja la ecuación del sistema:
+
+\begin{IEEEeqnarray*}{cl}
+\dot{\Cme{x}} &= \MA \Cx - \MB \MK_r \hat{\Cx} + \Cw_{\disturb} \\
+ & = \MA \Cx - \MB \MK_r \Cx + \MB \MK_r (\Cx - \hat{\Cx}) + \Cw_{\disturb} \\
+\end{IEEEeqnarray*}
+
+Si a la ecuación \eqref{eq:lqeerror} se le agregan los términos de perturbaciones y ruido se llega a la siguiente expresión
+\begin{IEEEeqnarray}{c}
+\dot{\error} = (\MA - \MK_f \MC) \error + \Cw - \MK_f \Cw_{\noise}
+\end{IEEEeqnarray}
+
+luego se puede armar el sistema para el LQG tomando como inputs las perturbaciones y ruidos
+\begin{IEEEeqnarray}{c}
+\frac{\diff}{\diff t} \begin{bmatrix}
+\Cx \\ 
+\error
+\end{bmatrix}
+= 
+\begin{bmatrix}
+(\MA - \MB \MK_r) & \MB \MK_r \\
+\Mzero & (\MA - \MK_f \MC) 
+\end{bmatrix}
+\begin{bmatrix}
+\Cx \\ 
+\error
+\end{bmatrix}
++
+\begin{bmatrix}
+\eye & \Mzero \\
+\eye & - \MK_f
+\end{bmatrix}
+\begin{bmatrix}
+\Cw_{\disturb} \\
+\Cw_{\noise}
+\end{bmatrix}
+\end{IEEEeqnarray}
+
+\section{Ejemplo de Carro con péndulo}
 
 
 \end{document}
