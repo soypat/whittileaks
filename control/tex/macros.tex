@@ -1,4 +1,25 @@
 % !TeX root = control_rapido.tex
+%% DIFFERENTIAL OPERATOR
+\makeatletter
+\providecommand*{\diff}%
+{\@ifnextchar^{\DIfF}{\DIfF^{}}}
+\def\DIfF^#1{%
+	\mathop{\mathrm{\mathstrut d}}%
+	\nolimits^{#1}\gobblespace}
+\def\gobblespace{%
+	\futurelet\diffarg\opspace}
+\def\opspace{%
+	\let\DiffSpace\!%
+	\ifx\diffarg(%
+	\let\DiffSpace\relax
+	\else
+	\ifx\diffarg[%
+	\let\DiffSpace\relax
+	\else
+	\ifx\diffarg\{%
+	\let\DiffSpace\relax
+	\fi\fi\fi\DiffSpace}
+
 
 \newcommand{\dimfont}[1]{\ensuremath{#1}}
 \newcommand{\Cme}[1]{\mathbf{#1}}
@@ -20,6 +41,8 @@
 \def\ctrb{\Mme{Y}}
 \def\obsv{\Mme{\mathcal{O}}}
 
+
+\def\error{\varepsilon}
 \def\Cx{\Cme{x}}
 \def\Cy{\Cme{y}}
 \def\Cu{\Cme{u}}

@@ -441,7 +441,9 @@ Si el sistema es observable entonces se puede estimar todo valor de $\Cx$ con lo
 		\draw [->] (input) -- node {$\Cu$} (system);
 		\draw [-] (lqr) -- (lqrout) |- (input);
 		\draw [-] (system) --  (output);
+		
 		\draw [->] (input) |- (aux) -| (kin2) -- (kalman.east |- kin2);
+		
 		\draw [->] (output) -| node {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
 	\end{tikzpicture}
 	\caption{Sistema de control óptimo con estimador Kalman}
@@ -457,15 +459,51 @@ donde \texttt{V} va contener los vectores singulares de la matriz de observabili
 Lo que se hace en la práctica es asegurar que el sistema sea observable verificando el rango de $\obsv$, mirar la descomposicion singular para determinar direcciones en las cuales se tiene mejor S/N, y construir un filtro de Kalman que estime las variables de estado dado que hay ruido y peturbaciones en el sistema.
 
 
+\section{Estimación de estado completo}
 
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+	\node [align=center,block,label=below:Sist. Dinámico] (estimator) {Estimador de\\estado completo};
+	\coordinate [right of=estimator] (estout);
+	\draw [->] (estimator) --  (estout) node [label=above:$\hat{\Cx}$] {};
+	\path (estimator.12)+(-4,0) node (estin1) [coordinate,label=above:$\Cy$] {};
+	\path (estimator.-12)+(-4,0) node (estin2) [coordinate,label=above:$\Cu$] {};
+	\draw [->] (estin1)  -- (estimator.west |- estin1);
+	\draw [->] (estin2)  -- (estimator.west |- estin2); 
+	\end{tikzpicture}
+	\caption{Estimador de \textit{full-state}.}
+\end{figure}
 
+Un estimador es un sistema dinámico lineal, al igual que los problemas de control que estudiamos. Su dinámica tiene la forma
 
+\begin{IEEEeqnarray}{rl}
+\frac{\diff }{\diff t} \hat{\Cx} &= \MA \hat{\Cx} + \MB \Cu + \Mme{K}_f (\Cy - \hat{\Cy})\label{eq:estimatorSystem1} \\
+\hat{\Cy} &= \MC \hat{\Cx} \label{eq:estimatorSystem2}
+\end{IEEEeqnarray}
+donde la expresión $\Mme{K}_f (\Cy - \hat{\Cy})$ actúa como una corrección al estado actual. Cada medición efectuada $\Cy$  se compara con la estimada y esto `corrige'{} el estado estimado $\Cx$. Si reemplazamos \eqref{eq:estimatorSystem2} en \eqref{eq:estimatorSystem1} se obtiene 
 
+\begin{IEEEeqnarray}{c}
+\left(\MA - \MK_f \MC \right)\hat{\Cx} + \left[\MB \quad \MK_f\right] \begin{bmatrix}
+\Cu \\ \Cy
+\end{bmatrix}
+\end{IEEEeqnarray}
 
+Definimos un error, el cual vamos a querer reducir para estimar nuestro sistema bien
+\begin{IEEEeqnarray}{c}
+\error = \Cx -\hat{\Cx} 
+\end{IEEEeqnarray}
 
+Recordando la ecuación \eqref{eq:systemCtrb} (sin peturbaciones) podemos escribir el cambio del error en el tiempo
 
+\begin{IEEEeqnarray*}{ll }
+\frac{\diff }{\diff t} \error &\,= \MA \Cx + \MB \Cu + \MA \hat{\Cx} + \MK_f \MC \hat{\Cx} - \MK_f \Cy - \MB \Cu \\
+&\,=\MA(\Cx - \hat{\Cx}) -\MK_f \MC (\Cx - \hat{\Cx}) \\
+&\boxed{= \left(\MA - \MK_f \MC \right) \error}
+\end{IEEEeqnarray*}
+Lo que me dice esto es que si es observable el sistema entonces puedo elegir un $\MK_f$ tal que el sistema sea estable (posicionamiento de autovalores). De esta forma $\error$ converge a 0. La razón por la que no es deseable tener autovalores negativos (convergencia muy rápida) es por la presencia de peturbaciones en el sistema y ruido en las mediciones. La decision de la matriz de ganancia $\MK_f$ del filtro Kalman se elige en base a la magnitud de estas dos últimas variables.
 
-
+\section{Filtro Kalman}
 
 
 \end{document}
