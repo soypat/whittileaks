@@ -1,103 +1,27 @@
 \documentclass{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
+%!TeX spellcheck = es_ES
 \usepackage{graphicx}
 \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=2cm,right=2cm]{geometry}
 \usepackage{caption,subcaption}
 \usepackage{amsmath}
 \usepackage{cancel}
 \usepackage{natbib}
-\title{Turbiedad}
-\author{Lalih Otrebor feat. Cana Inalec}
-\date{April 2019}
 \usepackage{siunitx}
 \graphicspath{ {fig/} }
 \usepackage{bm}
 
-\newcommand{\glossentry}[2]{$#1$\indent #2 \par \vspace{.4cm} }
+\title{Turbomáquinas}
+\author{Patricio Whittingslow \and Agustín Canalis}
+\date{April 2019}
 
+\input{tex/macros.tex}
 
-%
-\newcommand{\tita}{\theta}
-\newcommand{\substy}[2]{\ensuremath{{#1_{\mathrm{#2}}}}}
-\newcommand{\sib}[1]{\ensuremath{\left[\si{#1}\right]}}
-\newcommand{\degree}{\ensuremath{{^\circ}}}
-\newcommand{\attackangle}{{\ensuremath{\bm{\alpha}}}}
-\newcommand{\cp}{c_p}
-\newcommand{\cteuniversal}{\ensuremath{\tilde{R}}}
-\newcommand{\molarmass}{\ensuremath{{\scriptstyle \bar{M}}}}
-\newcommand{\Rconst}{R}
-\newcommand{\gasconst}{k}
-\newcommand{\ctegas}{\gasconst}
-% \newcommand{\speedsound}{{c_{\!s\!}}}
-\newcommand{\relative}{\mathrm{rel}}
-\newcommand{\speedsound}{a}
-\newcommand{\ctan}[1]{\ensuremath{c_{\theta #1}}}
-\newcommand{\crad}[1]{\ensuremath{c_{r #1}}}
-\newcommand{\cax}[1]{\ensuremath{c_{a #1}}}
-\newcommand{\angvel}{\ensuremath{\omega}}
-\newcommand{\Mach}{\textrm{M}}
-\newcommand{\di}{\textrm{d}}
-\newcommand{\cte}{\textrm{constante}}
-%Entradas para glosario 
-\newcommand{\etaiso}{\eta_{\mathrm{iso}}}
-\newcommand{\Sgen}{\substy{S}{gen}}
-\newcommand{\dQ}{\dot{Q}}
-\newcommand{\dU}{\dot{U}}
-\newcommand{\dW}{\dot{W}}
-\newcommand{\dm}{\dot{m}}
-\newcommand{\etaTot}{\substy{\eta}{iso}}
-\newcommand{\etahid}{\substy{\eta}{h}}
-\newcommand{\etamec}{\substy{\eta}{m}}
-\newcommand{\slip}{\xi}
-\newcommand{\deflectionangle}{{\vartheta}}
-\newcommand{\slipangle}{\ensuremath{\theta_d}}
-\newcommand{\radrel}{\nu}
-\newcommand{\rext}{\substy{r}{ext}}
-\newcommand{\rbase}{\substy{r}{base}}
-\newcommand{\powerreduction}{\mu}
-\newcommand{\degreeofreaction}{{\bm{R}}}
-\newcommand{\relcomp}{\ensuremath{r_c}}
 \begin{document}
 
 \maketitle
-
-\section*{Glosario}
-Subíndice $1$ indica la entrada al rotor, $2$ indica salida del rotor, $B_s$ indica el estado $B$ para el proceso isoentrópico.
-\par
-
-\glossentry{\speedsound}{La velocidad del sonido en un fluido}
-
-
-\glossentry{c}{Velocidad absoluta del fluido}
-% \glossentry{\cax{}=V}{Velocidad axial del fluido}
-\glossentry{\ctan{}}{Velocidad tangencial del fluido}
-\glossentry{\cax{}}{Velocidad axial del fluido}
-
-\glossentry{\crad{}}{Velocidad radial del fluido}
-\glossentry{w}{Velocidad relativa del fluido con respecto al rotor}
-\glossentry{U}{Velocidad del impulsor}
-\glossentry{\cteuniversal=8,314 \si{\joule \per \kelvin\per \mole}}{Constante universal para gases ideales}
-\glossentry{R=\molarmass\cteuniversal}{Constante especifica de un gas ideal \sib{\joule \per \kilogram \per \kelvin} donde \molarmass{} es la masa molar \sib{\kilogram \per \mole}}
-\glossentry{\degreeofreaction}{Grado de reacción}
-\glossentry{\relcomp}{Relación de compresión}
-\glossentry{r,D}{Radio y diámetro, respectivamente}
-\glossentry{\Mach=\frac{c}{\speedsound}}{Número de Mach}
-\glossentry{\alpha}{Ángulo entre velocidad absoluta con respecto al plano meridional}
-\glossentry{\attackangle}{Ángulo de ataque del alabe}
-\glossentry{\beta}{Ángulo entre velocidad relativa con respecto al plano meridional}
-\glossentry{\delta}{Ángulo de desviación del alabe o espesor de capa límite}
-% \glossentry{\slipangle}{Ángulo de deslizamiento}
-\glossentry{\psi}{Coeficiente}
-\glossentry{\phi}{Coeficiente de flujo $\frac{\crad{2}}{U_2}$}
-\glossentry{\slip}{Coeficiente de deslizamiento}
-\glossentry{\Omega}{Velocidad angular del rotor}
-
-
-\clearpage
-% end of glossary
-%------------------
-\setcounter{section}{-1}
+\input{tex/glosario.tex}
 
 \section{Turbomaquinas}
 Se clasifican como turbomaquinas todo dispositivo donde se transfiere energia desde o hacia un flujo continuo mediante la \textit{acción dinámica} de uno o mas alabes moviles. La fila de alabes moviles (rotor o impulsor) cambia la entalpia de estancamiento del fluido de trabajo haciendo trabajo positivo o negativo.
@@ -351,7 +275,7 @@ La eficiencia total:
 \[
 \etaTot  = \frac{\textrm{Potencia mecánica disponible a la salida del eje}}{\textrm{Máxima diferencia de energía posible en el fluido por unidad tiempo}}
 \]
-LA eficiencia isotentrópica o hidraulica:
+La eficiencia isotentrópica o hidraulica:
 \[
 \etaiso=\etahid = \frac{\textrm{Potencia mecánica suministrada al rotor}}{\textrm{Máxima diferencia de energía posible en el fluido por unidad tiempo}}
 \]
@@ -543,7 +467,7 @@ en caso de $\rho = \cte$ se convierte en el salto de presiones entre rotor y est
 \begin{figure}[htb!]
     \centering
     \includegraphics{fig/pumpVelTriangle.eps}
-    \caption{Triangulo de velocidades para rotor de compresor axial con velocidad de entrada netamente axial $\alpha_1 = 0\degree$. Nomenclatura de \cite{book:TurboDick} }
+    \caption{Triangulo de velocidades para rotor de compresor axial con velocidad de entrada netamente axial $\alpha_1 = 0\degree$. Nomenclatura de \cite{TurboDick} }
     \label{fig:velocitytrianglepump}
 \end{figure}
 
@@ -712,7 +636,7 @@ Anteriormente se hablo de las partes que componen la etapa, el estator y el roto
 \]
 
 \subsection{Turbinas Rateau}
-Se conectan en serie varias etapas, cada una con su caída de presión. La idea es distribuir la caida de entalpia entre varias etapas asi el salto entalpía es facil de controlar \citep{book:TurboDick}. 
+Se conectan en serie varias etapas, cada una con su caída de presión. La idea es distribuir la caida de entalpia entre varias etapas asi el salto entalpía es facil de controlar \cite{TurboDick}. 
 
 \subsection{Usos del Vapor}
 Tipos de Calderas
@@ -757,7 +681,8 @@ Si el proceso de la bomba o turbina presentan irreversibilidades entonces el pro
 
 
 
-\bibliography{thebib.bib} % Indica archivo
+\bibliography{thebib} % Indica archivo
 \bibliographystyle{plainnat}
+
 \end{document}
  
