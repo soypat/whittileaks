@@ -1,0 +1,33 @@
+%!TeX root = ../control_rapido.tex
+%!TeX spellcheck = es_ES
+\chapter{Anexo}
+
+\section{Métodos numéricos para resolución de SEDO}
+
+\subsection{Runge--Kutta orden 4 multivariable} \label{sec:metodosNumericos}
+El método de Runge Kutta tiene su ventajas sobre otros métodos numéricos por ser simple de programar y tener bajo error ($\error = O(\dt^4)$), donde $\dt$ es el paso elegido. El primer paso consiste en describir el sistema de $\dimss$ variables de forma similar a como hacemos con nuestros sistemas lineales,
+
+\begin{IEEEeqnarray}{c}
+\Cx^{\prime} = \Cf (\Cx)
+\end{IEEEeqnarray}
+que es lo mismo que escribir
+\begin{IEEEeqnarray*}{lc}
+x_1^{\prime} &= f_1(x_1,x_2,\ldots,x_{\dimss}) \\
+x_2^{\prime} &= f_2(x_1,x_2,\ldots,x_{\dimss}) \\
+&\vdots \\
+x_\dimss^{\prime} &= f_\dimss(x_1,x_2,\ldots,x_{\dimss}) \\
+\end{IEEEeqnarray*}
+
+Ahora se definen dos instantes de tiempo $\ts{\Cx}{k}$ de valores conocidos y $\ts{\Cx}{k+1}$ desconocido. Para calcular los valores de $\ts{\Cx}{k+1}$ el algoritmo Runge--Kutta hace lo siguiente
+
+\begin{IEEEeqnarray}{c}
+\begin{cases}
+\ts{\Ca}{k} &= \Cf(\ts{\Cx}{k}) \\
+\ts{\Cb}{k} &= \Cf(\ts{\Cx}{k} + \tfrac{h}{2} \ts{\Ca}{k} ) \\
+\ts{\Cc}{k} &= \Cf(\ts{\Cx}{k} + \tfrac{h}{2} \ts{\Cb}{k} ) \\
+\ts{\Cd}{k} &= \Cf(\ts{\Cx}{k} + h \ts{\Cc}{k} ) \\
+\end{cases} \\
+\ts{\Cx}{k+1} = \ts{\Cx}{k} + \frac{h}{6} \left( \ts{\Ca}{k} + 2\ts{\Cb}{k} + 2\ts{\Cc}{k} + \ts{\Cd}{k}\right)
+\end{IEEEeqnarray}
+
+El nuevo vector $\ts{\Cx}{k+1}$ te da el estado del sistema después de un pequeño paso $h$.

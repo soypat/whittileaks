@@ -28,6 +28,7 @@
 
 \newcommand{\eye}{\Mme{I}}
 %transpose
+\def\dt{\Delta t}
 \def\tp{^{\top}}
 % Small
 \def\MA{\Mme{A}}
@@ -43,9 +44,11 @@
 \def\Mzero{\Mme{0}}
 \def\obsv{\Mme{\mathcal{O}}}
 
+\newcommand{\ts}[2]{\left. #1\right|_{\tiny #2}}
 
 \def\error{\varepsilon}
 \def\Cx{\Cme{x}}
+\def\Cf{\Cme{f}}
 \def\Cy{\Cme{y}}
 \def\Cu{\Cme{u}}
 \def\Cn{\Cme{n}}
@@ -55,6 +58,11 @@
 \def\Cz{\Cme{z}}
 \def\Cw{\Cme{w}}
 \def\Jcost{\Cme{\mathcal{J}}}
+% RK4
+\def\Ca{\Cme{a}}
+\def\Cb{\Cme{b}}
+\def\Cc{\Cme{c}}
+
 
 \def\noise{{n}}
 \def\disturb{{d}}

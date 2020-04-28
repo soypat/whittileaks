@@ -5,7 +5,7 @@
 \input{tex/preamble.tex}
 \input{tex/macros.tex}
 \input{tex/code.tex}
-
+\usepackage{verbatim}
 \newcommand{\dimin}{\dimfont{p}}
 \newcommand{\dimout}{\dimfont{q}}
 \newcommand{\dimdisturb}{\dimfont{r}}
@@ -23,8 +23,10 @@ El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:
 \begin{equation} \label{eq:systemObsv}
 \Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}
 \end{equation}
-donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las peturbaciones sobre el sistema y $\Cw_{\noise}$ es el ruido en la medición.
-
+donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las perturbaciones sobre el sistema y $\Cw_{\noise}$ es el ruido en la medición.
+\begin{comment}
+	
+\end{comment}
 \begin{figure}[htb!]
 	\centering
 	\begin{tikzpicture}[auto, node distance=2cm]
@@ -215,9 +217,9 @@ Para un sistema \(2\times 2\) el jacobiano es
 \]
 Como linealizamos alrededor de un entorno reducido, los términos no-lineales van a ser muy pequeños si $\Cme{x}$ es cercano a $\Cme{\bar{x}}$. Y dado que es un punto fijo, $f(\Cme{\bar{x}})=0$.
 
-Nuestro sistema linealizado va quedar así
+Además, proponemos un cambio de variable $\Delta x_i =  x_i - \bar{x}_i$ el cual vá representar el distanciamiento de $x_i$ desde el punto donde linealizamos. Nuestro sistema linealizado va quedar así
 \[
-\Delta \dot{\Cme{x}} = \left.\spartial{\Cme{f}}{\Cme{x}}\right|_\Cme{\bar{x}} \Delta x \Rightarrow \boxed{\Delta \dot{\Cme{x}} = \Mme{A} \Delta \Cme{x} }
+\Delta \dot{\Cme{x}} = \left.\spartial{\Cme{f}}{\Cme{x}}\right|_\Cme{\bar{x}} \Delta \Cx \Rightarrow \boxed{\Delta \dot{\Cme{x}} = \Mme{A} \Delta \Cme{x} }
 \]
 
 \begin{theorem}[Hartman--Grobman]
@@ -661,6 +663,64 @@ luego se puede armar el sistema para el LQG tomando como inputs las perturbacion
 \end{IEEEeqnarray}
 
 \section{Ejemplo de Carro con péndulo}
+\subsection{Descripción del sistema}
+Las ecuaciones de movimiento para un carro con péndulo se trabajan con una fuerza genérica $F$ por simplicidad
+\[
+\begin{cases}
+(M+m) \ddot{x} &=m \ell \dot{\theta}^{2} \sin \theta-m \ell \ddot{\theta}\cos \theta+F\\
+ m \ddot{x} \cos \theta &= -\frac{b}{\ell} \dot{\theta} -m \ell \ddot{\theta} - m g \sin \theta
+\end{cases}
+\]
 
 
+Para armar el sistema de control o resolverlas numéricamente (como por ejemplo, con los métodos detallados en la sección \ref{sec:metodosNumericos}) se tienen que obtener $\ddot{x}$ y $\ddot{\theta}$ despejados
+\[
+\ddot{x}=\frac{-F +m g \sin \theta \cos \theta+\frac{b}{\ell} \dot{\theta} \cos \theta + m \ell \dot{\theta}^2 \sin \theta}{M+m \sin ^{2} \theta}
+\]
+\[
+\ddot{\theta}=\frac{F\cos \theta -(m+M) g \sin \theta-(1+\frac{M}{m})\frac{b}{\ell} \dot{\theta} - m \ell \dot{\theta}^{ 2} \sin \theta \cos \theta}{\ell\left(M+m \sin ^{2} \theta\right)}
+\]
+
+Se muestran al lector las linealización alrededor de los puntos $\theta = 0$ péndulo normal y $\theta = \pi$ para péndulo invertido. Se considera que para ángulos pequeños $\dot{\theta}^2,\,\theta^2 = 0$
+
+\begin{IEEEeqnarray*}{cl}
+\ddot{x}= & \begin{cases}
+\frac{F + mg\theta + \frac{b}{\ell} \dot{\theta}}{M} \qquad &\text{Linealizando alrededor de } \theta = 0\\
+\frac{F + mg\Delta\theta - \frac{b}{\ell} \dot{\theta}}{M}\qquad &\text{Linealizando alrededor de } \theta = \pi
+\end{cases} \\
+\ddot{\theta}=& \begin{cases}
+\frac{ -F - (m+M)g\theta - \left(1+\frac{M}{M}\right) \frac{b}{\ell} \dot{\theta} }{\ell M}   \qquad &\text{Linealizando alrededor de } \theta = 0 \\
+\frac{F + (m+M)g\Delta\theta - \left(1+\frac{M}{M}\right) \frac{b}{\ell} \dot{\theta} }{\ell M}   \qquad&\text{Linealizando alrededor de } \theta = \pi
+\end{cases}
+\end{IEEEeqnarray*}
+Se pueden considerar fuerzas de fricción y elásticas sobre el carrito $-\mu \dot{x}$ y $-kx$, respectivamente. Entonces nos queda la matriz del sistema $\MA$
+\[\MA|_{\theta=0} =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-\frac{k}{M} & \frac{mg}{M} & -\frac{\mu}{M} & \frac{b}{\ell M} \\
+\frac{k}{M\ell} & -\frac{(m+M)g}{M\ell} & \frac{\mu}{M\ell} & -\frac{\left(1+\frac{M}{m}\right)b}{M\ell^2}
+\end{bmatrix} \qquad\qquad  \MA|_{\theta=\pi} =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-\frac{k}{M} & -\frac{mg}{M} & -\frac{\mu}{M} & -\frac{b}{\ell M} \\
+\frac{k}{M\ell} & -\frac{(m+M)g}{M\ell} & \frac{\mu}{M\ell} & -\frac{\left(1+\frac{M}{m}\right)b}{M\ell^2}
+\end{bmatrix} 
+\]
+\[
+\Cx_{\theta=0} = \begin{bmatrix}
+x \\ \theta \\ \dot{x} \\ \dot{\theta}
+\end{bmatrix} \qquad \qquad 
+\Cx_{\theta=\pi} = \begin{bmatrix}
+x \\ \Delta \theta \\ \dot{x} \\ \dot{\theta}
+\end{bmatrix}
+\]
+
+notar del proceso de linealización que $\Delta \theta = \theta - \bar{\theta} = \theta - \pi$.
+
+
+
+
+\input{chapters/anexo.tex}
 \end{document}
