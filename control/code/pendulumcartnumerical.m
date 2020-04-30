@@ -1,4 +1,4 @@
-clear all;clc
+clear all;clc;
 % Constantes fisicos
 L = 2;
 g = 10;
@@ -6,13 +6,15 @@ m = 1;
 M = 5;
 k = 0; % constante de resorte
 b = 0; % Friccion de pendulo
-d = 1; % Friccion de carro
+d = 0; % Friccion de carro
 
 %% Se define el sistema no-lineal
 F = @(X,u,t) -k*X(1) - d*X(3) + u(1); % Fuerza sobre carro
 % X = [x; q; Dx; Dq] donde q es el angulo (medido desde vertical, q=pi corresponde para pendulo invertido)
-D2x = @(X,u,t)( F(X,u,t) + m*L*X(4)^2*sin(X(2)) +m*g*sin(X(2))*cos(X(2)) + b/L*X(4)*cos(X(2)) )/(M+m*sin(X(2))^2);
-D2q= @(X,u,t) (-F(X,u,t)*cos(X(2)) - m*L*X(4)^2*sin(X(2))*cos(X(2))-(m+M)*g*sin(X(2)) -(1+M/m)*b/L*X(4))/L/(M+m*sin(X(2))^2);
+D2x = @(X,u,t)( F(X,u,t) + m*L*X(4)^2*sin(X(2)) +m*g*sin(X(2))*cos(X(2)) +...
+    b/L*X(4)*cos(X(2)) )/(M+m*sin(X(2))^2);
+D2q= @(X,u,t) (-F(X,u,t)*cos(X(2)) - m*L*X(4)^2*sin(X(2))*cos(X(2))- ...
+    (m+M)*g*sin(X(2)) -(1+M/m)*b/L*X(4))/L/(M+m*sin(X(2))^2);
 Y = @(X,u,t) [X(3); X(4); D2x(X,u,t); D2q(X,u,t)];
 
 %% SISTEMA LINEAL   X = [x; q; Dx; Dq]
@@ -30,8 +32,8 @@ C = zeros(n);
 C(2,2) = 1; % medimos el angulo
 D = zeros(n,p); % no feedthrough
 % Funcion costo LQR
-Q = diag([1 1 10 100]);
-R = 0.01;
+Q = diag([1 10 1 100]);
+R =1e-4;
 Kr = lqr(A,B,Q,R);
 % Peturbaciones (Vd) y ruido (Vn)
 Vd = .1*eye(n);
@@ -42,34 +44,33 @@ Daum = [D 0*D Vn];
 sys = ss(A,B,C,D);
 % Kf = (lqr(A',C',Vd,Vn))'; % Ideal Kalman filter for system
 % Kf = lqe(A,Vd,C,Vd,Vn);
-load('cb.mat')
 
 if s == 1
     x_eq = [0 0 0 0]';
+    x0 = [-3 1 0 0];
 elseif s==-1
-    x_eq = [0 pi 0 0]';
+    x_eq = [1 pi 0 0]';
+    x0 = [-3 pi+.1 0 0]';
 end
 
-ts = .05; % Tiempo de sampleo de nuestras mediciones
+ts = .01; % Tiempo de sampleo de nuestras mediciones
 tend = 10; % Finalizacion de la simulacion
-tsrk = ts/30; % paso de tiempo del sistema no lineal
+tsrk = ts/10; % paso de tiempo del sistema no lineal
 Nt = ceil(tend/ts); % nro de sampleos a hacer durante simulacion
 tspan = linspace(0,tend,Nt);
 Xt = zeros(n,Nt);
 % Comienza la simulacion en t=0
-Xt(:,1) = x_eq+0.01;
-% u = -Kr*Xt);
-
+Xt(:,1) = x0;
 for it = 1:Nt-1
     t = tspan(it);
     tspanrk = t:tsrk:t+ts;
     Xreal = Xt(:,it);
-    pause(0.05)
-
-    u = Kr*(Xreal - x_eq);
-    Xtrk = rk4sys(Y, 0, tspanrk, Xreal);
+    u = -Kr*(Xreal - x_eq);
+    Xtrk = rk4sys(Y, u, tspanrk, Xreal);
     Xt(:,it+1) = Xtrk(:,end);
-%     if t>
+    if sum(isnan(Xreal))>0 || sum(Xreal>1000)>0
+        error('Nan found or SS variable too large. stop execution.')
+    end
     
 end
 x = Xt(1,:); q = Xt(2,:); Dx=Xt(3,:); Dq = Xt(4,:);
@@ -78,12 +79,15 @@ x = Xt(1,:); q = Xt(2,:); Dx=Xt(3,:); Dq = Xt(4,:);
 %% Graficar evolucion
 figure(1);
 ax = axes();
-for it = 1:Nt
+anifps = 30 ; 
+anistep = floor(Nt/120); % 4 second animation, at 30 fps is 120 frames
+for it = 1:anistep:Nt
     xlim(ax,[min(x)-L max(x)+L]);ylim(ax,[-L L]);
-    pause(.03)
+    pause(1/anifps)
     ax = plotCartPend(ax,Xt(:,it),L,M,m);
     drawnow
 end
+return
 figure(2)
 comet(q,Dq)
 % plot(tspan,Xt(2,:))
