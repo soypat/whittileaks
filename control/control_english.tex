@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-\part{Control English}
 \chapter{Introduction}
 
 \section{Control theory}
@@ -20,24 +7,18 @@ Taylor expansion (Linearization) of two-variable nonlinear equation.
 f(x,y) = f(\overline{x},\overline{y}) + \left[ \frac{\partial f}{\partial x} (x-\overline{x}) +\frac{\partial f}{\partial y} (y-\overline{y}) \right] + \ldots
 \]
 
-
 Matlab command to convert state space to transfer function \verb|[num,den]=ss2tf(A,B,C,D,iu)| where \verb|iu| must be specified for systems with more than one input.
 
-
-
-
-
-
-
-
 \subsection{State space}
-\(\Cme{u}(t)\) is inputs vector and is of size \(\dimin\times 1\) for a given system, i.e: \( \Cme{u}(t)=\begin{bmatrix}
+\(\Cme{x}(t) \in \mathbb{R}^\dimss \) is the state space vector and is of size \(\dimss\times 1\) for a system of $\dimss$ number of state variables.
+
+\(\Cme{u}(t)\in \mathbb{R}^\dimin \) is inputs vector and is of size \(\dimin\times 1\) for a given control system, i.e: \( \Cme{u}(t)=\begin{bmatrix}
 u_1 \\ u_2
 \end{bmatrix}\) for two input system, \(\dimin=2\).
 
-\(\Cme{y}(t) \) is the output vector of size  \(\dimout\times 1\).
+\(\Cme{y}(t)\in \mathbb{R}^\dimout  \) is the output vector of size  \(\dimout\times 1\).
 
-\(\Cme{z}(t)\) is the \textit{disturbance input}. Only applies to dynamical systems and is of size \(\dimdisturb \times 1\)
+\(\Cme{z}(t)\in \mathbb{R}^\dimdisturb \) is the \textit{disturbance input}. Only applies to dynamical systems and is of size \(\dimdisturb \times 1\)
 
 Thus we define the \textbf{state space variables} so that system output is purely in function of current system state variables and input variables.
 \[
