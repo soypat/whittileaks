@@ -1,0 +1,38 @@
+  % !TEX encoding = UTF-8 Unicode
+  % !TEX root = ../control_rapido.tex
+  % !TeX spellcheck = en_EN
+\pgfplotsset{
+	table/search path={plots/data},
+}
+
+%    \pgfplotsset{
+%        % use this `compat' level or higher to use the LUA backend for calculation
+%        % (--> speed improvement)
+%        compat=1.12,
+%        % declare your function here ...
+%        /pgf/declare function={
+%%            f(\x,\a) = ((\x)^0.65 + sin(1.5*pi*(\x))) - ((\a)^0.65 + sin(1.5*pi*(\a))))/2;
+%			sin(\x) = sin(deg(\x));
+%            %                                                                         ^
+%            %           here is an extra closing brace and no opening one, which causes
+%            %                                      a different result, if you delete it
+%            %               --> please check what you really want and adapt accordingly
+%        },
+%    }
+
+%    \pgfplotsset{
+%        % use this `compat' level or higher to use the LUA backend for calculation
+%        % (--> speed improvement)
+%        compat=1.12,
+%        % declare your function here ...
+%        /pgf/declare function={
+%%            f(\x,\a) = ((\x)^0.65 + sin(1.5*pi*(\x))) - ((\a)^0.65 + sin(1.5*pi*(\a))))/2;
+%			bode(\s) = 10 * log10( ( (60*x)^2         +(10000)^2 )/
+%			( (-x*x + 10000)^2 + (60*x)^2)
+%			);
+%            %                                                                         ^
+%            %           here is an extra closing brace and no opening one, which causes
+%            %                                      a different result, if you delete it
+%            %               --> please check what you really want and adapt accordingly
+%        },
+%    }

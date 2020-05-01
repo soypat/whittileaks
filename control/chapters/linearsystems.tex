@@ -1,0 +1,129 @@
+%!TeX root=../control_rapido.tex
+%!TeX spellcheck=es_ES
+
+\chapter{Sistemas lineales}
+El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:systemCtrb}. Su solución analítica requiere evaluar exponencial de la matriz $\MA$
+\begin{IEEEeqnarray}{rc}
+\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Cw_{\disturb}\IEEEyessubnumber \label{eq:systemCtrb}\\
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}\IEEEyessubnumber r\label{eq:systemObsv}
+\end{IEEEeqnarray}
+%\begin{equation} \label{eq:systemCtrb}
+%\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Cw_{\disturb} %\Mme{E}(t) \Cme{z}(t)
+%\end{equation}
+%\begin{equation} \label{eq:systemObsv}
+%\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}
+%\end{equation}
+donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las perturbaciones sobre el sistema y $\Cw_{\noise}$ es el ruido en la medición.
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+	% We start by placing the blocks
+	\node [input, name=input] {};
+	\node [sum, right of=input] (sum) {};
+	\node [block, right of=sum] (controller) {Controlador};
+	\node [block, right of=controller, pin={[pinstyle]above:Peturbaciones ($\ME$)},
+	node distance=3cm] (system) {Sistema};
+	%% We draw an edge between the controller and system block to 
+	%% calculate the coordinate u. We need it to place the measurement block. 
+	\draw [->] (controller) -- node[name=u] {$\Cu$} (system);
+	\node [output, right of=system] (output) {};
+	\coordinate [below of=u] (tmp);
+	% Once the nodes are placed, connecting them is easy. 
+	\draw [->] (input) -- node {$\Cme{r}$} (sum);
+	\draw [->] (sum) -- node {$\Cme{e}$} (controller);
+	\draw [->] (system) -- node [name=y] {$\Cy$}(output);
+	\draw [->] (y) |- (tmp) -| node[pos=0.99] {$-$} 
+	node [near end] {$\Cy+\Cw_{\noise}$} (sum);
+	\end{tikzpicture}
+	\caption{Esquema de un sistema de control genérico.}
+\end{figure}
+
+La exponencial de una matriz \eqref{eq:matrixExponential} es poco práctica para calcular con la matriz \(\Mme{A}\) y muy costosa numéricamente.
+
+\begin{definition}{Exponencial de una matriz}
+	\begin{IEEEeqnarray}{c}\label{eq:matrixExponential}
+	e^{\MX} = \eye + \sum_{k=1}^{\infty} \frac{\MX^ k}{k!}
+	\end{IEEEeqnarray}
+donde $\eye$ es la matriz identidad.
+\end{definition}
+
+En cambio, lo que se hace en la practica es usar los autovalores y autovectores para efectuar una transformación de coordenadas de las coordenadas de $\Cx$ a las coordenadas de algún autovector donde es mas fácil escribir la exponencial de una matriz y facilita entender el sistema también.
+
+Un \textbf{autovector} $\Cme{\xi}\in\mathbb{C}^\dimss$ cumple con la siguiente igualdad. $\lambda \in \mathbb{C}$ son los \textbf{autovalores} del sistema.
+\[
+\Mme{A}\Cme{\xi} = \lambda \Cme{\xi}
+\]
+Una forma de visualizar esto es que el producto entre la matriz $\Mme{A}$ y el autovector mantiene la dirección del autovector.
+
+\[
+\Mme{T} = \left[ \xi_1,\, \xi_2,\, \ldots\, \xi_\dimss \right]
+\]
+
+\[
+\Mme{D}= \begin{bmatrix}
+\lambda_1 & & & 0 \\
+ & \lambda_2 & & \\
+  & & \ddots & \\
+ 0 & & & \lambda_\dimss 
+\end{bmatrix}
+\]
+
+Es posible diagonalizar el sistema siempre que no se tengan dos autovectores cuasi-paralelos o un sistema degenerado (autovectores generalizados) (entre otros casos). 
+
+Esto nos deja escribir la relación
+
+\[
+\Mme{A} \Mme{T} = \Mme{T} \Mme{D}
+\]
+
+\[
+\Cme{x} = \Mme{T}\Cme{z} \Rightarrow \Mme{T}^{-1} \Mme{A} \Mme{T} = \Mme{D}
+\]
+
+\[
+\Mme{T} \dot{\Cme{z}} = \Mme{A} \Mme{T} \Cme{z} \Rightarrow \dot{\Cme{z}} = \Mme{T}^{-1} \Mme{A} \Mme{T} \Cme{z}
+\]
+
+Se obtienen entonces un sistema de ecuaciones desacoplado! El cambio de la variable $z_i$ depende de si misma
+\[
+\boxed{\dot{\Cme{z}} = \Mme{D} \Cme{z}}
+\]
+
+Se pueden obtener estas matrices en \Matlab~ en una linea:
+\begin{lstlisting}
+[T, D] = eig(A);
+\end{lstlisting}
+
+La solución del sistema va ser simple
+
+\[
+\Cme{z}(t) = \begin{bmatrix}
+e^{\lambda_1 t} & & & 0 \\
+ &e^{\lambda_2 t}& &  \\
+ & &\ddots &  \\
+  0& & & e^{\lambda_\dimss t} \\
+\end{bmatrix} \cdot \Cme{z}(0)
+\]
+
+Es de interes poder mapear entre los dos espacios. Usando la expresión \( \Mme{A} = \Mme{T} \Mme{D} \Mme{T}^{-1}\) se puede simplificar la exponencial de una matriz empleando conocimientos de algebra lineal
+
+\[
+e^{\Mme{A}t} = e^{\Mme{T} \Mme{D} \Mme{T}^{-1}t} = \Mme{T} e^{\Mme{D}t} \Mme{T}^{-1}
+\]
+Cabe destacar que es barato calcular \( e^{\Mme{D}t}\) en términos computacionales. 
+
+Reescribimos la solución al sistema recordando \(\Cme{x} = \Mme{T}\Cme{z}\)
+
+\[
+\Cme{x}(t) = \Mme{T}  \underbrace{e^{\Mme{D}t} \underbrace{\Mme{T}^{-1} \Cme{x}(0)}_{\Cme{z}(0)}}_{\Cme{z}(t)}
+\]
+La igualdad de arriba se usa para computar la evolución de $\Cme{x}$ en el tiempo aprovechando la simplicidad del cálculo de \(e^{\Mme{D}t}\). 
+
+Que hicimos?
+\begin{itemize}
+	\item Descubrimos que si sabemos los autovectores/valores de \(\Mme{A}\) podemos transformar el sistema a un sistema de coordenadas donde es más facil resolver el sistema y estudiar su dinámica
+\end{itemize}
+ 
+El próximo paso es agregar la matriz de control y el vector de entrada para empezar a controlar el sistema.
+

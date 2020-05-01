@@ -1,0 +1,153 @@
+%!TeX root=../control_rapido.tex
+%!TeX spellcheck=es_ES
+
+\chapter{Robustez}
+Un paper escrito por John C. Doyle en 1978 en su paper \textit{Guaranteed margins for LQG regulator} determino por contraejemplo que no existen márgenes estables para un sistema con controlador LQG y que una peturbación arbitrariamente chica puede ocasionar una pérdida de control completa \citep{doyle1978guaranteed}. Esto se debe a que el sistema LQG es vulnerable a incertidumbres del sistema descrito por las ecuaciones \eqref{eq:systemCtrb}, \eqref{eq:systemObsv} y por \textit{time delay} de las observaciones. Entonces a pesar de poder posicionar los autovalores con un regulador cuadrático para aumentar la estabilidad del sistema, no podemos asegurar que nuestro sistema sea \textbf{robusto}.
+
+Aquí es donde aparecen dos conceptos duales llamados \textbf{robustez} y \textbf{performance}. 
+
+\begin{description}
+	\item[Performance] Los autovalores del lazo cerrado y que tan rápido estimar $\hat{\Cx}$ son medidas de performance
+	\item[Robustez] Medida de que tan sensible es el sistema a perturbaciones, incertidumbres del sistema y retardo de mediciones
+\end{description}
+
+En las próximas secciones se verá como determinar si un sistema es robusto y como diseñar un sistema de control para que tenga buena robustez y performance.
+
+\section{Representaciones equivalente de sistemas lineales}
+
+\begin{figure}[htb!]
+	\centering
+\begin{tikzpicture}[auto, node distance=2cm]
+	\node[block,label=above:Sistema] (sys) {$G$};
+	\node[input,left of=sys] (in) {};
+	\node[output,right of=sys] (out) {};
+	\draw[->] (in)  --node[name=y] {$\Cy$} (sys);
+	\draw[->] (sys)  --node[name=y] {$\Cu$} (out);
+\end{tikzpicture}
+\caption{Se puede relacionar la salida y entrada de un sistema con una función transferencia $G$.}
+\end{figure}
+
+Existen 3 representaciones equivalentes para sistemas lineales
+\begin{description}
+	\item[Espacio de estados]  La vista hasta ahora. Ecuaciones \eqref{eq:systemCtrb}, \eqref{eq:systemObsv}.
+	\item[Dominio de frecuencia] $G(s) = \MC (s\eye -\MA)^{-1}\MB$
+	\item[Dominio de tiempo	] Respuesta al impulso $h(t)$. Integral de convolución: $\Cy(t) = \int_0^t h(t-\tau)\Cu(t) \diff \tau$
+\end{description}
+
+
+\begin{figure}[htb!]
+	\centering
+\resizebox{0.49\textwidth}{!}{
+\begin{tikzpicture}
+\begin{axis}[
+	title={Input $\Cu$},
+%	xlabel=$x$,
+	ylabel=$\sin(\omega t)$,
+	grid=major,
+	xmin=0,xmax=2*\numpi,
+	ymin=-1,ymax=1,
+	xtick={-0,\numpi,2*\numpi},
+]
+\addplot[domain=0:2*\numpi,samples=50] { sin((x)r) };
+\end{axis}
+\end{tikzpicture}
+}
+\resizebox{0.49\textwidth}{!}{
+	\begin{tikzpicture}
+	\begin{axis}[
+	title={Salida $\Cy$},
+	grid=major,
+%	xlabel=$x$,
+	ylabel=$A\sin(\omega t +\varphi)$,
+	xmin=0,xmax=2*\numpi,
+	ymin=-1,ymax=1,
+	xtick={-0,\numpi,2*\numpi},
+	]
+	% r para convertir radianes a grados que es lo que toma sin(x)
+	\addplot[domain=0:2*\numpi,samples=50] { 0.45*sin((x-.7)r) }; 
+	\end{axis}
+	\end{tikzpicture}
+}
+\caption{Para un sistema lineal una entrada $\Cu$ sinusoidal va generar una salida $\Cy$ sinusoidal de la misma frecuencia pero con un cambio de amplitud y desfasaje.}
+\end{figure}
+
+La función de transferencia $G$ es una función compleja donde
+\begin{itemize}
+\item $|G(i\omega)|=A$
+\item $\angle G(i\omega) = \varphi$
+\end{itemize} 
+
+La función de transferencia nos dará una buena idea de si un sistema es robusto 
+
+\section{Ejemplo de respuesta en frecuencia}
+\begin{figure}[htb!]
+	\centering
+	\tikzset{boxed/.style={draw,outer sep=0pt,thick}}
+	\begin{tikzpicture}
+	
+	\begin{scope}[xshift=7cm]
+	\node (M) [boxed,minimum width=1cm, minimum height=2.5cm] {$m$};
+	
+	\node (ground) [ground,anchor=north,yshift=-0.25cm,minimum width=1.5cm] at (M.south) {};
+	\draw (ground.north east) -- (ground.north west);
+	\draw [thick] (M.south west) ++ (0.2cm,-0.125cm) circle (0.125cm)  (M.south east) ++ (-0.2cm,-0.125cm) circle (0.125cm);
+	
+	\node (wall) [ground, rotate=-90, minimum width=3cm,yshift=-3cm] {};
+	\draw (wall.north east) -- (wall.north west);
+	
+	\draw [spring] (wall.170) -- node[above] {$k$} ($(M.north west)!(wall.170)!(M.south west)$);
+	\draw [damper] (wall.10) -- node[above,pos=.4] {$c$} ($(M.north west)!(wall.10)!(M.south west)$);
+	
+	\draw [-latex,ultra thick] (M.east) ++ (0.2cm,0) -- node[above] {$u$}  +(1cm,0);
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Sistema masa-resorte-amortiguador.}
+\end{figure}
+
+La ecuación que describe el movimiento del cuerpo
+\[
+m\ddot{x} + c\dot{x} + kx = u
+\]
+donde $u$ son las fuerzas externas actuantes.
+
+\begin{figure}[htb!]
+	\centering
+	
+		\begin{tikzpicture}[trim axis right]
+		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad]}, ylabel={Amplitud [dB]},
+		width = 0.8\textwidth,height = 7cm,grid=both,ymin=-60,style={semithick}]
+		\addplot table[x=x, y=bode, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
+		\end{semilogxaxis}	
+		\end{tikzpicture}
+		\begin{tikzpicture}[trim axis right]
+		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad]}, ylabel={Angulo de desfasaje $\varphi$ [grados]},
+		width = 0.8\textwidth,height = 7cm,grid=both,
+		ytick={0,-30,...,-180}, ymin=-180,ymax=0,style={semithick}]
+		\addplot table[x=x, y=phase, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
+		\end{semilogxaxis}	
+		\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

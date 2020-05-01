@@ -1,0 +1,156 @@
+%!TeX root=../control_rapido.tex
+%!TeX spellcheck=es_ES
+
+\chapter{Estabilidad y autovalores} \label{chap:estabilidadAutovalores}
+
+
+Para el estudio de estabilidad podemos primero mirar a la igualdad
+
+ \[
+\Cme{x} = \Mme{T} e^{\Mme{D}t} \Mme{T}^{-1} \Cme{x}(0)
+\]
+Si uno de los valores diagonal de $e^{\Mme{D}t}$ se va a infinito entonces la combinación resultante que iguala a \(\Cme{x}\) también se va ir al infinito. Recordemos que $\lambda \in \Bbb{C}$
+
+\[
+\lambda = a + ib \quad \Rightarrow \quad e^{\pm \lambda t} = e^{at}\left[\cos(bt)\pm i\sin (bt)\right]
+\]
+Esto cuenta la siguiente historia
+\begin{IEEEeqnarray}{tt}
+si \(a>0\) & El sistema aumenta hasta llegar a infinito (\textbf{Inestable}) \\
+si \(a<0\) & El sistema converge a cero a tiempo infinito (\textbf{Estable}) \\
+\end{IEEEeqnarray}
+
+
+Esto significa que tal vez comenzemos con un sistema inestable, es decir, que nuestra matriz \(A\) de la siguiente ecuación tiene autovalores con $a>0$
+\[
+\dot{\Cme{x}} = \Mme{A} \Cme{x}
+\]
+
+Esto se puede remediar agregando el término $\Mme{B}\Cme{u}$ de tal forma que lleve los autovalores de la zona inestable ($a>0$) a la zona estable ($a<0$).
+
+\section{Evolución discreta}
+
+\[
+\Cme{x}_{k+1} = \Mme{\tilde{A}} \Cme{x}_k, \qquad \Cme{x}_k
+ = \Cme{x}(k\Delta t)\]
+ donde \(\Mme{\tilde{A}} = e^{\Mme{A} \Delta t}\). Sabiendo el vector de estado inicial podríamos calcular el estado para cualquier otro momento
+ 
+\[
+\Cme{x}_{N} = \Mme{\tilde{A}}^{N}\Cme{x}_0
+\]
+
+En coordenadas de autovector, cada vez que multiplicamos la matriz estamos elevando nuestros autovalores de $\Mme{\tilde{A}}$ a una potencia. Estos pueden agrandarse o achicarse dependiendo de su `radio'
+\[
+\lambda^N = R^{N}e^{i \,N\theta }
+\]
+si el radio $R$ es menor a uno, la magnitud va decaer a medida que pasa el tiempo. Si el radio es mayor que uno crecerá sin cota superior.
+
+\begin{lstlisting}
+[Tt, Dt] = eig(At);
+aval = diag(Dt);
+inestables = aval(aval>1);
+\end{lstlisting}
+
+\section{Linealizando un sistema}
+
+\begin{enumerate}
+	\item Encontramos los puntos fijos $\Cme{\bar{x}}$ tal que \(f(\Cme{\bar{x}})=\Cme{0}\)
+	\item Linealizamos alrededor de $\Cme{\bar{x}}$
+\end{enumerate}
+
+Para un sistema \(2\times 2\) el jacobiano es
+\[
+\spartial{\Cme{f}}{\Cme{x}}=
+\begin{bmatrix}
+\spartial{f_1}{x_1} &\spartial{f_1}{x_2} \\
+\spartial{f_2}{x_1} & \spartial{f_2}{x_2}
+\end{bmatrix}
+\]
+
+
+\[
+\dot{\Cme{x}} = f(\Cme{x}) = f(\Cme{\bar{x}}) + \left. \spartial{\Cme{f}}{\Cme{x}}\right|_{\Cme{\bar{x}}}\cdot (\Cme{x}-\Cme{\bar{x}}) + \left.\dpartial{\Cme{f}}{\Cme{x}} \right|_{\Cme{\bar{x}}}\cdot (\Cme{x}-\Cme{\bar{x}})^2 \ldots
+\]
+Como linealizamos alrededor de un entorno reducido, los términos no-lineales van a ser muy pequeños si $\Cme{x}$ es cercano a $\Cme{\bar{x}}$. Y dado que es un punto fijo, $f(\Cme{\bar{x}})=0$.
+
+Además, proponemos un cambio de variable $\Delta x_i =  x_i - \bar{x}_i$ el cual vá representar el distanciamiento de $x_i$ desde el punto donde linealizamos. Nuestro sistema linealizado va quedar así
+\[
+\Delta \dot{\Cme{x}} = \left.\spartial{\Cme{f}}{\Cme{x}}\right|_\Cme{\bar{x}} \Delta \Cx \Rightarrow \boxed{\Delta \dot{\Cme{x}} = \Mme{A} \Delta \Cme{x} }
+\]
+
+\begin{theorem}[Hartman--Grobman]
+Si los autovalores de $\Mme{A}$ tienen todos parte real entonces se puede describir el sistema como lineal en un vecindario de $\Cme{\bar{x}}$.
+\end{theorem}
+
+\begin{exercise}
+Determinar la estabilidad de un péndulo en su posición normal e invertida. Factor de fricción $\delta$.
+
+\[
+\ddot{\theta} = -\frac{g}{\ell} \sin(\theta) - \delta \dot{\theta}
+\]
+
+\[
+\Cme{x} = \begin{Bmatrix}
+\theta \\ \dot{\theta}
+\end{Bmatrix}, \qquad \dot{\Cme{x}} = \begin{bmatrix}
+x_2 \\
+-\frac{g}{\ell}\sin(x_1)-\delta x_2
+\end{bmatrix}
+\]
+
+Nuestro jacobiano es
+\[
+\spartial{\Cme{f}}{\Cme{x}} = \begin{bmatrix}
+0 & 1 \\
+-\frac{g}{\ell} \cos(x_1) & -\delta 
+\end{bmatrix}
+\]
+
+Los puntos fijos son 
+\[
+\Cme{\bar{x}} = \begin{bmatrix}
+0\\0
+\end{bmatrix},
+\begin{bmatrix}
+\pi\\0
+\end{bmatrix}
+\]
+
+Matriz del sistema péndulo en posiciones normal $d$ e invertida $u$:
+
+\[
+\Mme{A}_d = \begin{bmatrix}
+0 & 1 \\
+-\frac{g}{\ell} & -\delta
+\end{bmatrix},\qquad
+\Mme{A}_u = \begin{bmatrix}
+0 & 1 \\
+\frac{g}{\ell} & -\delta
+\end{bmatrix}
+\]
+
+Los autovalores son
+\[
+\lambda_{d}=\begin{cases}
+-\frac{\ell \,\delta +\sqrt{-\ell\,\left(4\,g-\ell\,{\delta }^2\right)}}{2\,\ell} \\
+-\frac{\ell\,\delta -\sqrt{-\ell\,\left(4\,g-\ell\,\delta ^2\right)}}{2\,\ell} 
+\end{cases}, \qquad \lambda_u = \begin{cases}
+-\frac{\ell\,\delta +\sqrt{\ell\,\left(\ell\,\delta ^2+4\,g\right)}}{2\,\ell } \\
+-\frac{\ell\,\delta -\sqrt{\ell\,\left(\ell\,{\delta }^2+4\,g\right)}}{2\,\ell}
+\end{cases}
+\]
+
+Si se estudia el caso de un péndulo con valores $\frac{g}{\ell}=1$ y $\delta = 0,1$
+
+\[
+\lambda_{d}=
+-0,05 \pm 0,9987i
+, \qquad \lambda_u = \begin{cases}
+-1,0512 \\
+0,9512
+\end{cases}
+\]
+
+Podemos ver que los autovalores del péndulo normal tienen parte real menor a cero. Esto significa que es un sistema \textbf{estable}, tiende a cero la solución. En cambio, el péndulo invertido tiene un autovalor mayor que cero, característica de un sistema \textbf{inestable}.
+
+\end{exercise}

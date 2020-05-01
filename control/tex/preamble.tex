@@ -20,18 +20,18 @@
 \titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 \titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
 
-%\usepackage{fancyhdr}					% Package to redefine headers
-%\fancyhf{}								% No header nor footer
-%\fancyhead[LE,RO]{\thepage}				% Left even and right odd Page Number
-%\fancyhead[RE]{\nouppercase{\leftmark}}		% Right even Section
-%\fancyhead[LO]{\nouppercase{\rightmark}}		% Left odd Chapter
-%\pagestyle{fancy}
-%\fancypagestyle{plain}{					% To change the footer on chapter and chapter*
-%	\fancyhf{}							% No header nor footer
-%	%	\fancyfoot[C]{\vspace{-11mm}\thepage}	% Footer with number displaced
-%	\renewcommand{\headrulewidth}{0pt}	% No line on header
-%	\renewcommand{\footrulewidth}{0pt}		% No line on footer
-%}
+\usepackage{fancyhdr}					% Package to redefine headers
+\fancyhf{}								% No header nor footer
+\fancyhead[LE,RO]{\thepage}				% Left even and right odd Page Number
+\fancyhead[RE]{\nouppercase{\leftmark}}		% Right even Section
+\fancyhead[LO]{\nouppercase{\rightmark}}		% Left odd Chapter
+\pagestyle{fancy}
+\fancypagestyle{plain}{					% To change the footer on chapter and chapter*
+	\fancyhf{}							% No header nor footer
+	%	\fancyfoot[C]{\vspace{-11mm}\thepage}	% Footer with number displaced
+	\renewcommand{\headrulewidth}{0pt}	% No line on header
+	\renewcommand{\footrulewidth}{0pt}		% No line on footer
+}
 
 \RequirePackage{caption} 				% Caption customization
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
@@ -49,17 +49,14 @@
 
 \usepackage{amssymb,amsmath,ieeetrantools}
 
-\usepackage[square, numbers]{natbib}		% Bibliography
+%\usepackage[square, numbers]{natbib}		% Bibliography
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
 
 \usepackage[section]{placeins}				% To flush floats before new
 
 % GRAPHICS
 \usepackage{graphicx}
-\usepackage{tikz}
-\usetikzlibrary{arrows,babel,fit}
-\tikzstyle{block} = [draw, fill=blue!20, rectangle, 
-minimum height=3em, minimum width=6em]
-\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
-\tikzstyle{input} = [coordinate]
-\tikzstyle{output} = [coordinate]
-\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+% See tikz setup file  for more info.
+\usepackage{tikz,pgfplots}

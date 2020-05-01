@@ -1,0 +1,120 @@
+\section{Control Lineal Cuadrático Gaussiano}
+Si miramos al esquema de la figura \ref{fig:blockLQGfundamental} vemos que se combina un estimador Kalman con un regulador cuadrático lineal para obtener lo que se conoce como un Controlador Lineal Cuadrático Gaussiano (LQG). Lineal porque la dinámica de nuestro sistema es lineal, cuadrático porque la función que quiere minimizar es cuadrática, y Gaussiano porque la distribución del ruido y las perturbaciones se suponen Gaussianas. Se trabaja la ecuación del sistema:
+
+\begin{IEEEeqnarray*}{cl}
+\dot{\Cme{x}} &= \MA \Cx - \MB \MK_r \hat{\Cx} + \Cw_{\disturb} \\
+ & = \MA \Cx - \MB \MK_r \Cx + \MB \MK_r (\Cx - \hat{\Cx}) + \Cw_{\disturb} \\
+\end{IEEEeqnarray*}
+
+Si a la ecuación \eqref{eq:lqeerror} se le agregan los términos de perturbaciones y ruido se llega a la siguiente expresión
+\begin{IEEEeqnarray}{c}
+\dot{\error} = (\MA - \MK_f \MC) \error + \Cw - \MK_f \Cw_{\noise}
+\end{IEEEeqnarray}
+
+luego se puede armar el sistema para el LQG tomando como inputs las perturbaciones y ruidos
+\begin{IEEEeqnarray}{c}
+\frac{\diff}{\diff t} \begin{bmatrix}
+\Cx \\ 
+\error
+\end{bmatrix}
+= 
+\begin{bmatrix}
+(\MA - \MB \MK_r) & \MB \MK_r \\
+\Mzero & (\MA - \MK_f \MC) 
+\end{bmatrix}
+\begin{bmatrix}
+\Cx \\ 
+\error
+\end{bmatrix}
++
+\begin{bmatrix}
+\eye & \Mzero \\
+\eye & - \MK_f
+\end{bmatrix}
+\begin{bmatrix}
+\Cw_{\disturb} \\
+\Cw_{\noise}
+\end{bmatrix}
+\end{IEEEeqnarray}
+
+\section{Regulador lineal cuadrático}
+
+Hasta ahora hablamos de estimación de estados y de la idea de poder controlar un sistema realimentando un input que está en función del estado del sistema. Nos faltaría determinar cual es esta matriz $\MK_r$ que crea el input. Si uno conoce los mejores lugares para los autovalores del sistema $\MA,\MB$ y si el sistema es controlable entonces puede posicionar los autovalores donde desee. Usando \Matlab~
+\begin{lstlisting}
+Kr = place(A,B,eigs);
+\end{lstlisting}
+
+Una pregunta valida llegado a este punto es ¿donde están los mejores autovalores? Dependiendo de donde se posicionen los autovalores va cambiar la respuesta del los actuadores en función de $\Cy$ y $\hat{\Cx}$. Aquí es donde aparece unos de los conceptos más poderosos en control, el \textbf{regulador lineal cuadrático} (LQR). 
+
+La idea detrás del LQR es que se puede poner un costo a cada variable de estado y input. Esta función costo $\Jcost$ aumenta con el tiempo que nuestro sistema no estabiliza en el equilibrio propuesto para $\Cx(t)$ y con la `energía'{} $\Cu(t)$ utilizada.
+
+\begin{IEEEeqnarray}{c}
+\Jcost = \int_0^\infty \left(\Cx\tp \MQ \Cx + \Cu\tp \MR \Cu \right) \diff t
+\end{IEEEeqnarray}
+
+La matriz $\MQ\in\mathbb{R}^{\dimss\times\dimss}$ asociada con el equilibrio suele ser diagonal. Se puede proponer $\MQ=\eye$ para empezar a probar el sistema e ir aumentando el elemento diagonal asociado con la variable de estado que más nos interesa que se cumpla. Un valor alto en la diagonal de $\MQ$ va implicar un uso alto de energía para cumplir el equilibrio de esa variable de estado asociada. La matriz $\MR\in\mathbb{R}^{\dimin\times\dimin}$ asociada a los inputs tiene el mismo formato pero a diferencia de $\MQ$, un valor alto en la diagonal penaliza el uso del actuador asociado a el elemento. Es decir, un valor alto en $\MR$ va minimizar el uso de energía.
+
+Resulta que si tenemos $\MQ$ y $\MR$ hay un protocolo de control $\Cu = -\MK_r \Cx$ que minimiza $\Jcost$ y se llama el \textbf{regulador lineal cuadrático}. En \Matlab~ se obtiene $\MK_r$
+\begin{lstlisting}
+Kr = lqr(A,B,Q,R)
+\end{lstlisting}
+Si me intersa ver donde están los autovalores del LQR
+\begin{lstlisting}
+[avec,aval] = eigs(A-B*Kr)
+\end{lstlisting}
+
+\section{Ejemplo de carro con péndulo}
+\subsection{Descripción del sistema}
+Las ecuaciones de movimiento para un carro con péndulo se trabajan con una fuerza genérica $F$ por simplicidad. $g$ es la gravedad y se plantea en sentido negativo, es decir, $g$ es positiva. $\theta=0$ corresponde para un péndulo en la posición inferior al carro
+\[
+\begin{cases}
+(M+m) \ddot{x} &=m \ell \dot{\theta}^{2} \sin \theta-m \ell \ddot{\theta}\cos \theta+F\\
+ m \ddot{x} \cos \theta &= -\frac{b}{\ell} \dot{\theta} -m \ell \ddot{\theta} - m g \sin \theta
+\end{cases}
+\]
+
+
+Para armar el sistema de control o resolverlas numéricamente (como por ejemplo, con los métodos detallados en la sección \ref{sec:metodosNumericos} del anexo) se tienen que obtener $\ddot{x}$ y $\ddot{\theta}$ despejados
+\[
+\ddot{x}=\frac{-F +m g \sin \theta \cos \theta+\frac{b}{\ell} \dot{\theta} \cos \theta + m \ell \dot{\theta}^2 \sin \theta}{M+m \sin ^{2} \theta}
+\]
+\[
+\ddot{\theta}=\frac{F\cos \theta -(m+M) g \sin \theta-(1+\frac{M}{m})\frac{b}{\ell} \dot{\theta} - m \ell \dot{\theta}^{ 2} \sin \theta \cos \theta}{\ell\left(M+m \sin ^{2} \theta\right)}
+\]
+
+Se muestran al lector las linealización alrededor de los puntos $\theta = 0$ péndulo normal y $\theta = \pi$ para péndulo invertido. Se considera que para ángulos pequeños $\dot{\theta}^2,\,\theta^2 = 0$
+
+\begin{IEEEeqnarray*}{cl}
+\ddot{x}= & \begin{cases}
+\frac{F + mg\theta + \frac{b}{\ell} \dot{\theta}}{M} \qquad &\text{Linealizando alrededor de } \theta = 0\\
+\frac{F + mg\Delta\theta - \frac{b}{\ell} \dot{\theta}}{M}\qquad &\text{Linealizando alrededor de } \theta = \pi
+\end{cases} \\
+\ddot{\theta}=& \begin{cases}
+\frac{ -F - (m+M)g\theta - \left(1+\frac{M}{M}\right) \frac{b}{\ell} \dot{\theta} }{\ell M}   \qquad &\text{Linealizando alrededor de } \theta = 0 \\
+\frac{F + (m+M)g\Delta\theta - \left(1+\frac{M}{M}\right) \frac{b}{\ell} \dot{\theta} }{\ell M}   \qquad&\text{Linealizando alrededor de } \theta = \pi
+\end{cases}
+\end{IEEEeqnarray*}
+Se pueden considerar fuerzas de fricción y elásticas sobre el carrito $-\mu \dot{x}$ y $-kx$, respectivamente. Entonces nos queda la matriz del sistema $\MA$
+\[\MA|_{\theta=0} =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-\frac{k}{M} & \frac{mg}{M} & -\frac{\mu}{M} & \frac{b}{\ell M} \\
+\frac{k}{M\ell} & -\frac{(m+M)g}{M\ell} & \frac{\mu}{M\ell} & -\frac{\left(1+\frac{M}{m}\right)b}{M\ell^2}
+\end{bmatrix} \qquad\qquad  \MA|_{\theta=\pi} =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-\frac{k}{M} & \frac{mg}{M} & -\frac{\mu}{M} & -\frac{b}{\ell M} \\
+-\frac{k}{M\ell} & \frac{(m+M)g}{M\ell} & -\frac{\mu}{M\ell} & -\frac{\left(1+\frac{M}{m}\right)b}{M\ell^2}
+\end{bmatrix} 
+\]
+\[
+\Cx_{\theta=0} = \begin{bmatrix}
+x \\ \theta \\ \dot{x} \\ \dot{\theta}
+\end{bmatrix} \qquad \qquad 
+\Cx_{\theta=\pi} = \begin{bmatrix}
+x \\ \Delta \theta \\ \dot{x} \\ \dot{\theta}
+\end{bmatrix}
+\]
+notar del proceso de linealización que $\Delta \theta = \theta - \bar{\theta} = \theta - \pi$.

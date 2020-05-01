@@ -1,0 +1,107 @@
+%!TeX root=../control_rapido.tex
+%!TeX spellcheck=es_ES
+
+\chapter{Controlabilidad}
+En el capítulo \ref{chap:estabilidadAutovalores} (\nameref{chap:estabilidadAutovalores}) se vio que constituye un sistema estable. Para poder controlarlo se deben poder mover los autovalores desde el plano real hacia el complejo (estabilizar el sistema). Esto se hace con control óptimo.
+
+Recordando la ecuación de nuestro sistema \eqref{eq:systemCtrb}, escribimos nuestro sistema de una forma diferente para poder caracterizar el efecto del input $\Cu$ sobre la estabilidad (los autovalores):
+\begin{IEEEeqnarray*}{c}
+\dot{\Cme{x}} = \Mme{A} \Cme{x} + \Mme{B} \Cme{u} \\
+\dot{\Cme{x}} = \Mme{A} \Cme{x} - \Mme{B}\Mme{K} \Cme{x} \\
+\boxed{\dot{\Cme{x}} =\left( \Mme{A} - \Mme{B}\Mme{K}   \right)  \Cme{x} }
+\end{IEEEeqnarray*}
+donde $\Cme{x}\in \Bbb{R}^\dimss $ y $\Cme{u}\in \Bbb{R}^\dimin$. El control `óptimo'~ para un sistema lineal se logra realimentando $-\Mme{K}\Cme{x}$, es decir:
+\[
+\qquad \Cme{u} = - \Mme{K} \Cme{x} \quad \text{Control `óptimo'}
+\]
+
+Nuestro objetivo ahora es elegir $\Mme{K}$ para modificar las propiedades de mi sistema, como por ejemplo, la estabilidad. Si nuestro sistema es \textbf{controlable} va ser posible hacer estas modificaciones.
+
+\begin{definition} \label{def:controlabilidad}
+	A grosso modo, mi sistema es controlable si puedo elegir $\Cme{u} = -\Mme{K} \Cme{x}$ y así poner mis autovalores de $\Mme{A} - \Mme{B}\Mme{K}$ en cualquier lugar del plano complejo. Si puedo elegir la posición de mis autovalores entonces se puede controlar la evolución del \textit{state-space}  eligiendo $\Cme{u}$. 
+\end{definition}
+
+Para determinar si un sistema es controlable se construye la matriz de controlabilidad. El sistema es controlable si y solo si se verifica que la cantidad de columnas linealmente independientes sea igual a \dimss. 
+\begin{definition}{Matriz de controlabilidad}
+\[
+\ctrb = \begin{bmatrix}
+\MB & \MA \MB & \MA^2 \MB & \ldots & \MA^{\dimss-1}\MB 
+\end{bmatrix}
+\]	
+En \Matlab~ se usa la función \texttt{ctrb} para obtener la matriz de controlabilidad
+\begin{lstlisting}[caption={Obtención del rango de \(\ctrb\)}]
+Y = ctrb(A,B);
+r = rank(Y);
+\end{lstlisting}
+\end{definition}
+
+\section{Grados de controlabilidad y gramianes}
+Mirar el rango de la matriz de controlabilidad nos da un valor binario de la controlabilidad del sistema. Hay estudios más ricos que se pueden hacer para conocer que tan controlable es el sistema.
+
+
+\[
+\Cx (t) = e^{\MA t} \Cx(0) + \int_0^t e^{\MA(t-\tau)} \MB \Cu(\tau) \di \tau
+\]
+
+\begin{definition}{Gramian de controlabilidad}
+\[
+\MW_t = \int_0^t e^{\MA\tau} \MB \MB\tp e^{\tau\MA\tp } \di \tau  \quad \in \mathbb{R}^{\dimss\times\dimss}
+	\]
+Si $\MA$ y $\MB$ tienen valores reales y positivos entonces $\MW_t$ va tener autovalores reales tal que 
+\[
+\MW_t \Cme{\xi} = \lambda \Cme{\xi}
+\]
+donde los autovectores ($\Cme{\xi}$ de $\MW_t$) correspondientes a los autovalores más grandes serán las `direcciones' más controlables en el espacio de estados. 
+\end{definition}
+
+Una aproximación del gramian de controlabilidad para sistemas discretos
+\[
+\MW_t \approx \ctrb \ctrb\tp
+\]
+donde los autovalores de $\ctrb\ctrb\tp$ son los valores singulares 	de $\ctrb$
+
+
+\begin{lstlisting}
+[U,SIG, V] = svd(Y,'econ');
+\end{lstlisting}
+donde se listan las columnas de \texttt{U} como las direcciones más controlables en orden decreciente. La primer columna de \texttt{U} va ser la dirección más controlable en el espacio de estados. 
+
+Es decir, si nuestro vector de input $\Cu$ tiene norma 1 nuestro sistema $\Cx$ va poder evolucionar $\xi_1\lambda_1$, $\xi_2\lambda_2$, etc. Esto tiene fuerte implicaciones en el estudio de estabilidad ya que nos interesa que las direcciones en $\Cx$ inestables ($\Cme{\xi}$ inestables) sean controlables.
+
+\begin{definition}{Estabilización}
+	Un sistema es estabilizable si y solo si todos los autovectores inestables\footnote{También se incluye a veces los autovectores amortiguados en esta definición} de $\MA$ están contenidos en el subespacio controlable.
+\end{definition}
+
+
+\begin{definition}{Popov-Belevitch-Hautus test}
+El par $\MA$ y $\MB$ es controlable si y solo si 
+\[
+\operatorname{rango}\left[(\MA - a\eye)\quad \MB \right] = \dimss  \qquad \forall a \in \mathbb{C}
+\]
+
+\end{definition}
+
+Consecuencias del ensayo PBH:
+\begin{enumerate}
+	\item \(\operatorname{rango}(\MA - a\eye)=n\) excepto para autovalores $a=\lambda$. Por ende, solo se necesita hacer el test para los autovalores de $\MA$
+	\item $\MB$ necesita  tener algun componente en cada en cada dirección de los autovectores de $\MA$.
+	\item  Si $\MB$ es una proyección aleatoria, entonces es muy probable que el sistema sea controlable. Esto se debe a que $\MB$ solo necesita tener \textbf{una} componente en dirección de cada autovector de $\MA$
+\end{enumerate}
+
+
+Si tengo multiplicidad de autovalores (sistema degenerado) entonces voy a necesitar más de una columna en $\MB$ para que se cumpla PBH. 
+
+\section{Posicionamiento de autovalores (polos)}
+
+Equivalencias de la definición \ref{def:controlabilidad}
+\begin{enumerate}
+	\item El sistema es controlable
+	\item Se pueden elegir posiciones arbitrarias para los autovalores (polos): $\Cu =-\MK\Cx \Rightarrow \dot{\Cx} =(\MA - \MB \MK)\Cx$
+	\item Accesibilidad completa en $\mathbb{R}^{\dimss}$. Es decir, para todo estado $\xi\in\mathbb{R}^\dimss$ existe un input $\Cu(t)$ tal que $\Cx(t)=\xi$.
+\end{enumerate}
+
+Para posicionar autovalores en \Matlab~ se usa el comando \texttt{place}
+
+\begin{lstlisting}[caption={Posicionamiento de autovalores en las posiciones \texttt{eigs} deseadas.}]
+K = place(A,B,eigs)
+\end{lstlisting}

@@ -1,0 +1,60 @@
+  % !TEX encoding = UTF-8 Unicode
+  % !TEX root = ../control_rapido.tex
+  % !TeX spellcheck = en_EN
+
+\usetikzlibrary{arrows,babel,fit,patterns,decorations.pathmorphing,decorations.markings,calc}
+\tikzstyle{block} = [draw, fill=blue!20, rectangle, 
+minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum width=0.75cm,minimum height=0.3cm]
+\tikzstyle{damper}=[thick,decoration={markings,  
+	mark connection node=dmp,
+	mark=at position 0.5 with 
+	{
+		\node (dmp) [thick,inner sep=0pt,transform shape,rotate=-90,minimum width=15pt,minimum height=3pt,draw=none] {};
+		\draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east) -- (dmp.south west) -- ($(dmp.north west)+(2pt,0)$);
+		\draw [thick] ($(dmp.north)+(0,-5pt)$) -- ($(dmp.north)+(0,5pt)$);
+	}
+}, decorate]
+\tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post length=0.3cm,segment length=6}]
+
+% PGF PLOT!
+
+\pgfplotsset{
+	table/search path={plots},
+}
+
+%    \pgfplotsset{
+%        % use this `compat' level or higher to use the LUA backend for calculation
+%        % (--> speed improvement)
+%        compat=1.12,
+%        % declare your function here ...
+%        /pgf/declare function={
+%%            f(\x,\a) = ((\x)^0.65 + sin(1.5*pi*(\x))) - ((\a)^0.65 + sin(1.5*pi*(\a))))/2;
+%			sin(\x) = sin(deg(\x));
+%            %                                                                         ^
+%            %           here is an extra closing brace and no opening one, which causes
+%            %                                      a different result, if you delete it
+%            %               --> please check what you really want and adapt accordingly
+%        },
+%    }
+
+%    \pgfplotsset{
+%        % use this `compat' level or higher to use the LUA backend for calculation
+%        % (--> speed improvement)
+%        compat=1.12,
+%        % declare your function here ...
+%        /pgf/declare function={
+%%            f(\x,\a) = ((\x)^0.65 + sin(1.5*pi*(\x))) - ((\a)^0.65 + sin(1.5*pi*(\a))))/2;
+%			bode(\s) = 10 * log10( ( (60*x)^2         +(10000)^2 )/
+%			( (-x*x + 10000)^2 + (60*x)^2)
+%			);
+%            %                                                                         ^
+%            %           here is an extra closing brace and no opening one, which causes
+%            %                                      a different result, if you delete it
+%            %               --> please check what you really want and adapt accordingly
+%        },
+%    }

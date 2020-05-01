@@ -18,7 +18,7 @@ D2q= @(X,u,t) (-F(X,u,t)*cos(X(2)) - m*L*X(4)^2*sin(X(2))*cos(X(2))- ...
 Y = @(X,u,t) [X(3); X(4); D2x(X,u,t); D2q(X,u,t)];
 
 %% SISTEMA LINEAL   X = [x; q; Dx; Dq]
-s = -1; % s=1 pendulo normal.  s=-1  pendulo invertido
+s = 1; % s=1 pendulo normal.  s=-1  pendulo invertido
 A = [0      0             1      0;
      0      0             0      1;
    -k/M    m*g/M        -d/M     s*b/L/M;
@@ -42,9 +42,9 @@ Baum = [B Vd 0*B]; % matrices B y D del sistema aumentado
 Daum = [D 0*D Vn];
 
 sys = ss(A,B,C,D);
-% Kf = (lqr(A',C',Vd,Vn))'; % Ideal Kalman filter for system
+Kf = (lqr(A',C',Vd,Vn))'; % Ideal Kalman filter for system
 % Kf = lqe(A,Vd,C,Vd,Vn);
-
+return
 if s == 1
     x_eq = [0 0 0 0]';
     x0 = [-3 1 0 0];
@@ -66,7 +66,7 @@ for it = 1:Nt-1
     tspanrk = t:tsrk:t+ts;
     Xreal = Xt(:,it);
     u = -Kr*(Xreal - x_eq);
-    Xtrk = rk4sys(Y, u, tspanrk, Xreal);
+    Xtrk = rk4sys(Y,u, tspanrk, Xreal);
     Xt(:,it+1) = Xtrk(:,end);
     if sum(isnan(Xreal))>0 || sum(Xreal>1000)>0
         error('Nan found or SS variable too large. stop execution.')

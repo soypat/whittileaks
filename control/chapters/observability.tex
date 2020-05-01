@@ -1,0 +1,110 @@
+\chapter{Observabilidad}
+Ahora hablaremos de estimadores y de la observabilidad del sistema. El algebra para determinar la observabilidad es muy similar al visto en el capítulo de controlabilidad y se comienza a notar una dualidad entre la matriz $\MA$ y las matrices $\MB$, $\MC$.
+
+\begin{definition}{Matriz de observabilidad}
+\[
+\obsv =  \left[\begin{array}{c}
+\MC \\ \MC \MA \\ \MC \MA^2 \\ \vdots \\ \MC \MA^{n-1}
+\end{array}\right]
+\]
+\end{definition}
+\begin{definition}{Observabilidad}
+	El sistema es observable si el rango (espacio fila) de la matriz $\obsv$ es igual a $\dimss$. Verificado en \Matlab:
+	\begin{lstlisting}[caption={Como calcular $\obsv$ y su rango en \Matlab}]
+	OB = obsv(A,C)
+	r = rank(OB)
+	\end{lstlisting}
+\end{definition}
+
+Si el sistema es observable entonces se puede estimar todo valor de $\Cx$ con los valores medidos u observados $\Cy$. Más adelante veremos que los filtros Kalman tienen su propio sistema lineal dinámico con autovalores que indican que tan rápido converge el estimador $\hat{\Cx}$ a $\Cx$
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+     	\node [block, pin={[pinstyle]above:$\Cw_{\disturb}$}] (system) {Sistema};
+     	\node [sum, right of=system,node distance=2cm,pin={[pinstyle]above:$\Cw_{\noise}$}] (noise) {};
+		\coordinate [left of=system] (input);
+		\coordinate [below of=system] (kout);
+		\node [block, right of=kout] (kalman) {Filtro Kalman};
+		\node [output, right of=noise] (output) {};
+		\node [block, left of=kout] (lqr) {LQR};
+		\coordinate [left of=lqr] (lqrout);
+		% Kalman inputs
+		\path (kalman.-10)+(.5,0) node (kin1) [coordinate] {};
+		\path (kalman.15)+(.25,0) node (kin2) [coordinate] {};
+		\path (kalman)+(0,1) node (aux) [coordinate] {};	
+		%% Drawing arrows
+		\draw [->] (kalman) -- node {$\hat{\Cx}$} (lqr);
+		\draw [->] (input) -- node {$\Cu$} (system);
+		\draw [-] (lqr) -- (lqrout) |- (input);
+		\draw [-] (system) -- node[pos=.99] {$+$} (noise) -- (output); %--  (output);
+		
+		\draw [->] (input) |- (aux) -| (kin2) -- (kalman.east |- kin2);
+		
+		\draw [->] (output) |- node[pos=-.03]  {$\Cy$}  (kin1) -- (kalman.east |- kin1); % (block.east |- node) es la interseccion de la linea perpendicular al block clipping ?
+	\end{tikzpicture}
+	\caption{Sistema de control óptimo con estimador Kalman}
+	\label{fig:blockLQGfundamental}
+\end{figure}
+
+
+Similarmente al estudio de gramianes de controlabilidad, se puede efectuar un \textit{singular value decomposition} para determinar el grado de observabilidad del sistema. En \Matlab:
+\begin{lstlisting}
+[U, SIG, V] = svd(OB)
+\end{lstlisting}
+donde \texttt{V} va contener los vectores singulares de la matriz de observabilidad que apuntan en la dirección que se tiene mejor relación señal a ruido, también conocido en ingles como \textit{Signal to Noise ratio} y S/N.
+
+Lo que se hace en la práctica es asegurar que el sistema sea observable verificando el rango de $\obsv$, mirar la descomposicion singular para determinar direcciones en las cuales se tiene mejor S/N, y construir un filtro de Kalman que estime las variables de estado dado que hay ruido y peturbaciones en el sistema.
+
+\begin{exercise}{Estimación de variables `más'~ observables}
+Se obtiene el gramian del sistema en \Matlab~ y se toma el determinante para obtener el volúmen del elipsoide de controlabilidad. Cambiando la matriz $\MC$ se puede encontrar el esquema de medición más controlable
+\begin{lstlisting}
+sys = ss(A,B,C,D)
+det(gram(ss,'o')) % Cuanto mas grande, mas controlable
+\end{lstlisting} 
+\end{exercise}
+
+\section{Estimación de estado completo}
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[auto, node distance=2cm]
+	\node [align=center,block,label=below:Sist. Dinámico] (estimator) {Estimador de\\estado completo};
+	\coordinate [right of=estimator] (estout);
+	\draw [->] (estimator) --  (estout) node [label=above:$\hat{\Cx}$] {};
+	\path (estimator.12)+(-4,0) node (estin1) [coordinate,label=above:$\Cy$] {};
+	\path (estimator.-12)+(-4,0) node (estin2) [coordinate,label=above:$\Cu$] {};
+	\draw [->] (estin1)  -- (estimator.west |- estin1);
+	\draw [->] (estin2)  -- (estimator.west |- estin2); 
+	\end{tikzpicture}
+	\caption{Estimador de \textit{full-state}.}
+\end{figure}
+
+Un estimador es un sistema dinámico lineal, al igual que los problemas de control que estudiamos. Su dinámica tiene la forma
+
+\begin{IEEEeqnarray}{rl}
+\frac{\diff }{\diff t} \hat{\Cx} &= \MA \hat{\Cx} + \MB \Cu + \Mme{K}_f (\Cy - \hat{\Cy})\label{eq:estimatorSystem1} \\
+\hat{\Cy} &= \MC \hat{\Cx} \label{eq:estimatorSystem2}
+\end{IEEEeqnarray}
+donde la expresión $\Mme{K}_f (\Cy - \hat{\Cy})$ actúa como una corrección al estado actual. Cada medición efectuada $\Cy$  se compara con la estimada y esto `corrige'{} el estado estimado $\Cx$. Si reemplazamos \eqref{eq:estimatorSystem2} en \eqref{eq:estimatorSystem1} se obtiene 
+
+\begin{IEEEeqnarray}{c}
+\left(\MA - \MK_f \MC \right)\hat{\Cx} + \left[\MB \quad \MK_f\right] \begin{bmatrix}
+\Cu \\ \Cy
+\end{bmatrix}
+\end{IEEEeqnarray}
+
+Definimos un error, el cual vamos a querer reducir para estimar nuestro sistema bien
+\begin{IEEEeqnarray}{c}
+\error = \Cx -\hat{\Cx} 
+\end{IEEEeqnarray}
+
+Recordando la ecuación \eqref{eq:systemCtrb} (sin peturbaciones) podemos escribir el cambio del error en el tiempo
+
+\begin{IEEEeqnarray*}{ll }
+\frac{\diff }{\diff t} \error &\,= \MA \Cx + \MB \Cu + \MA \hat{\Cx} + \MK_f \MC \hat{\Cx} - \MK_f \Cy - \MB \Cu \\
+&\,=\MA(\Cx - \hat{\Cx}) -\MK_f \MC (\Cx - \hat{\Cx}) \\
+&\boxed{= \left(\MA - \MK_f \MC \right) \error} \IEEEyesnumber \label{eq:lqeerror}
+\end{IEEEeqnarray*}
+Lo que me dice esto es que si es observable el sistema entonces puedo elegir un $\MK_f$ tal que el sistema sea estable (posicionamiento de autovalores). De esta forma $\error$ converge a 0. La razón por la que no es deseable tener autovalores negativos (convergencia muy rápida) es por la presencia de peturbaciones en el sistema y ruido en las mediciones. La decision de la matriz de ganancia $\MK_f$ del filtro Kalman se elige en base a la magnitud de estas dos últimas variables.
+
