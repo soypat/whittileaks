@@ -127,15 +127,12 @@ Como vimos anteriormente, con esta fnción podemos calcular la amplitud y desfas
 	\centering
 	% BODE
 		\begin{tikzpicture}[trim axis right]
-		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Amplitud [dB]},
-		width = 0.8\textwidth,height = 7cm,grid=both,ymin=-60,style={semithick}]
-		\addplot table[x=x, y=bode, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
+		\begin{semilogxaxis}[bodeamp]
+		\addplot table[x=x, y=bode, col sep=comma, mark=none] {plots/bd_dampedmass.csv};
 		\end{semilogxaxis}	
 		\end{tikzpicture}
 		\begin{tikzpicture}[trim axis right]
-		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Angulo de desfasaje $\varphi$ [grados]},
-		width = 0.8\textwidth,height = 7cm,grid=both,
-		ytick={0,-30,...,-180}, ymin=-180,ymax=0,style={semithick}]
+		\begin{semilogxaxis}[bodephase]
 		\addplot table[x=x, y=phase, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
 		\end{semilogxaxis}	
 		\end{tikzpicture}
@@ -162,7 +159,7 @@ el objeto $\left(s\eye - \MA\right)$ es un polinomio idéntico al polinomio cara
 
 La ecuación \eqref{eq:systemObsv}
 \begin{IEEEeqnarray*}{c}
-\bar{\Cy}(s)=\MC \bar{\Cx(s)}
+\bar{\Cy}(s)=\MC \bar{\Cx}(s)
 \end{IEEEeqnarray*}
 
 Reemplazando la transformada de \eqref{eq:systemCtrb} teniendo en cuenta que el término transitorio muere con el tiempo $\Cx(0)=0$, se tiene

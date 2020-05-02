@@ -207,10 +207,10 @@ El objetivo de la realimentación es
 	\item[Diseñar] estabilidad
 	\item[Compensar] incertidumbre del sistema
 	\item[Rechazar] perturbaciones
-	\item[Attenuar] ruido
+	\item[Atenuar] ruido
 \end{description}
 
-El controlador, especificamente, la transferencia $\MK$ estará encargada de que al error $\error$ no le lleguen ruido, perturbaciones.
+El controlador, específicamente, la transferencia $\MK$ estará encargada de que al error $\error$ no le lleguen ruido, perturbaciones.
 
 De la figura \ref{fig:loopdaloop} se obtiene
 \begin{IEEEeqnarray*}{c}
@@ -222,29 +222,60 @@ De la figura \ref{fig:loopdaloop} se obtiene
 Durante el curso de los próximos capítulos se va querer diseñar una ganancia $\MK$ para que: el término I sea cercano a 1 así podemos rastrear la referencia con poco error a bajas frecuencias, el término II sea pequeño para frecuencias donde esperamos perturbaciones, y que el término III sea pequeño para frecuencias donde esperamos obtener ruido (probablemente a altas frecuencias).
 
 El término II se llama la transferencia de sensibilidad \eqref{eq:sensitivity} e indica que tan sensible es el vector salida $\Cy$ a las perturbaciones. El término $\left(\eye + \MP\MK\right)^{-1} \MP \MK$ es la sensibilidad complementaria \eqref{eq:sensitivityCompl} que es asociada a la referencia y al ruido.
-\begin{IEEEeqnarray}{c,l}
+\begin{IEEEeqnarray*}{c,l}
 \ML &= \MP \MK \\
-\MS &= \left(\eye + \ML\right)^{-1} \\ \label{eq:sensitivity}
-\MT &= \left(\eye + \ML\right)^{-1} \ML\label{eq:sensitivityCompl}
-\end{IEEEeqnarray}
+\MS &= \left(\eye + \ML\right)^{-1}\IEEEyessubnumber \label{eq:sensitivity} \\ 
+\MT &= \left(\eye + \ML\right)^{-1} \ML \IEEEyessubnumber \label{eq:sensitivityCompl}
+\end{IEEEeqnarray*}
 una identidad demostrable con álgebra lineal que resulta de estas transferencias es 
 \begin{IEEEeqnarray}{c}
 \MS + \MT = \eye    \qquad \forall s \in \mathbb{C}
 \end{IEEEeqnarray}
 
 Lo más interesante de todo esto es la forma de representar el error a partir de la sensibilidad ya que es lo que se quiere reducir
-
 \begin{IEEEeqnarray}{c}
 \error = \Cr - \Cy_m = \MS\Cr - \MS \MP_d \Cd + \MT \Cn
 \end{IEEEeqnarray}
+lo deseable va ser elegir $\MS$ y $\MT$ de tal forma que $\MS$ rechaze perturbaciones a bajas frecuencias mientras que $\MT$ atenué ruido a altas frecuencias. Estas funciones podrían entonces tener la forma de la figura \ref{plt:bodeSensitivity}. Como $\MS$ y $\MT$ tienen que sumar uno hay una limitación importante al lazo que se puede diseñar.
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[trim axis right]
+	\begin{semilogxaxis}[bodeamp, ymin=-40,ymax=10,xmin=1e-2,xmax=1e2]
+	\addplot[mark=none,red,ultra thick] table[x=x, y=bode, col sep=comma] {plots/bd_sensitivity.csv};
+	\addlegendentry{$\MS$}
+	\addplot[mark=none,blue] table[x=x, y=bode, col sep=comma, mark=none, red] {plots/bd_Csensitivity.csv};
+	\addlegendentry{$\MT$}
+	\addplot[mark=none,dotted,ultra thick] table[x=x, y=bode, col sep=comma, mark=none, black] {plots/bd_integrator.csv};
+	\addlegendentry{$\ML$}
+	\end{semilogxaxis}	
+	\end{tikzpicture}
+	\caption{Bode mostrando la sensibilidad para $L(s) = \frac{1}{s}$. La frecuencia de crossover  se encuentra en $\omega_c=1$ rad/s.}
+	\label{plt:bodeSensitivity}
+\end{figure}
+
+Si quiero que a bajas frecuencias $\MS$ sea pequeño entonces necesito que $\ML$ sea muy grande a bajas frecuencias, de acuerdo con \eqref{eq:sensitivity}. Complementario a esto, si se quiere que a altas frecuencias se atenúe el ruido, $\ML$ tiene que ser bajo a estas frecuencias \eqref{eq:sensitivityCompl}. En fin, una función que cumple con esto es el integrador $\frac{1}{s}$ (y lo hace bien!). 
+
+Un valor importante en el diseño del lazo el la \textbf{frecuencia de crossover} $\omega_c$. Por abajo de esta frecuencia las perturbaciones van a ser rechazadas y por arriba el ruido será atenuado. Si el lazo elegido es un integrador se puede definir $\omega_c$ según
+\[
+L(s)=\frac{\omega_c}{s}
+\] 
+
+Lo que veremos en los próximos capítulos es que la función $\MS$ nos da toda la información acerca de si el sistema va ser robusto o frágil. Veremos también como los picos en el bode de $\MS$ (como el que se vé en el gráfico \ref{plt:bodedampedmasssystem}) empeoran la sensibilidad y robustez del sistema
 
 
-
-
-
-
-
-
-
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[trim axis right]
+	\begin{axis}[grid=major, axis equal image, ylabel={Complejo}, xlabel={Real},legend pos=outer north east,]
+	\addplot[mark=none,blue] table[x=real, y=imag, col sep=comma] {plots/nyq_dampedmass.csv};
+	\addplot[red,mark=x] coordinates {(-1,0)};
+	\addlegendentry{$G(i\omega)$}
+	 \addplot [domain=0:2*pi,samples=50,dotted] ({.5419*sin((x)r)-1},{.5419*cos((x)r)});
+	\end{axis}	
+	\end{tikzpicture}
+	\caption{Nyquist plot para la función transferencia del sistema masa-amortiguador-resorte. }
+	\label{plt:nyq}
+\end{figure}
 
 

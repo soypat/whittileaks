@@ -3,11 +3,15 @@ function [x,bde,phase] = bodetocsv(g, fname,N)
     minPhase = 1; %degrees in absolute magnitude
     maxPhase = 179;
     % code
-    xtest = logspace(-8,2);
+    xtest = logspace(-2,5,N);
     phase = angle(g(xtest.*1i))*180/pi;
     changes = [find(phase<-minPhase,1,'first') find(phase<-maxPhase,1,'first')];
-    lims = xtest(changes);
-    x = logspace(log10(lims(1)),log10(lims(2)),N)';
+    if length(changes)==2
+        lims = xtest(changes);
+        x = logspace(log10(lims(1)),log10(lims(2)),N)';
+    else
+        x = xtest;
+    end
     bde = 20*log10(abs(g(x*1i)));
     phase = angle(g(x.*1i))*180/pi;
     fid = fopen(fname,'w');

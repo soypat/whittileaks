@@ -26,9 +26,21 @@ minimum height=3em, minimum width=3em]
 
 % PGF PLOT!
 
+
 \pgfplotsset{
 	table/search path={plots},
 }
+\pgfplotsset{
+	compat=1.15,
+	bodeamp/.style={ xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Amplitud [dB]},
+		width = 0.8\textwidth,height = 7cm,grid=both,ymin=-60,style={semithick}
+	},
+	bodephase/.style={xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Angulo de desfasaje $\varphi$ [grados]},
+		width = 0.8\textwidth,height = 7cm,grid=both,
+		ytick={0,-30,...,-180}, ymin=-180,ymax=0,style={semithick}
+	},
+}
+
 
 %    \pgfplotsset{
 %        % use this `compat' level or higher to use the LUA backend for calculation
