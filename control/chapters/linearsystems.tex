@@ -5,14 +5,8 @@
 El planteo de la evolución de un sistema de primer orden es dado por \eqref{eq:systemCtrb}. Su solución analítica requiere evaluar exponencial de la matriz $\MA$
 \begin{IEEEeqnarray}{rc}
 \Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Cw_{\disturb}\IEEEyessubnumber \label{eq:systemCtrb}\\
-\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}\IEEEyessubnumber r\label{eq:systemObsv}
+\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}\IEEEyessubnumber \label{eq:systemObsv}
 \end{IEEEeqnarray}
-%\begin{equation} \label{eq:systemCtrb}
-%\Cme{\dot{x}} (t) = \Mme{A}(t) \Cme{x}(t) + \Mme{B}(t) \Cme{u}(t) + \Cw_{\disturb} %\Mme{E}(t) \Cme{z}(t)
-%\end{equation}
-%\begin{equation} \label{eq:systemObsv}
-%\Cme{y} (t) = \Mme{C}(t) \Cme{x}(t) + \Mme{D}(t) \Cme{u}(t) + \Cw_{\noise}
-%\end{equation}
 donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las perturbaciones sobre el sistema y $\Cw_{\noise}$ es el ruido en la medición.
 
 \begin{figure}[htb!]
@@ -36,7 +30,7 @@ donde $\Cw_{\disturb}=\ME(t)\Cz(t)$ son las perturbaciones sobre el sistema y $\
 	\draw [->] (y) |- (tmp) -| node[pos=0.99] {$-$} 
 	node [near end] {$\Cy+\Cw_{\noise}$} (sum);
 	\end{tikzpicture}
-	\caption{Esquema de un sistema de control genérico.}
+	\caption{Esquema de un sistema de control genérico a lazo cerrado.}
 \end{figure}
 
 La exponencial de una matriz \eqref{eq:matrixExponential} es poco práctica para calcular con la matriz \(\Mme{A}\) y muy costosa numéricamente.

@@ -1,7 +1,7 @@
 %!TeX root=../control_rapido.tex
 %!TeX spellcheck=es_ES
 
-\chapter{Robustez}
+\chapter{Robustez y el dominio frecuencia}
 Un paper escrito por John C. Doyle en 1978 en su paper \textit{Guaranteed margins for LQG regulator} determino por contraejemplo que no existen márgenes estables para un sistema con controlador LQG y que una peturbación arbitrariamente chica puede ocasionar una pérdida de control completa \citep{doyle1978guaranteed}. Esto se debe a que el sistema LQG es vulnerable a incertidumbres del sistema descrito por las ecuaciones \eqref{eq:systemCtrb}, \eqref{eq:systemObsv} y por \textit{time delay} de las observaciones. Entonces a pesar de poder posicionar los autovalores con un regulador cuadrático para aumentar la estabilidad del sistema, no podemos asegurar que nuestro sistema sea \textbf{robusto}.
 
 Aquí es donde aparecen dos conceptos duales llamados \textbf{robustez} y \textbf{performance}. 
@@ -18,7 +18,7 @@ En las próximas secciones se verá como determinar si un sistema es robusto y c
 \begin{figure}[htb!]
 	\centering
 \begin{tikzpicture}[auto, node distance=2cm]
-	\node[block,label=above:Sistema] (sys) {$G$};
+	\node[block,label=above:Sistema] (sys) {$G(s)$};
 	\node[input,left of=sys] (in) {};
 	\node[output,right of=sys] (out) {};
 	\draw[->] (in)  --node[name=y] {$\Cy$} (sys);
@@ -71,7 +71,7 @@ Existen 3 representaciones equivalentes para sistemas lineales
 \caption{Para un sistema lineal una entrada $\Cu$ sinusoidal va generar una salida $\Cy$ sinusoidal de la misma frecuencia pero con un cambio de amplitud y desfasaje.}
 \end{figure}
 
-La función de transferencia $G$ es una función compleja donde
+La función de transferencia $G$ es una función compleja donde la variable de entrada es la frecuencia del input. De aquí podemos obtener la respuesta del sistema de amplitud y desfasaje ante un input $\Cu$ de frecuencia $\omega$.
 \begin{itemize}
 \item $|G(i\omega)|=A$
 \item $\angle G(i\omega) = \varphi$
@@ -102,44 +102,84 @@ La función de transferencia nos dará una buena idea de si un sistema es robust
 	\end{scope}
 	\end{tikzpicture}
 	\caption{Sistema masa-resorte-amortiguador.}
+	\label{fig:dampedmasssystem}
 \end{figure}
 
-La ecuación que describe el movimiento del cuerpo
+La ecuación que describe el movimiento del cuerpo en la figura \ref{fig:dampedmasssystem}
 \[
 m\ddot{x} + c\dot{x} + kx = u
 \]
-donde $u$ son las fuerzas externas actuantes.
+donde $u$ son las fuerzas externas actuantes. La ecuación se puede modelar como un sistema lineal si introducimos $x$ y $\dot{x}$ como variables de estado. Se puede también tomar la transformada de Laplace, de hecho, es lo vamos hacer ahora. Suponiendo que $m=k=1,\,c=\frac{1}{2}$ y despreciando los términos transitorios $\xbar(0)$
 
+
+\[
+\lapc{\ddot{x} +\tfrac{1}{2}\dot{x} +x} = s^2\xbar(s) + \tfrac{1}{2}s \xbar(s) + \xbar(s) = \ubar(s)
+\]
+donde $\xbar(s) = \lapc{x(t)}$.
+
+Es de interés obtener una relación de input sobre respuesta, la cual va ser la transferencia del sistema. Si agrupamos la función $\xbar$ y despejamos obtenemos la función transferencia del sistema. Esta relaciona la variable de entrada $\ubar$ al estado del sistema $\xbar$
+\[
+G(s)= \frac{\xbar}{\ubar} = \frac{1}{s^2 + \tfrac{1}{2} s + 1}
+\]
+
+Como vimos anteriormente, con esta fnción podemos calcular la amplitud y desfasaje del sistema para una frecuencia $\omega$. Podemos representar la respuesta del sistema en un gráfico llamado Bode para entender mejor el sistema
 \begin{figure}[htb!]
 	\centering
-	
+	% BODE
 		\begin{tikzpicture}[trim axis right]
-		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad]}, ylabel={Amplitud [dB]},
+		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Amplitud [dB]},
 		width = 0.8\textwidth,height = 7cm,grid=both,ymin=-60,style={semithick}]
 		\addplot table[x=x, y=bode, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
 		\end{semilogxaxis}	
 		\end{tikzpicture}
 		\begin{tikzpicture}[trim axis right]
-		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad]}, ylabel={Angulo de desfasaje $\varphi$ [grados]},
+		\begin{semilogxaxis}[xlabel={Frecuencia $\omega$ [rad/s]}, ylabel={Angulo de desfasaje $\varphi$ [grados]},
 		width = 0.8\textwidth,height = 7cm,grid=both,
 		ytick={0,-30,...,-180}, ymin=-180,ymax=0,style={semithick}]
 		\addplot table[x=x, y=phase, col sep=comma, mark=none, color=red] {plots/bd_dampedmass.csv};
 		\end{semilogxaxis}	
 		\end{tikzpicture}
+		\caption{Bode para la función de transferencia $G(s) = \frac{1}{s^2 + \frac{1}{2}s + 1}$ }
+		\label{plt:bodedampedmasssystem}
 \end{figure}
 
+Del Bode podemos obtener
+\begin{itemize}
+	\item Las frecuencias resonantes o naturales del sistema. En el gráfico \ref{plt:bodedampedmasssystem} observamos una frecuencia de resonancia para $\omega = 0,9$ radianes por segundo
+	\item La frecuencia de entrada $\omega$ para la cual el sistema empieza a decaer en amplitud (frecuencia de corte)
+\end{itemize}
 
 
+\section{Transformada Laplace de un sistema lineal}
+A continuación se obtiene la transformada de la ecuación de un sistema lineal
+\begin{IEEEeqnarray*}{c}
+\lapc{\dot{\Cx} =\MA \Cx + \MB \Cu } \\
+ s \bar{\Cx}(s) - \Cx(0) = \MA \bar{\Cx}(s) + \MB \bar{\Cu}(s)\\
+ (s\eye - \MA) \bar{\Cx} = \MB \bar{\Cu} + \Cx(0) \\
+ \bar{\Cx} = \left(s\eye - \MA\right)^{-1}\MB \bar{\Cu} + \left(s\eye - \MA\right)^{-1}\Cx(0)
+\end{IEEEeqnarray*}
+el objeto $\left(s\eye - \MA\right)$ es un polinomio idéntico al polinomio característica de la matriz $\MA$. Es decir, tiene raíces en los autovalores de $\MA$. Debido a esto la función transferencia de un sistema lineal se va a infinito cuando el input es un autovalor de $\MA$.
 
+La ecuación \eqref{eq:systemObsv}
+\begin{IEEEeqnarray*}{c}
+\bar{\Cy}(s)=\MC \bar{\Cx(s)}
+\end{IEEEeqnarray*}
 
+Reemplazando la transformada de \eqref{eq:systemCtrb} teniendo en cuenta que el término transitorio muere con el tiempo $\Cx(0)=0$, se tiene
 
+\begin{IEEEeqnarray}{c}
+\boxed{
+\bar{\Cy} =\underbrace{ \MC \left(s\eye - \MA\right)^{-1}\MB}_{=G(s)} \bar{\Cu} \label{eq:linearsysTransform}
+}
+\end{IEEEeqnarray}
 
+La ecuación \eqref{eq:linearsysTransform} me dice que puedo obtener la salida en dominio \textbf{continuo} con solo anti-transformar el producto de la función transferencia con la transformada de la entrada.  
 
-
-
-
-
-
+Es interesante notar que la anti transformada de la función transferencia nos dá la respuesta del sistema ante un impulso. 
+\[
+\Cy(t) = \ilapc{G(s)} \quad \text{donde} \quad \Cu(t)=\vec{\delta}(t)
+\]
+dicho de otra manera, la transformada de la respuesta ante el impulso es la función transferencia. Se puede aproximar así la función transferencia a partir de ensayos hechos en laboratorios donde se mide la respuesta de un sistema.
 
 
 

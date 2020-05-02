@@ -36,8 +36,9 @@
 \def\MC{\Mme{C}}
 \def\MD{\Mme{D}}
 \def\ME{\Mme{E}}
-\def\MR{\Mme{R}}
+
 \def\MQ{\Mme{Q}}
+\def\MR{\Mme{R}}
 \def\MK{\Mme{K}}
 \def\MW{\Mme{W}}
 \def\MX{\Mme{X}}
@@ -46,7 +47,7 @@
 \def\Mzero{\Mme{0}}
 \def\obsv{\Mme{\mathcal{O}}}
 
-\newcommand{\ts}[2]{\left. #1\right|_{\tiny #2}}
+\newcommand{\ts}[2]{\left. #1\right|_{ #2}}
 
 \def\error{\varepsilon}
 \def\Cx{\Cme{x}}
@@ -59,6 +60,7 @@
 \def\Cv{\Cme{v}}
 \def\Cz{\Cme{z}}
 \def\Cw{\Cme{w}}
+
 \def\Jcost{\Cme{\mathcal{J}}}
 % RK4
 \def\Ca{\Cme{a}}
@@ -75,6 +77,25 @@
 \newcommand{\spartial}[2]{\frac{\partial {#1}}{\partial {#2}}}
 \newcommand{\dpartial}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
 
+%# ROBUST
+\def\lap{\mathcal{L}}
+\newcommand\lapc[1]{\lap \left\{#1\right\}}
+\newcommand\ilapc[1]{\lap^{-1} \left\{#1\right\}}
+\def\xbar{\bar{x}}
+\def\ubar{\bar{u}} 
+
+\def\MP{\Mme{P}}
+\def\ML{\Mme{L}}
+\def\MT{\Mme{T}}
+\def\MS{\Mme{S}}
+
+\def\Cr{\Cme{r}}
+\def\Cn{\Cme{n}}
+
+\def\openloop{{\textrm{\tiny{LA}}}}
+\def\closedloop{{ \textrm{\tiny{LC}}}}
+\def\true{{ \textrm{\tiny{real}}}}
+% THEOREMS/ EXERCISES
 \usepackage{amsthm}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]

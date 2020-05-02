@@ -2,10 +2,38 @@
 %!TeX spellcheck = es_ES
 \chapter{Anexo}
 
-\section{Métodos numéricos para resolución de SEDO}\label{sec:metodosNumericos}
+\section{Tabla de transformaciones Laplace}
+\[
+\lapc{f(t)} = \int_{0^-}^{\infty}f(t) e^{-st}\diff t = \bar{f}(s) = F(s)
+\]
+\begin{table}[htb!]
+	\centering
+	\caption{Tabla corta de transformaciones Laplace.}
+
+	\begin{tabular}{lcc}
+		Operación & $g(t)=\ilapc{G(s)}$ & $\lapc{g(t)} = G(s)$ \\ [4pt]\hline
+		Multiplicación por constante & $Kf(t)$ & $K\,F(s)$ \\[10pt]
+		Adición/resta & $f_1(s) \pm f_2(s)$ & $F_1(s) \pm F_2(s)$ \\[10pt]
+		Primer derivada (tiempo) & $\frac{\diff f(t)}{\diff t}$ & $sF(s) - f(0^-)$ \\[10pt]
+		Segunda derivada (tiempo) & $\frac{\diff^2 f(t)}{\diff t^2}$ & $s^2F(s) - s\cdot f(0^-) - \frac{\diff f(0^-)}{\diff t}$ \\[10pt]
+		Enésima derivada (tiempo) & $\frac{\diff^n f(t)}{\diff t^n}$ & $n^2F(s) - \sum^{n}_{k=1} s^{n-k} \frac{\diff^{k-1} f(0^-)}{\diff t ^{k-1}}$ \\[10pt]
+		Integral (tiempo)  &  $\int_0^t f(x)\diff x$  & $\frac{F(s)}{s}$ \\[10pt]
+		Traslación temporal & $f(t-a) u(t-a),\quad a>0$ &  $e^{-as}F(s)$ \\[10pt]
+		Traslación en frecuencia &  $e^{-at}f(t) $  & $F(s+a)$ \\[10pt]
+		Cambio en escala  &  $f(at), \quad a>0 $ & $\frac{1}{a}F(\frac{s}{a}) $ \\[10pt]
+		Primer derivada ($s$) & $tf(t)$  &  $-\frac{\diff F(s)}{\diff s}$ \\[10pt]
+		Derivada enésima ($s$) & $t^n f(t)$  & $(-1)^n \frac{\diff^n F(s)}{\diff s ^n}$ \\ [10pt]
+		Integral ($s$) & $\frac{f(t)}{t} $  &  $\int^\infty_s F(u) \diff u $ \\ [10pt]
+		Impulso & $\delta(t)$ & $1$ 
+	\end{tabular}
+\end{table}
+
+
+\newpage
+\section[Métodos numéricos -- SEDO]{Métodos numéricos para resolución de sistemas de ecuaciones diferenciales ordinarias}\label{sec:metodosNumericos}
 
 \subsection{Runge--Kutta orden 4 multivariable} 
-El método de Runge Kutta tiene su ventajas sobre otros métodos numéricos por ser simple de programar y tener bajo error ($\error = O(\dt^4)$), donde $\dt$ es el paso elegido. El primer paso consiste en describir el sistema de $\dimss$ variables de forma similar a como hacemos con nuestros sistemas lineales,
+El método de Runge--Kutta tiene su ventajas sobre otros métodos numéricos por ser simple de programar y tener bajo error ($\error = O(h^4)$), donde $h$ es el paso elegido. El primer paso consiste en describir el sistema de $\dimss$ variables de forma similar a como hacemos con nuestros sistemas lineales,
 
 \begin{IEEEeqnarray}{c}
 \Cx^{\prime} = \Cf (\Cx)
@@ -31,3 +59,4 @@ Ahora se definen dos instantes de tiempo $\ts{\Cx}{k}$ de valores conocidos y $\
 \end{IEEEeqnarray}
 
 El nuevo vector $\ts{\Cx}{k+1}$ te da el estado del sistema después de un pequeño paso $h$.
+
