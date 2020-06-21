@@ -349,6 +349,9 @@ La temperatura a la cual se decide austenizar se llama, apropiadamente, \textbf{
 $T_A$ varía para cada acero y proceso dependiendo principalmente de
 \begin{itemize}
     \item Composición química
+    \begin{itemize}
+    	\item Para aceros de alta aleaci\'on la cantidad de alf\'agenos aumenta \Athree. $T_A$ puede llegar a los 1300\grad~
+    \end{itemize}
     \item Tipo de TT que se aplicara posterior al austenizado
 \end{itemize}
 
@@ -373,8 +376,8 @@ Es una etapa fundamental para cualquier tratamiento hipercrítico, en especial p
 
 \section{Tratamientos hipercríticos}
 Los tratamientos hipercr\'iticos llevan el acero a una temperatura sobre \Athree~ para lograr austenizaci\'on de una gran parte del acero.
-\subsection{Recocido de regeneración}
-Consiste en llevar el acero a $T_A$\footnote{Para aceros hipoeutectoides suele estar a 20 a 40\grad~ sobre \Athree~} y mantenerlo ahí un tiempo adecuado para asegurar la homogeneidad de la austenita y luego un enfriamiento lento en horno (costoso económicamente) de alrededor de 5 a 50\grad{}/h.
+\subsection[Recocido de regeneración]{Recocido de regeneración (Full annealing)}
+Consiste en llevar el acero a $T_A$\footnote{Para aceros hipoeutectoides suele estar a 20 a 40\grad~ sobre \Athree~} y mantenerlo ahí un tiempo adecuado para asegurar la homogeneidad de la austenita y luego un enfriamiento lento en horno (costoso económicamente) de alrededor de 5 a 50\grad{}/h. Para un acero hipoeutectoide el recocido de regeneraci\'on ser\'ia el camino 1 de la figura \ref{fig:CCThipo}.
 
 \begin{figure}[htb!]
 \centering
@@ -422,7 +425,7 @@ En el caso de los aceros \textbf{hipereutectoides} el tratamiento es \hl{intercr
 \textbf{Resumiendo:} el recocido de regeneración es un tratamiento largo y costoso que deja al acero en un estado de baja dureza y alta ductilidad. En aceros de medio y alto C esto es muy conveniente para reducir los costos del conformado plástico en frío y/o del mecanizado. Menos frecuentemente se puede usar para lograr propiedades finales.
 
 \subsection{Normalizado}
-Similarmente al recocido, en el \textbf{normalizado} se calienta el acero hasta $T_A$\footnote{Temperatura unos 50 a 80\grad~ sobre \Athree~} y se mantiene para asegurar austenita homogénea y finalmente se \textbf{enfría a aire calmo}\footnote{Velocidad entre 40 a 200\grad{}/min}. Si se busca obtener martensita se denomina \textbf{temple al aire}.
+Similarmente al recocido, en el \textbf{normalizado} se calienta el acero hasta $T_A$\footnote{Temperatura unos 50 a 80\grad~ sobre \Athree~} y se mantiene para asegurar austenita homogénea y finalmente se \textbf{enfría a aire calmo}\footnote{Velocidad entre 40 a 200\grad{}/min}. Si se busca obtener martensita se denomina \textbf{temple al aire}. El normalizado puede ser tanto un tratamiento intermedio como también un tratamiento final.
 
 \begin{figure}[htb!]
     \centering
@@ -440,6 +443,9 @@ Objetivos:
     \item lograr propiedades mecánicas especificas para el servicio
 \end{itemize}
 
+La estructura resultante depende de la composición del acero y tamaño de la pieza. En aceros al C y muchos de baja aleación se obtiene ferrita proeutectoide de tamaño más fino que en el recocido y en menor proporción. El resto de la estructura es perlita más fina y en mayor proporción de lo que indica el diagrama de equilibrio. En aceros con transformaciones más lentas pueden aparecer combinaciones de otras fases incluyendo la bainita y martensita.
+
+El normalizado se aplica típicamente a piezas coladas y forjadas en caliente para refinar la estructura de solidificación. Para aceros de bajo \%C se vé un aumento en la maquinabilidad.
 \section{Tratamientos subcríticos}
 
 \subsection{Recocido de relevamiento de tensiones}
@@ -885,6 +891,96 @@ Tratamiento isotérmico en el rango de la transformación bainítica. No se aust
     \item Se disminuye la distorsión
     \item Tratamiento corto y económico. no se requiere revenido posterior.
 \end{itemize}
+
+
+\part{Aceros para construcción Mecánica}
+Para fabricación de piezas de maquinaria. Cadena cinemática, transmisión de potencia, elementos roscados, herramientas manuales, industria automotriz, agrícola, aeronáutica, ferroviaria, etc.
+
+Los \textbf{requerimientos de servicio} para un acero incluye propiedades mecánicas como $R_m$, $R_{p0,2}$, tenacidad, resistencia a la fatiga, resistencia al desgaste, resistencia a cargas de contacto. Luego se pueden exigir \textbf{caracteristicas de fabricación} como formabilidad, maquinabilidad y ductilidad. Los requerimientos de servicio y características de fabricación suelen obtenerse de tratamientos térmicos.
+
+\section{Clasificación}
+
+Existen varios tipos de clasificaciones de aceros para contrucción mecánica:
+
+\subsection*{Según aleantes}
+\begin{description}
+	\item[Aceros al C] Más baratos, fácil fabricación y de menor templabilidad
+	\item[Ac. de baja aleación] Buena templabilidad, menor severidad de temple requerida, buena maquinabilidad, buena resistencia al revenido
+\end{description}
+
+
+\subsection*{Clasificación por \%C}
+\begin{description}
+	\item[Bajo C ($<0,25\%$)] Para cementación/carburización (engranajes, árboles, cadenas)
+	\item[Medio C ($0,25 \textrm{ a }0,5\%$)] Aceros para bonificado. Durezas $\approx 30$ a $40$ HRC
+	\item[Bajo C ($>0,5\%$)] Máxima resistencia y dureza. Se usan bonificados, martemperados+revenidos, austemperados. Costo alto de fabricación de piezas por baja maquinabilidad y formabilidad.
+\end{description}
+
+\subsection*{Clasificación por templabilidad}
+Puede ser baja, media o alta. El requerimiento de templabilidad va estar en función a la solicitación.
+
+\begin{description}
+	\item[Tracción/corte puro] 90\% mínimo de martensita en el centro. $R_{p0,2}>1200$ MPa. Bulones y tornillos de alto grado
+	\item[Flexión/Torsión pura] 50\% martensita en el centro. Árboles, ejes y resortes
+\end{description}
+
+\section{Resistencia a la fatiga}
+Se determina con un ensayo en la maquina de Moore (flexión rotativa $\sigma_m=0$;$\sigma_a = |\sigma_{\max}|$) definiéndose así las zonas de bajo y alto ciclado.
+
+\subsection*{Como maximizar la resistencia a la fatiga}
+En aceros al C de baja aleación con dureza 45 HRC se cumple que $R_f \approx 0,35 - 0,6R_u$ (Shigley toma $0,5R_u$). Esto es valido para una probeta lisa sin tensiones residuales bajo flexión alternativa.
+
+Si se tiene una entalla
+\[
+q = \frac{k_f -1}{k_t - 1}
+\]
+$q$ indica cuanta tensión es relevada. $q=1 \Rightarrow$ muy sensible a la entalla.  Para maximizar la resistencia a la fatiga se necesita alta ductilidad y alta $R_m$. Se puede obtener por temple y revenido, o austemperado.
+
+\section{Aceros al boro}
+El boro promueve templabilidad a bajo costo en aceros de bajo y medio carbono. El boro (intersticial en la austenita) segrega a los bordes de grano retrasando la nucleación de ferrita proeutectoide. Se corren las curvas CCT a la derecha, ganándose mejor templabilidad.
+
+El boro se puede encontrar en estos aceros en solución sólida, como óxido, nitruros, boruros. Se corre el peligro que al agregar demasiado boro vaya a formar un compuesto que no cumpla ser soluto.
+
+\section{Aceros de corte libre}
+
+Son aquellos con algunos elementos (P y S en general) que se usan cuando la pieza requiere mucho mecanizado y el costo es más importante que las propiedades finales. El azufre hace que se entrecorte la viruta y funcione como lubricante.  El fósforo en solución sólida hace que se fragilice la ferrita logrando viruta entrecortada. SAE 1100$\rightarrow$S; SAE 1200$\rightarrow$S,P.
+
+\part{Aceros inoxidables}
+Grupo de aceros de alta aleación diseñados para tener resistencia a la corrosión en un amplio rango de servicio (buena $R_m$ a altas temperaturas).
+
+Las aplicaciones principales de estos aceros son en plantas generadoras de energía, centrales hidráulicas, plantas petroquímicas, industria farmacéutica, piezas de maquinas, arquitectura (decoración), aplicaciones marítimas.
+
+\section{Corrosión}
+Deterioro de un material por la acción química del medio que lo rodea. A excepción de los nobles, los metales son termodinámicamente inestables al contacto con el aire y forman óxidos. Si la reacción es ``lenta"{} (desde un punto de vista cinético) la corrosión puede llegar a aceptarse. Si es ``rápida"{} y limita la vida del componenta surgen problemas de costo y fiabilidad mecánica.
+
+\subsection{Clasificación}
+\begin{description}
+	\item[Generalizada] A nivel macroscópico, la superficie es atacada uniformemente. Es predecible y controlable. Se puede prevenir si se diseña con un sobre-espesor uniforme. El daño es proporcional a la cantidad de material removido.
+	\item[Localizada] Daño localizado progresa rápido. Resulta difícil predecir, controlar y detectar. El daño puede ser muy grande aunque la cantidad de material sea mínima. Es muy problemático. A continuación se tienen 4 tipos de corrosión localizada:
+	\begin{description}
+		\item[Picado/Pitting] Promovido por la presencia de iones $Cl^{-1}$, alta temperatura y baja velocidad de circulación del fluido. Si la capa pasivante se rompe localmente y no se forma rápido otra la corrosión avanza y se genera pozos en forma de túneles que pueden perforar el material en corto tiempo aumentando el riesgo de avance de fisura por fatiga.
+		\item[Rendijas] Se da en zonas donde el fluido no llega a circular. Cuando se consume el oxigeno, se localiza la corrosión en la rendija. Evitable con buen diseño de pieza, reduciendo iones de cloro y reduciendo la temperatura
+		\item[Bajo tensión] Puede dar lugar  fallas catastróficas a partir de fisuración provocada por la combinación del \textbf{medio} y \textbf{tensión de tracción}. Em general la fisura rompe por fractura frágil. Los aceros inoxidables austeniticos y martensiticos son los más susceptibles
+		\item[Granular] Asociada a fenómeno de precipitación de carburos ricos en Cr en los bordes de grano de las microestructuras.
+	\end{description}
+\end{description}
+
+
+\subsection{Pasividad}
+La pasivación de un metal se refiere a la formación de una delgada capa de óxido al ser sometido a un diferencial de potencial ($\Delta V$) mayor al potencial de pasivación. Esta capa aísla al metal del medio y hace que disminuya la velocidad de corrosión en varios ordenes de magnitud. Para que sea efectiva la capa esta debe ser fina, continua, no porosa, insoluble en el medio, y debe poder regenerarse rápidamente al ser dañada (ralladura, mecanizado). 
+
+Ek aluminio, por ejemplo, no es electronegativo pero es fuertemente pasivado. El hierro puede pasivarse pero a un alto $\Delta V$. La inclusión de cromo (Cr) en un 12\% o más hace que el metal pueda oxidarse fácil
+
+\subsubsection*{Variables en la estabilidad de la capa pasivante}
+\begin{description}
+	\item[Composición química del acero] Factor principal es el contenido de Cr (12\% mínimo) para pasivar con soluciones acuosas neutras. En general la heterogeneidades (segregaciones, precip. de carburos) hacen que disminuya la estabilidad.
+	\item[Composición del medio] Los inoxidables se pasivan solo cuando el medio es altamente oxidante (acuosos, $HNO_3$). La presencia de iones de halógenos es la principal razón por fallas. Estos iones desestabilizan y generan Pitting. Un medio básico (pH) es más estabilizante para una capa pasivante.
+	\item[Variables operativas] En general, la resistencia a la corrosión disminuye con el aumento de la temperatura. La velocidad relativa entre el medio y la superficie afecta la formación de la capa. A mayor velocidad hay mayor aporte de $O_2$, aumentando la velocidad de oxidación.
+	\item[Factores de diseño] La presencia de rendijas o alta rugosidad crean zonas que favorecen la oxidación localizada.
+\end{description}
+
+
+
 
 \bibliography{mybib}
 \end{document}
