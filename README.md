@@ -19,7 +19,7 @@ All class notes are written in LaTeX and are contained in a folder corresponding
 |[instind](instind)| Industrial construction and machines |
 |[metalurgy](metalurgy)| Metallurgical Sciences |
 |[motors](motors)| Internal Combustion Engines |
-|[shigleys](shigleys)| Design of Machines and internal elements |
+|[shigleys](shigleys)| Machine design |
 |[termodinamica](termodinamica)| Thermodynamics |
 |[termofluidos](termofluidos)| Fluid Mechanics and Heat Transfer |
 |[thefinitoskid](thefinitoskid)| Finite Element Analysis |
