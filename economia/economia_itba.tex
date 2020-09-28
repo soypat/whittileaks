@@ -14,7 +14,7 @@
             labelfont={bf,it},
             textfont=it]{caption}
 \usepackage{color}
-\usepackage{fontawesome}
+\usepackage{fontawesome,graphicx}
 \usepackage{siunitx}
 \usepackage{booktabs,tabularx,makecell,multirow,caption}
 
@@ -111,9 +111,37 @@
 
 \tableofcontents
 
+\newpage
 \part{Primer Parcial}
-\section{Curva de la demanda}
+\subsection{Crecimiento econ\'omico}
+% TODO: \usepackage{graphicx} required
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/frontProd}
+	\caption{Frontera de producci\'on. Se visualiza crecimiento econ\'omico como el cambio de la curva. En este caso hubo crecimiento en la industria de computadoras. Notar que tambi\'en aumento la cantidad de autos producidos para un mismo r\'egimen de producci\'on! El mayor aprovechamiento de recursos ocurre sobre el punto medio (dado que es una curva concava para el origen y simetrica sobre $y=x$).}
+	\label{fig:frontprod}
+\end{figure}
 
+\subsection{Costos de opotunidad}
+
+Cuando uno opta por un proyecto o hace una compra hay un costo de oportunidad. Es decir, la plata que uno usa para comprar una bebida tiene un costo asociado ya que no se puede usar para comprar un sándwich.
+
+Ejemplo con una empresa: optar por vender medialunas conlleva un costo de oportunidad porque dejaste de un lado usar la harina para vender pan.
+
+\subsection{An\'alisis marginal}
+Una persona toma una decision \textbf{racional} si y s\'olo si el beneficio marginal es superior al costo marginal. El costo marginal es el costo de producir una unidad m\'as.
+
+Utilidad: Capacidad que tiene un bien para satisfacer lasa necesidades humanas
+
+Utilidad Marginal: Utilidad que proporciona la \'ulima unidad pose\'ida de un bien. Ello comporta que cuanto m\'as escaso sea un bien mayor sea el valor que le otorgamos. 
+
+Ejemplo muerto de sed en el desierto. La utilidad marginal del primer vaso de agua va ser mayor al quinto vaso de agua.
+\section{Curva de la demanda}
+Los resultados de las decisiones de los individios que act\'uan como \textit{consumidores} en el mercado se expresan en una \textit{demanda de mercado}. La demanda de mercado es la suma de demandas individuales. La demanda relaciona precio y cantidad demandada.
+
+La demanda depende de la renta, las expectativas,
+
+En general tiene pendiente decreciente. A mayor precio, menor cantidad demandada (precio en eje $y$)
 \begin{description}
 	\item[Bienes normales] Si la renta aumenta, la demanda aumenta
 	\item[Bienes inferiores] Si la renta aumenta, la demanda disminuye
@@ -121,7 +149,42 @@
 	\item[Bienes sustitutos] Si aumenta el precio del bien sustituto $S_X$ se reduce la cantidad demandada de $S_X$ y por lo tanto aumenta la demanda de $X$. La relación entre la demanda de $X$ y del precio de $S_X$ es directa (Hellmann's vs. Heinz) 
 \end{description}
 
+\section{Curva de la oferta}
+
+En general tiene pendiente creciente: a mayor precio, mayor cantidad ofrecida
+
+Depende de costos de fabricaci\'on, de la tecnolog\'ia del ofreciente, el ambiente político o econ\'omico (especulaci\'on de precios futuros o fluctuaciones en el mercado).
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{fig/la_oferta}
+	\caption{Los costos marginales son crecientes, a esto se debe la forma de la curva de oferta. Esto tambi\'en significa que va llegar un punto a partir del cual no conviene vender m\'as. La curva de demanda es la suma de todas las demandas individuales del mercado. Esto se puede visualizar con el siguiente ejemplo: a medida que aumenta el precio, va haber m\'as empresas que pueden entrar al mercado para ofrecer el producto.}
+	\label{fig:laoferta}
+\end{figure}
+
+\subsection{Precios}
+Precio nominal y real.
+
+Ejemplo nafta: El precio nominal es el que est\'a escrito en el surtidor de nafta. Si hablamos de precios reales se tiene que hablar del momento en el tiempo. Si en el 2020 la nafta vale 60\$ y en el 2015 val\'ia 15\$ hay que transformar el precio del 2015 al precio real (precio 2020). Para esto se multiplica el precio nominal del 2015 por el cociente 
+\[
+\text{Precio real de la nafta en el 2015}=15\$\cdot \frac{IPC_{2020}}{IPC_{2015}}
+\]
+donde $IPC$ es el indice de precio consumidor para el a\~no.
+
+\subsection{Eficiencia Pareto}
+No se puede hacer cambios a un mercado en equilibrio para mejorar la situación de algunos sin empeorar la situación para otros. 
+
+Es decir: un mercado sin intervenci\'on de estado ni fijaci\'on de precios es eficiente.
+
+
 \section{Elasticidad}
+
+Para hacer análisis de ``que pasa con la cantidad demandada si hacemos $x$''. Las elasticidades tienen la forma
+\[
+\eta = \frac{\text{Efecto}}{\text{Est\'imulo}}
+\]
+y dependen de existencia de sustitutivos cercanos, si son bienes necesarios o de lujo, definición del mercado, el horizonte temporal, y la proporción del gasto total que se gasta en ese bien. Ejemplo de demanda inel\'astica: medicamentos críticos como insulina. Los endulzantes son un ejemplo de un mercado elástico.
+
 La \textbf{elasticidad (de la demanda)} $\eta$ es la variación porcentual de la cantidad demandada sobre la variación porcentual del precio.
 \begin{IEEEeqnarray*}{c}
 \eta = \left| \frac{\Delta Q / Q}{\Delta P / P} \right|= \left| \frac{P\times \Delta Q}{Q \times \Delta P} \right|
@@ -160,8 +223,39 @@ Luego se tiene la \textbf{elasticidad cruzada de la demanda} $\eta_{XY}$ que es 
 
 La \textbf{elasticidad precio de la oferta} $\varepsilon_p$ se calcula como la variación porcentual de la cantidad ofrecida sobre la variación porcentual del precio
 \begin{IEEEeqnarray*}{c}
- \varepsilon_p = \frac{\Delta \% Q_0}{ \Delta \% P}
+ \varepsilon_p = \frac{\Delta \% Q_O}{ \Delta \% P}
 \end{IEEEeqnarray*}
+
+Si se habla de la \textbf{elasticidad precio de la demanda} se reemplaza $Q_O$ por $Q_S$.
+\subsection{Excedente y escasez del consumidor}
+
+Los puntos de la curva de demanda muestran la valoraci\'on m\'axima que el consumidor da a cada cantidad de bien (i.e. lo que estar\'ia dispuesto a pagar por esa cantidad). El precio de mercado se determina por el curce entre la oferta y la demanda, y representa la valoraci\'on del bien por parte del consumidor marginal (i.e. lo que el consumidor menos intersado estar\'ia dispuesto a pagar como m\'aximo por el bien).
+
+La diferencia entre la curva de demanda y el precio es el \textbf{excedente del consumidor}. Esto es el valor adicional que los consumidores estar\'ian dispuestos a pagar por  el bien, pero como no deben pagarlo lo ganan.
+
+\begin{figure}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/excedentConsumidor}
+	\caption{Ejemplo: Viene nuestra banda de rock favorita. Estamos dispuestos a pagar 20 por la primer entrada, 19 por la segunda, etc; pero como hay un solo precio de mercado no ``ahorramos'' lo que esta en amarillo.}
+	\label{fig:excedentconsumidor}
+\end{figure}
+
+\begin{figure}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/escasezConsumidor}
+	\caption{Se fija un precio m\'aximo por debajo del punto de equilibrio (para que tenga efecto). Luego los consumidores van a demandar una cantidad 8 y los productores van a encontrarse teniendo que vender 4 unidades para maximizar beneficio. Se produce escasez del bien.}
+	\label{fig:escasezconsumidor}
+\end{figure}
+
+
+\begin{figure}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/escasezProductor}
+	\caption{Se fija un salario m\'inimo por arriba del punto de equilibrio. Las empresas estar\'an buscando disminuir su capital laboral para reducir costos produciendo as\'i desempleo.}
+	\label{fig:escasezproductor}
+\end{figure}
+
+
 
 \section{Función de la producción}
 La función de la producción usa dos factores (Trabajo $L$ y capital $K$) y puede diferir según el plazo de análisis $\Delta t$.
@@ -169,16 +263,66 @@ La función de la producción usa dos factores (Trabajo $L$ y capital $K$) y pue
 Q = f(K,L, \Delta t)
 \]
 
+Un ejemplo puede ser una simplificaci\'on de una pizzer\'ia. Se tiene cantidad de trabajo $L$ (pizzeros), cantidad de capital $K$ (hornos).
+
+\begin{table}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/funcionProduccionTabla}
+	\caption{Contratando los primeros pizzeros se aumenta la producci\'on fuertemente. Después del sexto pizzero empieza a caer el rendimiento hasta que es nocivo tener tantos pizzeros en un solo restaurante. Antes de agregar el octavo pizzero se necesita ampliar el local (agregar capital $K$ en forma de hornos en este ejemplo). Esto es un ejemplo a corto plazo: se mantiene constante uno de los factores de producci\'on: $K$.}
+	\label{fig:funcionproducciontabla}
+\end{table}
+
+
 \begin{description}
 	\item[Corto plazo] El lapso más largo durante el cual no es posible alterar al menos unos de los factores de producción
 	\item[Largo plazo] El lapso más corto necesario para alterar todos los factores involucrados en el proceso productivo
 \end{description}
 
+\begin{figure}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/funcionProduccionLvar}
+	\caption{La producci\'on con trabajo $L$ variable. Note que el producto medio m\'aximo se alcanza cuando este coincide con el producto marginal.}
+	\label{fig:funcionproduccionlvar}
+\end{figure}
+
+
+
 \subsection{Ley de los rendimientos marginales decrecientes}
 En el corto plazo hay un factor fijo (suele ser $K$) y uno variable (suele ser $L$). Esta ley establece que a medida que se incorporan unidades del factor variable al factor fijo, el rendimiento de cada unidad adicional es menor a partir de cierta cantidad límite.
 
+Esto se debe a que se va saturando el factor fijo con respecto al factor variable. En el ejemplo de la pizzería se saturaban los hornos.
+
+ \subsubsection{Addendum: Teor\'ia de Malthus}
+Thomas Malthus predijo alrededor de 1800s que por la ley de rendimientos marginales decrecientes iba a haber una escasez de comida por la sobrepoblaci\'on debido a que se iba a necesitar una gran cantidad de personal para cosechar/orde\~nar etc. Malthus no tuvo en cuenta a la tecnolog\'ia, la cual aument\'o la producci\'on por unidad de trabajo.
+
+\begin{figure}[tbh!]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/efectomejoratecnologiaMalthus}
+	\caption{El efecto de la tecnolog\'ia sobre la funci\'on producción}
+	\label{fig:efectomejoratecnologiamalthus}
+\end{figure}
+
+\section{Costos}
+
+Todo costo es un costo de oportunidad ya que al desembolsar se gasta la oportunidad de usar el dinero para otro fin. Los costos explícitos son los que se pagan de manera directa: pago por hora hombres, amortizaciones, por materia prima y no incluyen los costos por comparaci\'on con otras alternativas (costos de oportunidad).
+
+Se puede tambi\'en categorizar los costo
 
 \section{Mercados}
+\subsection{Control externo}
+
+En un mercado se tiene el consumidor con su curva de demanda ($Q_D$) y el vendedor/empresa/ofreciente con su curva de oferta ($Q_O$ o a veces denotado con sub\'indice $S$ por el ingl\'es \emph{supply}) en funci\'on del precio $P$.
+
+Cuando se subsidia un producto pagando al vendedor el punto de equilibrio cambia seg\'un
+\[
+Q_O(P^{*}+\text{subsidio}) = Q_D(P^{*}) 
+\]
+
+Cuando se paga al consumidor pr unidad adquirida se tiene
+
+\[
+Q_D(P^{*}-\text{subsidio}) = Q_O(P^{*}) 
+\]
 
 \subsection{Competencia perfecta}
 En una competencia perfecta se hacen las siguientes suposiciones
@@ -189,6 +333,7 @@ En una competencia perfecta se hacen las siguientes suposiciones
 \end{itemize}
 
 El mercado de competencia perfecta está en equilibrio cuando:
+
 
 \begin{itemize}
 	\item El precio de mercado es único
