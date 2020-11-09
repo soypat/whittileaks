@@ -745,4 +745,74 @@ Y el método Directo con intereses sobre el prestamo original.
 \end{figure}
 
 
+\section{Evaluación de proyectos}
+
+\subsection{Flujo de caja}
+El flujo de caja se hace \textbf{sin costos hundidos}. El flujo de caja refleja hecho irrefutables. Los beneficios en cambio no son concretos, pueden variar en función de como amortizas.
+
+\subsection{Métodos de evaluación}
+
+\begin{itemize}
+	\item Valor: VAN/VPN/VNA
+	\item Rendimiento: TIR, TER
+	\item Recupero (t): PRS, PRC (periodo de recuperación)
+\end{itemize}
+
+\subsubsection{Valor actual neto (VAN)}
+
+\[
+	VAN = -I + P = \sum_{j=0}^n \frac{FC_j}{(1+i)^j}
+\]
+donde $I$ es el valor presente del costo del proyecto (habitualmente, la inversión inicial) y $P$ es el valor presente de los futuros flujos de caja del proyecto.
+
+Si el VAN es positivo entonces hay un remanente de dinero después del proyecto que va al bolsillo. Si es cero entonces no se pierde ni gana dinero con el proyecto. Si es negativo entonces te conviene invertir a la tasa de interés usada para el VAN para no perder plata con el proyecto.
+
+ \subsubsection{Tasa interna de retorno (TIR)}
+
+ La TIR es la tasa de descuento $i$ que hace que el VAN del proyecto se haga cero, es decir, para cuando $P=I$.
+
+ La TIR se compara con el costo del capital, que es lo que sacrifica el inversor de ganar en su mejor alternativa por decidirse a hacer la inversión. Esa tasa mínima se llama TREMA, \textbf{tasa requerida mínima atractiva} para el inversor. 
+ 
+ La TIR es única para un proyecto con flujo de fondos simples. PAra proyectos complejos pueden haber varios TIR y conviene otro método de evaluación.
+
+ \subsubsection{Resúmen de VAN y la TIR}
+El VAN es propia del inversor ya que diferentes inversores pueden reducir costos con know-how de proyectos. En cambio la TIR es la misma para todo inversor de un proyecto.
+
+
+\subsubsection{Tasa externa de retorno (TER)}
+
+Para cuando hay más de una TIR se usa el método de la TER. La técnica consiste en calcular ek VP de todos los egresos y el VF de todos los ingresos, es decir: se agrupan todos los egresos al comienzo del proyecto en un gasto, y se agrupan los ingresos como un ingreso al final del proyecto.
+
+No soluciona el problema de diferencia de escalas, es decir, no diferencia entre un proyecto con un VAN de 10\$ y uno con VAN de 10 millones \$.
+
+El periodo de repago nos dice dentro cuanto tiempo se recupera la plata. Ayuda controlar riesgos asociados con la incertidumbre de los flujos de caja futuros. Útil en un país como Argentina donde un inversor tal vez no está tan cómodo esperando 10 años para recuperar su plata.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{fig/ej_periodoRepago.png}
+	\caption{Ejemplo de un cálculo de Periodo de Repago (PRD) interpolando linealmente para obtener $t$.}
+	\label{fig:periodoRepagoEjemplo}
+\end{figure}
+
+\subsection{Valor Anual Equivalente}
+El VAE es una renta anual (anualidad) de flujos de caja equivalente a todos los ingresos y egreso, evaluados a la tasa de descuento.
+\[
+	VAE = VAN / factor(n,i)
+\]
+Donde el factor (de anualidad) es calculado según visto en la sección de anualidades. Sigue la regla de aceptación del VAN.
+
+\subsection{Tasa de descuento}
+
+La tasa de descuento se utiliza para determinar el valor presente de los flujos que generará un proyecto. Representa la rentabilidad mínima que debe exigirse a la inversión por renunciar a un uso alternativo de riesgo similar.
+
+LA tasa de descuento visto desde el valor tiempo del dinero es la tasa de interés $i$ que hace al tomador de decisiones indiferente entre \$1 hoy y $\$(1+i)$ al final de un periodo.
+
+La tasa de descuento para cual uno es indiferente se conoce como el costo oportunidad del dinero.
+
+La tasa de descuento es muy importante para la evaluación de proyectos. Decide el costo del capital y por ende el VAN y TIR de un proyecto.
+
+La tasa de descuento depende de como la empresa se financia de deudas (antes de impuestos) o recurso propios.
+
+
 \end{document}
