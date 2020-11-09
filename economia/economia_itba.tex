@@ -43,8 +43,7 @@
 \newcommand{\NX}{$NO_x$}
 \begin{document}
 \title{Resumen de Motores a Combustión interna}
-% \author{Carlos Oncha}
-% \maketitle
+
 \twocolumn[
 \centering 
 { \bf \LARGE Resumen de Finanzas \par}
@@ -682,6 +681,68 @@ Si una anualidad se repite perpetuamente con un crecimiento anual $g$ entonces e
 
 
 \section{Tasa de interés}
-En general viene expresada como una tasa nominal. Ejemplo: Tasa Nominal Anual.
+En general viene expresada como una tasa nominal. Ejemplo: Tasa Nominal Anual ($TNA$). Dependiendo de la \textit{capitalización} se cobrará en diferentes intervalos. La más común es mensual, y existe anual, semestral (bi-annual), trimestral (hay 4 trimestres en un año) etc.
+
+La tasa efectiva se puede calcular para un tipo de capitalización a partir de la TNA. (la efectiva se calcula a partir de la nominal)
+\[
+   TEM = TNA / 12	
+\]
+donde $TEM$ es la tasa efectiva mensual (capitalización mensual). Si es bimestral el denominador sería $m=6$: $TEB = TNA/6$.
+
+En una situación real los números sean en base a cantidad de días. Para una capitalización a 30 días se puede suponer el año de 360 días y es lo que se suele hacer en la práctica. 
+
+\subsection{Optimización de tasa}
+
+Para saber cual opción es mejor se calcula el valor futuro 
+
+\[
+	VF = VP (1+i)^{n}
+\]
+donde $i$ es la tasa efectiva y $n$ es la cantidad de pagos (capitalizaciones).
+
+\[
+	1 + TEA = (1 + TNA/m)^{n}
+\]
+
+
+\subsection{Préstamos}
+
+Esquemas con intereses sobre saldos:
+\begin{itemize}
+	\item Francés
+	\item Alemán
+	\item Americano (Bullet)
+\end{itemize}
+
+Y el método Directo con intereses sobre el prestamo original.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sist_frances.png}
+	\caption{El valor presente a cuotas futuras el la deuda con el banco. Es el más usado para prestamos personales. Son anualidades, por ende $a_{n,i}$ de la figura es el factor anualidad.}
+	\label{fig:sist_frances}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sist_aleman.png}
+	\caption{La amortización del préstamo es constante, y como el saldo de deuda baja entonces los intereses también van a bajar. Más usado para empresas. }
+	\label{fig:sist_aleman}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sist_bullet.png}
+	\caption{La amortización se paga al final. Común para }
+	\label{fig:sit_bullet}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sit_directo.png}
+	\caption{Sistema más marginal. El préstamo es más caro para el que recibe el préstamo porque los intereses se pagan sobre la deuda original}
+	\label{fig:sit_directo}
+\end{figure}
+
 
 \end{document}
