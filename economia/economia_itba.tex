@@ -3,10 +3,23 @@
 \documentclass[twocolumn,10pt]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish]{babel}
+
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0.1 , 0.1, 0.64}
+% hyperrefs antes de geometry!
+\usepackage[
+hyperfootnotes=false,
+urlcolor=blue,
+colorlinks=true,
+linkcolor=darkblue,
+citecolor=red]{hyperref}
+
 \usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm,headheight=28pt]{geometry}
 %Letra general
 \usepackage{mathastext}
 \usepackage{IEEEtrantools}
+
+
 
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[scaled=1]{helvet}
