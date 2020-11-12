@@ -815,4 +815,102 @@ La tasa de descuento es muy importante para la evaluación de proyectos. Decide 
 La tasa de descuento depende de como la empresa se financia de deudas (antes de impuestos) o recurso propios.
 
 
+\section{Construcción del flujo de caja del proyecto}
+
+Se construye a partir de los movimientos de caja del proyecto en el tiempo.
+
+La forma más típica de modelar los flujos es ubicar un egreso en tiempo 0 y luego ubicar flujos ingresantes durante el \textbf{horizonte de proyecto}
+
+
+\subsection{Cuadro de gastos o resultados}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|} \hline
+		+ Ingresos por ventas \\
+		- Costos variables (``de ventas") \\ \hline
+		= Utilidad bruta \\
+		- Costos fijos (``Administración y ventas") \\ \hline
+		= EBITDA \\
+		- Amortizaciones \\ \hline
+		= EBIT \\
+		- Intereses \\ \hline
+		= EBT \\
+		- Impuestos a las ganacias
+		\\ \hline
+		= Utilidad Neta\\ \hline
+	\end{tabular}
+\caption{Cuadro de resultados}
+\end{table}
+
+\subsection{Costos de oportunidad}
+
+Son costos que aparecen de manera no explicita. Una situación donde aparece el costo de oportunidad:
+
+Para instalar una nueva linea de producción, la empresa B deberá utilizar un galpón propio, que hoy se alquila a un tercero percibiendo \$100.000 por mes.
+
+\begin{itemize}
+	\item Sin proyecto: +\$100.000 ingresos
+	\item Con proyecto: El galpón se utiliza y se deja de facturar el alquiler. Se perdió la oportunidad de seguir facturando, por ende hay un costo de oportunidad de \$100.000
+\end{itemize}
+
+\subsection{Costos hundidos}
+
+Son aquellos costos que resultan comunes a todas las alternativas. Se incurren sin importar la decisión. \textbf{No tiene sentido incluirlos en el análisis.}
+
+El típico ejemplo de un costo hundido es un estudio de mercado. Se debe incurrir para poder empezar a formular una decisión!
+
+\subsection{Valor terminal}
+Al término del horizonte de planificación se hace un corte artificial con fines de evaluación. Ya no se consideran más ingresos y la planta deja de operar y se venden todos los activos. La suposición produce un flujo de efectivo extra en el último año.
+
+Se debe suponer un valor de liquidación para los activos (máquinas, terreno, planta, etc.).
+
+Se puede suponer también que la planta sigue operando con un flujo a perpetuidad y calcular el valor presente.
+
+\subsection{Capital de trabajo}
+
+Inversión que sirve para financiar los desfases que normalmente se producirán entre la generación de los ingresos y la ocurrencia de los egresos.
+
+Puede estar compuesto de inversiones y recuperos intermedios de capital de trabajo. por ejemplo:
+
+\begin{itemize}
+	\item Productos estacionales
+	\item Proyectos con curva de arranque
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|} \hline
+		- Caja operativas \\
+		- Créditos a clientes \\
+		- Inventarios (MP, PP, PT) \\ \hline
+		+ Deudas con proveedores    \\ \hline
+		= Capital de trabajo operativo \\ \hline
+	\end{tabular}
+\caption{Cálculo de capital de trabajo operativo}
+\end{table}
+
+
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\linewidth]{fig/working_capital_example.png}
+	\caption{}
+	\label{fig:working_capital_example}
+\end{figure}
+
+
+
+\subsection{Costo financiero total (CFT)}
+
+Es el costo efectivo de la financiación. Si no hay pagos extraordinarios ni comisiones es igual a la TEA.
+
+\[
+	CFT =  1 + (1+TIR)^{m}
+\]
+
+
+
+
 \end{document}
