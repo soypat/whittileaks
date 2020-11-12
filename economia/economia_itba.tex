@@ -125,7 +125,7 @@ citecolor=red]{hyperref}
 
 \newpage
 \part{Primer Parcial}
-\subsection{Crecimiento económico}
+\section{Crecimiento económico}
 % TODO: \usepackage{graphicx} required
 \begin{figure}[htb!]
 	\centering
@@ -396,9 +396,9 @@ Términos de contabilidad:
 	\item[Inversiones no corrientes.] Liquidaciones en mas de 1 año.
 	\item[Bienes de cambio] Productos terminados. En recesión aumenta (disminuyen ventas, se acumula stock). En demanda disminuye.
 	\item[Creditos por ventas] Lo que los clientes deben por mercaderia u otros conceptos a pagar en $<$ 1 año
-	\item[Bienes de uso.] Maquinaria, equipos, vehiculos, edificios. Es igual al costo menos las amortizaciones acumuladas (pérdida de valor)
+	\item[Bienes de uso.] Maquinaria, equipos, vehiculos, edificios. Es igual al costo menos las amortizaciones acumuladas (pérdida de valor y costo de instalación y puesta en marcha)
 	\item[Deudas comerciales.] Contraídas con los proveedores
-	\item[Fondo de maniobra o Capital de Trabajo.] La parte del activo que permanece. $K_T=$Pasivo no corriente + PN - Activo no corriente
+	\item[Fondo de maniobra o Capital de Trabajo.] La parte del activo corriente que no es financiado con pasivo corriente. $K_T$ = Act.Corr. - Pas.Corr. = Pasivo no corriente + PN - Activo no corriente
 	\item[Capital de trabajo operativo]  Necesidades operativas de fondo. Activos corrientes operativos - Pasivos corrientes operativos.
 \end{description}
 
@@ -406,6 +406,8 @@ Calculo de amortizaciones:
 \[
 A = \frac{\text{Valor Original - Valor residual contable}}{\text{Vida útil}}
 \]
+se puede incluir la instalación y puesta en marcha de una maquina en la amortización.
+
 
 \begin{table}[h]
 	\centering
@@ -510,7 +512,7 @@ La liquidez es de interes a los proveedores, sobre todo los que prestan dinero o
 \subsection{Rentabilidad}
 \begin{description}
 	\item[ROE] Rentabilidad del PN $=\frac{UN}{PN}$
-	\item[ROA] Rentabilidad operativa $=\frac{EBIT}{A}$
+	\item[ROA] Rentabilidad operativa $=\frac{EBIT}{Activo}$
 	\item[Márgen(sobre las rentas)]:
 	\begingroup
 	\small
@@ -556,11 +558,11 @@ Exclusivo de empresas públicas que cotizan en bolsa.
 \subsection{Relaciones entre índices}
 Conocidas también como las ecuaciones de Dupont.
 \begin{IEEEeqnarray*}{rCl}
-	ROA = \frac{EBIT}{A} = \underbrace{\frac{EBIT}{V}}_{Mar.Op.}\cdot\underbrace{\frac{V}{A}}_{Rot.~de~Act.}
+	ROA = \frac{EBIT}{Act} = \underbrace{\frac{EBIT}{V}}_{Mar.Op.}\cdot\underbrace{\frac{V}{Act}}_{Rot.~de~Act.}
 \end{IEEEeqnarray*}
 
 \begin{IEEEeqnarray*}{rCl}
-ROE = \frac{UN}{PN} = \frac{EBIT}{V}\cdot \underbrace{\frac{V}{A}}_{Mar.Op.}\cdot\underbrace{\frac{A}{PN}}_{Endeud.}\cdot \frac{EBT}{EBIT}\cdot \underbrace{\frac{UN}{EBT}}_{Apalanc.Fiscal}
+ROE = \frac{UN}{PN} = \frac{EBIT}{V}\cdot \underbrace{\frac{V}{Act}}_{Mar.Op.}\cdot\underbrace{\frac{Act}{PN}}_{Endeud.}\cdot \frac{EBT}{EBIT}\cdot \underbrace{\frac{UN}{EBT}}_{Apalanc.Fiscal}
 \end{IEEEeqnarray*}
 
 \subsection{Ciclo operativo y ciclo de caja}
@@ -909,7 +911,7 @@ Puede estar compuesto de inversiones y recuperos intermedios de capital de traba
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\linewidth]{fig/working_capital_example.png}
-	\caption{}
+	\caption{Ejemplo resuelto de cálculo de capital de trabajo.}
 	\label{fig:working_capital_example}
 \end{figure}
 
@@ -924,6 +926,93 @@ Es el costo efectivo de la financiación. Si no hay pagos extraordinarios ni com
 \]
 
 
+\section{Ejercicios Segundo Parcial}
+\subsection{Ejercicio Valor Tiempo del Dinero} \label{ej:VTDprestamo}
+\textit{Le prestan \$100, cobrandole una comisión por \$2 en el acto. Debe devolver en dos cuotas, una a fin de cada año de \$50 c/u y además paga un interés anual nominal del 20\%, pagadero semestralmente. Cuál es el costo de la deuda (\% anual)? Dato útil para tanteos: 11\% semestral}
+
+Comenzamos haciendo el flujo de caja del prestamo sabiendo lo siguiente:
+
+\[
+	TES = TNA/2= 10\% , \qquad 
+\]
+
+\begin{table}[htb!]	
+	\caption{Del ejercicio \ref{ej:VTDprestamo}.
+		Se comienza suponiendo que el método de pago es el francés, es decir que las cuotas son constantes (C=10\%P).
+		La deuda a saldar comienza siendo \$100, por ende el interés semestral es igual a $TES\cdot10\%=\$10$. Luego del pago de \$50 a fin de año la deuda a saldar es tan solo \$50 y el interés es afectado y se convierte en \$5. Se obtienen los flujos de fondo a valor futuro y para llevarlos a su valor present neto se usa la fórmula del VAN obteniendosé así un decremento neto de \$1.82 del valor presente de la plata. }
+	\begin{tabular}{l|lllll}
+	\textbf{año/sem} & \textbf{0} & \textbf{1/1} & \textbf{1/2} & \textbf{2/1} & \textbf{2/2} \\
+	Prestamo       & 100        &              &              &     &     \\
+	Comision         & -2         &              &              &     &     \\
+	Capital          &            &              & -50          &     & -50 \\
+	Interes          &            & -10          & -10          & -5  & -5  \\\hline
+	FF               & 98         & -10          & -60          & -5  & -55 \\ \hline
+	VAN:              &  -\$1.82  &    TIR:           &      10.83\%        &   CFT:  & 22.83\%   
+	\end{tabular}	
+\end{table}
+
+\subsection{Ejercicio Cuadro de resultados}\label{ej:inversion_planta_cuadro}
+
+Se planea invertir para la fabricación de cierto producto. Se tienen los siguientes datos:
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.95\linewidth]{fig/ejercicio_inversion_planta.png}
+	\caption{Datos}
+	\label{fig:ejercicio_inversion_planta}
+\end{figure}
+
+El primer paso es construir el cuadro de resultados suponiendo que las ganancias son EBITDA. Las amortizaciones son $A=\frac{\text{Val.Orig. - VResid.Contable}}{VU} = \frac{1000-400}{10}$, el EBIT es una proporción (30\%) del EBIT en este caso.
+
+\begin{table}[htb!]
+	\centering
+	\caption{Cuadro de resultados \textbf{operativos} para el ejercicio \ref{ej:inversion_planta_cuadro}}
+	\begin{tabular}{l|lll}
+	\textbf{año} & \textbf{0} & \textbf{1} & \textbf{2} \\ \hline
+	EBITDA       & 550        & 550        & 550        \\
+	A            & -60        & -60        & -60        \\ \hline
+	UAIG o EBIT         & 490        & 490        & 490        \\
+	IG           & -147       & -147       & -147       \\ \hline
+	UN           & 343        & 343        & 343       
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\centering
+	\caption{Cuadro de resultados \textbf{extraordinarios} para el ejercicio \ref{ej:inversion_planta_cuadro}. Se ven incluidos los flujos para bienes de uso y para capital de trabajo.}
+	\begin{tabular}{l|l||l|l}
+	\textbf{año} & \textbf{3} & \textbf{año} & \textbf{3}\\ \hline
+	VM BU        & 800    & VM WK  & 80 \\
+	VL BU        & -820   & VL WK  & -100  \\ \hline
+	Ut Ext BU    & -20    & Ut Ext WK & -20   \\
+	IG           & 6      & IG  & 6  \\ \hline
+	\end{tabular}
+\end{table}
+
+Una vez hechos los cuadros de resultados se pueden entonces calcular los flujos efectivos operativos, que van a ser idénticos para todos los años:
+\begin{gather*}
+	FEO_{\text{asc}} = UN+A = 403, \quad FEO_{\text{desc}} = V-C-G-IG = 403 \\
+	FEO_{\text{fiscal}} = (V-C-G)\cdot(1-tax) + A\cdot tax = 403
+\end{gather*}
+
+Los bienes de uso se venden y se genera un flujo extraordinaro de bienes de uso (VM BU): 806\$, y el VM WK: \$86.
+
+Llegado a este punto se puede calcular el VAN y aceptar o rechazar el proyecto.
+
+\begin{table}[htb]
+	\centering
+	\caption{Ejercicio \ref{ej:inversion_planta_cuadro}. El VAN es positivo, se acepta el proyecto.}
+	\begin{tabular}{l|llll}
+	\textbf{año} & \textbf{0} & 1      & 2      & 3      \\ \hline
+	FEO          &            & 403    & 403    & 403    \\
+	FEE BU       &            &        &        & 806    \\ 
+	FEE WK       &            &        &        & 86     \\
+	Inv BU       & -1000      &        &        &        \\
+	Inv WK       & -100       &        &        &        \\ \hline
+	FF           & -1100      & 403    & 403    & 1295   \\
+	VA c/u       & -1100      & 366.36 & 333.06 & 972.95 \\ \hline
+	VAN          & 572.37     &        &        &       
+	\end{tabular}
+\end{table}
 
 
 \end{document}
