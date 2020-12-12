@@ -77,7 +77,7 @@ Los átomos que no fueron agregados intencionalmente sino que provienen de algun
     \end{axis}
 \end{tikzpicture}
 
-\caption{Fuerzas que intervienen en una unión iónica. El punto donde la fuerza neta cruza el eje $x$ se denomina la distancia de equilibrio $d_0$ y es la distancia nominal entre átomos en un material. Este punto coincide con el mínimo de energía de la unión.}
+\caption{Fuerzas que intervienen en una unión iónica. El punto donde la fuerza neta cruza el eje $x$ se denomina la distancia de equilibrio $d_0$ y es la distancia nominal entre átomos en un material. Este punto coincide con el mínimo de energía de la unión. Recordar que $F = - \frac{\textrm{d} U}{\textrm{d} x}$}.
 
 \label{fig:curvas_condonmorse}
 
@@ -165,8 +165,8 @@ Hay tres tipos de dislocaciones
 
 \begin{description}
     \item[Dislocación de borde] La presencia de un plano de átomos incompleto produce este tipo de dislocación. El vector de Burger es perpendicular a la linea de dislocación.
-    \item[Dislocación de hélice] Al querer hacer un circuito cerrado alrededor de la linea de dislocación se produce un desplazamiento que recuerda el paso de un tornillo/hélice. Su presencia aparenta ser causa de una fuerza de cizallamiento. El vector de Burger es paralelo a la linea de dislocación.
-    \item[Dislocación mixta] Ocurre cuando la misma linea de dislocación de borde sigue para generar una dislocación de hélice (o vice-versa)  
+    \item[Dislocación de hélice] Al querer hacer un circuito cerrado alrededor de la linea de dislocación se produce un desplazamiento que recuerda el paso de un tornillo/hélice. Su distorsión ocasionada genera una tensión local de corte.  El vector de Burger es paralelo a la linea de dislocación.
+    \item[Dislocación mixta] Ocurre cuando la misma linea de dislocación de borde sigue para generar una dislocación de hélice (o vice-versa)
 \end{description}
 
 Las dislocaciones juegan un papel fundamental en la deformación plástica de los metales y en el endurecimiento que la misma produce, como veremos más adelante.
@@ -175,5 +175,43 @@ Las dislocaciones juegan un papel fundamental en la deformación plástica de lo
 
 Un borde de grano define el límite entre dos porciones de material con la misma estructura cristalina y composición pero de \textbf{diferente orientación}. No es lo mismo que una interfase.
 
+\begin{description}
+    \item[Monocristal] Es un material metálico con una única orientación de su red cristalina. En cualquier zona de ese material siempre se encuentra que la red cristalina está orientada de la misma forma.
+    \item[Policristal] Material metálico en el qué existen zonas con diferente orientación de la red cristalina. Cada uno de estos sectores se denomina \textbf{grano del policristal} y tiene una orientación única de la red. \textit{La casi totalidad de materiales metálicos usados en la ingeniería son policristales debido al proceso de solidificación que favorece la formación de granos.}
+\end{description}
 
-Un monocristal es un material metálico con una única orientación de su red cristalina.
+El borde de grano es un defecto superficial que en general
+
+\begin{itemize}
+    \item Endurece el metal
+    \item Hace descender la temperatura de transición dúctil-frágil
+    \item Facilita la segregación. Zona de concentración preferencial de ciertas impurezas debido a la alta energía de un borde de grano
+    \item Sitios preferenciales de transformación de fase. Muy relacionado a tratamientos térmicos
+\end{itemize}
+
+es por esto que la \textbf{reducción del tamaño de grano} es uno de los objetivos fundamentales en muchas aplicaciones de los metales.
+
+Existen también los \textbf{bordes de subgranos}, llamado también borde de pequeño ángulo debido a que la desorientación entre los dos granos no supera los $1.5^\circ$. Está asociado a la formación de una pared de dislocaciones sobre el borde de grano para bajar la energía libre cuando no se puede eliminar dislocaciones.
+
+
+\subsubsection{Superficie libre}
+
+Los átomos ubicados en la superficie libre de un cristal poseen mayor energía que los del interior debido a que no poseen átomos de la red enfrentados a ellos y que compensen la acción de los átomos del interior del cristal.
+
+
+\subsubsection{Interfases}
+
+Una \textbf{interfase} separa dos fases diferentes, a diferencia de un borde de grano que separa la misma fase. Las dos fases pueden diferenciarse en \textbf{composición química} y/o \textbf{estructura cristalina} (no es lo mismo que \textit{orientación} cristalina).
+
+La gran mayoría de los metales poseen varias fases y aún en pequeñas proporciones, ciertas fases pueden tener gran influencia en las propiedades del metal.
+
+Tipos de interfases:
+
+\begin{description}
+	\item[Interfase coherente] Cuando existe continuidad de los planos cristalinos entre ambas fases
+	\item[Interfase semi-coherente] Cuando existe continuidad entre algunos planos cristalinos entre ambas fases
+	\item[Interfase incoherente] No hay continuidad alguna de planos cristalinos entre ambas fases  
+\end{description}
+
+
+

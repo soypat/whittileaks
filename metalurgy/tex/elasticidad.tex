@@ -1,0 +1,45 @@
+\section{Comportamiento elástico}
+
+\subsection{Comportamiento elástico perfecto y anelasticidad}
+Si un material tiene \textbf{comportamiento elástico perfecto} entonces la \textit{deformación depende exclusivamente de la tensión}. En términos matemáticos existe una relación biunívoca entre la tensión y la deformación \eqref{eq:elasticidad}
+
+\begin{equation} \label{eq:elasticidad}
+	\varepsilon = f(\sigma)
+\end{equation}
+
+Consecuencias:
+\begin{itemize}
+	\item No hay deformación remanente
+	\item No hay dependencia de la deformación con el tiempo. Las deformaciones están en fase con las tensiones
+	\item No hay energía neta absorbida por el material (la deformación si tiene una energía asociada)
+\end{itemize}
+
+
+Los materiales cuya deformación depende del tiempo tienen \textbf{comportamiento elástico imperfecto o anelástico} \eqref{eq:anelasticidad}. Durante el ciclo de carga/descarga el material absorbe cierta energía, lo que contribuye a su capacidad de amortiguamiento. En metales a baja temperatura es despreciable el amortiguamiento anelástico.
+
+\begin{equation} \label{eq:anelasticidad}
+	\varepsilon = f(\sigma,t)
+\end{equation}
+
+El régimen elástico en metales es invariablemente pequeña ($\varepsilon$ menor a 5\%) y por eso se puede aproximar mediante una recta que tiene la pendiente de la fuerza neta de la curva Condon-Morse (figura \ref{fig:curvas_condonmorse}). La pendiente de esta curva se denomina el \textbf{módulo de Young} o constante elástica del material.
+
+\subsection{La elasticidad como propiedad}
+Algunos puntos a remarcar de la elasticidad
+
+\begin{description}
+	\item[Material] Depende del material y composición química
+	\item[Red cristalina] Hay diferentes módulos elásticos normales y transversales para una red cristalina dependiendo de la dirección (\textbf{anisotropía}). 
+	\item[Defectos vs. elasticidad] Las constantes elásticas son propiedades insensibles a la estructura de defectos del material y como tales \textbf{no son modificables mediante procesos} como la deformación plástica o tratamientos térmicos
+	\item[Prop. termodinámica] Depende de la temperatura y (en menor medida) la presión
+	\item[Monocristales] Al tener un monocristal se tiene el caso de anisotropía (diferentes módulos elásticos dependientes de la dirección). Puede haber grandes diferencias en diferentes direcciones
+	\item[Policristales y textura] La mayoría de los metales son policristales. Un \textbf{policristal no-texturado} tiene una gran cantidad de granos orientados al azar dando así un promedio único de las rigideces en todas las direcciones. Un \textbf{policristal texturado} la rigidez vuelve a ser una propiedad anisótropa pues hay una orientación preferencial de grano
+\end{description}
+
+
+
+\subsubsection{Rigidez intrínseca vs. estructural}
+
+Hasta ahora se habló de la rigidez de un material y como se relaciona a las curvas de Condon-Morse. Estas propiedades son insensibles a los cambios de la estructura. Esta rigidez se denomina \textbf{rigidez intrínseca}.
+
+La rigidez de una pieza o estructura depende de su geometría. Esta es la \textbf{rigidez estructural}. En general suele ser más efectivo cambiar la rigidez estructural (cambiar dimensiones/geometría de una pieza) a cambiar la rigidez intrínseca (material usado).
+
