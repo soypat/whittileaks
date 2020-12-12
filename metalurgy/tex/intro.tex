@@ -64,6 +64,7 @@ Los átomos que no fueron agregados intencionalmente sino que provienen de algun
         axis line style=<->,
         xlabel={$d$},
         ylabel={$U$},
+        title={Curvas de Condon-Morse},
         cycle list name=exotic,no marks
         ]
         \addplot expression[domain=.2:3.7,samples=100]{1/x} 
@@ -75,7 +76,11 @@ Los átomos que no fueron agregados intencionalmente sino que provienen de algun
         \addplot expression[domain=.5:3.7,samples=80]{-1/(x+.3)^5}  node[pos=.3,anchor=north west]{Repulsión de muy corto alcance};
     \end{axis}
 \end{tikzpicture}
+
 \caption{Fuerzas que intervienen en una unión iónica. El punto donde la fuerza neta cruza el eje $x$ se denomina la distancia de equilibrio $d_0$ y es la distancia nominal entre átomos en un material. Este punto coincide con el mínimo de energía de la unión.}
+
+\label{fig:curvas_condonmorse}
+
 \end{figure}
 
 \begin{itemize}
@@ -118,7 +123,57 @@ No posee planos de máxima compacidad. Los BCC poseen menor ductilidad y tenacid
 
 \subsection{Defectos cristalinos}
 
+Las estructuras cristalinas reales no son perfectas. Todas presentan anomalías o apartamientos en el ordenamiento de sus átomos. Cualquier anomalía/apartamiento del orden perfecto se denomina un \textbf{defecto cristalino}.
+
+Los defectos cristalinos son responsables por la diferencia entre la resistencia mecánica \textit{teórica} de los metales y la \textit{real}. A pesar de la reducción de resistencia teórica los defectos cristalinos tienen varios efectos positivos sobre las propiedades del metal (por ejemplo la capacidad de \textbf{deformar plásticamente} y capacidad de \textbf{endurecer} el metal)
+
+Algunos de estos defectos son termodinámicamente estables (hacen descender la energía libre de Gibbs $G$) y por lo tanto el metal tiende a generarlos naturalmente durante el proceso de fabricación. Otros en cambio son inestables y se generan durante el procesamiento (def. plástica, solidificación) y son difícil de eliminar.
+
+Todo defecto cristalino genera una \textbf{distorsión local en la red} a la cual está asociada una energía extra ya que los átomos vecinos no están en la posición de energía mínima ($d_0$ en las curvas de Condon-Morse, \ref{fig:curvas_condonmorse})
+
+Esta distorsión genera un campo de tensiones elásticas alrededor del defecto. En consecuencia los defectos pueden interactuar entre sí atrayéndose o repeliéndose. 
+
+\subsubsection{Defectos puntuales}
+Hay tres tipos de defectos puntuales:
+
+\begin{description}
+    \item[Átomo sustitucional] Son átomos cuyo tamaño es lo suficientemente grande como para ocupar un lugar de la red. Si son de menor tamaño al aleante principal entonces genera un campo de compresión, atrayendo los átomos alrededor. Los sustitucionales de mayor tamaño al aleante principal generan un campo de tracción.
+    \item[Átomo intersticial] Son lo suficientemente pequeños como para ocupar el espacio entre los nodos de la red provocando un campo de tracción. La distorsión que generan es muy grande y por ende la cantidad admitida por una red es muy pequeña. 
+    \item[Vacancia] La ausencia de un átomo en un nodo de la red se denomina vacancia. Son un defecto necesario para que ocurra la \textbf{difusión de átomos sustitucionales}.
+\end{description}
+
+\subsubsection{Influencia de átomos intersticiales}
+Los átomos intersticiales y los sustitucionales ambos aumentan la entalpía H pero también la entropía S. Por eso, para cada elemento y para estado termodinámico existe una concentración máxima del mismo que puede ser admitida en la red de un metal dado. A esta concentración máxima se denomina \textbf{solubilidad}.
 
 
+Debido a que tanto los elementos sustitucionales como los intersticiales bajan la energía libre de cualquier metal siempre que no pasen el límite de solubilidad, es difícil y costosa la obtención de metales de alta pureza (aplicaciones con necesidad de alta conductividad térmica/eléctrica). Por la misma razón es difícil evitar la contaminación de dichos metales durante su procesamiento o uso.
+
+Aún así, en la mayoría de las aplicaciones no se requiere metales de alta pureza sino aleaciones que generalmente tienen mejores propiedades. 
+
+En general lo átomos sustitucionales 
+\begin{itemize}
+    \item Endurecen el metal
+    \item Reducen la tenacidad
+    \item Disminuyen conductividad térmica/eléctrica
+\end{itemize}
 
 
+\subsubsection{Dislocaciones}
+
+Este tipo de defecto \textbf{no está en equilibrio termodinámico}. Cada dislocación tiene un \textbf{vector de Burger único}, que indica la dirección de viaje de la dislocación.
+Hay tres tipos de dislocaciones
+
+\begin{description}
+    \item[Dislocación de borde] La presencia de un plano de átomos incompleto produce este tipo de dislocación. El vector de Burger es perpendicular a la linea de dislocación.
+    \item[Dislocación de hélice] Al querer hacer un circuito cerrado alrededor de la linea de dislocación se produce un desplazamiento que recuerda el paso de un tornillo/hélice. Su presencia aparenta ser causa de una fuerza de cizallamiento. El vector de Burger es paralelo a la linea de dislocación.
+    \item[Dislocación mixta] Ocurre cuando la misma linea de dislocación de borde sigue para generar una dislocación de hélice (o vice-versa)  
+\end{description}
+
+Las dislocaciones juegan un papel fundamental en la deformación plástica de los metales y en el endurecimiento que la misma produce, como veremos más adelante.
+
+\subsubsection{Borde de grano}
+
+Un borde de grano define el límite entre dos porciones de material con la misma estructura cristalina y composición pero de \textbf{diferente orientación}. No es lo mismo que una interfase.
+
+
+Un monocristal es un material metálico con una única orientación de su red cristalina.
