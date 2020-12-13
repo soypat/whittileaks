@@ -20,7 +20,41 @@ Al aplicar una carga que produzca tensiones de corte adecuadas, se rompen los en
 
 Estas dislocaciones interactúan entre sí y defectos puntuales debido a la distorsión local de la red. La distorsión genera tensiones de compresión, tracción o corte, generando así atracción y repulsión entre defectos.
 
-\subsection[Planos y direcciones de deslizamiento]{Planos y direcciones de deslizamiento -- Tensión crítica }
+\subsection[Sistemas de deslizamiento]{Sistemas, planos y direcciones de deslizamiento -- Tensión crítica }
+
+
+El deslizamiento o cizallamiento en un metal se produce sólo sobre ciertos planos cristalinos y en determinadas direcciones cristalinas contenidas en dichos planos. Cada familia de planos y direcciones posee una determinada distribución de átomos. La \textbf{mínima} tensión de corte necesaria para provocar el deslizamiento en determinado plano y dirección se llama {\it \bf tensión de corte crítica}. {\it Aquellos planos donde la tensión crítica sea mínima serán los preferenciales para que ocurra la deformación plástica.}
+
+Tal vez le resulte poco intuitivo al lector, pero los planos de \textbf{tensión crítica mínima son los planos de alta densidad}. Esto es porque el recorrido de la dislocación es menor (vector de Burger es menor).
+
+La combinación de un plano de alta densidad y una dirección de alta densidad se lo denomina \textbf{sistema de deslizamiento}. {\it En un policristal, los sistemas de deslizamiento que están alineados con la máxima tensión de corte son los que actúan y dan luz a la deformación plástica.}
+
+\begin{description}
+	\item[Redes FCC y HCP] Tienen planos y direcciones de máxima densidad denominados \textbf{compactos}. Estos forman los sistemas de deslizamiento de estas redes.
+	\item[Red BCC] Contienen \textbf{direcciones compactas} pero \textbf{no planos compactos}, sin embargo hay varias familias de planos de alta densidad que contienen a la dirección compacta. Estos conforman los sistemas de deslizamiento de la red BCC.  
+\end{description}
+
+
+\subsubsection{Máxima tensión de corte en un ensayo de tracción} \label{sssec:max_corte_ensayotraccion}
+En una probeta sometida a tracción se puede aplicar una transformación de ejes para obtener el corte $\tau$ en un nuevo sistema $(x_\theta, y_\theta)$ a un ángulo $\theta$. Partiendo de la suposición de un estado de tensiones planos se tiene:
+\footnote{Se suele hablar de la ley de Schmid aquí también, la cual tiene la forma: $\tau = \sigma \cos \theta \cos \chi$}
+
+\begin{equation} \label{eq:plane_stress_transform}
+	\tau_{x_\theta y_\theta} = - \left( \frac{\sigma_{xx} - \sigma_{yy}}{2} \right) \sin 2\theta + \tau_{xy} \cos 2 \theta
+\end{equation}
+
+Para el estado de tensiones de un ensayo de tracción 
+
+\begin{equation}
+	\sigma_{xx} = \tau_{xy} = 0,\qquad \sigma_{yy} = \frac{F}{S_0} 
+\end{equation}
+donde $F$ es la fuerza de tracción y $S_0$ es la sección nominal de la probeta. La tensión de corte se maximiza para $\theta =  45^\circ$.
+
+\subsubsection{Microplasticidad}
+
+Siguiendo la lógica de la sección \ref{sssec:max_corte_ensayotraccion}, en un policristal la deformación plástica va comenzar con los granos que tienen su sistema de deslizamiento alineado con con el ángulo a $45^\circ$ de la tracción. El resto de los granos seguirán en el rango elástico pues la tensión de corte sobre sus sistemas de deslizamiento no llegó a la tensión crítica. Este fenómeno se denomina \textbf{microplasticidad}, pues el material sigue estando en su rango elástico (si se retiran las cargas, la pieza vuelve a su forma y dimensión original.
+
+
 
 
 
