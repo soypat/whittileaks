@@ -72,9 +72,66 @@ Además del cizallamiento entre planos de alta densidad, existe un mecanismo alt
 	\item[HCP] Tienen solo 3 sistemas de deslizamiento por lo que es muy difícil encontrar alguno bien orientado para deslizar. Estos metales son los de \textbf{mayor tendencia a maclar}
 \end{description}
 
+\subsection{Mecanismos de endurecimiento}
 
-\subsection{Endurecimiento por deformación en frío}
+Existen 4 formas principales de dificultar el movimiento de las dislocaciones y así elevar la tensión de fluencia.
 
-Durante la deformación plástica, las dislocaciones se mueven en varios sistemas de deslizamiento, interactuando entre sí debido a los campos de tensiones. Muchas de estas dislocaciones ven su movimiento dificultado por otras dislocaciones e incluso algunas se ``traban''. A partir de estas interacciones se generan \textbf{fuentes de dislocaciones} las cuales aumentan la cantidad de dislocaciones por unidad volúmen. 
+\begin{itemize}
+	\item Deformación plástica en frío
+	\item Reducción del tamaño de grano
+	\item Solución sólida
+	\item Partículas precipitadas
+\end{itemize}
 
-Esto se convierte en un ciclo que se realimenta positivamente con las nuevas dislocaciones generadas tendiendo a anclarse más frecuentemente por la densidad de dislocaciones que solo aumenta. A medida que aumente la densidad de dislocaciones, también aumentará la dificultad en moverlas. Esto conlleva con un aumento en la tensión necesaria para deformar el metal plásticamente. Esto es conocido como el \textbf{endurecimiento por deformación en frío}.
+
+\subsubsection{Endurecimiento por deformación en frío}
+
+Durante la deformación plástica, las dislocaciones se mueven en varios sistemas de deslizamiento, interactuando entre sí debido a los campos de tensiones. Muchas de estas dislocaciones ven su movimiento dificultado por otras dislocaciones e incluso algunas se ``traban''. A partir de estas interacciones se generan \textbf{fuentes de dislocaciones} las cuales aumentan la cantidad de dislocaciones por unidad volumen. 
+
+Esto se convierte en un ciclo que se realimenta positivamente con las nuevas dislocaciones generadas tendiendo a anclarse más frecuentemente por la densidad de dislocaciones que solo aumenta. A medida que aumente la densidad de dislocaciones, también aumentará la dificultad en moverlas. Esto conlleva con un aumento en la tensión necesaria para deformar el metal plásticamente (\textbf{aumento de tensión de fluencia}). Esto es conocido como el \textbf{endurecimiento por deformación en frío}.
+
+Puntos a remarcar del endurecimiento en frío:
+\begin{itemize}
+	\item Más económico para endurecer
+	\item Solo para piezas de sección pequeña y simple (ej. alambres, chapas finas, tubos de pared delgada, flejes)
+	\item Por arriba de cierta temperatura se pierde el endurecimiento
+\end{itemize}
+
+\subsubsection{Reducción de tamaño de grano}
+Los bordes de grano son barreras para las dislocaciones. Cuanto menor sea el tamaño de grano, mayor será la dificultad para mover las dislocaciones. Esto se refleja en la ley de Hall-Petch \eqref{eq:hall_petch}
+
+\begin{equation}\label{eq:hall_petch}
+	R_{p0,2} = \sigma_0 + \frac{k}{\sqrt{d}}
+\end{equation}
+donde $d$ es el tamaño de grano, $\sigma_0$ es la resistencia en el interior del grano y $k$ es una constante que indica el ``poder endurecedor'' de los bordes de grano de la aleación. En general es mayor en aleaciones principalmente BCC que en aleaciones principalmente FCC.
+
+La principal ventaja de este mecanismo es que también \textbf{disminuye la temperatura de transición dúctil-frágil}.
+
+\subsubsection{Endurecimiento por solución sólida}
+
+La presencia de átomos de soluto en la red de un elemento cualquiera provoca un aumento en la resistencia al movimiento de las dislocaciones. Los átomos intersticiales endurecen mucho más que los sustitucionales. Dentro de los sustitucionales aquellos cuyo tamaño más difiera de los átomos de la red son los que más endurecen.
+
+
+\subsubsection{Endurecimiento por precipitación de partículas}
+
+Cuando mediante una determinada composición química y un adecuado tratamiento térmico o termomecánico, se logra que en el metal precipite en forma homogénea una alta fracción de partículas pequeñas se obtiene un gran aumento en la tensión de fluencia. El tamaño de las partículas tiene que ser suficientemente pequeño para dificultar el movimiento de las dislocaciones.
+
+\subsection{Fluencia discontinua -- Banda de Lüders}
+
+En algunas pocas aleaciones metálicas (aceros de bajo carbono ferríticos) la \linebreak transición entre la zona elástica y la plástica es discontinua. Aparece una zona donde las carga de tracción experimenta fluctuaciones y la probeta se estira algunos puntos porcentuales. Durante este fenómeno la probeta (si fue previamente pulida) comienza a mostrar ``bandas'' donde se localiza la deformación.
+
+Cuando se llega al fin de la zona de fluencia (fin de etapa de fluctuaciones) estas bandas desaparecen.
+
+\subsubsection{Causa de la aparición de la zona de fluencia}
+Debido a la interacción de los campos de tensiones de los defectos cristalinos, los átomos intersticiales se ven atraídos hacia la parte inferior de las dislocaciones de borde y generan una ``atmósfera'' a lo largo de toda la línea de la dislocación. Esta se denomina \textbf{atmósfera de Cotrell}. Se dice que los átomos intersticiales anclan las dislocaciones. Para comenzar a mover las dislocaciones se debe aplicar una tensión alta para ``arrancarlas'' de sus respectivas atmósferas. Una vez liberadas (desanclaje), la tensión necesaria para que continúen moviéndose es menor. Esto explica las ondulaciones de la carga en la zona de fluencia.
+
+Puntos a remarcar de la zona de fluencia
+
+\begin{itemize}
+	\item Temperaturas altas aumentan velocidad de átomos intersticiales hacia la atmósfera de Cotrell
+	\item La tensión de fluencia para un material con zona de fluencia es considerada como el mínimo obtenido durante la zona de fluencia.
+	\item Se intenta evitar tener las bandas de Lüder (marcas de estiramiento) en un producto final cuando es importante el aspecto estético. No tienen efecto sobre las propiedades del material.
+	\item Se puede evitar las marcas de estiramiento deformando  la pieza más allá de su zona de fluencia. En chapas para embutido se aplica una pasada de laminación ($\varepsilon \approx 2\%$) denominada  ``skin pass'' o  ``temper rolling''
+	\item Si se deja pasar mucho tiempo desde el ``skin pass'' o bien se somete a una temperatura superior a la del ambiente entonces los átomos intersticiales difundirán hacia las dislocaciones anclandolas, produciendo la zona de fluencia nuevamente y además \textbf{reduciendo fuertemente la ductilidad del material}. Se denomina \textbf{envejecimiento por deformación}. Se puede prevenir agregando elementos al acero que retengan el nitrógeno (átomo intersticial) formando nitruros (Aluminio, Titanio). Se puede aprovechar el fenómeno de envejecimiento por deformación mediante un proceso llamado \textbf{bake hardening steels}.
+\end{itemize}
+
