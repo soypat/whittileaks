@@ -52,9 +52,29 @@ donde $F$ es la fuerza de tracción y $S_0$ es la sección nominal de la probeta
 
 \subsubsection{Microplasticidad}
 
-Siguiendo la lógica de la sección \ref{sssec:max_corte_ensayotraccion}, en un policristal la deformación plástica va comenzar con los granos que tienen su sistema de deslizamiento alineado con con el ángulo a $45^\circ$ de la tracción. El resto de los granos seguirán en el rango elástico pues la tensión de corte sobre sus sistemas de deslizamiento no llegó a la tensión crítica. Este fenómeno se denomina \textbf{microplasticidad}, pues el material sigue estando en su rango elástico (si se retiran las cargas, la pieza vuelve a su forma y dimensión original.
+Siguiendo la lógica de la sección \ref{sssec:max_corte_ensayotraccion}, en un policristal sometido al ensayo de tracción la deformación plástica va comenzar con los granos que tienen su sistema de deslizamiento alineado con con el ángulo a $45^\circ$ de la tracción. El resto de los granos seguirán en el rango elástico pues la tensión de corte sobre sus sistemas de deslizamiento no llegó a la tensión crítica. Este fenómeno se denomina \textbf{microplasticidad}, pues el material sigue estando en su rango elástico (si se retiran las cargas, la pieza vuelve a su forma y dimensión original. Cuando la casi totalidad de los granos ha comenzado a deformar plásticamente, recién se puede detectar macroscópicamente la deformación plástica.
+
+La microplasticidad juega un rol importante en la \textbf{fatiga}, un fenómeno caracterizado por la nucleación de fisuras a una tensión mucho menor que la de fluencia.
+
+En el ensayo de tracción se define la tensión de fluencia en forma convencional (deformación remanente del 0,2\%).
+
+\subsubsection{Deformación por maclado}
+
+Además del cizallamiento entre planos de alta densidad, existe un mecanismo alternativo para la deformación plástica llamado \textbf{maclado}. Este mecanismo requiere \textbf{mucha energía} y la \textbf{deformación a la que puede conducir es muy limitada}, lo cual lo deja en un puesto de poca importancia con respecto al cizallamiento.
 
 
 
 
 
+\begin{description}
+	\item[BCC] Por debajo de una temperatura o a altas velocidades de deformación, el \textbf{maclado comienza a dominar en metales BCC}. 
+	\item[FCC] Los metales FCC poseen varios sistemas de deslizamiento y por lo tanto no suelen maclar por deformación, pero si pueden maclar durante la recristalización del metal, denominado \textbf{maclas de recocido}.
+	\item[HCP] Tienen solo 3 sistemas de deslizamiento por lo que es muy difícil encontrar alguno bien orientado para deslizar. Estos metales son los de \textbf{mayor tendencia a maclar}
+\end{description}
+
+
+\subsection{Endurecimiento por deformación en frío}
+
+Durante la deformación plástica, las dislocaciones se mueven en varios sistemas de deslizamiento, interactuando entre sí debido a los campos de tensiones. Muchas de estas dislocaciones ven su movimiento dificultado por otras dislocaciones e incluso algunas se ``traban''. A partir de estas interacciones se generan \textbf{fuentes de dislocaciones} las cuales aumentan la cantidad de dislocaciones por unidad volúmen. 
+
+Esto se convierte en un ciclo que se realimenta positivamente con las nuevas dislocaciones generadas tendiendo a anclarse más frecuentemente por la densidad de dislocaciones que solo aumenta. A medida que aumente la densidad de dislocaciones, también aumentará la dificultad en moverlas. Esto conlleva con un aumento en la tensión necesaria para deformar el metal plásticamente. Esto es conocido como el \textbf{endurecimiento por deformación en frío}.
