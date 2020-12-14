@@ -54,7 +54,35 @@ A menor tamaño de grano antes de la deformación, la recristalización se acele
 
 Para que la recristalización ocurra debe existir una energía mínima acumulada en el metal en forma de defecto, de lo contrario no habrá suficiente energía para la nucleación de nuevos granos. La deformación plástica mínima necesaria para que ocurra la recristalización se denomina \textbf{deformación crítica}.
 
+La deformación crítica no sólo depende, sino también de la forma en que se deforme el metal (tracción, torsión, compresión, etc) y oscila entre 2 y 20\%.
+
+A mayor deformación aplicada al metal (siempre que supere la crítica), es menor el tamaño de grano recristalizado pues existen más sitios para la nucleación de granos nuevos. 
+
+Dependiendo de la deformación aplicada, el tamaño de grano puede ser mayor o menor que el tamaño de grano original.
+
+\subsection{Crecimiento de grano}
+
+Una vez finalizada la recristalización el material queda con baja entalpía libre $G$. Sin embargo aún queda la posibilidad de seguir disminuyendo la misma si se reducen la cantidad de borde de grano.
+
+Si hay suficiente temperatura y tiempo entonces el \textbf{tamaño promedio de grano aumenta}. A diferencia del crecimiento de grano durante la recristalización, este proceso tiene como fuerza impulsora la energía acumulada en los bordes de grano. Por ende, este crecimiento de grano puede ocurrir aún si no hay deformación previa existente (la cual era la fuerza impulsora para la recristalización)!
+
+Este proceso elimina los granos pequeños (borde de grano con curvatura alta=energía alta) mientras que aumentan los granos grandes (energía baja).
+
+Este crecimiento trae algunos inconvenientes
+
+\begin{itemize}
+	\item Disminución de la tensión de fluencia (ley Hall-Petch \eqref{eq:hall_petch})
+	\item Baja la tenacidad y sube la temperatura de transición dúctil-frágil
+	\item Afecta otras propiedades como la susceptibilidad a la fisuración por temple
+\end{itemize}
+debido a esto se intenta evitar el crecimiento de grano. Se debe tener un control muy preciso de la temperatura y tiempo a la cual es recocido el metal.
+
+Cuando en el metal existe una \textbf{dispersión fina y homogénea de partículas de otra fase}, entonces estas interfieren con el movimiento de los bordes de grano efectivamente ralentizando el crecimiento. Se llega a un tamaño de grano límite o de equilibrio que está dado por 
+
+\begin{equation}
+	d_{\max} = \frac{4 r}{3 f}
+\end{equation}
+donde $d_{\max}$ es el tamaño de grano que estará en equilibrio con una fracción en volumen $f$ de partículas de tamaño promedio $r$. Esto logra controlar el tamaño máximo del grano incluso a altas temperaturas.
 
 
-
-
+\subsection{Recocido de recristalización}
