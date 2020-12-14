@@ -1,0 +1,104 @@
+\section{Solidificación (incompleto)}
+
+La solidificación comienza con una nucleación y le sigue la etapa de crecimiento.
+
+La \textbf{nucleación} es la formación de un conjunto de átomos con la estructura de la fase sólida y con un tamaño tal que su crecimiento sea estable. Puede ser:
+
+\begin{description}
+	\item[Homogénea] Los núcleos aparecen en el seno de la fase L. Sólo se produce bajo ciertas condiciones controladas en un laboratorio
+	\item[Heterogénea] Los núcleos se producen en contacto con una fase sólida preexistente, sea el molde que contiene la fase L (liquida) o un agente nucleante
+\end{description}
+
+
+Luego de la nucleación, la solidificación prosigue mediante el flujo neto de átomos de la fase L que atraviesan la interfase y se suman al sólido adoptando posiciones en su estructura cristalina. Esta etapa está comandada tanto por la fuerza impulsora como por la frecuencia con que los átomos atraviesan la interfase.
+
+\subsection{Difusión en fase sólida}
+
+La difusión en los sólidos es el movimiento neto de átomos desde las regiones donde esos átomos se encuentran en alta densidad hacia aquellas donde están en baja concentración. 
+
+Cabe destacar que aún en ausencia de un gradiente de concentración hay movimiento de átomos a través de un mecanismo de \textbf{intercambio de posición con las vacancias}. Este mecanismo depende de la temperatura y es aleatorio y por ende no hay flujo neto de átomos.
+
+Los átomo intersticiales difunden mucho más rápido que los sustitucionales ya que no necesitan vacancias.
+
+
+La primer ley de Fick: el flujo de masa en una difusión unidireccional es proporcional al gradiente de concentración
+
+\begin{equation}
+	J_x = - D \frac{\partial c}{\partial x}
+\end{equation}
+esta ley es valida para cuando el gradiente de concentración no varía en el tiempo. $J_x$ es el flujo másico, $D$ es el coeficiente de difusión del soluto en la red del solvente.
+
+
+La segunda ley de Fick: Considera el caso más general en que el gradiente de concentración varía con el tiempo
+
+\begin{equation}
+	\frac{\partial c_x}{\partial t} = D \frac{\partial^2 c_x}{\partial x ^2}
+\end{equation}
+
+A partir de la resolución de la segunda ley de Fick se puede deducir que la distancia $x$ que puede recorrer un determinado soluto en la red del solvente en un tiempo $t$ es 
+
+\begin{equation}
+	x \approx \sqrt{Dt}
+\end{equation}
+
+El coeficiente $D$ depende fuertemente de T según
+
+\begin{equation}
+	D = D_0 \cdot e^{-\frac{Q}{k_B T}}
+\end{equation}
+donde $D_0$ es una constante, $Q$ es la energía de activación para la difusión, y $k_B$ es la constante de Boltzmann. Consecuentemente, la difusión crece exponencialmente con $T$.
+
+\subsection{Solidificación en equilibrio}
+
+A medida que solidifica una aleación, el sólido generado por átomos que cruzan la interfase del L son en la mayor parte átomos del aleante con la mayor temperatura de fusión. Esto significa que la concentración de la fase L va cambiar su concentración y por ende el metal que solidifique último va tener una diferente concentración al que solidificó primero. 
+
+Esto se puede prevenir si se enfría \textbf{muy lentamente}, de tal forma que la difusión en fase sólida actúe y entre en equilibrio con la fase L, esto se denomina \textbf{solidificación en equilibrio}. \textit{Dado que el coeficiente de difusión en el sólido  es muy bajo para la mayoría de los solutos aún a altas temperaturas, la solidificación no ocurre en equilibrio y por ende las composiciones del sólido y de la fase L no son homogéneas.}
+
+\subsection{Defectos a causa de la solidificación fuera de equilibrio}
+
+\subsubsection{Segregación -- Micro y macro}
+
+Al acercarse al fin de la solidificación, la última fracción de liquido queda muy enriquecida en el soluto de menor punto de fusión y solidifica dando un sólido con una concentración mucho mayor del mismo. La inhomogenidad de composición respecto al resto del material se denomina \textbf{segregación}. 
+
+\begin{description}
+	\item[Microsegregación] Se refiere a cuando la diferencia en composición se da entre puntos cuya distancia es del orden del tamaño de la microsestructura. Segregación hacia los bordes de grano. Los bordes de grano van contener más concentración del aleante con menor punto de fusión con respecto al centro
+	\begin{itemize}
+		\item Segregación interdendrítica
+		\item Segregación en bordes de granos
+	\end{itemize} 
+	\item[Macrosegregación] Se refiere a cuando la diferencia en composición se da entre puntos cuya distancia es del orden del lingote o pieza. En un lingote es común que haya una zona de rechupe, aquí va estar presente la macrosegregación en aleantes.
+\end{description}
+
+Una de las consecuencias de la microsegregación es el fibrado mecánico
+
+\subsubsection{Rechupe}
+Es necesario eliminar los rechupes. Este acto se denomina \textbf{despunte}. Se puede reducir el efecto del gradiente térmico que genera el rechupe usando \textbf{mazarotas} o con \textbf{cabeza caliente}
+
+
+\subsubsection{Microrechupes}
+
+El rechupe puede dar en forma local cuando el liquido en las zonas interdendríticas queda aislado del resto del liquido remanente y por lo tanto al solidificar y contraerse no llega liquido para compensar dicha contracción. Quedan pequeños huecos en las zonas interdendríticas que se denominan \textbf{microrechupes}.
+
+Se pueden eliminar durante el conformado en caliente, al igual que la porosidad/microporosidad. Si no va haber un pos-procesado en caliente es necesario diseñar un sistema adecuado de alimentación o cambiar la geometría de la pieza (aumentar sección) para evitar el microrechupe
+
+
+\subsection[Porosidad]{Defecto de solidificación -- Porosidad}
+Son ocasionados por los gases disueltos en el material. Al solidificar la pieza pierde parte de su capacidad de disolver gases y estos forman poros esferoidales en la pieza. Reduce la ductilidad, tenacidad y resistencia a la fatiga pero es menos nociva que los microrechupes por su forma esferoidal.
+
+
+\subsection{Colada continua}
+
+Ventajas:
+
+\begin{itemize}
+	\item Mayor rendimiento metálico: se elimina el rechupe principal de los lingotes. Se aprovecha casi la totalidad del material
+	\item Mayor productividad: No es necesaria la etapa de laminación, se puede obtener casi cualquier perfil sin importar la sección, a diferencia de colada convencional
+	\item Mayor control sobre la estructura del lingote: La menor sección transversal de colada continua permite implementar técnica que refinan y mejoran la microestructura del lingote como la agitación magnética. Se puede evitar la necesidad de un recocido.
+\end{itemize}
+
+Desventajas
+
+\begin{itemize}
+	\item Mayor costo de capital
+	\item Limitación en el tamaño del lingote: presión metalostática es alta y puede romper las paredes de un lingote de sección ancha ya que este tarda en enfriar y aumentar su pared sólida mientras que aumenta la presión interior
+\end{itemize}
