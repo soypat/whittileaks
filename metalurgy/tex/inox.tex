@@ -1,9 +1,18 @@
 % !TeX spellcheck = es_ES
 % !TeX root = ../metalurgy.tex
 \part{Aceros inoxidables}
-Grupo de aceros de alta aleación diseñados para tener resistencia a la corrosión en un amplio rango de servicio (buena $R_m$ a altas temperaturas).
+Grupo de aceros de alta aleación diseñados para tener resistencia a la corrosión en un amplio rango de servicio y alta resistencia en un rango amplio de temperaturas.
 
 Las aplicaciones principales de estos aceros son en plantas generadoras de energía, centrales hidráulicas, plantas petroquímicas, industria farmacéutica, piezas de maquinas, arquitectura (decoración), aplicaciones marítimas.
+
+Se pueden clasificar en dos tipos principales
+\begin{description}
+	\item[Austeníticos] Son los aceros inoxidables de mayor uso debido a la combinación de sus propiedades mecánicas y su alta resistencia a la corrosión
+	\item[Ferríticos] Se usan mucho menos que los austeníticos pero poseen algunas ventajas como menor costo y mayor resistencia a la corrosión bajo tensión
+	\item[Martensíticos] Son los de mayor resistencia mecánica pero menor resistencia a la corrosión
+	\item[Duplex o austenoferríticos] Son el tercer grupo más utilizado , poseen buena combinación de propiedades mecánicas y resistencia a la corrosión
+	\item[Endurecibles por precipitación] Comprenden a los Austeníticos, semiausteníticos y martensíticos  
+\end{description}
 
 \section{Corrosión}
 Deterioro de un material por la acción química del medio que lo rodea. A excepción de los nobles, los metales son termodinámicamente inestables al contacto con el aire y forman óxidos. Si la reacción es ``lenta"{} (desde un punto de vista cinético) la corrosión puede llegar a aceptarse. Si es ``rápida"{} y limita la vida del componenta surgen problemas de costo y fiabilidad mecánica.
@@ -12,32 +21,38 @@ Deterioro de un material por la acción química del medio que lo rodea. A excep
 \begin{description}
 	\item[Generalizada] A nivel macroscópico, la superficie es atacada uniformemente. Es predecible y controlable. Se puede prevenir si se diseña con un sobre-espesor uniforme. El daño es proporcional a la cantidad de material removido.
 	\item[Localizada] Daño localizado progresa rápido. Resulta difícil predecir, controlar y detectar. El daño puede ser muy grande aunque la cantidad de material sea mínima. Es muy problemático. A continuación se tienen 4 tipos de corrosión localizada:
-	\begin{description}
-		\item[Picado/Pitting] Promovido por la presencia de iones $Cl^{-1}$, alta temperatura y baja velocidad de circulación del fluido. Si la capa pasivante se rompe localmente y no se forma rápido otra la corrosión avanza y se genera pozos en forma de túneles que pueden perforar el material en corto tiempo aumentando el riesgo de avance de fisura por fatiga.
-		\item[Rendijas] Se da en zonas donde el fluido no llega a circular. Cuando se consume el oxigeno, se localiza la corrosión en la rendija. Evitable con buen diseño de pieza, reduciendo iones de cloro y reduciendo la temperatura
-		\item[Bajo tensión] Puede dar lugar  fallas catastróficas a partir de fisuración provocada por la combinación del \textbf{medio} y \textbf{tensión de tracción}. Em general la fisura rompe por fractura frágil. Los aceros inoxidables austeníticos y martensiticos son los más susceptibles
-		\item[Granular] Asociada a fenómeno de precipitación de carburos ricos en Cr en los bordes de grano de las microestructuras.
-	\end{description}
+	      \begin{description}
+		      \item[Picado/Pitting] Promovido por la presencia de iones $Cl^{-1}$, alta temperatura y baja velocidad de circulación del fluido. Si la capa pasivante se rompe localmente y no se forma rápido otra la corrosión avanza y se genera pozos en forma de túneles que pueden perforar el material en corto tiempo aumentando el riesgo de avance de fisura por fatiga. El Cromo, Molibdeno y nitrógeno aumentan la resistencia al picado según el \textbf{índice de picado}: $IP=\% \textrm{Cr} + 3,3\% \textrm{Mo} + X \%\textrm{N}$,  donde $X$ es 0\footnote{El nitrógeno es prácticamente insoluble en la ferrita a temperatura ambiente.}, 16 o 30 para inoxidables ferríticos, duplex o austeníticos, respectivamente. 
+		      \item[Rendijas] Se da en zonas donde el fluido no llega a circular debido a la geometría/orientación de la pieza. Cuando se consume el oxigeno se forma una \textbf{celda de aereación diferencial} entre la rendija y el resto de la superficie metálica. Evitable con buen diseño de pieza, reduciendo iones de cloro y reduciendo la temperatura. El Molibdeno mejora la resistencia ante este tipo de corrosión.
+		      \item[Bajo tensión] Puede dar lugar  fallas catastróficas a partir de fisuración provocada por la combinación del \textbf{medio} y \textbf{tensión de tracción}. Em general la fisura rompe por fractura frágil. Los aceros inoxidables austeníticos y martensiticos son los más susceptibles. Los aceros austeníticos y martensíticos son los más susceptibles. Hay dos tipos de SCC (Stress corrosion cracking) más conocidos
+		      \begin{description}
+				  \item[SCC Fisuración transgranular ramificada] Producido por soluciones con \textbf{cloruros} a temperatura mayor a 60\grad. Agravado por mayor cantidad de cloruros, deformación plástica previa, mayor temperatura y un pH entre 3 y 8.
+				  \item[SCC Fisuración intergranular] Causado por soluciones cáusticas de no menos de 20\% concentración a alta temperatura (>130\grad)
+			  \end{description}
+		      \item[Granular] Asociada a fenómeno de precipitación de carburos ricos en Cr en los bordes de grano de las microestructuras.
+	      \end{description}
 \end{description}
 
 
 \subsection{Pasividad}
 La pasivación de un metal se refiere a la formación de una delgada capa de óxido al ser sometido a un diferencial de potencial ($\Delta V$) mayor al potencial de pasivación. Esta capa aísla al metal del medio y hace que disminuya la velocidad de corrosión en varios ordenes de magnitud. Para que sea efectiva la capa esta debe ser fina, continua, no porosa, insoluble en el medio, y debe poder regenerarse rápidamente al ser dañada (ralladura, mecanizado). 
 
-Ek aluminio, por ejemplo, no es electronegativo pero es fuertemente pasivado. El hierro puede pasivarse pero a un alto $\Delta V$. La inclusión de cromo (Cr) en un 12\% o más hace que el metal pueda oxidarse fácil
+El aluminio, por ejemplo, no es electronegativo pero es fuertemente pasivado. El hierro puede pasivarse pero a un alto $\Delta V$. La inclusión de cromo (Cr) en un 12\% o más hace que el metal pueda oxidarse fácil
 
 \subsubsection*{Variables en la estabilidad de la capa pasivante}
 \begin{description}
 	\item[Composición química del acero] Factor principal es el contenido de Cr (12\% mínimo) para pasivar con soluciones acuosas neutras. En general la heterogeneidades (segregaciones, precip. de carburos) hacen que disminuya la estabilidad.
-	\item[Composición del medio] Los inoxidables se pasivan solo cuando el medio es altamente oxidante (acuosos, $HNO_3$). La presencia de iones de halógenos es la principal razón por fallas. Estos iones desestabilizan y generan Pitting. Un medio básico (pH) es más estabilizante para una capa pasivante.
-	\item[Variables operativas] En general, la resistencia a la corrosión disminuye con el aumento de la temperatura. La velocidad relativa entre el medio y la superficie afecta la formación de la capa. A mayor velocidad hay mayor aporte de $O_2$, aumentando la velocidad de oxidación.
+	\item[Composición del medio] Los inoxidables se pasivan solo cuando el medio es altamente oxidante (acuosos, $HNO_3$). La presencia de iones de halógenos (CL$^{-1}$) desestabilizan la capa pasivante generando corrosión localizada y son es la principal razón por fallas. Un medio básico (pH alto) es más estabilizante para una capa pasivante.
+	\item[Variables operativas] En general, la resistencia a la corrosión disminuye con el aumento de la temperatura. La velocidad relativa entre el medio y la superficie afecta la formación de la capa. A mayor velocidad hay mayor aporte de $O_2$, aumentando la velocidad de oxidación y estabilidad de la capa (mientras que no haya fenomeno de erosión--corrosión). Una velocidad alta de circulación puede también prevenir que decanten partículas que catalizen la corrosión.
 	\item[Factores de diseño] La presencia de rendijas o alta rugosidad crean zonas que favorecen la oxidación localizada.
 \end{description}
 
 \section{Aceros inoxidables austeníticos}
 Se trata del grupo de aceros inoxidables que mejor combina propiedades mecánicas y tecnologías con resistencia a la corrosión a precio razonable. Constituyen 70\% de la producción total de aceros inoxidables. 
 
-La composición típica de un acero austenítico inoxidable:
+
+
+El Cromo es un elemento alfágeno y consecuentemente no podrían existir aceros inoxidables austeníticos con Cr solamente. Es necesario recurrir a un elemento \textbf{gamágeno}. La composición típica de un acero austenítico inoxidable :
 \begin{description}
 	\item[Cr] 16 a 30\%
 	\item[Ni] 8 a 30\%
@@ -46,23 +61,28 @@ La composición típica de un acero austenítico inoxidable:
 	\item[C] Menor de 0,1\%
 \end{description}
 
-\subsubsection*{Elección de gamágeno}
+\subsection{Ventajas de una estructura FCC}
+El costo de obtener un acero inoxidable austenítico puede ser justificado según
+\begin{itemize}
+	\item La gran ductilidad y baja tensión de fluencia por poseer 12 sistemas de deslizamiento. Se traduce en una alta capacidad para el conformado plástico, especialmente en frío.
+	\item Los metales monofásicos FCC no poseen \Tdf~ (transición dúctil-frágil) y además poseen alta tenacidad, la cual conservan a hasta bajas temperaturas ideal para aplicaciones criogénicas.
+	\item Estructura FCC es inherentemente más resistente a la fluencia a alta temperatura (creep) debido a la menor energía de falla de apilamiento comparado a estructura BCC.
+	\item Intersticiales tienen mayor solubilidad y menor difusividad. Esto ralentiza la precipitación de carburos ricos en Cr y en ciertas condiciones lo evita. Estos carburos deterioran la resistencia a la corrosión como veremos
+	\item En sistema Fe-Ni-Cr la estructura FCC es amagnética.
+\end{itemize}
+
+
+
+\subsection*{Elección de gamágeno}
 El Cr es un elemento alfágeno, entonces se necesita de un gamágeno para estabilizar la austenita a temperatura ambiente.
 \begin{description}
 	\item[C] Debe ser bajo porque favorece la precipitación de carburos de Cr, lo cual favorece la corrosión
 	\item[N] No se usa ya que no estabiliza la austenita hasta bajas temperaturas
-	\item[Mn] Se usa en casi todos los austeníticos pero no es el gamágeno principal. EStabiliza la austenita a temperatura ambiente pero no baja tanto $M_s$
-	\item[Ni] Estabiliza austenita hasta bajas temperaturas. Baja la $M_s$ (reduciendo la formación de martensita, cosa indeseable), mejora la tenacidad y aumenta la resistencia a la corrosión. A mayor cantidad de Cr, Mo y otros alfágenos se requiere de mayor Ni para balancear.
+	\item[Mn] Se usa en casi todos los austeníticos pero no es el gamágeno principal. Estabiliza la austenita a temperatura ambiente pero no baja tanto $M_s$. La austenita rica en Mn no posee tan buenas propiedades mecánicas como el sistema Fe-Ni.
+	\item[Ni] Estabiliza austenita hasta bajas temperaturas. Baja la $M_s$ (reduciendo la formación de martensita, cosa indeseable), mejora la tenacidad y aumenta la resistencia a la corrosión. A mayor cantidad de Cr, Mo y otros alfágenos se requiere de mayor Ni para balancear la estructura y lograr que sea austenítica.
 \end{description}
 
-\subsubsection*{Ventajas de la estructura FCC}
-\begin{itemize}
-	\item Ductilidad y baja $R_{p0,2}$. Alta capacidad de deformación en frío
-	\item No hay transición dúctil frágil, alta tenacidad
-	\item Resistencia al fenómeno del creep (fluencia a altas temperaturas)
-	\item Los intersticiales tienen más solubilidad y menor difusividad. El Cr precipita más lento
-	\item Amagnética
-\end{itemize}
+
 
 A temperatura ambiente un acero inoxidable austenítico contiene muy poca martensita por el $M_s$ bajo, poca ferrita y algunos carburos.
 
