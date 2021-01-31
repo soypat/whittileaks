@@ -1,3 +1,4 @@
+%!TeX spelling=es_AR
 \section{Transformaciones de fase en estado sólido}
 
 Se trata de transformaciones en las que solo intervienen fase sólidas, a diferencia de la solidificación que es la transformación de la fase líquida.
@@ -52,11 +53,24 @@ Se trata de una transformación de fase en la que aparece una nueva fase a parti
 \subsubsection{Envejecimiento por precipitación}
 Al comienzo de la precipitación se pierde dureza porque se consume la solución sólida para generar el precipitado. A medida que sigue la precipitación este comienza a dominar y se obtiene un endurecimiento notable por precipitación. 
 
-Si se deja pasar suficiente tiempo ocurre el \textbf{sobre-envejecimiento}. A partir de cierto tamaño de precipitado las dislocaciones tienden a rodear el precipitado en vez de cortarlo. Cuando sucede esto se generan lazos de dislocaciones alrededor de las partículas precipitadas. Las partículas se vuelven más gruesas (aumenta $r$) y hay más distancia entre ellas (aumenta $d$) así perdiendo la dureza.
+Si se deja pasar suficiente tiempo ocurre el \textbf{sobre-envejecimiento} (zona III de la figura \ref{fig:orowan}). A partir de cierto tamaño de precipitado las dislocaciones tienden a rodear el precipitado en vez de cortarlo debido al a. Cuando sucede esto se generan lazos de dislocaciones alrededor de las partículas precipitadas. A partir de este punto el endurecimiento pasa a ser inversamente proporcional a la distancia promedio entre partículas. Esto es conocido como el \textbf{mecanismo de Orowan}.
+  Las partículas se vuelven más gruesas (aumenta $r$) y hay más distancia entre ellas (aumenta $d$) así perdiendo la dureza.
+ 
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{fig/orowan.eps}
+	\caption{Mecanismo de envejecimiento por precipitación. Las etapas corresponden a la curva negra sólida. La curva verde punteada representa un envejecimiento a una temperatura menor.}
+	\label{fig:orowan}
+\end{figure}
 
+Las etapas de la figura \ref{fig:orowan} son enumeradas abajo. Se indica la relación de tensión a avance de dislocaciones con $\Delta \sigma$ donde $f$ es la fracción en volumen de partículas, $r$ el tamaño promedio de partícula y $d$ es la distancia promedio entre partículas. $\Delta \sigma$ es proporcional al aumento de dureza del material.
 
-
+\begin{description}
+	\item[I] Al comienzo del proceso el soluto difunde así permitiendo la precipitación. La difundición significa que se pierde la dureza aportada por solución sólida. $\Delta \sigma = \frac{f}{d}$
+	\item[II]  Durante esta etapa el precipitado empieza a aportar dureza. El precipitado es fino y por ende las dislocaciones cortan las partículas. El endurecimiento es proporcional a la fracción en volumen y al tamaño promedio de las partículas. $\Delta \sigma = f \cdot r$
+	\item[III] El precipitado se convierte suficientemente grueso al transcurrir tiempo como para que comienze a dominar el mecanismo de Orowan. $\Delta \sigma = \frac{1}{r\cdot d}$
+\end{description}
 
 
 

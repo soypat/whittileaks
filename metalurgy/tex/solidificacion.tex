@@ -14,7 +14,7 @@ Luego de la nucleación, la solidificación prosigue mediante el flujo neto de �
 
 \subsection{Difusión en fase sólida}
 
-La difusión en los sólidos es el movimiento neto de átomos desde las regiones donde esos átomos se encuentran en alta densidad hacia aquellas donde están en baja concentración. 
+La difusión en los sólidos es el movimiento neto de átomos desde las regiones donde esos átomos se encuentran en alta densidad hacia aquellas donde están en baja concentración.
 
 Cabe destacar que aún en ausencia de un gradiente de concentración hay movimiento de átomos a través de un mecanismo de \textbf{intercambio de posición con las vacancias}. Este mecanismo depende de la temperatura y es aleatorio y por ende no hay flujo neto de átomos.
 
@@ -35,7 +35,7 @@ La segunda ley de Fick: Considera el caso más general en que el gradiente de co
 	\frac{\partial c_x}{\partial t} = D \frac{\partial^2 c_x}{\partial x ^2}
 \end{equation}
 
-A partir de la resolución de la segunda ley de Fick se puede deducir que la distancia $x$ que puede recorrer un determinado soluto en la red del solvente en un tiempo $t$ es 
+A partir de la resolución de la segunda ley de Fick se puede deducir que la distancia $x$ que puede recorrer un determinado soluto en la red del solvente en un tiempo $t$ es
 
 \begin{equation}
 	x \approx \sqrt{Dt}
@@ -50,7 +50,7 @@ donde $D_0$ es una constante, $Q$ es la energía de activación para la difusió
 
 \subsection{Solidificación en equilibrio}
 
-A medida que solidifica una aleación, el sólido generado por átomos que cruzan la interfase del L son en la mayor parte átomos del aleante con la mayor temperatura de fusión. Esto significa que la concentración de la fase L va cambiar su concentración y por ende el metal que solidifique último va tener una diferente concentración al que solidificó primero. 
+A medida que solidifica una aleación, el sólido generado por átomos que cruzan la interfase del L son en la mayor parte átomos del aleante con la mayor temperatura de fusión. Esto significa que la concentración de la fase L va cambiar su concentración y por ende el metal que solidifique último va tener una diferente concentración al que solidificó primero.
 
 Esto se puede prevenir si se enfría \textbf{muy lentamente}, de tal forma que la difusión en fase sólida actúe y entre en equilibrio con la fase L, esto se denomina \textbf{solidificación en equilibrio}. \textit{Dado que el coeficiente de difusión en el sólido  es muy bajo para la mayoría de los solutos aún a altas temperaturas, la solidificación no ocurre en equilibrio y por ende las composiciones del sólido y de la fase L no son homogéneas.}
 
@@ -58,14 +58,24 @@ Esto se puede prevenir si se enfría \textbf{muy lentamente}, de tal forma que l
 
 \subsubsection{Segregación -- Micro y macro}
 
-Al acercarse al fin de la solidificación, la última fracción de liquido queda muy enriquecida en el soluto de menor punto de fusión y solidifica dando un sólido con una concentración mucho mayor del mismo. La inhomogenidad de composición respecto al resto del material se denomina \textbf{segregación}. 
+Al acercarse al fin de la solidificación de una aleación, la última fracción de liquido queda muy enriquecida en el soluto de menor punto de fusión y solidifica dando un sólido con una concentración mucho mayor del mismo. La inhomogenidad de composición respecto al resto del material se denomina \textbf{segregación}.
+
+La segregación se puede evitar mediante un proceso de enfriado extremadamente lento que de tiempo para la difusión y, consecuentemente, la homogeneización de la composición del sólido. Para las velocidades de procesos industriales no hay tiempo para que ocurra la difusión en fase sólida y por lo tanto cada fracción de sólido queda aproximadamente con la composición que ha solidificado a partir del líquido. Esta composición está comandada por el \textbf{coeficiente de partición} \eqref{eq:coefpart}
+
+\begin{equation} \label{eq:coefpart}
+	k = \frac{C_s}{C_l}
+\end{equation}
+
+el coeficiente de partición depende principalmente del espacio entre la curva liquidus y solidus del diagrama de fase. Cuanto más espacio haya entre las dos, más agravado será la segregación para la aleación.
+
+
 
 \begin{description}
 	\item[Microsegregación] Se refiere a cuando la diferencia en composición se da entre puntos cuya distancia es del orden del tamaño de la microsestructura. Segregación hacia los bordes de grano. Los bordes de grano van contener más concentración del aleante con menor punto de fusión con respecto al centro
-	\begin{itemize}
-		\item Segregación interdendrítica
-		\item Segregación en bordes de granos
-	\end{itemize} 
+	      \begin{itemize}
+		      \item Segregación interdendrítica
+		      \item Segregación en bordes de granos
+	      \end{itemize}
 	\item[Macrosegregación] Se refiere a cuando la diferencia en composición se da entre puntos cuya distancia es del orden del lingote o pieza. En un lingote es común que haya una zona de rechupe, aquí va estar presente la macrosegregación en aleantes.
 \end{description}
 
