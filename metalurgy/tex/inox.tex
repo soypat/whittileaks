@@ -73,20 +73,48 @@ El costo de obtener un acero inoxidable austenítico puede ser justificado segú
 
 
 
-\subsection*{Elección de gamágeno}
+\subsection{Elección de gamágeno}
 El Cr es un elemento alfágeno, entonces se necesita de un gamágeno para estabilizar la austenita a temperatura ambiente.
 \begin{description}
 	\item[C] Debe ser bajo porque favorece la precipitación de carburos de Cr, lo cual favorece la corrosión
 	\item[N] No se usa ya que no estabiliza la austenita hasta bajas temperaturas
 	\item[Mn] Se usa en casi todos los austeníticos pero no es el gamágeno principal. Estabiliza la austenita a temperatura ambiente pero no baja tanto $M_s$. La austenita rica en Mn no posee tan buenas propiedades mecánicas como el sistema Fe-Ni.
-	\item[Ni] Estabiliza austenita hasta bajas temperaturas. Baja la $M_s$ (reduciendo la formación de martensita, cosa indeseable), mejora la tenacidad y aumenta la resistencia a la corrosión. A mayor cantidad de Cr, Mo y otros alfágenos se requiere de mayor Ni para balancear la estructura y lograr que sea austenítica.
+	\item[Ni] Estabiliza austenita hasta bajas temperaturas. Baja la $M_s$ (reduciendo la formación de martensita, cosa indeseable), mejora la tenacidad y aumenta la resistencia a la corrosión. A mayor cantidad de Cr, Mo y otros alfágenos se requiere de mayor Ni para balancear la estructura y lograr que sea austenítica. La desventaja principal es su \textbf{costo} elevado.
 \end{description}
 
-
+El acero inoxidable en el cual todos los demás están basados tiene la composición 18\% Cr -- 8\% N -- 0,15\% C y algo de Mn. A temperatura ambiente este acero tendría una estructura parcialmente austenítica con algo de ferrita y además carburos de Cromo. La austenita no transforma a martensita pues la $M_s$ es muy baja a consecuencia del contenido de aleantes, en particular el Ni.
 
 A temperatura ambiente un acero inoxidable austenítico contiene muy poca martensita por el $M_s$ bajo, poca ferrita y algunos carburos.
 
-\subsubsection{Precipitación de carburos de Cromo}
-El \%C disminuye la temperatura a la cual precipitan los carburos del Cromo y la ralentiza. Los carburos de Cromo nuclean en los borde de grano y bordes de maclas de la austenita. Alrededor de los carburos queda una zona empobrecida en Cr, lo cual lleva a la \textbf{sensibilización}.
+\subsection{Precipitación de carburos de Cromo}
+El \%C aumenta la temperatura a la cual precipitan los carburos del Cromo y la acelera. Los carburos de Cromo nuclean en los borde de grano y bordes de maclas de la austenita. Alrededor de los carburos queda una zona empobrecida en Cr, lo cual lleva a la \textbf{sensibilización}. El impacto se debe al alto contenido de Cromo por carburo M$_{23}$C$_6$ (+70\% en peso).
 
-La sensibilización da origen a la corrosión intergranular y ocurre frecuentemente en aceros austeníticos ya que cuando hay un proceso de alta temperatura el carbono se disuelve y re-precipita al enfriarse.
+La sensibilización da origen a la \textbf{corrosión intergranular} y ocurre frecuentemente en aceros austeníticos ya que cuando hay un proceso de alta temperatura el carbono se disuelve y re-precipita al enfriarse.
+ralentiza. 
+
+\subsubsection{Causas}
+Cualquier proceso que someta al acero a altas temperaturas y posteriormente \textbf{no lo enfrie suficientemente rápido} como para evitar la precipitación de carburos de Cromo, conducirá a un estado sensibilizado. El grado de sensibilización dependerá del contenido de C del acero y la velocidad de enfriamiento.
+
+\begin{itemize}
+	\item Soldadura
+	\item Tratamientos térmicos
+	\item Solidificación
+	\item Conformado en caliente
+\end{itemize}
+
+\subsubsection{Métodos para revertir la sensibilización}
+
+\begin{description}
+	\item[Temple de solución o Hipertemple] Temperatura entre 1010 y 1120\grad y luego un medio de enfriamiento que aporte la velocidad necesaria para prevenir precipitación de carburos de Cr. Limitado por espesor de pieza y distorsión permisible
+\end{description}
+
+
+\subsubsection{Métodos para prevenir la sensibilización}
+
+\begin{description}
+	\item[Disminución de \%C]  Grados de aceros 304L, 316L de bajo C ($\leq0,03\%$C) tienen un efecto notable comparado a sus contrapartes 304 y 316 ($\approx 0,08\%$C). La disminución del C retrasa la precipitación y disminuyen su cantidad. Bajo ciertas condiciones estos grados pueden ser soldados sin necesidad de un tratamiento de temple de solubilización posterior. Por otro lado la disminución del C permite aplicar el temple de solución facilmente si fuera necesario. Muy usado en piezas de alto grosor. 
+	\item[Agregado de elementos estabilizadores] Nb, Ti, Ta. Grados \textbf{AISI 321, 347 y 348}. Estos elementos forman carburos facilmente y compiten con el Cr, así disminuyendo o evitando la precipitación de carburos de Cr. Para algunos grados se aplica un \textbf{tratamiento de estabilización} en el cual se calienta el acero en un rango de temperatura donde precipitan los carburos de los elementos estabilizadores y en cam,bio es lenta la precipitación de los carburos de Cr (850-900\grad varias horas)
+	\item[Composición química] La composición química de estos aceros posee una cantidad de Cr no menor al 16\%. A medida que se agrega Cr, o bien se agrega Mo, se mejora la resistencia a la corrosión y sensibilización. Sin embargo esto debe compensarse con una cantidad adecuada de Ni para poder obtener una estructura austenítica minimizando la presencia de ferrita $\delta$. El \textbf{C} se debe mantener bajo (usualmente <0,08\%) para disminuir la sensibilización. Los grados de bajo C poseen un máximo de 0,03\%. El \textbf{Ti, Nb y Ta} se usan en pequeñas proporciones como estabilizadores en algunos grados. El \textbf{Al, Si y Cu} se agregan en ciertos grados especiales para aumentar la resistencia a algún tipo de corrosión u oxidación en caliente. El \textbf{Mn} está presente en todos los grados (aproximadamente en un 2\%)   
+\end{description}
+
+\subsubsection{}
