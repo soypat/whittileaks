@@ -24,7 +24,7 @@ Deterioro de un material por la acción química del medio que lo rodea. A excep
 	      \begin{description}
 		      \item[Picado/Pitting] Promovido por la presencia de iones $Cl^{-1}$, alta temperatura y baja velocidad de circulación del fluido. Si la capa pasivante se rompe localmente y no se forma rápido otra la corrosión avanza y se genera pozos en forma de túneles que pueden perforar el material en corto tiempo aumentando el riesgo de avance de fisura por fatiga. El Cromo, Molibdeno y nitrógeno aumentan la resistencia al picado según el \textbf{índice de picado}: $IP=\% \textrm{Cr} + 3,3\% \textrm{Mo} + X \%\textrm{N}$,  donde $X$ es 0\footnote{El nitrógeno es prácticamente insoluble en la ferrita a temperatura ambiente.}, 16 o 30 para inoxidables ferríticos, duplex o austeníticos, respectivamente. 
 		      \item[Rendijas] Se da en zonas donde el fluido no llega a circular debido a la geometría/orientación de la pieza. Cuando se consume el oxigeno se forma una \textbf{celda de aereación diferencial} entre la rendija y el resto de la superficie metálica. Evitable con buen diseño de pieza, reduciendo iones de cloro y reduciendo la temperatura. El Molibdeno mejora la resistencia ante este tipo de corrosión.
-		      \item[Bajo tensión] Puede dar lugar  fallas catastróficas a partir de fisuración provocada por la combinación del \textbf{medio} y \textbf{tensión de tracción}. Em general la fisura rompe por fractura frágil. Los aceros inoxidables austeníticos y martensiticos son los más susceptibles. Los aceros austeníticos y martensíticos son los más susceptibles. Hay dos tipos de SCC (Stress corrosion cracking) más conocidos
+		      \item[Bajo tensión] Puede dar lugar  fallas catastróficas a partir de fisuración provocada por la combinación del \textbf{medio} y \textbf{tensión de tracción}. Em general la fisura rompe por fractura frágil. Los aceros inoxidables austeníticos y martensiticos son los más susceptibles. Los aceros austeníticos y martensíticos son los más susceptibles. Hay dos tipos de SCC (Stress  corrosión cracking) más conocidos
 		      \begin{description}
 				  \item[SCC Fisuración transgranular ramificada] Producido por soluciones con \textbf{cloruros} a temperatura mayor a 60\grad. Agravado por mayor cantidad de cloruros, deformación plástica previa, mayor temperatura y un pH entre 3 y 8.
 				  \item[SCC Fisuración intergranular] Causado por soluciones cáusticas de no menos de 20\% concentración a alta temperatura (>130\grad)
@@ -87,6 +87,7 @@ El acero inoxidable en el cual todos los demás están basados tiene la composic
 A temperatura ambiente un acero inoxidable austenítico contiene muy poca martensita por el $M_s$ bajo, poca ferrita y algunos carburos.
 
 \subsection{Precipitación de carburos de Cromo}
+\label{ssec:sensibilizacion}
 El \%C aumenta la temperatura a la cual precipitan los carburos del Cromo y la acelera. Los carburos de Cromo nuclean en los borde de grano y bordes de maclas de la austenita. Alrededor de los carburos queda una zona empobrecida en Cr, lo cual lleva a la \textbf{sensibilización}. El impacto se debe al alto contenido de Cromo por carburo M$_{23}$C$_6$ (+70\% en peso).
 
 La sensibilización da origen a la \textbf{corrosión intergranular} y ocurre frecuentemente en aceros austeníticos ya que cuando hay un proceso de alta temperatura el carbono se disuelve y re-precipita al enfriarse.
@@ -161,6 +162,94 @@ En estado recocido estos aceros tienen \textbf{muy buena formabilidad en frío}.
 
 
 \subsubsection{Soldabilidad}
+
+Los aceros inoxidable austeníticos son los de mejor soldabilidad entre los diferentes grupos de aceros inoxidables, sin embargo presentan dos problemas que son salvables con relativa facilidad.
+
+\begin{description}
+	\item[Sensibilización en la ZAC] Durante la soldadura por arco, una parte de la zona afectada por el calor (ZAC) se ve sometida a un ciclo térmico que hace precipitar M$_23$C$_6$ en los bordes de grano de la austenita causando el fenomeno de sensibilización
+	\item[Fisuración en caliente] Consiste en la aparición de \textbf{fisuras intergranulares o interdentríticas} tanto en la zona fundida como en la ZAC muy cercana a la línea de fusión. Se produce durante solidificación del cordón. Es producida por la contracción de la solidificación que tiende a separar partes sólidas del metal que están unidas por zonas o películas finas de metal que aún están en estado líquido. 
+\end{description}
+
+Es por la ZAC que se trata de soldar a los inox. austeníticos con procesos de soldadura que aporten baja cantidad de calor (TIG) y sin precalentamiento para aumentar la velocidad de enfriamiento. Como visto en la sección \ref{ssec:sensibilizacion}, los aceros de menor C evitan los problemas de la sensibilización aún con velocidades lentas de enfriamiento. Si la pieza a soldarse puede ser hipertemplada o sometida a tratamiento de recocido entonces se pueden usar los aceros inoxidables comunes.
+
+
+Respecto la fisuración en caliente, la presencia de \textbf{impurezas (S, P, Nb y Si)} que tienden a segregar hacia las zonas interdendríticas y que bajan la temperatura sólidus, aumenta el rango de solidificación, por lo que hacen que persista líquido hasta temperaturas bajas durante la solidificación \textbf{aumentando así el rango crítico para la fisuración}. Otros dos factores que influyen son el \textbf{calor aportado} y el \textbf{grado de restricción} del cordón de soldadura. Los procesos con más calor y más restricción generan más riesgo de fisuración en caliente.
+
+La solución para el problema de fisuración en caliente es la presencia de una \textbf{baja fracción de ferrita} $\delta$ en el cordón. Esto se controla mediante el balance entre los elementos gamágenos y alfágenos del líquido. En base al \textbf{diagrama de Schaeffler} y teniendo en cuenta su diliución con el metal base, para cada acero inoxidable austenítico se elige el material de aporte adecuado para obtener una cantidad de ferrita $\delta$ adecuada y así evitar la fisuración en caliente.
+
+El beneficio de la ferrita se debe a varios factores
+
+\begin{description}
+	\item[Solubilidad de impurezas] Ferrita captura y retiene las impurezas que aumentan el rango crítico para la fisuración
+	\item[Aumento de cantidad de interfases] Mayor nro de interfases significa menor cantidad de impurezas segregadas por interfaz
+	\item[Disminución de energía de interfaz] Bajo investigación.  
+\end{description}
+
+La presencia de ferrita $\delta$ trae algunos inconvenientes:
+\begin{itemize}
+	\item Disminuye la resistencia a la corrosión en ciertos medios
+	\item Disminuye la tenacidad
+	\item Ferrita transforma relativamente rápido a fase $\sigma$ durante el servicio a alta temperatura
+	\item Es magnética (y por ende, su presencia es medible mediante ferritómetros)
+\end{itemize}
+
+\subsubsection{Maquinabilidad}
+La alta tenacidad y ductilidad, baja dureza y gran tendencia a la adhesion, y baja conductividad térmica de los inoxidables austeníticos los hace difíciles de mecanisar. Se puede mejorar con la adición de \textbf{S y Se} a costo de  deteriorar la resistencia a la corrosión.
+
+\subsubsection{Precipitación de fases intermetálicas}
+Durante el servicio a \textbf{altas temperaturas} precipitan algunas fases que deterioran su ductilidad, tenacidad, resistencia a la ruptura por fluencia lenta y resistencia a la corrosión.
+
+La más común es la fase $\sigma$ que es de estructura tetragonal compleja y posee $\approx 50\%$ de Cr. Es una fase no magnetica y muy frágil (\textbf{reduce tenacidad} notablemente en pequeñas proporciones). Precipita en el rango 515 y 875\grad. Hay varias morfologías en la cual puede precipitar, la más nociva siendo láminas continuas en los bordes de grano. Su precipitación \textbf{es lenta}. Se necesitan desde decenas hasta varios miles de horas para que precipite, por ende termina siendo un problema de deterioro de propiedades durante servicio y no durante tratamientos térmicos.
+
+
+Los factores que influyen en precipitación de la fase $\sigma$
+\begin{itemize}
+	\item Aleantes Cr, Mo, Ti, Nb, Si, Al y P intensifican su precipitación. Influyen en el rango de composiciones y temperaturas que la fase es estable
+	\item Deformación plástica acelera precipitación
+	\item Presencia de ferrita $\delta$ pues transforma más rápido (a lo largo de horas) a $\sigma$.
+\end{itemize}
+
+Existen otras fases nocivas que tienen efecto fragilizante como $\chi$, $\eta$.
+
+\subsubsection{Resumen}
+Los aceros inoxidables austeníticos poseen muy buenaspropiedades mecánicas (a bajas y altas temperaturas), sin embargo su tensión de fluencia es baja. Exceptuando su baja maquinabilidad, sus propiedades tecnológicas son muy buenas, muy superiores a la de los aceros ferríticos o martensíticos. Su resistencia a la corrosión, en términos generales, es más alta que en los otros grupos de inoxidables, aunque su punto más débil es la resistencia a la corrosión bajo tensión. Sus propiedades físicas (conductividad térmica baja y alto coeficiente de dilatación) hacen que en su uso a alta temperatura puedan aparecer fenómenos de fatiga térmica o fatiga-creep.
+
+\section{Aceros Inoxidables Ferríticos}
+
+Estos aceros poseen dos ventajas frente a los austeníticos
+\begin{itemize}
+	\item No necesitan Ni (elemento gamágeno) para balancear estructura. Esto hace que a igualdad de Cr, los ferríticos sean más baratos que los austeníticos
+	\item Muy resistentes a la corrosión bajo tensión
+\end{itemize}
+A pesar de esto existen serios inconvenientes para su uso como materiales estructurales.
+
+\subsection{Sensibilización y fragilización}
+La menor solubilidad y mayor difusividad del C y N en la ferrita hacen que la precipitación de carburos y nitruros de Cr sea más intensa y más rápida. Esto conduce a la \textbf{sensiblización al igual que los inoxidables austeníticos}.
+
+\begin{itemize}
+	\item El problema de sensiblización es \textbf{mayor en aceros de menor contenido de Cr} pues la zona empobrecida queda con muy bajo contenido del elemento pasivante
+	\item El problema de fragilización es mayor en aceros de mayor Cr pues es menor la solubilidad de C y N.
+\end{itemize}
+
+\emph{Estos puntos ponen un límite para obtener aceros ferríticos de muy buena resistencia a la corrosión y que además sean dúctiles y tenaces}
+
+Ambos problemas aparecen en cualquier situación en la que el acero se encuentre a una temperatura donde los carburos y nitruros estén total o parcialmente disueltos y luego se enfríe. Un proceso muy utilizado en donde esto ocurre es la soldadura.
+
+\subsubsection{Soluciones}
+
+\begin{description}
+	\item[Bajar nivel de C y N]  Para evitar la precipitación se tiene que reducir el contenido C+N por debajo de 100ppm. Esto solo ha sido posible desde la decada 80 y ha dado origen a los costosos \textbf{aceros inoxidables ferríticos de extra bajo intersticiales (EBI)}. También llamados superferríticos. Solo es posible obtenerlos en productos de espesor pequeño.
+	\item[Tratamiento de solubilización y temple] Solo aplicable en aceros EBI debido a la velocidad de precipitación extremadamente alta de aceros ferríticos.
+	\item[Tratamiento de recocido] No se intenta evitar la precipitación. Se da tiempo para \textbf{el Cr difunda} y así elimine la zona empobrecida en Cr. Esto puede lograrse en el tratamiento de recocido donde le material pasa tiempo suficiente en el rango de precipitación. En este tratamiento 	también se logra engrosar los precipitados intragranulares y por 	ende se reduce la fragilización que causan
+\end{description}
+
+
+
+
+
+
+
+
 
 
 
