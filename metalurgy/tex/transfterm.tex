@@ -88,10 +88,12 @@ El movimiento cooperativo genera tensión y deformación en la fase madre. Esta 
 $M_s$ es la temperatura de inicio de la transformación martensítica. $M_f,M_{90}$ en principio es la temperatura a la que finaliza dicha transformación. Siempre queda una fracción de austenita muy resistente a la transformación y por ende nunca se puede realmente medir la temperatura de transformación total $M_f$.\footnote{En realidad se define $M_f$ como el límite de 99\% transformación martensítica (definida como fracción de volumen), la temperatura a la cual toda la austenita se convierte a martensita es sustancialmente menor a $M_f$ \cite{gottstein2013physical}.} El subíndice indica la fracción (sobre cien) de martensita producida.
 
 $M_s$ y $M_f$ dependen fuertemente de la composición química de la austenita, con excepción del Cobalto.
-\begin{equation}
+\begin{equation} \label{eq:ms_martensite}
     M_s=539-423\cdot \% \mathrm{C}-30,4\cdot \% \mathrm{M n}-12,1\cdot \% \mathrm{Cr}-17,7\cdot \% \mathrm{Ni}-7,5\cdot \% \mathrm{Mo}
 \end{equation}
 como se ve en la ecuación arriba, componentes químicos hacen bajar la temperatura del comienzo de la transformación de austenita. El nitrógeno también tiene un efecto similar al carbono. $M_f$ también baja con aumento de aleantes.
+
+Los diagramas CCT suelen mostrar un quiebre de la linea $M_s$, la cual a partir de cierta velocidad de enfriamiento \textit{disminuye}. Esto ocurre luego de comenzar a formarse fases con menor contenido de carbono por unidad volumen que la austenita sin transformar (ej. bainita). Esto consecuentemente aumenta la concentración de carbono en la austenita, así disminuyendo $M_s$ (ver ecuación \eqref{eq:ms_martensite}).
 
 \subsection[Temperatura {\it Md}]{Temperatura $M_d$}
 Por debajo de cierta temperatura denominada ($M_d> M_s$), la
