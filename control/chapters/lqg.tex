@@ -8,7 +8,7 @@ Si miramos al esquema de la figura \ref{fig:blockLQGfundamental} vemos que se co
 
 Si a la ecuación \eqref{eq:lqeerror} se le agregan los términos de perturbaciones y ruido se llega a la siguiente expresión
 \begin{IEEEeqnarray}{c}
-\dot{\error} = (\MA - \MK_f \MC) \error + \Cw - \MK_f \Cw_{\noise}
+\dot{\error} = (\MA - \MK_f \MC) \error + \Cw_{\disturb} - \MK_f \Cw_{\noise}
 \end{IEEEeqnarray}
 
 luego se puede armar el sistema para el LQG tomando como inputs las perturbaciones y ruidos
@@ -37,7 +37,7 @@ luego se puede armar el sistema para el LQG tomando como inputs las perturbacion
 \end{bmatrix}
 \end{IEEEeqnarray}
 
-\section{Regulador lineal cuadrático}
+\section{Regulador lineal cuadrático (LQR)}
 
 Hasta ahora hablamos de estimación de estados y de la idea de poder controlar un sistema realimentando un input que está en función del estado del sistema. Nos faltaría determinar cual es esta matriz $\MK_r$ que crea el input. Si uno conoce los mejores lugares para los autovalores del sistema $\MA,\MB$ y si el sistema es controlable entonces puede posicionar los autovalores donde desee. Usando \Matlab~
 \begin{lstlisting}
@@ -62,6 +62,37 @@ Si me intersa ver donde están los autovalores del LQR
 \begin{lstlisting}
 [avec,aval] = eigs(A-B*Kr)
 \end{lstlisting}
+
+
+\section[Filtro de Kalman]{Estimador lineal cuadrático (filtro de Kalman)}
+
+El filtro de Kalman es un estimador analogo al regulador lineal cuadrático. Ambos cumplen su función \textit{optimamente} dado un sistema lineal con perturbaciones y ruido Gaussiano e incluso se obtienen sus matrices respectivas resolviendo el mismo problema:  ecuaciones algebráicas de Riccati (ARE).
+
+Para armar un filtro de Kalman es necesario conocimiento previo de las perturbaciones en nuestro sistema y el ruido en nuestros sensores. Se precisa:
+
+\begin{description}
+    \item[$\Cw_{\disturb} \in \mathbb{R}^\dimss$] Perturbaciones (proceso Gaussiano)
+    \item[$\Mme{V}_{\disturb}\in \mathbb{R}^{\dimss\times\dimss}$] Covarianzas de las perturbaciones
+    \item[$\Cw_{\noise} \in \mathbb{R}^\dimout$] Ruido (proceso Gaussiano)
+    \item[$\Mme{V}_{\noise} \in \mathbb{R}^{\dimout\times\dimout}$] Covarianzas de los ruidos 
+\end{description}
+
+La relación entre las perturbaciones y el ruido van a definir el comportamiento del filtro. Si el ruido tiene una varianza muy alta comparado a las perturbaciones, entonces se confiará más en el modelo del sistema \eqref{eq:estimatorSystem1}. A la inversa, si el ruido en las mediciones es bajo pero existen fuentes de perturbaciones importantes el filtro confiará en sus mediciones \eqref{eq:estimatorSystem2}.
+
+Como vimos anteriormente, el estimador Kalman busca minimizar \eqref{eq:estimatorError}, especificamente el error cuadrático del mismo
+
+\begin{IEEEeqnarray}{c}
+    \Jcost = \mathbb{E} \left( (\Cx-\hat{\Cx})\tp \cdot (\Cx-\hat{\Cx}) \right)
+\end{IEEEeqnarray}
+donde $\mathbb{E}$ es el valor esperado. En \Matlab~ se obtiene la matriz $\MK_f$ usando la rutina \texttt{lqe}.
+
+\begin{lstlisting}
+    Kf = lqe(A, C, Vd, Vn)
+\end{lstlisting}
+
+La obtención de $\MV_{\noise}$ y $\MV_{\disturb}$ es problemática, en particular esta última. Los papers que tratan el tema suelen aludir al hecho que no existen formas simples de obtenerlos y que en la industria suelen usarse matrices diagonales para evitar el problema \cite{formentin2014insight}.
+
+Se recomienda armar la diagonal $\MV_{\noise}$ con las varianzas de los ruidos individuales, los cuales se pueden obtener de la datasheet del sensor o tomando mediciones del sistema en equilibrio y ahí usando la formula estadística para la varianza. Luego se recomienda simular el sistema con diferentes perturbaciones y hacer \textit{tuning} para llegar a una matriz $\MV_{\disturb}$ diagonal que resulte funcionar bien para el caso. 
 
 \section{Ejemplo de carro con péndulo}
 \subsection{Descripción del sistema}
