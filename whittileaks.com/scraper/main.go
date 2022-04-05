@@ -16,8 +16,9 @@ const (
 	// Since HTTP requests are limited by I/O you should be able to set this at
 	// a value several times higher than number of threads and still
 	// get augmenting returns. Setting this at 10 scrapes typical small google site in couple of seconds.
-	parallelism = 10
-	mainURL     = "https://sites.google.com/site/whittileak"
+	parallelism    = 10
+	mainURL        = "https://sites.google.com/site/apuntesgallo"
+	outputJSONFile = "whittileaks.json"
 )
 
 type page struct {
@@ -44,7 +45,7 @@ type file struct {
 }
 
 func main() {
-	fp, err := os.Create("output.json")
+	fp, err := os.Create(outputJSONFile)
 	if err != nil {
 		panic(err)
 	}
