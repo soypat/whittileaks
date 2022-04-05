@@ -1,0 +1,2151 @@
+[
+ {
+  "link_title": "Combinatrix y otras herramientas",
+  "href": "/site/whittileak/home/combinatrix",
+  "top_level": true,
+  "title": "Combinatrix y otras herramientas",
+  "content": "\u003cdiv\u003e\u003ca href=\"https://github.com/soypat/combinatrix/releases/tag/v1.1.0\" style=\"font-size:x-large\" target=\"_blank\" rel=\"nofollow\"\u003e☑️\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003eCombinatrix Download - 64bit [2.8MB]\u003c/b\u003e\u003c/span\u003e\u003c/a\u003e\u003cfont size=\"1\"\u003e\u003cspan\u003e\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003e (Todos los sistemas operativos)\u003cbr/\u003e\u003c/b\u003e\u003c/span\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003ch2\u003e\u003ca name=\"TOC-Instrucciones-para-generar-archivo-de-materias--PDF-475kB-\"\u003e\u003c/a\u003e\u003ca href=\"https://drive.google.com/open?id=1BTz6oDMKZxJ9RN9X6l-3sRrypyf3WqMJ\" style=\"font-size:x-large\" target=\"_blank\"\u003e📄\u003cspan style=\"font-weight:normal\"\u003e\u003cspan style=\"font-family:arial,sans-serif\"\u003eInstrucciones para generar archivo de materias- PDF [475kB]\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e\u003c/h2\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003ci\u003e¿Que es?\u003c/i\u003e \u003cu\u003e\u003cb\u003eUn combinador de horarios.\u003c/b\u003e\u003c/u\u003e\u003c/span\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003ePara combinar horarios posibles leyendo de un archivo en formato SGA. Escrito 100% en Go. Permite\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003esuperposiciones de horarios y elegir días libres!\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003eInstrucciones: \u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e1. Copiar horarios de SGA a un .txt.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e2. Guardar .txt en carpeta que contiene a combinatrix.exe\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e3. Correr combinatrix y seguir instrucciones en pantalla.\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 win64: \u003c/i\u003e\u003c/span\u003e\u003cspan style=\"background-color:transparent\"\u003e61403045784cbc67e4fd6dfd81f294d58f25460d9c01ebbe36509ddc76f87356\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 checksum.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e821d5f216bbce0aa97e18312ca513604e750bfd006e407277c2bc7f353f3f043\u003c/font\u003e\u003c/span\u003e\u003cbr/\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 gocrypt.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e2f66400187d01ec4f1beb2c4707d3196887ee5c9c22d2e5dd58cf8c7911f1456\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "links",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Código fuente - githubVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n15 abr 2019, 7:50\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2FCombinatrix\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw2Cl8c1LLPZQ6GRlBBL58vJ"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "ejemplo.txtVer Descargar",
+       "Ejemplo de archivo de materias. ",
+       "7 kb",
+       "v. 2  ",
+       "\n17 abr 2019, 22:32\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4Ojc5NjNmMjlkNjIzN2QxOWI",
+       "/site/whittileak/home/combinatrix/ejemplo.txt?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "InstruccionesSGA.PNGVer Descargar",
+       "De donde a donde seleccionar los horarios deseados en SGA. ",
+       "74 kb",
+       "v. 2  ",
+       "\n17 abr 2019, 22:23\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/home/combinatrix/InstruccionesSGA.PNG?attredirects=0",
+       "/site/whittileak/home/combinatrix/InstruccionesSGA.PNG?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Otras aplicaciones",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "decimateVer",
+       "Herramienta de command line para reducir (downsample) cantidad de puntos de una curva de un archivo .csv. Puede unir archivos csv con igual cantidad de columnas. Util para reducir tamaño de curvas/archivos vectoriales (Matlab, pgfplots). ",
+       "",
+       " ",
+       "\n22 ago 2020, 8:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2Fdecimate%2Freleases%2F\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1b9N6YtfqLmhyzcDhgDcDo"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "gocryptVer",
+       "Encryptador/decrypter de archivos AES.  ",
+       "",
+       " ",
+       "\n25 jul 2020, 17:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/uc?export=download\u0026id=1fywnAe2JtfTfN1H0qC5g3Y3tW6HgtHHT"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "gosum.zipVer",
+       "Flexible checksum tool(SHA1/2/3, MD, BLAKE, etc.)  ",
+       "",
+       " ",
+       "\n25 jul 2020, 17:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2Fgosum%2Freleases%2Fdownload%2Fv1.0.0%2Fgosum-v1.0.0.zip\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw3MFG3maVV34vsH2JIptpHY"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Servidor httpVer",
+       "Servidor http super rapido y facil de usar. ",
+       "",
+       " ",
+       "\n7 ago 2020, 9:16\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2Fsv%2Freleases\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw2SXb0HpXYyHF5om7F-ePZs"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "sgacrawl.zipVer",
+       "Obtiene todas las materias del ITBA en formato JSON. Requiere ser usado a través del command line.   ",
+       "",
+       " ",
+       "\n28 mar 2021, 17:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2Fsgacrawl%2Freleases%2Flatest\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw3OAu_OeghgdifziMg9e9CK"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Ditto - Otros sitios",
+  "href": "/site/whittileak/home/ditto",
+  "top_level": true,
+  "title": "Ditto - Otros sitios",
+  "content": "\u003cbr/\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Información General",
+  "href": "/site/whittileak/home/informacion-general",
+  "top_level": true,
+  "title": "Información General",
+  "content": "",
+  "Cabinets": [
+   {
+    "title": "Ing. Mecánica",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PF flowchart3_2019Marzo.pdfVer",
+       "Flowchart de proyecto final - Mecánicos ",
+       "",
+       " ",
+       "\n14 abr 2019, 14:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1L7VZyXmB4--7QJ5wfQBsoB1w0na3kvC4/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Programación",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Archivos del Taller de LaTeXVer",
+       "Para empezar a programar LaTeX de a poco ",
+       "",
+       " ",
+       "\n8 feb 2019, 8:13\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1jURZpWcZsSwFl2i1vZKtaPZekiICThwP"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "Colores para programar.pngVer Descargar",
+       "Preferencia de colores para ser un hacker.  ",
+       "152 kb",
+       "v. 2  ",
+       "\n25 sept 2018, 13:05\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/home/informacion-general/Colores%20para%20programar.png?attredirects=0",
+       "/site/whittileak/home/informacion-general/Colores%20para%20programar.png?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "highlightcolors.jpgVer",
+       "Usar este esquema con \"Colores para programar.png\"  ",
+       "",
+       " ",
+       "\n8 feb 2019, 8:14\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1byjEZeYOuVNYzYG6A07vUIjeMOcq1qCy/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LaTeX para Principiantes con ejemplos (pdf)Ver",
+       "Documento para empezara a aprender LaTeX con ejemplos! ",
+       "",
+       " ",
+       "\n2 mar 2020, 11:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1AsGte_vjHDMI1MJkGy6d3jndOE1NS6Xq"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Por qué Go?",
+  "href": "/site/whittileak/home/xqgo",
+  "top_level": true,
+  "title": "Por qué Go?",
+  "content": "\u003cdiv\u003eGo se suele describir como un C simplificado que es comparable a Java en aplicaciónes. Go es un lenguaje minimalista, \u003ci\u003estatically-typed\u003c/i\u003e que compila directo a binario para \u003ca href=\"https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63\" target=\"_blank\" rel=\"nofollow\"\u003evirtualmente todas las arquitecturas y sistemas operativos\u003c/a\u003e existentes, sin dependencias. La especificación técnica de Go tiene tan solo \u003ca href=\"https://golang.org/ref/spec\" target=\"_blank\"\u003e50 páginas\u003c/a\u003e, comparado a las \u003ca href=\"https://docs.oracle.com/javase/specs/jls/se12/jls12.pdf\" target=\"_blank\" rel=\"nofollow\"\u003e750 páginas\u003c/a\u003e de la especificación de Java. La \u003ca href=\"https://arschles.svbtle.com/orthogonality-in-go\" target=\"_blank\" rel=\"nofollow\"\u003eortogonalidad \u003c/a\u003ede Go en este aspecto hace que sea más facil de aprender y permitir la escritura de código entendible con mínimo esfuerzo. \u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cb\u003eEjemplo Hello World en Go\u003c/b\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003epackage main\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003eimport \u0026#34;fmt\u0026#34;\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc main() {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e    fmt.Println(\u0026#34;Hello World\u0026#34;)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003c/span\u003e\u003c/font\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cb\u003eEjemplo de Hello World por servidor http en Go (localhost:8080/World)\u003cbr/\u003e\u003c/b\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003epackage main\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003eimport ( \u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003e\u0026#34;fmt\u0026#34;\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003e\u0026#34;net/http\u0026#34;\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc main() {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e    http.HandleFunc(\u0026#34;/\u0026#34;, HelloServer)\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003ehttp.ListenAndServe(\u0026#34;:8080\u0026#34;, nil)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc HelloServer(w http.ResponseWriter, r *http.Request) {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003efmt.Fprintf(w, \u0026#34;Hello, %s!\u0026#34;, r.URL.Path[1:])\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Algebra Lineal",
+  "href": "/site/whittileak/algebra-lineal",
+  "top_level": false,
+  "title": "Algebra Lineal",
+  "content": "\u003ca href=\"https://drive.google.com/open?id=1uaUpOwdHaLe9O8JbBe2527CGBLLF64Gh\"\u003eLibros\u003c/a\u003e   -    Ingresar con mail ITBA\u003cbr/\u003e",
+  "Cabinets": [
+   {
+    "title": "cab",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "google.comVer",
+       "l ",
+       "",
+       " ",
+       "\n23 sept 2020, 4:48\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Flink\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw0jjp9BbRK_c51oBXxBrJ6y"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "CdM (Ensayos de Materiales)",
+  "href": "/site/whittileak/ensayengues",
+  "top_level": false,
+  "title": "CdM (Ensayos de Materiales)",
+  "content": "",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Control",
+  "href": "/site/whittileak/controlmatic",
+  "top_level": false,
+  "title": "Control",
+  "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cb\u003eControl Moderno\u003c/b\u003e. Espacio variable de estados, controlabilidad, observabilidad, control de realimentacion completa de estados, filtro Kalman.\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/control/control_rapido.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de Control Moderno\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [363kB pdf]\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Derecho para Ingenieros",
+  "href": "/site/whittileak/derecho-para-ingenieros",
+  "top_level": false,
+  "title": "Derecho para Ingenieros",
+  "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003eExámenes resueltos: \u003c/font\u003e\u003cfont size=\"4\"\u003e📄\u003c/font\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/derecho/derecho_al_infierno.pdf\" rel=\"nofollow\"\u003eDerecho al Infierno\u003c/a\u003e [pdf]\u003c/font\u003e\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Diseño Mecanico",
+  "href": "/site/whittileak/diseno-mecanico",
+  "top_level": false,
+  "title": "Diseño Mecanico",
+  "content": "Resumen Groover≃Resumen Dis\u003cfont face=\"arial, sans-serif\"\u003ee\u003cfont size=\"2\"\u003eñ\u003c/font\u003e\u003c/font\u003eo Mecánico.\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\" target=\"_blank\"\u003eLibros\u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Pontelli\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Auxilares",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LibrosVer",
+       " ",
+       "",
+       " ",
+       "\n17 nov 2018, 14:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "MatWebVer",
+       "Contiene datos para miles de materiales. ",
+       "",
+       " ",
+       "\n17 nov 2018, 14:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fwww.matweb.com%2F\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1HAhdk3dWAQvYMLpVMiNGw"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Tablas de Tolerancias.pdfVer",
+       "Agujero-eje y tolerancias de superficies de procesos. ",
+       "",
+       " ",
+       "\n18 sept 2017, 18:23\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneaUtBN2doQXhxVFU/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Tolerancias Geometricas.pdfVer Descargar",
+       "Muy buena visualización  ",
+       "481 kb",
+       "v. 2  ",
+       "\n12 dic 2016, 18:44\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY1OWNlYmI1OGY4NmI0Njg",
+       "/site/whittileak/diseno-mecanico/Tolerancias%20Geometricas.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Economía Internacional",
+  "href": "/site/whittileak/economia-internacional",
+  "top_level": false,
+  "title": "Economía Internacional",
+  "content": "",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Economía para Ing. 61.24",
+  "href": "/site/whittileak/economia-para-ing",
+  "top_level": false,
+  "title": "Economía para Ing. 61.24",
+  "content": "\u003cdiv\u003e\u003cfont size=\"5\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/economia/economia_itba.pdf\" rel=\"nofollow\"\u003e📑️ Apunte de la materia [PDF 2.7MB]\u003c/a\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e61.24 es la economía fácil! Ojo!\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Economia 61.24",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Finales Ecnomia 61-24.zipVer",
+       "Incluye resoluciones en matlab ",
+       "",
+       " ",
+       "\n20 jul 2020, 13:45\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1qd0jxCf5DNmqI6IanTkyHxPkjgJi_SX3/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Electrotecnia",
+  "href": "/site/whittileak/electrotecni",
+  "top_level": false,
+  "title": "Electrotecnia",
+  "content": "\u003cbr/\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Elementos de Máquinas y Mecanismos",
+  "href": "/site/whittileak/edm",
+  "top_level": false,
+  "title": "Elementos de Máquinas y Mecanismos",
+  "content": "\u003cdiv\u003eProtip: Engranes+4340=Profit\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eLeslabay 2018\u003cbr/\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Elementos de Maquina",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Alvasumen.pdfVer",
+       "Primer Parcial. ",
+       "",
+       " ",
+       "\n1 mar 2019, 15:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/18UryPLyMLmc0RMB5UqifSld94i63HIzc/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Catalogo Rodamientos General.pdfVer",
+       "Dimensionado de rodamientos pg 17. Lo tiene muy bien explicado ",
+       "",
+       " ",
+       "\n16 abr 2020, 16:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1nld9qa90_eN_gWJuG_rNALZZrMX-NA3f/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "D_EJEINTERMEDIO.pdfVer",
+       "Ejemplo de un plano de un eje. ",
+       "",
+       " ",
+       "\n14 may 2019, 10:13\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1kBGmISd1LicE6x05vf4aGgz9EHvWE5Ls/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "FilminasEdM2018.rarVer",
+       "Le faltan algunas. ",
+       "",
+       " ",
+       "\n1 mar 2019, 15:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1EdjzcbgQLWRJvVGNLxkFzaIrhfngCegK/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "itergear (version 4.3).zipVer",
+       "I ♥ IterGear ",
+       "",
+       " ",
+       "\n1 mar 2019, 15:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1iJ7djdBVeR0aMSsIe08qDsYeQkb_od9H/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Velocidad crítica - Ugural.pdfVer Descargar",
+       " ",
+       "156 kb",
+       "v. 3  ",
+       "\n1 mar 2019, 15:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjZmNmY1NjViMjc3YWFhNWI",
+       "/site/whittileak/edm/Velocidad%20cr%C3%ADtica%20-%20Ugural.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Mecanismos",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "ejercicios Mecanismos-4barras.pdfVer",
+       "Para resolver velocidades y aceleraciones. Con respuestas ",
+       "",
+       " ",
+       "\n2 mar 2019, 6:31\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1c1UTGUX5sAwncOMb1QFyPjQ4PmhIquSP/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Levamatic_publicRelease.zipVer",
+       "Pablo dijo que no se podía lograr... Behold! Levamatic: grafica el perfil de tu leva a partir de coordenadas en xy del paso de un rodillo. ",
+       "",
+       " ",
+       "\n29 ago 2019, 20:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1O4rBum684oi24TTWQ8YUNmZOwB3Agqn0/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Elementos Finitos",
+  "href": "/site/whittileak/finulis",
+  "top_level": false,
+  "title": "Elementos Finitos",
+  "content": "\u003cdiv\u003eD\u0026#39;hers 2018. 30.07 \u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/thefinitoskid/apuntefinitos.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [650kB pdf] formato pdf\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e🧰\u003ca href=\"https://github.com/soypat/nastran-mtract/releases/download/v1.0.0/nastran-emtract-v1.0.0.zip\" rel=\"nofollow\"\u003eeMTRACT para NASTRAN\u003c/a\u003e win64 [1.0MB] (Update junio 2020)\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e    \u003c/font\u003e\u003cspan style=\"font-size:large;background-color:initial;font-family:apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol;color:rgb(0,0,0)\"\u003e📽️\u003c/span\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://www.youtube.com/watch?v=DgZMih65mv0\" target=\"_blank\"\u003eVideo de como usar eMTRACT\u003c/a\u003e\u003c/font\u003e \u003cspan style=\"font-size:large;background-color:transparent\"\u003e(Youtube)\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large;background-color:transparent\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"2\"\u003eeMTRACT exporta la malla de NX a formato .csv para usar con Matlab.\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Códigos Ayuda",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "bandplot.zipVer",
+       "BANDPLOTX(). El último bandplot que van a necesitar. Para CST, LST, Q4, Q8/Q9, T4, T10, H8, H20.   ",
+       "",
+       " ",
+       "\n10 abr 2020, 13:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/118n1UWJH59CH16S4cR-IwXirVwcOcbZj/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Código Elementos Finitos 2DVer",
+       "Dificultad 2/10. Barras. Para empezar a conocer los elementos finitos. ",
+       "",
+       " ",
+       "\n10 ago 2019, 10:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://colab.research.google.com/drive/1tBf-cBQmi4AJAuymVu-aRB3n_xfycFLg#scrollTo=BEL7i54qjIWJ"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "El material que quieras, en un lugarVer",
+       " ",
+       "",
+       " ",
+       "\n20 sept 2019, 14:23\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fwww.matweb.com\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw2e-NdPk4Zy2_nIG7kY77n0"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Gefeas 3.1.zipDescargar",
+       "Rollback ",
+       "10 kb",
+       "v. 2  ",
+       "\n10 ago 2019, 10:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/finulis/Gefeas%203.1.zip?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "getPerfilFull.rarVer",
+       "Función Matlab. Busca propiedades del perfil que quieras. Perfiles disponibles: IPB, IPE, IPN, HEA, CHS (tubo circular), SHS, RHS, L, UPN, HEM  ",
+       "",
+       " ",
+       "\n26 dic 2019, 14:54\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1EdqlgGOf29-Zx07_fiUI7IBPo8rHHwQy/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "meshMaster.zipVer",
+       "Funciones/scripts para mallar elementos 1D, 2D y 3D ",
+       "",
+       " ",
+       "\n8 sept 2019, 13:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1SGuH-gjDpX81oAGVkdMdSVaW5_BF6MnN/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "suite_whittileaks_finitos.zipVer",
+       "Trucazo.m (eliminador de nodos no-conectados), domainplot, bandplotx, y ejemplo ",
+       "",
+       " ",
+       "\n15 sept 2020, 6:20\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/16T7YrwJZKNHDnACPCKTtOVZisHAyUFEk/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "vigaformfunc.mVer",
+       "Funciones de forma para una viga/barra de timoshenko ",
+       "",
+       " ",
+       "\n10 ago 2019, 10:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/15UPZGDhrS6E5Jw58di7C8-kEdgYTT_Vd/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Elementos Finitos II",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "ModalMass - Irvine.pdfVer",
+       "Masa modal efectiva: Sirve para ver que modos son los más problematicos. ",
+       "",
+       " ",
+       "\n26 dic 2019, 14:58\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1GzEmk12bX47ceEYNrUdrFXe5xNDwY0mn/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Modal mass, stiffening and damping.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n2 sept 2019, 10:28\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1eFbKT20_knVzeQaPL0QHSbNifibh-D1Y/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Tutorial NX - Shells and Offset BeamsVer",
+       "Tutorial sobre Cascaras y Secciones con offset (no centradas) ",
+       "",
+       " ",
+       "\n2 abr 2019, 17:08\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://youtu.be/uNNsDaNYbjs"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Exámenes",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Parcial 1 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 14:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/10xv3mCGI_M4CKqPJkUqhpFhNDqRcySyJ/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Parcial2_2019_2C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 14:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1C_G7Og2VA5AbTDqJLvzPtrHu2UmhUnm_/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Lector Nastran",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "eMTRACT distribuciones y READMEVer",
+       "Ver carpeta: 𝗹𝗲𝗰𝘁𝗼𝗿 𝗻𝗮𝘀𝘁𝗿𝗮𝗻. ",
+       "",
+       " ",
+       "\n10 abr 2020, 13:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1RFdpW8I_C31mj322niAp-nhShybQYIox"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Repositorio githubVer",
+       "Incluye un readme completo y el código fuente del proyecto emtract ",
+       "",
+       " ",
+       "\n22 dic 2019, 7:52\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsoypat%2Fnastran-mtract\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1O2pYe4O4fFEJUMEBQyTBe"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Prog",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "CosasVer",
+       " ",
+       "",
+       " ",
+       "\n13 nov 2018, 20:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/drive/folders/1ZCr_bDrUEyyZIofbwy1skZQIPqM2Ebdh?usp=sharing"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Trabajos Practicos",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Adina PracticeVer",
+       "Mallas random. Algunas de los tutoriales. ",
+       "",
+       " ",
+       "\n22 dic 2019, 7:46\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1fQEx52BpT6Zy-hIwqLqTXJ61tDGPupLY"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "sobre_placas-informeElemFin2.rarVer",
+       "Otra plantilla similar para la cursada elementos finitos II ",
+       "",
+       " ",
+       "\n22 sept 2019, 10:22\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1KylJRrYG7QW8bH9GGf2en3wt2y1EhItb/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "TP3_plantilla.pdfVer",
+       "Modelo de informe para Finitos I. ",
+       "",
+       " ",
+       "\n28 ago 2019, 13:10\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Wo_XG0jvAvn78h1wFu95HTDBxhi7PddM/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "TP3_plantilla.texVer",
+       "Codigo LaTeX para el informe. Se puede cambiar la extension .tex a .txt si se desea copiar y pegar a Overleaf o TexStudio. ",
+       "",
+       " ",
+       "\n28 ago 2019, 13:15\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1aG2HXvGa-kbPAwbGxtCl8nQ0j15mIVb4/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Tutoriales",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "ADINA Primer PlaylistVer",
+       "Videos Youtube para aprender a usar ADINA. Ordenados para aprender mejor según complejidad. ",
+       "",
+       " ",
+       "\n10 sept 2020, 17:08\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.youtube.com/playlist?list=PLDLE3wLMqqDyUYKaOMthtRwjHBDW4vr6V"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "NX Primer PlaylistVer",
+       "Videos tutoriales para aprender NX a un ritmo arbitrario. ",
+       "",
+       " ",
+       "\n10 sept 2020, 17:08\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.youtube.com/playlist?list=PLDLE3wLMqqDw-CvUc7TDh40TUt9gwiqDZ"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Estática",
+  "href": "/site/whittileak/estatica",
+  "top_level": false,
+  "title": "Estática",
+  "content": "De los Mecánicos\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eMateria dada por Hernan Baranda\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Aux",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Concentracion de Tensiones.pdfVer",
+       "Solo para tracción ",
+       "",
+       " ",
+       "\n3 may 2020, 15:22\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1gHFpBpBEX7vokukArZyIa3Ca79djJuWw/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ecuaciones para deflexion de vigas.pdfVer",
+       "Tomado del Gere 7ma edición. ",
+       "",
+       " ",
+       "\n8 mar 2018, 7:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/153yU6tACxbqIf1NZcNldHIewjc_uIarP/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Gefeas 3.1.zipVer",
+       "Para cuando no se tiene el RISA a mano...  ",
+       "",
+       " ",
+       "\n2 sept 2018, 8:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1PP2l0gmKWtKkJhbiJUaa9h_N98wZI0VW/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "getPerfil.zipVer",
+       "Obtiene propiedades de un perfil UPN, IPB, IPN entre varios otros. ",
+       "",
+       " ",
+       "\n7 jul 2019, 15:48\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1JbSzQmWN_ptIUQq2zBirTAPIzihTNj0Z/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "ipbahorra.mVer Descargar",
+       "Encuentra perfil ARGENTINO mas economico para viga comprometida por momento flexor, esfuerzo axil(solo de traccion) y fuerza de corte. Modificar a gusto.  ",
+       "2 kb",
+       "v. 2  ",
+       "\n8 mar 2018, 7:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjJiNGYyZTNiNGMxNDE0ZA",
+       "/site/whittileak/estatica/ipbahorra.m?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Parciales 1C 2017.zipVer",
+       "Primer y segundo parcial ",
+       "",
+       " ",
+       "\n3 may 2020, 15:21\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneYWtTc3oxb1ltS3c/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Perfiles Laminados ArgentinosVer",
+       "Tabla perfiles IPB\n ",
+       "",
+       " ",
+       "\n9 jul 2017, 19:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=0B9k5BB4Hw8GyVng1WGliSWtNdWc"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "viga.mVer Descargar",
+       "Grafica momento flexor y corte en una viga. \"help viga\" ",
+       "2 kb",
+       "v. 2  ",
+       "\n8 mar 2018, 7:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY4ZDc3OGQ5ODM1MDQ5ODk",
+       "/site/whittileak/estatica/viga.m?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Física  II",
+  "href": "/site/whittileak/fisica-ii",
+  "top_level": false,
+  "title": "Física  II",
+  "content": "Pablo Konig\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003ePractica por Vieytes\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Física  III",
+  "href": "/site/whittileak/fisica-iii",
+  "top_level": false,
+  "title": "Física  III",
+  "content": "Horacio Rinaldi",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Física IV",
+  "href": "/site/whittileak/fisica-4",
+  "top_level": false,
+  "title": "Física IV",
+  "content": "\u003cdiv\u003e\u003cspan style=\"font-size:13.3333px\"\u003ePorque todo ingeniero necesita una base firme de relatividad especial y mecánica cuántica.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003eJefe catedra: Horacio Daniel Rinaldi, 2018\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e",
+  "Cabinets": [
+   {
+    "title": "Segundo Parcial",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "F4 Segundo Parcial 2C 2018.pdfVer",
+       "Medio borroso, pero bue, hago lo que puedo con lo que tengo ",
+       "",
+       " ",
+       "\n15 jun 2019, 21:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1bx4orgMcv5F7iWTx5hvWZ6mBITHoewd1/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "SOL 2P 2018 2C.zipVer",
+       "Resolución de la catedra de algunos ejercicios ",
+       "",
+       " ",
+       "\n15 jun 2019, 21:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1F-CdSn5tra0mYuo_a8qVBr2m-HysTxFX/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Instalaciones Eléctricas",
+  "href": "/site/whittileak/copiatequenadieleimporta",
+  "top_level": false,
+  "title": "Instalaciones Eléctricas",
+  "content": "",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Instalaciones Industriales",
+  "href": "/site/whittileak/por-el-poder-de-los-pelas",
+  "top_level": false,
+  "title": "Instalaciones Industriales",
+  "content": "\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/instind/instalaciones_industriales.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [867 kB pdf] formato pdf\u003c/font\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Instrumentación y Control Industrial",
+  "href": "/site/whittileak/comastri-il-maestro",
+  "top_level": false,
+  "title": "Instrumentación y Control Industrial",
+  "content": "Control de los buenos tiempos con Hector Comastri.",
+  "Cabinets": [
+   {
+    "title": "Final",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "2273 Final Choice - Tomado en Diciembre 2016.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 11:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1mTpaLhn6_mwlqntTNGYdgl5w0ZbxvURw/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final Choice 1.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 11:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1qXAjm99CIv_zDihfPDFy9kfff3yaY63l/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final Choice 2.pdfVer",
+       "No confiar en respuestas de este ",
+       "",
+       " ",
+       "\n16 dic 2018, 11:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1iwcyHyK7mO5JTV2wWba5lDBqaOQ_qLtF/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Intro. a la Programacion",
+  "href": "/site/whittileak/intro-a-la-programacion",
+  "top_level": false,
+  "title": "Intro. a la Programacion",
+  "content": "Materia de Mecanicos. Matlab.\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Magliola\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Aux.",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LibrosVer",
+       "Ingresar con mail ITBA ",
+       "",
+       " ",
+       "\n16 mar 2018, 6:04\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/drive/u/3/folders/16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Miscellaneous",
+    "files": [
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "Colores para programar.pngVer Descargar",
+       "El esquema de colores para programar recomendado por Whittileaks. ",
+       "152 kb",
+       "v. 2  ",
+       "\n25 sept 2018, 13:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/intro-a-la-programacion/Colores%20para%20programar.png?attredirects=0",
+       "/site/whittileak/intro-a-la-programacion/Colores%20para%20programar.png?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "highlightcolors.jpgVer",
+       "Colores bajo \"Programming Tools\" en Matlab. Highlighting y todo eso. ",
+       "",
+       " ",
+       "\n25 sept 2018, 13:03\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1byjEZeYOuVNYzYG6A07vUIjeMOcq1qCy/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mate  Ingreso",
+  "href": "/site/whittileak/mate-ingreso",
+  "top_level": false,
+  "title": "Mate  Ingreso",
+  "content": "Monica Orecchia\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eBuscar Libro en Información General\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Mate I",
+  "href": "/site/whittileak/mate-i",
+  "top_level": false,
+  "title": "Mate I",
+  "content": "\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\"\u003eLibros\u003c/a\u003e  -   Ingresar con mail ITBA",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Mate II",
+  "href": "/site/whittileak/mate-ii",
+  "top_level": false,
+  "title": "Mate II",
+  "content": "Maria Laura Noni",
+  "Cabinets": [
+   {
+    "title": "Aux",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Adv Engineering Mathematics Peter O'Neil.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n11 oct 2016, 10:09\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneZ3licTlkcVVlbVk/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mate III",
+  "href": "/site/whittileak/mate-iii",
+  "top_level": false,
+  "title": "Mate III",
+  "content": "Hagman",
+  "Cabinets": [
+   {
+    "title": "Aux",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Calculo Vectorial - Marsden-Tromba.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n29 abr 2017, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMInecmdiQ3F5djJlRHc/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mate IV",
+  "href": "/site/whittileak/mate-iv",
+  "top_level": false,
+  "title": "Mate IV",
+  "content": "Devoto",
+  "Cabinets": [
+   {
+    "title": "Aux",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Adv Engineering Mathematics Peter O'Neil.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n11 oct 2016, 10:08\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneZ3licTlkcVVlbVk/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mate V (K)",
+  "href": "/site/whittileak/mate-v-k",
+  "top_level": false,
+  "title": "Mate V (K)",
+  "content": "\u003cdiv\u003ePara los electrónicos\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eContribuido por Ari and Rochi, Nico.\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=160dSY4PFSehp9CHYPaC0AtdOJeTBbsEj\" target=\"_blank\"\u003eLink directo al drive \u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Primer Parcial",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "fórmulas1P.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 nov 2019, 15:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1JpnwqUipHAtvrnZWViuoGucz9DAp2dEA/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "M5_Resumen_primer_parcial.pdfVer",
+       "Roχsumen ",
+       "",
+       " ",
+       "\n16 nov 2019, 15:24\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1cy_bVg_U5PwAh38qLabkW9OqNMJYRmu9/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Segundo Parcial",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "fórmulas2P.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 nov 2019, 15:24\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1lGtYlKK6V2K-bwyDn5v6fCxwA-zijzt_/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "M5 Resumen segundo parcial.pdfVer",
+       "Roχsumen ",
+       "",
+       " ",
+       "\n16 nov 2019, 15:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Xck0xiTCOoWrXz9Nb5cyzs5UnxcCwc8w/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mate V (M)",
+  "href": "/site/whittileak/mate-v",
+  "top_level": false,
+  "title": "Mate V (M)",
+  "content": "\u003cdiv\u003eApuntes relacionados a la mate V de los mecanicos!\u003cbr/\u003e\u003cbr/\u003e\u003c/div\u003e(y navales)\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eRoberto Delellis\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Aux",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Análisis de Fourier - Hwei P. Hsu.pdfVer",
+       "Leer esto y hacer las demostraciones relevantes para aprobar Primer Parcial. ",
+       "",
+       " ",
+       "\n22 abr 2017, 19:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneY3ZaR0JJODEwQjg/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Tensores",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Fundamentos de los Tensores.pdfVer Descargar",
+       "Presenta los tensores de una manera relativamente facil de entender. ",
+       "595 kb",
+       "v. 2  ",
+       "\n4 may 2017, 18:44\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjE5ZThjZmY2NTRiNjMxY2Q",
+       "/site/whittileak/mate-v/Fundamentos%20de%20los%20Tensores.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Intro a Tensores NASA(28 carillas).pdfVer Descargar",
+       " ",
+       "328 kb",
+       "v. 2  ",
+       "\n3 may 2017, 18:33\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjJlNDE4N2ZlYTQ4OWViZjM",
+       "/site/whittileak/mate-v/Intro%20a%20Tensores%20NASA%2828%20carillas%29.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mecatrónica Aplicada",
+  "href": "/site/whittileak/mecatronica-aplicada",
+  "top_level": false,
+  "title": "Mecatrónica Aplicada",
+  "content": "\u003cbr/\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Mecánica de Fluidos y Transferencia de Calor",
+  "href": "/site/whittileak/termofluidos",
+  "top_level": false,
+  "title": "Mecánica de Fluidos y Transferencia de Calor",
+  "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/termofluidos/termofluidos.pdf\" rel=\"nofollow\"\u003eApunte de las materias\u003c/a\u003e [2MB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003cfont size=\"4\"\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/fvm/fvm_itba.pdf\" rel=\"nofollow\"\u003eApunte de los volúmenes finitos\u003c/a\u003e [237kB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e",
+  "Cabinets": [
+   {
+    "title": "Exámenes",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final_20191C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1maulQnvfOsgnn2OjND-Kybvrj663qlEY/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final_Fluidos_2018-dic-1raFecha.pdfVer Descargar",
+       " ",
+       "114 kb",
+       "v. 2  ",
+       "\n26 dic 2019, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjFmMGFlN2Y1ZTI4MTVhNGI",
+       "/site/whittileak/termofluidos/Final_Fluidos_2018-dic-1raFecha.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Fluidos Final 2018 Junio 1ra fecha.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/10jW7LGF2C0Dfz0J4OzY6GdEN9C-FiIDA/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Parcial1_20191C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1mNEKoGI6qOr079dypQpfhz8GSOdA5idJ/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Parcial2_20191C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n26 dic 2019, 16:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1lviZpbyTDqH2pOYAPk7QDeBbbLmBRsx7/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mecánica General",
+  "href": "/site/whittileak/mecanica-general",
+  "top_level": false,
+  "title": "Mecánica General",
+  "content": "Jorge Ratto",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Metalúrgia Física",
+  "href": "/site/whittileak/banda-de-los-luders",
+  "top_level": false,
+  "title": "Metalúrgia Física",
+  "content": "Metalúrgia Física de los Mecánicos.\u003cbr/\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e    \u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/metalurgy/metalurgy.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [1MB pdf] formato pdf \u003c/span\u003e\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Motores a Combustión Interna",
+  "href": "/site/whittileak/chisperos_unidos",
+  "top_level": false,
+  "title": "Motores a Combustión Interna",
+  "content": "Ing. Vicente Celani\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/motores/mci_itba.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [451kB pdf] formato pdf (Version 2020.1)\u003c/span\u003e\u003c/div\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Métodos Numéricos",
+  "href": "/site/whittileak/metodos-numericos",
+  "top_level": false,
+  "title": "Métodos Numéricos",
+  "content": "Teoría dada para mecánicos. Francisco Villaverde",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Probabilidad y Estadística",
+  "href": "/site/whittileak/probabilidad-y-estadistica",
+  "top_level": false,
+  "title": "Probabilidad y Estadística",
+  "content": "",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Procesos de Manufactura",
+  "href": "/site/whittileak/procesos-de-manufactura",
+  "top_level": false,
+  "title": "Procesos de Manufactura",
+  "content": "",
+  "Cabinets": [
+   {
+    "title": "Procesos de Manufactura I",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "CalculoAleacion.zipVer",
+       "Codigo matlab para verificar calculo de aleacion con el ejercicio de ejemplo ",
+       "",
+       " ",
+       "\n19 abr 2020, 9:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1idNfCv11qnd9NUm_8eWNkFnRs9qOO7Vt/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Práctica Laboral",
+  "href": "/site/whittileak/practica-laboral",
+  "top_level": false,
+  "title": "Práctica Laboral",
+  "content": "Modelo LaTeX para la práctica laboral y una guía de redacción completa!\u003cbr/\u003e",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Química II",
+  "href": "/site/whittileak/quimica-ii",
+  "top_level": false,
+  "title": "Química II",
+  "content": "Odio la química con pasión. ",
+  "Cabinets": null
+ },
+ {
+  "link_title": "Resistencia de Materiales",
+  "href": "/site/whittileak/resistencia-de-materiales",
+  "top_level": false,
+  "title": "Resistencia de Materiales",
+  "content": "Encargado de la materia 2C 2017: Miguel Angel Cavaliere",
+  "Cabinets": [
+   {
+    "title": "Examenes",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final1 2017 2C.pdfVer Descargar",
+       " ",
+       "161 kb",
+       "v. 2  ",
+       "\n12 feb 2018, 8:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjdjYzA1OTcxMjUyNTgyMzM",
+       "/site/whittileak/resistencia-de-materiales/Final1%202017%202C.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final1 2018 Febrero.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n12 feb 2018, 8:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1gIVPr1RkhKMlul7EfDsUgTcuMXo-8KVv/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 2017 2C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n20 ago 2018, 19:28\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1cypBqfMCexBYYY2HCrCexAt4X4LYlKOf/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 2018 2C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n18 may 2019, 11:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1-RXjSnIPMrPXBXLtHDCH2pwlCd9CRNfI/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Segundo Parcial 2017 2C.pdfVer",
+       "\"Eligan la carga que quieran para P\" -Miguel ",
+       "",
+       " ",
+       "\n16 jun 2018, 15:54\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1O9udi7ROpHakVV_uZ9KKoFgcr-ISvQTc/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Tercer Parcial 2017 2C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n12 feb 2018, 8:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/144fRexVHo0psTwk4Wo5k-URVO61z6YMN/view?usp=drive_web"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Primer Parcial",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ejercicios del Berrocal.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n22 sept 2017, 16:33\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMInednVYbEtPVjVselU/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Guia ejercicios para primer parcial.pdfVer",
+       "Gere, Urgural y Saad. Gracias al Lic. Suarez ",
+       "",
+       " ",
+       "\n22 sept 2017, 16:33\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneck1lY1Y0ZFhxSDQ/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "HojaFormula1.pdfVer Descargar",
+       " ",
+       "436 kb",
+       "v. 2  ",
+       "\n20 ago 2018, 19:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjExNzFjOGYwMmRlMDAzNDc",
+       "/site/whittileak/resistencia-de-materiales/HojaFormula1.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resistencia de Materiales - Luis Ortiz Berrocal.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n22 sept 2017, 16:33\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMInedmJQZjlhUDNydFk/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen Primer Parcial .pdfVer Descargar",
+       "Esta mal la parte de componente de corte intrínseca. ",
+       "338 kb",
+       "v. 5  ",
+       "\n18 may 2019, 11:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQzZDVlYzdmZjdkNTNmMjk",
+       "/site/whittileak/resistencia-de-materiales/Resumen%20Primer%20Parcial%20.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "TPs",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "dametuvonvon.mVer Descargar",
+       "Hace exactamente lo que piensas que hace. ",
+       "1 kb",
+       "v. 2  ",
+       "\n20 ago 2018, 19:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjE4NGYzODJjYmI4YmRiMDA",
+       "/site/whittileak/resistencia-de-materiales/dametuvonvon.m?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "ResiResu-TPsDelHerno.zipVer",
+       "Excelente fuente de conocimiento know-how sobre ejercicios variados. Arreglo por cortesía de Hernan Baranda ",
+       "",
+       " ",
+       "\n20 ago 2018, 19:42\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/16q6zWsBArWG-kRZnb-VTTxobQyNGGjHL/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Trabajos Practicos 2017 2C.zipVer",
+       "Enunciados y algunos chiches ",
+       "",
+       " ",
+       "\n20 ago 2018, 19:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1pD7YNBaN5zI2uVlSQ2fKB1hXTsiS1J-D/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Seguridad Ocupacional y Ambiental",
+  "href": "/site/whittileak/boyscouts",
+  "top_level": false,
+  "title": "Seguridad Ocupacional y Ambiental",
+  "content": "",
+  "Cabinets": [
+   {
+    "title": "Parcialitos",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PARCIALITO 1.doc.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n6 nov 2018, 17:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1xustcaEtIJbGARZ3tqHmy3vigObeRzX0/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PARCIALITO 2.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n6 nov 2018, 17:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/178QlAv8iivGL_6tLhw3yWl3ceFM1QxTi/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PARCIALITO 3.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n6 nov 2018, 17:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1kVgVRRGbrxHnHQ0gnTcJkZWiRHQceewz/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Termodinámica",
+  "href": "/site/whittileak/termodinamica",
+  "top_level": false,
+  "title": "Termodinámica",
+  "content": "Ricardo Lauretta",
+  "Cabinets": [
+   {
+    "title": "Trabajo Especiales (TP)",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Archivos del Taller de LaTeXVer",
+       "Ejemplos y otras cosas del LaTeX. ",
+       "",
+       " ",
+       "\n4 oct 2018, 13:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1jURZpWcZsSwFl2i1vZKtaPZekiICThwP"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LaTeX para PrincipiantesVer",
+       "Documentini con ejemplos. ",
+       "",
+       " ",
+       "\n26 oct 2018, 8:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1cvd8vTIp4JUxHgTIc41vINzaFzhuoS61"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "tp1-termodinamica.pdfVer",
+       "TP de otro cuatrimestre\n ",
+       "",
+       " ",
+       "\n4 oct 2018, 13:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1MUZtwUZ9Zy3THU8UD9hLoaorlUczyxrr/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "TP1.txtVer Descargar",
+       "Codigo para el LaTeX TP1. ",
+       "12 kb",
+       "v. 2  ",
+       "\n4 oct 2018, 13:24\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4Ojc3NjdiZjlhMDA4MDFiNmU",
+       "/site/whittileak/termodinamica/TP1.txt?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Turbomáquinas",
+  "href": "/site/whittileak/turbomaquinas",
+  "top_level": false,
+  "title": "Turbomáquinas",
+  "content": "\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/turbomachines/turbomaquinas.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [440kB] formato pdf\u003c/span\u003e",
+  "Cabinets": [
+   {
+    "title": "1er Parcial",
+    "files": null
+   },
+   {
+    "title": "2do Parcial",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Kaplan -Ejercicios de TMH - RESOLUCION EJ 6.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n15 jun 2019, 7:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1lZ3MrysgRXfxngOY0rGdQ5EtsLAgtlzr/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "TGas - Ejercicios resueltos.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n15 jun 2019, 7:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/117RhPOQ0yN5M3QssUfoH8jNISydq0AEf/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "TVapor - Ejercicios resueltos.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n15 jun 2019, 8:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/108um3dMgtEH9Tzg6QJyHMeMyUzydm9hi/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "link_title": "Mapa del sitio",
+  "href": "/site/whittileak/system/app/pages/sitemap/hierarchy",
+  "top_level": false,
+  "title": "Mapa del sitio",
+  "content": "",
+  "Cabinets": null
+ }
+]
