@@ -5,7 +5,7 @@
   "top_level": true,
   "title": "Combinatrix y otras herramientas",
   "content": "\u003cdiv\u003e\u003ca href=\"https://github.com/soypat/combinatrix/releases/tag/v1.1.0\" style=\"font-size:x-large\" target=\"_blank\" rel=\"nofollow\"\u003e☑️\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003eCombinatrix Download - 64bit [2.8MB]\u003c/b\u003e\u003c/span\u003e\u003c/a\u003e\u003cfont size=\"1\"\u003e\u003cspan\u003e\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003e (Todos los sistemas operativos)\u003cbr/\u003e\u003c/b\u003e\u003c/span\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003ch2\u003e\u003ca name=\"TOC-Instrucciones-para-generar-archivo-de-materias--PDF-475kB-\"\u003e\u003c/a\u003e\u003ca href=\"https://drive.google.com/open?id=1BTz6oDMKZxJ9RN9X6l-3sRrypyf3WqMJ\" style=\"font-size:x-large\" target=\"_blank\"\u003e📄\u003cspan style=\"font-weight:normal\"\u003e\u003cspan style=\"font-family:arial,sans-serif\"\u003eInstrucciones para generar archivo de materias- PDF [475kB]\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e\u003c/h2\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003ci\u003e¿Que es?\u003c/i\u003e \u003cu\u003e\u003cb\u003eUn combinador de horarios.\u003c/b\u003e\u003c/u\u003e\u003c/span\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003ePara combinar horarios posibles leyendo de un archivo en formato SGA. Escrito 100% en Go. Permite\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003esuperposiciones de horarios y elegir días libres!\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003eInstrucciones: \u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e1. Copiar horarios de SGA a un .txt.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e2. Guardar .txt en carpeta que contiene a combinatrix.exe\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e3. Correr combinatrix y seguir instrucciones en pantalla.\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 win64: \u003c/i\u003e\u003c/span\u003e\u003cspan style=\"background-color:transparent\"\u003e61403045784cbc67e4fd6dfd81f294d58f25460d9c01ebbe36509ddc76f87356\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 checksum.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e821d5f216bbce0aa97e18312ca513604e750bfd006e407277c2bc7f353f3f043\u003c/font\u003e\u003c/span\u003e\u003cbr/\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 gocrypt.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e2f66400187d01ec4f1beb2c4707d3196887ee5c9c22d2e5dd58cf8c7911f1456\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "links",
     "files": [
@@ -146,7 +146,7 @@
   "top_level": true,
   "title": "Ditto - Otros sitios",
   "content": "\u003cbr/\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Información General",
@@ -154,7 +154,7 @@
   "top_level": true,
   "title": "Información General",
   "content": "",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Ing. Mecánica",
     "files": [
@@ -249,7 +249,7 @@
   "top_level": true,
   "title": "Por qué Go?",
   "content": "\u003cdiv\u003eGo se suele describir como un C simplificado que es comparable a Java en aplicaciónes. Go es un lenguaje minimalista, \u003ci\u003estatically-typed\u003c/i\u003e que compila directo a binario para \u003ca href=\"https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63\" target=\"_blank\" rel=\"nofollow\"\u003evirtualmente todas las arquitecturas y sistemas operativos\u003c/a\u003e existentes, sin dependencias. La especificación técnica de Go tiene tan solo \u003ca href=\"https://golang.org/ref/spec\" target=\"_blank\"\u003e50 páginas\u003c/a\u003e, comparado a las \u003ca href=\"https://docs.oracle.com/javase/specs/jls/se12/jls12.pdf\" target=\"_blank\" rel=\"nofollow\"\u003e750 páginas\u003c/a\u003e de la especificación de Java. La \u003ca href=\"https://arschles.svbtle.com/orthogonality-in-go\" target=\"_blank\" rel=\"nofollow\"\u003eortogonalidad \u003c/a\u003ede Go en este aspecto hace que sea más facil de aprender y permitir la escritura de código entendible con mínimo esfuerzo. \u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cb\u003eEjemplo Hello World en Go\u003c/b\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003epackage main\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003eimport \u0026#34;fmt\u0026#34;\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc main() {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e    fmt.Println(\u0026#34;Hello World\u0026#34;)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003c/span\u003e\u003c/font\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cb\u003eEjemplo de Hello World por servidor http en Go (localhost:8080/World)\u003cbr/\u003e\u003c/b\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003epackage main\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003eimport ( \u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003e\u0026#34;fmt\u0026#34;\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003e\u0026#34;net/http\u0026#34;\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc main() {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e    http.HandleFunc(\u0026#34;/\u0026#34;, HelloServer)\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003ehttp.ListenAndServe(\u0026#34;:8080\u0026#34;, nil)\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003efunc HelloServer(w http.ResponseWriter, r *http.Request) {\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cspan\u003e    \u003c/span\u003efmt.Fprintf(w, \u0026#34;Hello, %s!\u0026#34;, r.URL.Path[1:])\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e}\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"2\"\u003e\u003cspan style=\"font-family:courier new,monospace\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Algebra Lineal",
@@ -257,7 +257,7 @@
   "top_level": false,
   "title": "Algebra Lineal",
   "content": "\u003ca href=\"https://drive.google.com/open?id=1uaUpOwdHaLe9O8JbBe2527CGBLLF64Gh\"\u003eLibros\u003c/a\u003e   -    Ingresar con mail ITBA\u003cbr/\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "cab",
     "files": [
@@ -286,7 +286,7 @@
   "top_level": false,
   "title": "CdM (Ensayos de Materiales)",
   "content": "",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Control",
@@ -294,7 +294,7 @@
   "top_level": false,
   "title": "Control",
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cb\u003eControl Moderno\u003c/b\u003e. Espacio variable de estados, controlabilidad, observabilidad, control de realimentacion completa de estados, filtro Kalman.\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/control/control_rapido.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de Control Moderno\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [363kB pdf]\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Derecho para Ingenieros",
@@ -302,7 +302,7 @@
   "top_level": false,
   "title": "Derecho para Ingenieros",
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003eExámenes resueltos: \u003c/font\u003e\u003cfont size=\"4\"\u003e📄\u003c/font\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/derecho/derecho_al_infierno.pdf\" rel=\"nofollow\"\u003eDerecho al Infierno\u003c/a\u003e [pdf]\u003c/font\u003e\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Diseño Mecanico",
@@ -310,7 +310,7 @@
   "top_level": false,
   "title": "Diseño Mecanico",
   "content": "Resumen Groover≃Resumen Dis\u003cfont face=\"arial, sans-serif\"\u003ee\u003cfont size=\"2\"\u003eñ\u003c/font\u003e\u003c/font\u003eo Mecánico.\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\" target=\"_blank\"\u003eLibros\u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Pontelli\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Auxilares",
     "files": [
@@ -385,7 +385,7 @@
   "top_level": false,
   "title": "Economía Internacional",
   "content": "",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Economía para Ing. 61.24",
@@ -393,7 +393,7 @@
   "top_level": false,
   "title": "Economía para Ing. 61.24",
   "content": "\u003cdiv\u003e\u003cfont size=\"5\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/economia/economia_itba.pdf\" rel=\"nofollow\"\u003e📑️ Apunte de la materia [PDF 2.7MB]\u003c/a\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e61.24 es la economía fácil! Ojo!\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Economia 61.24",
     "files": [
@@ -422,7 +422,7 @@
   "top_level": false,
   "title": "Electrotecnia",
   "content": "\u003cbr/\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Elementos de Máquinas y Mecanismos",
@@ -430,7 +430,7 @@
   "top_level": false,
   "title": "Elementos de Máquinas y Mecanismos",
   "content": "\u003cdiv\u003eProtip: Engranes+4340=Profit\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eLeslabay 2018\u003cbr/\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Elementos de Maquina",
     "files": [
@@ -570,7 +570,7 @@
   "top_level": false,
   "title": "Elementos Finitos",
   "content": "\u003cdiv\u003eD\u0026#39;hers 2018. 30.07 \u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/thefinitoskid/apuntefinitos.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [650kB pdf] formato pdf\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e🧰\u003ca href=\"https://github.com/soypat/nastran-mtract/releases/download/v1.0.0/nastran-emtract-v1.0.0.zip\" rel=\"nofollow\"\u003eeMTRACT para NASTRAN\u003c/a\u003e win64 [1.0MB] (Update junio 2020)\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e    \u003c/font\u003e\u003cspan style=\"font-size:large;background-color:initial;font-family:apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol;color:rgb(0,0,0)\"\u003e📽️\u003c/span\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://www.youtube.com/watch?v=DgZMih65mv0\" target=\"_blank\"\u003eVideo de como usar eMTRACT\u003c/a\u003e\u003c/font\u003e \u003cspan style=\"font-size:large;background-color:transparent\"\u003e(Youtube)\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large;background-color:transparent\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"2\"\u003eeMTRACT exporta la malla de NX a formato .csv para usar con Matlab.\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Códigos Ayuda",
     "files": [
@@ -944,7 +944,7 @@
   "top_level": false,
   "title": "Estática",
   "content": "De los Mecánicos\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eMateria dada por Hernan Baranda\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux",
     "files": [
@@ -1080,7 +1080,7 @@
   "top_level": false,
   "title": "Física  II",
   "content": "Pablo Konig\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003ePractica por Vieytes\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Física  III",
@@ -1088,7 +1088,7 @@
   "top_level": false,
   "title": "Física  III",
   "content": "Horacio Rinaldi",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Física IV",
@@ -1096,7 +1096,7 @@
   "top_level": false,
   "title": "Física IV",
   "content": "\u003cdiv\u003e\u003cspan style=\"font-size:13.3333px\"\u003ePorque todo ingeniero necesita una base firme de relatividad especial y mecánica cuántica.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003eJefe catedra: Horacio Daniel Rinaldi, 2018\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Segundo Parcial",
     "files": [
@@ -1140,7 +1140,7 @@
   "top_level": false,
   "title": "Instalaciones Eléctricas",
   "content": "",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Instalaciones Industriales",
@@ -1148,7 +1148,7 @@
   "top_level": false,
   "title": "Instalaciones Industriales",
   "content": "\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/instind/instalaciones_industriales.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [867 kB pdf] formato pdf\u003c/font\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Instrumentación y Control Industrial",
@@ -1156,7 +1156,7 @@
   "top_level": false,
   "title": "Instrumentación y Control Industrial",
   "content": "Control de los buenos tiempos con Hector Comastri.",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Final",
     "files": [
@@ -1215,7 +1215,7 @@
   "top_level": false,
   "title": "Intro. a la Programacion",
   "content": "Materia de Mecanicos. Matlab.\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Magliola\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux.",
     "files": [
@@ -1280,7 +1280,7 @@
   "top_level": false,
   "title": "Mate  Ingreso",
   "content": "Monica Orecchia\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eBuscar Libro en Información General\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Mate I",
@@ -1288,7 +1288,7 @@
   "top_level": false,
   "title": "Mate I",
   "content": "\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\"\u003eLibros\u003c/a\u003e  -   Ingresar con mail ITBA",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Mate II",
@@ -1296,7 +1296,7 @@
   "top_level": false,
   "title": "Mate II",
   "content": "Maria Laura Noni",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux",
     "files": [
@@ -1325,7 +1325,7 @@
   "top_level": false,
   "title": "Mate III",
   "content": "Hagman",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux",
     "files": [
@@ -1354,7 +1354,7 @@
   "top_level": false,
   "title": "Mate IV",
   "content": "Devoto",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux",
     "files": [
@@ -1383,7 +1383,7 @@
   "top_level": false,
   "title": "Mate V (K)",
   "content": "\u003cdiv\u003ePara los electrónicos\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eContribuido por Ari and Rochi, Nico.\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=160dSY4PFSehp9CHYPaC0AtdOJeTBbsEj\" target=\"_blank\"\u003eLink directo al drive \u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Primer Parcial",
     "files": [
@@ -1462,7 +1462,7 @@
   "top_level": false,
   "title": "Mate V (M)",
   "content": "\u003cdiv\u003eApuntes relacionados a la mate V de los mecanicos!\u003cbr/\u003e\u003cbr/\u003e\u003c/div\u003e(y navales)\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eRoberto Delellis\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Aux",
     "files": [
@@ -1528,7 +1528,7 @@
   "top_level": false,
   "title": "Mecatrónica Aplicada",
   "content": "\u003cbr/\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Mecánica de Fluidos y Transferencia de Calor",
@@ -1536,7 +1536,7 @@
   "top_level": false,
   "title": "Mecánica de Fluidos y Transferencia de Calor",
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/termofluidos/termofluidos.pdf\" rel=\"nofollow\"\u003eApunte de las materias\u003c/a\u003e [2MB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003cfont size=\"4\"\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/fvm/fvm_itba.pdf\" rel=\"nofollow\"\u003eApunte de los volúmenes finitos\u003c/a\u003e [237kB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Exámenes",
     "files": [
@@ -1626,7 +1626,7 @@
   "top_level": false,
   "title": "Mecánica General",
   "content": "Jorge Ratto",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Metalúrgia Física",
@@ -1634,7 +1634,7 @@
   "top_level": false,
   "title": "Metalúrgia Física",
   "content": "Metalúrgia Física de los Mecánicos.\u003cbr/\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e    \u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/metalurgy/metalurgy.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [1MB pdf] formato pdf \u003c/span\u003e\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Motores a Combustión Interna",
@@ -1642,7 +1642,7 @@
   "top_level": false,
   "title": "Motores a Combustión Interna",
   "content": "Ing. Vicente Celani\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/motores/mci_itba.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [451kB pdf] formato pdf (Version 2020.1)\u003c/span\u003e\u003c/div\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Métodos Numéricos",
@@ -1650,7 +1650,7 @@
   "top_level": false,
   "title": "Métodos Numéricos",
   "content": "Teoría dada para mecánicos. Francisco Villaverde",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Probabilidad y Estadística",
@@ -1658,7 +1658,7 @@
   "top_level": false,
   "title": "Probabilidad y Estadística",
   "content": "",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Procesos de Manufactura",
@@ -1666,7 +1666,7 @@
   "top_level": false,
   "title": "Procesos de Manufactura",
   "content": "",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Procesos de Manufactura I",
     "files": [
@@ -1695,7 +1695,7 @@
   "top_level": false,
   "title": "Práctica Laboral",
   "content": "Modelo LaTeX para la práctica laboral y una guía de redacción completa!\u003cbr/\u003e",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Química II",
@@ -1703,7 +1703,7 @@
   "top_level": false,
   "title": "Química II",
   "content": "Odio la química con pasión. ",
-  "Cabinets": null
+  "cabinets": null
  },
  {
   "link_title": "Resistencia de Materiales",
@@ -1711,7 +1711,7 @@
   "top_level": false,
   "title": "Resistencia de Materiales",
   "content": "Encargado de la materia 2C 2017: Miguel Angel Cavaliere",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Examenes",
     "files": [
@@ -1949,7 +1949,7 @@
   "top_level": false,
   "title": "Seguridad Ocupacional y Ambiental",
   "content": "",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Parcialitos",
     "files": [
@@ -2008,7 +2008,7 @@
   "top_level": false,
   "title": "Termodinámica",
   "content": "Ricardo Lauretta",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "Trabajo Especiales (TP)",
     "files": [
@@ -2083,7 +2083,7 @@
   "top_level": false,
   "title": "Turbomáquinas",
   "content": "\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/turbomachines/turbomaquinas.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [440kB] formato pdf\u003c/span\u003e",
-  "Cabinets": [
+  "cabinets": [
    {
     "title": "1er Parcial",
     "files": null
@@ -2146,6 +2146,6 @@
   "top_level": false,
   "title": "Mapa del sitio",
   "content": "",
-  "Cabinets": null
+  "cabinets": null
  }
 ]

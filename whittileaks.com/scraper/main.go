@@ -17,7 +17,7 @@ const (
 	// a value several times higher than number of threads and still
 	// get augmenting returns. Setting this at 10 scrapes typical small google site in couple of seconds.
 	parallelism    = 10
-	mainURL        = "https://sites.google.com/site/apuntesgallo"
+	mainURL        = "https://sites.google.com/site/whittileak"
 	outputJSONFile = "whittileaks.json"
 )
 
@@ -27,9 +27,9 @@ type page struct {
 	Href       string `json:"href"`
 	IsTopLevel bool   `json:"top_level"`
 	// After fulfillment
-	Title           string `json:"title"`
-	MainContentHTML string `json:"content"`
-	Cabinets        []cabinet
+	Title           string    `json:"title"`
+	MainContentHTML string    `json:"content"`
+	Cabinets        []cabinet `json:"cabinets"`
 }
 
 type cabinet struct {
