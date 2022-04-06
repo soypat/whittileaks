@@ -3,8 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+	"log"
+	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 	"sync"
 
@@ -17,7 +21,9 @@ const (
 	// a value several times higher than number of threads and still
 	// get augmenting returns. Setting this at 10 scrapes typical small google site in couple of seconds.
 	parallelism    = 10
-	mainURL        = "https://sites.google.com/site/whittileak"
+	baseURL        = "https://sites.google.com"
+	siteRelPath    = "/site/whittileak"
+	mainURL        = baseURL + siteRelPath
 	outputJSONFile = "whittileaks.json"
 )
 
@@ -165,6 +171,28 @@ func getFilesFromTR(h *colly.HTMLElement) (f file) {
 		f.Data[i] = h.Text
 		h.ForEach("a", func(i int, h *colly.HTMLElement) {
 			f.Links = append(f.Links, h.Attr("href"))
+			if i == 1 {
+				URL := baseURL + h.Attr("href")
+				resp, err := http.Get(URL)
+				if err != nil {
+					return
+				}
+				defer resp.Body.Close()
+				fileURL, _ := url.Parse(URL)
+				localPath := strings.TrimPrefix(strings.TrimPrefix(fileURL.Path, baseURL), "/")
+				dir := filepath.Dir(localPath)
+				log.Println("prepare to create ", localPath)
+				err = os.MkdirAll(dir, 0777)
+				if err != nil {
+					panic(err)
+				}
+				output, err := os.Create(localPath)
+				if err != nil {
+					panic(err)
+				}
+				defer output.Close()
+				io.Copy(output, resp.Body)
+			}
 		})
 	})
 	return f
