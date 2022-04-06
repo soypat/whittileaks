@@ -125,8 +125,8 @@ func (l *page) fulfill(siteURL string) error {
 	c.OnHTML("#filecabinet-body", func(h *colly.HTMLElement) {
 		var cabs []cabinet
 		// Get unfiled documents.
+		unfiled := cabinet{Title: "Unfiled"}
 		h.ForEach("#JOT_FILECAB_folder__unfiled", func(_ int, h *colly.HTMLElement) {
-			unfiled := cabinet{Title: "Unfiled"}
 			h.ForEach("tbody > tr", func(_ int, h *colly.HTMLElement) {
 				unfiled.Files = append(unfiled.Files, getFilesFromTR(h))
 			})
@@ -140,10 +140,12 @@ func (l *page) fulfill(siteURL string) error {
 		// Then populate cabinet files.
 		h.ForEach("div.collapsible > table > tbody", func(cabIdx int, h *colly.HTMLElement) {
 			if cabIdx == 0 {
-				//skip first data, is cabinet header
+				//skip first data, is unfiled cabinet
 				return
 			}
-			cabIdx--
+			if len(unfiled.Files) == 0 {
+				cabIdx--
+			}
 			if cabIdx >= len(cabs) {
 				fmt.Println("idx", cabIdx, " exceeds length of cabinet", len(cabs), "so skipping")
 				return
