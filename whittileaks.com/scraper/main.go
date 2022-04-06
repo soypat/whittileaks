@@ -112,8 +112,8 @@ func (l *page) fulfill(siteURL string) error {
 	url := siteURL + l.Href
 	c.OnHTML("#sites-canvas", func(h *colly.HTMLElement) {
 		l.Title = h.ChildText("#sites-page-title-header")
-
 	})
+
 	c.OnHTML("#sites-canvas-main-content > table > tbody > tr > td > div", func(h *colly.HTMLElement) {
 		var err error
 		l.MainContentHTML, err = h.DOM.Html()
@@ -121,8 +121,18 @@ func (l *page) fulfill(siteURL string) error {
 			fmt.Printf("error getting main content %v: %v\n", url, err.Error())
 		}
 	})
+
 	c.OnHTML("#filecabinet-body", func(h *colly.HTMLElement) {
 		var cabs []cabinet
+		// Get unfiled documents.
+		h.ForEach("#JOT_FILECAB_folder__unfiled", func(_ int, h *colly.HTMLElement) {
+			unfiled := cabinet{Title: "Unfiled"}
+			h.ForEach("tbody > tr", func(_ int, h *colly.HTMLElement) {
+				unfiled.Files = append(unfiled.Files, getFilesFromTR(h))
+			})
+			cabs = []cabinet{unfiled}
+		})
+
 		// First get cabinet header
 		h.ForEach("table.filecabinet-header", func(_ int, h *colly.HTMLElement) {
 			cabs = append(cabs, cabinet{Title: h.ChildText("tbody > tr > th > span[aria-hidden=true]")})
@@ -140,17 +150,20 @@ func (l *page) fulfill(siteURL string) error {
 			}
 			cab := &cabs[cabIdx]
 			h.ForEach("tr", func(fileIdx int, h *colly.HTMLElement) {
-				var f file
-				h.ForEach("td", func(i int, h *colly.HTMLElement) {
-					f.Data[i] = h.Text
-					h.ForEach("a", func(i int, h *colly.HTMLElement) {
-						f.Links = append(f.Links, h.Attr("href"))
-					})
-				})
-				cab.Files = append(cab.Files, f)
+				cab.Files = append(cab.Files, getFilesFromTR(h))
 			})
 		})
 		l.Cabinets = append(l.Cabinets, cabs...)
 	})
 	return c.Visit(url)
+}
+
+func getFilesFromTR(h *colly.HTMLElement) (f file) {
+	h.ForEach("td", func(i int, h *colly.HTMLElement) {
+		f.Data[i] = h.Text
+		h.ForEach("a", func(i int, h *colly.HTMLElement) {
+			f.Links = append(f.Links, h.Attr("href"))
+		})
+	})
+	return f
 }

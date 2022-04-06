@@ -7,7 +7,7 @@
   "content": "\u003cdiv\u003e\u003ca href=\"https://github.com/soypat/combinatrix/releases/tag/v1.1.0\" style=\"font-size:x-large\" target=\"_blank\" rel=\"nofollow\"\u003e☑️\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003eCombinatrix Download - 64bit [2.8MB]\u003c/b\u003e\u003c/span\u003e\u003c/a\u003e\u003cfont size=\"1\"\u003e\u003cspan\u003e\u003cspan style=\"font-family:verdana,sans-serif\"\u003e\u003cb\u003e (Todos los sistemas operativos)\u003cbr/\u003e\u003c/b\u003e\u003c/span\u003e\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003ch2\u003e\u003ca name=\"TOC-Instrucciones-para-generar-archivo-de-materias--PDF-475kB-\"\u003e\u003c/a\u003e\u003ca href=\"https://drive.google.com/open?id=1BTz6oDMKZxJ9RN9X6l-3sRrypyf3WqMJ\" style=\"font-size:x-large\" target=\"_blank\"\u003e📄\u003cspan style=\"font-weight:normal\"\u003e\u003cspan style=\"font-family:arial,sans-serif\"\u003eInstrucciones para generar archivo de materias- PDF [475kB]\u003c/span\u003e\u003c/span\u003e\u003c/a\u003e\u003c/h2\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003ci\u003e¿Que es?\u003c/i\u003e \u003cu\u003e\u003cb\u003eUn combinador de horarios.\u003c/b\u003e\u003c/u\u003e\u003c/span\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003ePara combinar horarios posibles leyendo de un archivo en formato SGA. Escrito 100% en Go. Permite\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003esuperposiciones de horarios y elegir días libres!\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003eInstrucciones: \u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e1. Copiar horarios de SGA a un .txt.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e2. Guardar .txt en carpeta que contiene a combinatrix.exe\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e3. Correr combinatrix y seguir instrucciones en pantalla.\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent;font-size:10pt\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 win64: \u003c/i\u003e\u003c/span\u003e\u003cspan style=\"background-color:transparent\"\u003e61403045784cbc67e4fd6dfd81f294d58f25460d9c01ebbe36509ddc76f87356\u003c/span\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 checksum.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e821d5f216bbce0aa97e18312ca513604e750bfd006e407277c2bc7f353f3f043\u003c/font\u003e\u003c/span\u003e\u003cbr/\u003e\u003cdiv\u003e\u003cfont size=\"1\"\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003ci\u003eSHA256 gocrypt.exe: \u003c/i\u003e\u003c/span\u003e\u003c/font\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"1\"\u003e2f66400187d01ec4f1beb2c4707d3196887ee5c9c22d2e5dd58cf8c7911f1456\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "links",
+    "title": "Unfiled",
     "files": [
      {
       "data": [
@@ -59,7 +59,7 @@
     ]
    },
    {
-    "title": "Otras aplicaciones",
+    "title": "links",
     "files": [
      {
       "data": [
@@ -137,6 +137,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Otras aplicaciones",
+    "files": null
    }
   ]
  },
@@ -146,7 +150,43 @@
   "top_level": true,
   "title": "Ditto - Otros sitios",
   "content": "\u003cbr/\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Repo de apuntes para Mecánica de FluidosVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n19 sept 2019, 11:28\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fddcampayo%2FFluid_Mechanics\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw0FL7MSC6YT2FSL_VpYc3o4"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "The Finite Element - Sitio de apuntesVer",
+       " ",
+       "",
+       " ",
+       "\n19 sept 2019, 11:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fthefinitelement.com%2F\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1WxOlM3K520wzaIncFUK0-"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Información General",
@@ -156,8 +196,68 @@
   "content": "",
   "cabinets": [
    {
-    "title": "Ing. Mecánica",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Archivos Práctica LaboralVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n22 mar 2020, 12:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://sites.google.com/site/whittileak/practica-laboral"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Feriados NacionalesVer",
+       " ",
+       "",
+       " ",
+       "\n2 mar 2019, 6:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fwww.argentina.gob.ar%2Finterior%2Fferiados\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw00kdOfCowTt0jnmCpKCNZP"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Introducción a la Diferenciación Parcial (inglés)Ver",
+       "¿Pensas que sabes cómo funciona la diferenciación parcial? Piensa otra vez.  ",
+       "",
+       " ",
+       "\n17 nov 2017, 14:32\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fwww.physicsforums.com%2Finsights%2Fpartial-differentiation-without-tears%2F\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1WaUhFtueidDUm7CtuaN9v"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LibrosVer",
+       "Entrar con cuenta @itba.edu.ar ",
+       "",
+       " ",
+       "\n3 mar 2018, 13:06\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/drive/folders/16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u?usp=sharing"
+      ]
+     },
      {
       "data": [
        "",
@@ -176,7 +276,7 @@
     ]
    },
    {
-    "title": "Programación",
+    "title": "Ing. Mecánica",
     "files": [
      {
       "data": [
@@ -240,6 +340,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Programación",
+    "files": null
    }
   ]
  },
@@ -259,8 +363,23 @@
   "content": "\u003ca href=\"https://drive.google.com/open?id=1uaUpOwdHaLe9O8JbBe2527CGBLLF64Gh\"\u003eLibros\u003c/a\u003e   -    Ingresar con mail ITBA\u003cbr/\u003e",
   "cabinets": [
    {
-    "title": "cab",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Algebra Resumen.pdfVer",
+       "Resumen de la Era Pre-Whittileaks.com ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n24 nov 2019, 11:44\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/14dldcbdKIK0Et5Qop3OAydGhwhNsYD_k/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -277,6 +396,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "cab",
+    "files": null
    }
   ]
  },
@@ -286,7 +409,43 @@
   "top_level": false,
   "title": "CdM (Ensayos de Materiales)",
   "content": "",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Ensayos Parcial 2018.rarVer",
+       "Contiene tema de flexión con carga central ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n16 dic 2018, 12:10\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1mxpkmr71VV-hgk6gnP-OsE9ljW7-ieW-/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "leyenda_de_los_machetes.pdfVer",
+       "Para Ensayos de Materiales ",
+       "",
+       " ",
+       "\n30 sept 2018, 19:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1cvoRhwpv9Nw_BRsvURzdAw0EGvgfj-Fl/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Control",
@@ -294,7 +453,43 @@
   "top_level": false,
   "title": "Control",
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cb\u003eControl Moderno\u003c/b\u003e. Espacio variable de estados, controlabilidad, observabilidad, control de realimentacion completa de estados, filtro Kalman.\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/control/control_rapido.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de Control Moderno\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [363kB pdf]\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Control Moderno Youtube por Steve BruntonVer",
+       "Control Bootcamp ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n9 jun 2021, 9:59\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://www.youtube.com/watch?v=Pi7l8mMjYVE\u0026list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Using Inertial Sensors for Position.pdfVer",
+       "Medición, estimación y calibración usando sensores inerciales de posición y orientación (MEMS). ",
+       "",
+       " ",
+       "\n15 may 2020, 15:08\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1kfNV7FX3iWV_J6nG7rfNQeNyiMjipexc/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Derecho para Ingenieros",
@@ -302,7 +497,74 @@
   "top_level": false,
   "title": "Derecho para Ingenieros",
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003eExámenes resueltos: \u003c/font\u003e\u003cfont size=\"4\"\u003e📄\u003c/font\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/derecho/derecho_al_infierno.pdf\" rel=\"nofollow\"\u003eDerecho al Infierno\u003c/a\u003e [pdf]\u003c/font\u003e\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Caso Comentado-4 Fuentes.pdfVer",
+       "Abrir en Adobe reader para ver las 4 fuentes (o foxit). ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n25 may 2019, 9:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1qZJswaOIdcklfZG1qcYZn7hQi8_SAAl6/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "constitucion-nacional-argentina.pdfVer",
+       "Comentarios: 1C 2019 ",
+       "",
+       " ",
+       "\n26 may 2019, 17:39\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1AvNwmDMuKeqjGnz_cpwyGJZZ0rtuqpLo/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PrimerParcial Primer Cuatri 2018.pdfVer Descargar",
+       " ",
+       "39 kb",
+       "v. 1  ",
+       "\n25 abr 2018, 7:53\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4Ojc0ZjAzMGQyMzBjNDk3NTU",
+       "/site/whittileak/derecho-para-ingenieros/PrimerParcial%20Primer%20Cuatri%202018.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Sistema de Consultas Web - Poder Judicial de la NaciónVer",
+       "ACTOR - DEMANDADO\nDENUNCIANTE - DENUNCIADO ",
+       "",
+       " ",
+       "\n3 jun 2019, 17:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fscw.pjn.gov.ar\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1GtP2j_cQyXIJ8dXp-15uQ"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Diseño Mecanico",
@@ -312,8 +574,70 @@
   "content": "Resumen Groover≃Resumen Dis\u003cfont face=\"arial, sans-serif\"\u003ee\u003cfont size=\"2\"\u003eñ\u003c/font\u003e\u003c/font\u003eo Mecánico.\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\" target=\"_blank\"\u003eLibros\u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Pontelli\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Auxilares",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Download CATIAVer",
+       "Acceder con mail @itba.edu.ar \nV5-6R2013 ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n12 sept 2017, 18:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/drive/u/0/folders/0B9k5BB4Hw8GyNVdELWZMNTQ1TmM"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "ITBA.CATScriptDescargar",
+       "Rótulo  ",
+       "51 kb",
+       "v. 1  ",
+       "\n17 nov 2018, 14:32\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/diseno-mecanico/ITBA.CATScript?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "redacted-CATIA Golden Rules.txtVer Descargar",
+       "Version 1.1 (reorganizado) ",
+       "7 kb",
+       "v. 1  ",
+       "\n14 mar 2020, 5:57\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjFjMDIyOTRmYWU5ZmU1Mzc",
+       "/site/whittileak/diseno-mecanico/redacted-CATIA%20Golden%20Rules.txt?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen Groover.pdfVer Descargar",
+       "Ahora con Rodamientos! ",
+       "1634 kb",
+       "v. 8  ",
+       "\n12 dic 2016, 18:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQxM2ViZjMyYTA5ZTAzZGE",
+       "/site/whittileak/diseno-mecanico/Resumen%20Groover.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -376,6 +700,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Auxilares",
+    "files": null
    }
   ]
  },
@@ -385,7 +713,44 @@
   "top_level": false,
   "title": "Economía Internacional",
   "content": "",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 2017.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n30 sept 2017, 17:00\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneZ2tlZkVOVmhNY2c/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen EconInt.pdfVer Descargar",
+       "Tambien conocido como el Francosumen© ",
+       "1643 kb",
+       "v. 1  ",
+       "\n2 ago 2017, 14:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjE2Mjk3YWEzZjNhZDJjN2E",
+       "/site/whittileak/economia-internacional/Resumen%20EconInt.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Economía para Ing. 61.24",
@@ -395,8 +760,38 @@
   "content": "\u003cdiv\u003e\u003cfont size=\"5\"\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/economia/economia_itba.pdf\" rel=\"nofollow\"\u003e📑️ Apunte de la materia [PDF 2.7MB]\u003c/a\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e61.24 es la economía fácil! Ojo!\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Economia 61.24",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "MigaResueltos.zipVer",
+       "Finales y parciales resueltos. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n24 jul 2020, 6:50\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1tsJChm26JEyTZq1dnWPQEbGE0c4TxUj7/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "MigaSpecial Resumenes.zipVer",
+       "Resumenes de los parciales y final. ",
+       "",
+       " ",
+       "\n24 jul 2020, 6:50\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1vPU5uqB_QJGzP6VJLMSYxtyBTjVcbkP0/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -413,6 +808,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Economia 61.24",
+    "files": null
    }
   ]
  },
@@ -422,7 +821,154 @@
   "top_level": false,
   "title": "Electrotecnia",
   "content": "\u003cbr/\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "3er Parcial Formulas.pdfVer Descargar",
+       " ",
+       "372 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n27 jul 2017, 10:43\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjRmZDcxMmY2YjMxYjA1ZDA",
+       "/site/whittileak/electrotecni/3er%20Parcial%20Formulas.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "4to Parcial formulas.pdfVer Descargar",
+       " ",
+       "299 kb",
+       "v. 1  ",
+       "\n15 jul 2017, 16:22\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjRiNGNiYTI1OTQwOWM3ZjI",
+       "/site/whittileak/electrotecni/4to%20Parcial%20formulas.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Circuitos - Formulas y metodos.pdfVer Descargar",
+       " ",
+       "563 kb",
+       "v. 1  ",
+       "\n25 jul 2017, 11:20\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjVhNGJiYjg4YzQ3NzM3YjE",
+       "/site/whittileak/electrotecni/Circuitos%20-%20Formulas%20y%20metodos.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final Julio 2017.pdfVer Descargar",
+       " ",
+       "157 kb",
+       "v. 1  ",
+       "\n19 jul 2017, 21:10\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OmFiOWZjZTNiNjU4Yjk0OQ",
+       "/site/whittileak/electrotecni/Final%20Julio%202017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Hoja De formulas Posta.pdfVer Descargar",
+       "Gracias G.C. ",
+       "141 kb",
+       "v. 1  ",
+       "\n24 abr 2018, 6:58\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjNhZjQwMjQ1OGNhOWEwZWM",
+       "/site/whittileak/electrotecni/Hoja%20De%20formulas%20Posta.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Labmta.mVer Descargar",
+       "Ejemplo de como tienen que ser los graficos para el lab de MTA ",
+       "2 kb",
+       "v. 1  ",
+       "\n12 sept 2017, 18:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjYyZTMwNzhjZjg4NzUyNWM",
+       "/site/whittileak/electrotecni/Labmta.m?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "nspire_funciones.zipDescargar",
+       "Funciones para la materia. TI nspire CX CAS ",
+       "18 kb",
+       "v. 1  ",
+       "\n26 ago 2017, 20:43\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/electrotecni/nspire_funciones.zip?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "parcialito Lab Trifasica.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n15 oct 2018, 8:11\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1AC-8NucbdIW3OWxEyAvR_wU8pmLo10c6/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen de conceptos electrotecnia.pdfVer",
+       "Autor anonimo. Contiene buena info para el ultimo tema de Asincronico.  ",
+       "",
+       " ",
+       "\n2 sept 2018, 17:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneMUo1dkNiYmlFRms/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Elementos de Máquinas y Mecanismos",
@@ -432,8 +978,39 @@
   "content": "\u003cdiv\u003eProtip: Engranes+4340=Profit\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eLeslabay 2018\u003cbr/\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Elementos de Maquina",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Propiedades del material que se te canteVer",
+       "Tiene casi todo ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n6 nov 2018, 12:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fwww.matweb.com%2F\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw1HAhdk3dWAQvYMLpVMiNGw"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen EdM y Mecanismos.pdfVer Descargar",
+       " ",
+       "202 kb",
+       "v. 1  ",
+       "\n24 feb 2019, 8:19\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY0YWE1NzljYmVhNmFlYjc",
+       "/site/whittileak/edm/Resumen%20EdM%20y%20Mecanismos.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -528,7 +1105,7 @@
     ]
    },
    {
-    "title": "Mecanismos",
+    "title": "Elementos de Maquina",
     "files": [
      {
       "data": [
@@ -561,6 +1138,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Mecanismos",
+    "files": null
    }
   ]
  },
@@ -572,8 +1153,23 @@
   "content": "\u003cdiv\u003eD\u0026#39;hers 2018. 30.07 \u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/thefinitoskid/apuntefinitos.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [650kB pdf] formato pdf\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cspan\u003e    \u003c/span\u003e🧰\u003ca href=\"https://github.com/soypat/nastran-mtract/releases/download/v1.0.0/nastran-emtract-v1.0.0.zip\" rel=\"nofollow\"\u003eeMTRACT para NASTRAN\u003c/a\u003e win64 [1.0MB] (Update junio 2020)\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e    \u003c/font\u003e\u003cspan style=\"font-size:large;background-color:initial;font-family:apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol;color:rgb(0,0,0)\"\u003e📽️\u003c/span\u003e\u003cfont size=\"4\"\u003e\u003ca href=\"https://www.youtube.com/watch?v=DgZMih65mv0\" target=\"_blank\"\u003eVideo de como usar eMTRACT\u003c/a\u003e\u003c/font\u003e \u003cspan style=\"font-size:large;background-color:transparent\"\u003e(Youtube)\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large;background-color:transparent\"\u003e\u003cbr/\u003e\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"background-color:transparent\"\u003e\u003cfont size=\"2\"\u003eeMTRACT exporta la malla de NX a formato .csv para usar con Matlab.\u003c/font\u003e\u003c/span\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Códigos Ayuda",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\ną\n",
+       "bandplot_ejemplos.pngVer",
+       "Como se ve la función bandplotx() ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n10 abr 2020, 13:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1JI7P1qnBZYc_x_tjHrNShGH4CMCGq81F/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -697,7 +1293,7 @@
     ]
    },
    {
-    "title": "Elementos Finitos II",
+    "title": "Códigos Ayuda",
     "files": [
      {
       "data": [
@@ -747,7 +1343,7 @@
     ]
    },
    {
-    "title": "Exámenes",
+    "title": "Elementos Finitos II",
     "files": [
      {
       "data": [
@@ -782,7 +1378,7 @@
     ]
    },
    {
-    "title": "Lector Nastran",
+    "title": "Exámenes",
     "files": [
      {
       "data": [
@@ -817,7 +1413,7 @@
     ]
    },
    {
-    "title": "Prog",
+    "title": "Lector Nastran",
     "files": [
      {
       "data": [
@@ -837,7 +1433,7 @@
     ]
    },
    {
-    "title": "Trabajos Practicos",
+    "title": "Prog",
     "files": [
      {
       "data": [
@@ -902,7 +1498,7 @@
     ]
    },
    {
-    "title": "Tutoriales",
+    "title": "Trabajos Practicos",
     "files": [
      {
       "data": [
@@ -935,6 +1531,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Tutoriales",
+    "files": null
    }
   ]
  },
@@ -946,8 +1546,70 @@
   "content": "De los Mecánicos\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eMateria dada por Hernan Baranda\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Aux",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Base de Datos de materialesVer",
+       "Buscate el material que se te cante ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n17 nov 2018, 12:54\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fwww.matweb.com\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw2e-NdPk4Zy2_nIG7kY77n0"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Consignas TP.zipVer",
+       "Los TPs de 1C 2017 y algunos de otros cuatrimestres ",
+       "",
+       " ",
+       "\n31 jul 2017, 13:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneZG1ZNGFsUkpQcVU/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Copilacion de formulas.pdfVer Descargar",
+       "V2: Momento estatico para Jouravsky en secc. circulares ",
+       "651 kb",
+       "v. 2  ",
+       "\n9 mar 2018, 15:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQ5ZDllMGU2NzdkY2NjMDU",
+       "/site/whittileak/estatica/Copilacion%20de%20formulas.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final_Estatica Julio2017.pdfVer Descargar",
+       " ",
+       "592 kb",
+       "v. 1  ",
+       "\n30 nov 2017, 7:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjVlMjEzMjExYTQ0NjM5Zjg",
+       "/site/whittileak/estatica/Final_Estatica%20Julio2017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1071,6 +1733,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Aux",
+    "files": null
    }
   ]
  },
@@ -1080,7 +1746,43 @@
   "top_level": false,
   "title": "Física  II",
   "content": "Pablo Konig\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003ePractica por Vieytes\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Finales Fisica II.zipVer",
+       "4 finales recientes. Uno con respuestas  ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n2 ago 2017, 14:28\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMInedmZVcjBYcGoxUjg/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "LibrosVer",
+       "Ingresar con mail ITBA ",
+       "",
+       " ",
+       "\n16 mar 2018, 6:03\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/drive/u/3/folders/16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Física  III",
@@ -1088,7 +1790,74 @@
   "top_level": false,
   "title": "Física  III",
   "content": "Horacio Rinaldi",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Circuitos - Formulas y metodos.pdfVer Descargar",
+       " ",
+       "564 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n25 jul 2017, 11:26\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjMzNWMyM2NhOTEyNDNjNWY",
+       "/site/whittileak/fisica-iii/Circuitos%20-%20Formulas%20y%20metodos.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "F3 cosas varias.rarVer",
+       "Pizarrones y apuntes variados\n ",
+       "",
+       " ",
+       "\n29 sept 2017, 15:10\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneVzNfQklWTUFRejg/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "F3 Primer Parcial 1C 2018_V2.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:31\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1GyBlgQntgefl-vxWvujIi7t9Sy4jp9Lo/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "F3 Segundo Parcial 1C 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1YrqLZ_V2MwlxzQhksn6qGHWrh-G3JeCD/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Física IV",
@@ -1098,8 +1867,69 @@
   "content": "\u003cdiv\u003e\u003cspan style=\"font-size:13.3333px\"\u003ePorque todo ingeniero necesita una base firme de relatividad especial y mecánica cuántica.\u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003eJefe catedra: Horacio Daniel Rinaldi, 2018\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e\u003cbr/\u003e",
   "cabinets": [
    {
-    "title": "Segundo Parcial",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Apuntes de claseVer",
+       "No están 100% completos. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n9 ago 2018, 15:43\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2F1drv.ms%2Ff%2Fs!AlrVbIV-6lN2hn6Fk5XQijcCpyOs\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw0_-sYqFDPjSJaopiGC2nhv"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "carpeta-latexeada-ante.pdfVer Descargar",
+       " ",
+       "1066 kb",
+       "v. 1  ",
+       "\n2 sept 2018, 15:58\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY5ZmQ5Y2Y2Njc4MWNjYmU",
+       "/site/whittileak/fisica-4/carpeta-latexeada-ante.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "F4 Final 7 Dic 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1iJO6Q84iJMMA7K9mCbp4v5Kzcdo7W7kW/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "F4 Primer Parcial 2C 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/12tT2UeiWk1vCUubF2NmHB99mZsjYFwbM/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -1131,6 +1961,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Segundo Parcial",
+    "files": null
    }
   ]
  },
@@ -1140,7 +1974,28 @@
   "top_level": false,
   "title": "Instalaciones Eléctricas",
   "content": "",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen Segundo ParcialFINAL.pdfVer",
+       "Alvasumen ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n19 jun 2019, 12:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1mdpIFCaTjXMSdetYf_X5vk2EY6uvzUqw/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Instalaciones Industriales",
@@ -1148,7 +2003,73 @@
   "top_level": false,
   "title": "Instalaciones Industriales",
   "content": "\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/instind/instalaciones_industriales.pdf\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e [867 kB pdf] formato pdf\u003c/font\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ejemplo Pilotes Pipeleaks.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n14 jul 2019, 6:43\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1LpSyB7xCdZng781ZM4H5YCuyu1t88Cs_/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "ejResueltosInstIndustriales.pdfVer",
+       "Sistemas (in)desplazables. Ejercicios ",
+       "",
+       " ",
+       "\n25 jun 2020, 11:21\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1akL9X5NYBbw_d0B7_uSEOPpVvubYSuxv/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Material de ClaseVer",
+       "Imprimibles, Catalogos, etc. ",
+       "",
+       " ",
+       "\n7 jul 2019, 12:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1ih3z0gOrJSRXCScBmQfolR2ZOcI1fn8R"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen 2 parcial.pdfVer",
+       "Subsidiaria pipeleaks ",
+       "",
+       " ",
+       "\n14 jul 2019, 6:43\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/10oGwAaHt3Hj9zV51AwIVDqzZUgwfdUju/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Instrumentación y Control Industrial",
@@ -1158,8 +2079,128 @@
   "content": "Control de los buenos tiempos con Hector Comastri.",
   "cabinets": [
    {
-    "title": "Final",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "ComastriResueltos PrimerParcial.pdfVer",
+       "Excelente documento para estudiar para primer parcial. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n16 dic 2018, 11:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/159Y-WdI6zLpLA9x5koUlseY6LN7nQL7c/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Cosas para ImprimirVer",
+       "Incluye un recopilado de PowerPoints Condensadisimo ",
+       "",
+       " ",
+       "\n13 mar 2019, 10:15\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/open?id=1kDGdoQnIEGGcwNv04h36zh31KjYgXM1s"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Duda_Instru.pdfVer",
+       "Otra forma de pensar el problema. ",
+       "",
+       " ",
+       "\n10 dic 2018, 19:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1HYOcRN0-DwkfqSF-ZTXMCS5RIlCtvSd5/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ej Parcial1 - extra.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n28 sept 2018, 16:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1WgQ67EQAILbt0O0U8C7hJAt7jX44VFmq/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ej Parcial2 - extra.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n28 sept 2018, 16:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1pa7BJiGDk90kBRbXJPlwb0JT8jJVLbiL/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 2013.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n28 sept 2018, 16:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/15dKHB9Ar97d8Mu2zNbIn4Ph7H9nZlJMl/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n28 feb 2019, 14:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Vv-qpsLISLDq-6NPiw5yjyTaUOsyh9yy/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Segundo Parcial 2014.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n28 sept 2018, 16:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/12X7iytEesv52UGg5I2_eqCgcsaXJdO_p/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -1206,6 +2247,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Final",
+    "files": null
    }
   ]
  },
@@ -1217,8 +2262,70 @@
   "content": "Materia de Mecanicos. Matlab.\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eNicolas Magliola\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Aux.",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "GUI-Calcu.rarVer",
+       "Simple GUI de una calculadora hecho 100% en matlab. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n14 mar 2019, 12:37\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Z0iQyNmPfqkpKHjAWSARUo1zRAx9xi8l/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "lorenz.mVer Descargar",
+       "Chaos. ",
+       "1 kb",
+       "v. 1  ",
+       "\n7 dic 2019, 7:10\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjFhOTAzZmZhYjJjZTNkOGI",
+       "/site/whittileak/intro-a-la-programacion/lorenz.m?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MacheteMatlab.pdfVer Descargar",
+       "Funciones basicas para nutrir la curiosidad. ",
+       "98 kb",
+       "v. 1  ",
+       "\n15 abr 2018, 19:28\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjZlMGFhM2EyNTQwMDI5NDk",
+       "/site/whittileak/intro-a-la-programacion/MacheteMatlab.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Todo Matlab 2016 - Reloaded.zipDescargar",
+       "Todo del 2016, parciales y finales, Todos los TPs del segundo cuatrimestre, y algunas cosas hechas en clase  ",
+       "7820 kb",
+       "v. 1  ",
+       "\n6 may 2017, 20:36\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/intro-a-la-programacion/Todo%20Matlab%202016%20-%20Reloaded.zip?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1237,7 +2344,7 @@
     ]
    },
    {
-    "title": "Miscellaneous",
+    "title": "Aux.",
     "files": [
      {
       "data": [
@@ -1271,6 +2378,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Miscellaneous",
+    "files": null
    }
   ]
  },
@@ -1280,7 +2391,44 @@
   "top_level": false,
   "title": "Mate  Ingreso",
   "content": "Monica Orecchia\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eBuscar Libro en Información General\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Copilacion de examenes.zipVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n15 jul 2017, 16:19\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneSldsWmxyd2dtYWM/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MCPI-Logica y Conjuntos.pdfVer Descargar",
+       " ",
+       "798 kb",
+       "v. 2  ",
+       "\n27 jun 2017, 22:21\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY3Zjk1MGMzYTZkZDA5ZDc",
+       "/site/whittileak/mate-ingreso/MCPI-Logica%20y%20Conjuntos.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Mate I",
@@ -1288,7 +2436,45 @@
   "top_level": false,
   "title": "Mate I",
   "content": "\u003ca href=\"https://drive.google.com/open?id=16A4dTNKFCBnPMI-FN3mZpSLQ8ckNjr-u\"\u003eLibros\u003c/a\u003e  -   Ingresar con mail ITBA",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen M1 Teorico.pdfVer Descargar",
+       " ",
+       "938 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n14 oct 2016, 12:45\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjcyZDFlNjc0ZGZjNmZiOGU",
+       "/site/whittileak/mate-i/Resumen%20M1%20Teorico.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Tablas, operaciones y reglas.pdfVer Descargar",
+       " ",
+       "434 kb",
+       "v. 1  ",
+       "\n14 oct 2016, 12:45\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQxM2YyZjczZmM5ZWQ2MjU",
+       "/site/whittileak/mate-i/Tablas%2C%20operaciones%20y%20reglas.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Mate II",
@@ -1298,8 +2484,40 @@
   "content": "Maria Laura Noni",
   "cabinets": [
    {
-    "title": "Aux",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "2015 Mate ii - Resumen Primer Parcial.pdfVer Descargar",
+       "Resumen de la era pre-WhittiLeaks (Dado por Noni) ",
+       "268 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n31 jul 2017, 21:18\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY4YjdlYTU4NTI3Zjg4ZmM",
+       "/site/whittileak/mate-ii/2015%20Mate%20ii%20-%20Resumen%20Primer%20Parcial.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Procedimiento Ingenieril.pdfVer Descargar",
+       " ",
+       "263 kb",
+       "v. 1  ",
+       "\n17 jun 2017, 19:39\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQ5ZjZkMTcyODY0MGUwYjY",
+       "/site/whittileak/mate-ii/Procedimiento%20Ingenieril.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1316,6 +2534,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Aux",
+    "files": null
    }
   ]
  },
@@ -1327,8 +2549,40 @@
   "content": "Hagman",
   "cabinets": [
    {
-    "title": "Aux",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final 13-07-2017.pdfVer Descargar",
+       " ",
+       "386 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n20 ago 2017, 11:41\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjJmNzVjNTA3NDhlMjgzMjE",
+       "/site/whittileak/mate-iii/Final%2013-07-2017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen M3.pdfVer Descargar",
+       " ",
+       "752 kb",
+       "v. 5  ",
+       "\n7 oct 2018, 16:41\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjY3YzczYTk2OGM0MTg4NmI",
+       "/site/whittileak/mate-iii/Resumen%20M3.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1345,6 +2599,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Aux",
+    "files": null
    }
   ]
  },
@@ -1356,8 +2614,85 @@
   "content": "Devoto",
   "cabinets": [
    {
-    "title": "Aux",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ejercicio4.pdfVer",
+       "Ejercicio de parcial resuelto. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n28 feb 2019, 14:54\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneeUpXWEluZWF0TEE/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "fourier.mVer Descargar",
+       "Funcion Matlab que grafica Serie Fourier ",
+       "1 kb",
+       "v. 1  ",
+       "\n14 may 2017, 11:49\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjIyOTllNjBiZjhkMGE3NzQ",
+       "/site/whittileak/mate-iv/fourier.m?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Mate IV, AmenVer",
+       "Mas parciales y finales de los que necesitabas.  ",
+       "",
+       " ",
+       "\n7 jul 2017, 19:16\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/a/itba.edu.ar/file/d/0B9k5BB4Hw8GybDljaW9aM0pOa28/view?usp=sharing"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MIV Final 5 Julio 2018.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1PSrRrVZlmaDgqDwD9Mx_2NG0aGYGoBv5/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "ResumenM4.pdfVer Descargar",
+       " ",
+       "1154 kb",
+       "v. 1  ",
+       "\n16 dic 2018, 16:07\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjI4ZDUwYjI1OTcyMGU3MGU",
+       "/site/whittileak/mate-iv/ResumenM4.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1374,6 +2709,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Aux",
+    "files": null
    }
   ]
  },
@@ -1385,8 +2724,23 @@
   "content": "\u003cdiv\u003ePara los electrónicos\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eContribuido por Ari and Rochi, Nico.\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003ca href=\"https://drive.google.com/open?id=160dSY4PFSehp9CHYPaC0AtdOJeTBbsEj\" target=\"_blank\"\u003eLink directo al drive \u003c/a\u003e\u003cbr/\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Primer Parcial",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "eddps.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n16 nov 2019, 15:23\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1HtxDZVmGCXCe7t0O-wBNC9HU9ZzAfms_/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -1420,7 +2774,7 @@
     ]
    },
    {
-    "title": "Segundo Parcial",
+    "title": "Primer Parcial",
     "files": [
      {
       "data": [
@@ -1453,6 +2807,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Segundo Parcial",
+    "files": null
    }
   ]
  },
@@ -1464,8 +2822,87 @@
   "content": "\u003cdiv\u003eApuntes relacionados a la mate V de los mecanicos!\u003cbr/\u003e\u003cbr/\u003e\u003c/div\u003e(y navales)\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003eRoberto Delellis\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Aux",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Final Julio 2017.pdfVer Descargar",
+       " ",
+       "81 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n12 ago 2017, 16:57\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjIyZmQ2YTU2YjJjZjUyODM",
+       "/site/whittileak/mate-v/Final%20Julio%202017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Funciones para MateV.zipDescargar",
+       "Ec. de Calor animada y Fourier ",
+       "5 kb",
+       "v. 1  ",
+       "\n22 abr 2017, 19:25\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/mate-v/Funciones%20para%20MateV.zip?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Primer Parcial 1C 2017.pdfVer Descargar",
+       " ",
+       "78 kb",
+       "v. 1  ",
+       "\n19 nov 2017, 10:05\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjZkMDdiNDk2MTE1YTRkOTI",
+       "/site/whittileak/mate-v/Primer%20Parcial%201C%202017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen M5.pdfVer Descargar",
+       " ",
+       "865 kb",
+       "v. 1  ",
+       "\n27 jun 2017, 22:19\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjIwZWI4YTgxZGIyOTAwN2Y",
+       "/site/whittileak/mate-v/Resumen%20M5.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Segundo Parcial 1C 2017.pdfVer Descargar",
+       " ",
+       "74 kb",
+       "v. 1  ",
+       "\n12 ago 2017, 20:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjYwODY4ZjU4NTQyYTNiZWY",
+       "/site/whittileak/mate-v/Segundo%20Parcial%201C%202017.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -1484,7 +2921,7 @@
     ]
    },
    {
-    "title": "Tensores",
+    "title": "Aux",
     "files": [
      {
       "data": [
@@ -1519,6 +2956,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Tensores",
+    "files": null
    }
   ]
  },
@@ -1528,7 +2969,58 @@
   "top_level": false,
   "title": "Mecatrónica Aplicada",
   "content": "\u003cbr/\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "pascal-voc.tgz-e6d591cef9ea2840f7d8dfb6bb0e0503d5592128.torrentDescargar",
+       "PASCAL VOC 2007+2012 datasets+annotations [4.12GB] ",
+       "87 kb",
+       "v. 2  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n8 sept 2020, 7:07\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "/site/whittileak/mecatronica-aplicada/pascal-voc.tgz-e6d591cef9ea2840f7d8dfb6bb0e0503d5592128.torrent?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "VOC2007 Training datasetVer",
+       "PASCAL Visual Objects Classes 2007. Training + Validation. Does not contain test data. [440MB] ",
+       "",
+       " ",
+       "\n8 sept 2020, 7:07\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1aqRES-QXLFV34mPlUOmE5XTwKnu-jtT3/view?usp=sharing"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "VOC 2012,2007 Trainval w/ annotationsVer",
+       "Direct download [4.12GB]  ",
+       "",
+       " ",
+       "\n8 sept 2020, 7:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1aIp0jnfyIzAjnOXd2qUqbnHYsf8_Fq2Z/view?usp=sharing"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Mecánica de Fluidos y Transferencia de Calor",
@@ -1538,8 +3030,54 @@
   "content": "\u003cdiv\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/termofluidos/termofluidos.pdf\" rel=\"nofollow\"\u003eApunte de las materias\u003c/a\u003e [2MB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cbr/\u003e\u003cfont size=\"4\"\u003e\u003cfont size=\"4\"\u003e📄\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/fvm/fvm_itba.pdf\" rel=\"nofollow\"\u003eApunte de los volúmenes finitos\u003c/a\u003e [237kB pdf] \u003cbr/\u003e\u003c/font\u003e\u003c/font\u003e\u003c/div\u003e\u003cdiv\u003e\u003cfont size=\"4\"\u003e\u003cbr/\u003e\u003c/font\u003e\u003c/div\u003e",
   "cabinets": [
    {
-    "title": "Exámenes",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "BLanalisis.mVer",
+       "Script que grafica una capa límite mixta para placas planas. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n30 dic 2018, 8:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1gZyINgveNvvEqp_Y1m6pPsTzFWTxmgAo/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "VM162c.pdfVer Descargar",
+       " ",
+       "1259 kb",
+       "v. 1  ",
+       "\n12 ene 2021, 17:29\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjYzZDdkYTNhZWI2MDI4YTE",
+       "/site/whittileak/termofluidos/VM162c.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Volúmenes finitosVer",
+       "una cosita para entender un poco mejor ",
+       "",
+       " ",
+       "\n29 oct 2018, 19:16\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "http://www.google.com/url?q=http%3A%2F%2Fwww.dtic.mil%2Fdtic%2Ftr%2Ffulltext%2Fu2%2Fa519644.pdf\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw0CtQ-1D-Zo8lkpynyMjbj8"
+      ]
+     },
      {
       "data": [
        "",
@@ -1617,6 +3155,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Exámenes",
+    "files": null
    }
   ]
  },
@@ -1626,7 +3168,89 @@
   "top_level": false,
   "title": "Mecánica General",
   "content": "Jorge Ratto",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Florilegio de Primeros Parciales.pdfVer",
+       "6 primeros parciales. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n30 sept 2017, 16:05\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneQnp6Mmc1VmE3SDg/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MecGen Primer Parcial 2017 2C.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:31\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Zl2mmE-73kTpEl2kD_bREY2e1zht7wEu/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "PrimerPArcialesResueltos Mec General.pdfVer",
+       "Resolucion de varios parciales. No se garantiza que sea correcta la resolucion. (Tiene errores) ",
+       "",
+       " ",
+       "\n28 nov 2017, 10:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneYUtWT1pOdG9MdFk/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen MEcanica General BETA.pdfVer Descargar",
+       "Nunca se termino. ",
+       "102 kb",
+       "v. 1  ",
+       "\n11 nov 2019, 10:08\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjQ4MmQzMGYwMDAyNzY4MGY",
+       "/site/whittileak/mecanica-general/Resumen%20MEcanica%20General%20BETA.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "w1w2.tnsDescargar",
+       "Hace cualquier ejercicio de la guia 15 de movimiento de un disco moviendose respecto de otro movimiento circular. -Mr. L ",
+       "4 kb",
+       "v. 1  ",
+       "\n25 sept 2018, 6:45\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "/site/whittileak/mecanica-general/w1w2.tns?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Metalúrgia Física",
@@ -1634,7 +3258,73 @@
   "top_level": false,
   "title": "Metalúrgia Física",
   "content": "Metalúrgia Física de los Mecánicos.\u003cbr/\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e    \u003c/span\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e\u003cspan\u003e    \u003c/span\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/metalurgy/metalurgy.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [1MB pdf] formato pdf \u003c/span\u003e\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "2do Parciales Resueltos.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n25 jun 2020, 15:05\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1RkVZe49egk_Q7UMqGyoYCh6rrDyV5Hlj/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MigaSpecial_Parcial1_Metalurgia.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n25 jun 2019, 19:12\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1yHcbIKiNtqEjsDFnXn65rwdw3esGzZy7/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MigaSpecial_Parcial2_Metalurgia.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n25 jun 2019, 19:12\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1XJrp2KmFH1ImP8ug0WhuV9GSbzIEv0rX/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Primer Parcial Metalurgia.zipVer",
+       "Muchos exámenes ",
+       "",
+       " ",
+       "\n18 may 2019, 11:50\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1sNDzv8323WOLxjPsz3BxzQegR3MU7ijb/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Motores a Combustión Interna",
@@ -1642,7 +3332,43 @@
   "top_level": false,
   "title": "Motores a Combustión Interna",
   "content": "Ing. Vicente Celani\u003cbr/\u003e\u003cdiv\u003e\u003cbr/\u003e\u003c/div\u003e\u003cdiv\u003e\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/motores/mci_itba.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [451kB pdf] formato pdf (Version 2020.1)\u003c/span\u003e\u003c/div\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MigaSpecial Resumen MCI 2P.pdfVer",
+       "Solo Segundo Parcial ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n15 dic 2018, 11:52\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1wQlG2SpF3VpH7OZlCMLlN87SBEmIEE9d/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Motores_kit_supervivencia.zipVer",
+       "Primer parcial 2018 Multiple choice. +60% repetidos del Sanz. ",
+       "",
+       " ",
+       "\n29 nov 2018, 8:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1cKv59CqPhEIhf-ee811y9wbGDNddYjYI/view?usp=drive_web"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Métodos Numéricos",
@@ -1650,7 +3376,104 @@
   "top_level": false,
   "title": "Métodos Numéricos",
   "content": "Teoría dada para mecánicos. Francisco Villaverde",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Drive de Finales.zipVer",
+       "3 Finales resueltos y resolución extra ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n31 jul 2017, 21:31\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneSGNOcllHZEgwUUk/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Metodos Final 2018 Julio.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:04\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1La-rj_qmtwKU2v8nmJCdsD2Q_LcQnNk8/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Metodos Parcial 2018.pdfVer",
+       "Gracias a pipe~ ",
+       "",
+       " ",
+       "\n16 dic 2018, 16:05\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1nMnJ_a55pzhhQb8-oqQVL7_ZqvaZzBRN/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Parciales MN.zipVer",
+       "2005,2006,2013 ",
+       "",
+       " ",
+       "\n31 jul 2017, 21:12\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneVjEzWFZXTGgtcEE/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resolucion de Parciales.pdfVer",
+       "Resolucion de varios parciales por anonimo. SIN CORREGIR. Algunos vienen de Apuntes Gallo ",
+       "",
+       " ",
+       "\n2 ago 2017, 14:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneVXlrQW9QVFFDeTA/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resumen MN.pdfVer Descargar",
+       "Nueva versión 2018 ",
+       "1044 kb",
+       "v. 1  ",
+       "\n14 jul 2018, 10:01\n",
+       "Patricio Whittingslow"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjExYmJmMTFjMTc1NDM4ZDM",
+       "/site/whittileak/metodos-numericos/Resumen%20MN.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Probabilidad y Estadística",
@@ -1658,7 +3481,44 @@
   "top_level": false,
   "title": "Probabilidad y Estadística",
   "content": "",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Probabilidad y Estadistica Resumen por Flo.pdfVer",
+       "Me han traido a la atencion que no era publico. Deberia estar arreglado el problema. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n19 nov 2017, 9:54\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0B9k5BB4Hw8GyNFhDZlpkQlQ5THM/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Probasumen.pdfVer Descargar",
+       "Solo primer parcial ",
+       "285 kb",
+       "v. 1  ",
+       "\n13 nov 2017, 16:02\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjZkNTc3ZjQ0NmM5ZTIwZWY",
+       "/site/whittileak/probabilidad-y-estadistica/Probasumen.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Procesos de Manufactura",
@@ -1668,8 +3528,38 @@
   "content": "",
   "cabinets": [
    {
-    "title": "Procesos de Manufactura I",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Resueltos.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n9 jul 2020, 14:09\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1Sif63EHjTSLZECRPOVy---5Wy54Z4eUM/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "TP Colada.pdfVer",
+       "Trabajo practico de fundición. Diseño de mazarota y gating ",
+       "",
+       " ",
+       "\n22 abr 2020, 16:24\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/16da7cJ-7FhnTmAqrS4sagH5GVuAkp9Ze/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -1686,6 +3576,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Procesos de Manufactura I",
+    "files": null
    }
   ]
  },
@@ -1695,7 +3589,58 @@
   "top_level": false,
   "title": "Práctica Laboral",
   "content": "Modelo LaTeX para la práctica laboral y una guía de redacción completa!\u003cbr/\u003e",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Guía Informe Práctica Laboral.pdfVer",
+       "Coniene estructuras comunmente usadas en informes y recomendaciones generales. ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n22 mar 2020, 12:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/15SGFrI3noJDulEc3B8UiT1fQOezm4KC8/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "informe_praclaboral.zipVer",
+       " ",
+       "",
+       " ",
+       "\n28 mar 2020, 15:44\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1gj1PV3xoslWQ9WgsJ3U5OBXuZm4MDSKm/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Link al modelo en OverleafVer",
+       "Overleaf ",
+       "",
+       " ",
+       "\n22 mar 2020, 21:15\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.google.com/url?q=https%3A%2F%2Fwww.overleaf.com%2Flatex%2Ftemplates%2Finforme-de-practica-laboral-itba%2Fqjjhbygkhpdv\u0026sa=D\u0026sntz=1\u0026usg=AOvVaw3BBbjZ3nsIjXKLmefVYMZ_"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Química II",
@@ -1703,7 +3648,29 @@
   "top_level": false,
   "title": "Química II",
   "content": "Odio la química con pasión. ",
-  "cabinets": null
+  "cabinets": [
+   {
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Grupos 15-17 Q2.pdfVer Descargar",
+       "1 carilla de formulas. Segundo Parcial ",
+       "470 kb",
+       "v. 1  ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n30 abr 2017, 15:13\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjYxMmZiMDc5Y2JmYjc0ZTk",
+       "/site/whittileak/quimica-ii/Grupos%2015-17%20Q2.pdf?attredirects=0\u0026d=1"
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "link_title": "Resistencia de Materiales",
@@ -1713,8 +3680,69 @@
   "content": "Encargado de la materia 2C 2017: Miguel Angel Cavaliere",
   "cabinets": [
    {
-    "title": "Examenes",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Arisumen Resistencia.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n22 sept 2017, 16:31\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/0BxlGAHNyMIneTDRuR05raTZramc/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "HojaFormula2.pdfVer Descargar",
+       "Lo que Miguel no te da en el parcial esta en gris. ",
+       "112 kb",
+       "v. 1  ",
+       "\n17 dic 2017, 9:23\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjUzZTQzYjhjZDZkYjQ2ZDA",
+       "/site/whittileak/resistencia-de-materiales/HojaFormula2.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "plane_stress_strain.pdfVer",
+       "todo sobre plane stress y plane strain. Creds a Memphis University ",
+       "",
+       " ",
+       "\n14 oct 2018, 11:51\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1AA94WrCrnsP6e4cZg7Nm7QFKEx38qMom/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "Playlist Youtube de clases ITBAVer",
+       "Clases de Miguel y resolución de ejercicios.  ",
+       "",
+       " ",
+       "\n28 ago 2020, 11:35\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://www.youtube.com/playlist?list=PL7XdBUFM5mBGbiAKo6P1pJEcEu7aMczMd"
+      ]
+     },
      {
       "data": [
        "",
@@ -1809,7 +3837,7 @@
     ]
    },
    {
-    "title": "Primer Parcial",
+    "title": "Examenes",
     "files": [
      {
       "data": [
@@ -1891,7 +3919,7 @@
     ]
    },
    {
-    "title": "TPs",
+    "title": "Primer Parcial",
     "files": [
      {
       "data": [
@@ -1940,6 +3968,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "TPs",
+    "files": null
    }
   ]
  },
@@ -1951,8 +3983,53 @@
   "content": "",
   "cabinets": [
    {
-    "title": "Parcialitos",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Definiciones_Seguridad_ocupacional.pdfVer",
+       "Autor Anonimo\n ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n6 nov 2018, 17:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1TdQa10wdRf6IDmwjppLDgQzBy7_zo6OK/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "MigaSpecial.pdfVer",
+       "Resúmen Segundo Parcial y Primer Parcial. ",
+       "",
+       " ",
+       "\n1 oct 2018, 14:47\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1BUP0GpEsVAJCESFzvn7ydj0vjWu1Q63n/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Preguntas_tipo_parcial.pdfVer",
+       " ",
+       "",
+       " ",
+       "\n6 nov 2018, 17:30\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1SxsrMnS4oawUt4-U2klq6DhzInfq2IpP/view?usp=drive_web"
+      ]
+     },
      {
       "data": [
        "",
@@ -1999,6 +4076,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Parcialitos",
+    "files": null
    }
   ]
  },
@@ -2010,8 +4091,86 @@
   "content": "Ricardo Lauretta",
   "cabinets": [
    {
-    "title": "Trabajo Especiales (TP)",
+    "title": "Unfiled",
     "files": [
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Ciclos Otto_Diesel.pdfVer",
+       "Apunte de la materia Motores a Combustion Interna ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n27 nov 2017, 18:12\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1GfUNPuFHxKI-8cptHllhMyDUuZdG3Xcx/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "exergia.pdfVer Descargar",
+       "V2\n ",
+       "371 kb",
+       "v. 1  ",
+       "\n13 nov 2017, 15:44\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjIzMTM0ZGY0MWIyMTBiNWU",
+       "/site/whittileak/termodinamica/exergia.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "FinalesCapturados_Lauretta.zipVer",
+       "5 Finales Resueltos  ",
+       "",
+       " ",
+       "\n15 feb 2018, 8:38\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1zFiUR0D6jTXFjxmqxi5FhTJYOile1BIs/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Pequeño Resumen.pdfVer Descargar",
+       "Había un error en la ecuación de gases ideales.  ",
+       "262 kb",
+       "v. 1  ",
+       "\n20 abr 2019, 16:27\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OjdiNWRkNDcwMjhiYjI3ZjA",
+       "/site/whittileak/termodinamica/Peque%C3%B1o%20Resumen.pdf?attredirects=0\u0026d=1"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "Segundo Parcial 2017 2C.pdfVer Descargar",
+       " ",
+       "152 kb",
+       "v. 1  ",
+       "\n3 dic 2017, 7:48\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://docs.google.com/viewer?a=v\u0026pid=sites\u0026srcid=ZGVmYXVsdGRvbWFpbnx3aGl0dGlsZWFrfGd4OmViNzU5NjExNmFiY2Y0YQ",
+       "/site/whittileak/termodinamica/Segundo%20Parcial%202017%202C.pdf?attredirects=0\u0026d=1"
+      ]
+     },
      {
       "data": [
        "",
@@ -2074,6 +4233,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "Trabajo Especiales (TP)",
+    "files": null
    }
   ]
  },
@@ -2085,11 +4248,42 @@
   "content": "\u003cspan style=\"font-size:large\"\u003e📄\u003c/span\u003e\u003ca href=\"https://github.com/soypat/whittileaks/raw/master/turbomachines/turbomaquinas.pdf\" style=\"font-size:large\" rel=\"nofollow\"\u003eApunte de la materia\u003c/a\u003e\u003cspan style=\"font-size:large\"\u003e [440kB] formato pdf\u003c/span\u003e",
   "cabinets": [
    {
-    "title": "1er Parcial",
-    "files": null
+    "title": "Unfiled",
+    "files": [
+     {
+      "data": [
+       "",
+       "\nċ\n",
+       "F1-2019-Hilal.zipVer",
+       "Final 2019 ",
+       "",
+       " ",
+       "\n\n      //\u003c![CDATA[\n        function JOT_insertRelDate(timestamp, absTimeStr, isSiteLocale, dir) {\n          var relTimeStr = JOT_formatRelativeToNow(timestamp, isSiteLocale);\n          if (relTimeStr) {\n            if (isSiteLocale) {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" issitelocale=\"' + isSiteLocale +\n                '\" title=\"' + absTimeStr + '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            } else {\n              document.write('\u003cspan timestamp=\"' + timestamp + '\" title=\"' + absTimeStr +\n              '\" dir=\"' + dir + '\"\u003e' + relTimeStr + '\u003c' + '/span\u003e');\n            }\n          } else {\n            document.write(absTimeStr);\n          }\n        }\n      //]]\u003e\n\n26 feb 2020, 18:29\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1C3HuW7yjnUkf__DhqCrE84rekwYiqYOI/view?usp=drive_web"
+      ]
+     },
+     {
+      "data": [
+       "",
+       "\nĊ\n",
+       "turbo 05-12-2018 fecha 1.pdfVer",
+       "FINAL 2018\n ",
+       "",
+       " ",
+       "\n7 jul 2019, 11:14\n",
+       "Pat Whitti"
+      ],
+      "links": [
+       "https://drive.google.com/file/d/1aRa3GCv0NtuW9Ad09v2YlWPYyNwDzWob/view?usp=drive_web"
+      ]
+     }
+    ]
    },
    {
-    "title": "2do Parcial",
+    "title": "1er Parcial",
     "files": [
      {
       "data": [
@@ -2137,6 +4331,10 @@
       ]
      }
     ]
+   },
+   {
+    "title": "2do Parcial",
+    "files": null
    }
   ]
  },
